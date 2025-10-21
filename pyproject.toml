@@ -38,9 +38,9 @@ dependencies = [
 allow-direct-references = true
 
 [project.urls]
-Documentation = "https://git.terradue.com/esa-earthcode/transpiler-mate#readme"
-Issues = "https://git.terradue.com/esa-earthcode/transpiler-mate/issues"
-Source = "https://git.terradue.com/esa-earthcode/transpiler-mate"
+Documentation = "https://github.com/Terradue/transpiler-mate#readme"
+Issues = "https://github.com/Terradue/transpiler-mate/issues"
+Source = "https://github.com/Terradue/transpiler-mate"
 
 [project.scripts]
 transpiler-mate = "transpiler_mate.cli:main"
