@@ -1,10 +1,10 @@
 # Transpiler Mate
 
-A small and light yet poweful API + CLI to extract [Schema.org/SoftwareApplication](https://schema.org/SoftwareApplication) Metadata from an annotated [CWL](https://www.commonwl.org/) document and publish it as a Record on [Zenodo](https://zenodo.org/).
+A small and light yet poweful API + CLI to extract [Schema.org/SoftwareApplication](https://schema.org/SoftwareApplication) Metadata from an annotated [CWL](https://www.commonwl.org/) document and publish it as a Record on [Invenio RDM](https://inveniosoftware.org/products/rdm/).
 
 ## Pre-requisites
 
-You must own an authentication Token to pusblish on Zenodo, see how to create a [new Token](https://zenodo.org/account/settings/applications/tokens/new/).
+You must own an authentication Token to pusblish on Invenio, see how to create a [new Token](https://inveniordm.docs.cern.ch/reference/rest_api_index/).
 
 ## Installation
 
@@ -19,16 +19,15 @@ $ transpiler-mate --help
 Usage: transpiler-mate [OPTIONS] SOURCE
 
 Options:
-  --dry-run          Picks the Zenodo sandbox server
-  --auth-token TEXT  The Zenodo Access token, see https://(sandbox.)zenodo.org
-                     /account/settings/applications/tokens  [required]
-  --help             Show this message and exit.
+  --invenio-base-url TEXT  The Invenio server base URL
+  --auth-token TEXT        The Invenio Access token
+  --help                   Show this message and exit.
   ```
 
 i.e.
 
 ```
-$ transpiler-mate --dry-run --auth-token=<ZENODO_TOKEN> ./docs/pattern-1.cwl
+$ transpiler-mate --invenio-base-url https://sandbox.zenodo.org --auth-token=<ZENODO_TOKEN> ./docs/pattern-1.cwl
 
 2025-10-09 16:24:35.965 | INFO     | transpiler_mate.cli:main:55 - Started at: 2025-10-09T16:24:35.965
 2025-10-09 16:24:35.965 | DEBUG    | transpiler_mate.metadata:__init__:55 - Loading raw document from ./docs/pattern-1.cwl...

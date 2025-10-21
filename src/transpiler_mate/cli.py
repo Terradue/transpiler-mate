@@ -33,21 +33,20 @@ import time
     required=True
 )
 @click.option(
-    '--dry-run',
-    type=click.BOOL,
-    is_flag=True,
-    default=False,
-    help="Picks the Zenodo sandbox server"
+    '--invenio-base-url',
+    type=click.STRING,
+    required=True,
+    help="The Invenio server base URL"
 )
 @click.option(
     '--auth-token',
     type=click.STRING,
     required=True,
-    help="The Zenodo Access token, see https://(sandbox.)zenodo.org/account/settings/applications/tokens"
+    help="The Invenio Access token"
 )
 def main(
     source: Path,
-    dry_run: bool,
+    invenio_base_url: str,
     auth_token: str
 ):
     start_time = time.time()
@@ -60,12 +59,11 @@ def main(
     metadata.date_published = date.fromtimestamp(start_time)
     metadata_manager.update()
 
-    zenodo_base_url = f"https://{'sandbox.' if dry_run else ''}zenodo.org"
-    logger.info(f"Interacting with Invenio server at {zenodo_base_url})")
+    logger.info(f"Interacting with Invenio server at {invenio_base_url})")
 
     invenio_transpiler: InvenioMetadataTranspiler = InvenioMetadataTranspiler(
         metadata_manager=metadata_manager,
-        invenio_base_url=zenodo_base_url,
+        invenio_base_url=invenio_base_url,
         auth_token=auth_token
     )
 
