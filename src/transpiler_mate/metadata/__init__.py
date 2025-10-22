@@ -12,7 +12,6 @@ from abc import (
 )
 from loguru import logger
 from pathlib import Path
-from pyld import jsonld
 from typing import (
     Any,
     Generic,
@@ -35,9 +34,6 @@ class Transpiler(Generic[T]):
 import json
 import yaml
 
-__CONTEXT_KEY__ = '@context'
-__NAMESPACE_KEY__ = '$namespaces'
-
 class MetadataManager():
 
     def __init__(
@@ -59,34 +55,10 @@ class MetadataManager():
         with document_source.open() as input_stream:
             self.raw_document: MutableMapping[str, Any] = yaml.safe_load(input_stream)
 
-        logger.debug('Reading the input dictionary and extracting Schema.org metadata in JSON-LD format...')
-
-        compacted = jsonld.compact(
-            input_=self.raw_document,
-            ctx={},
-            options={
-                'expandContext': self.raw_document.get(__NAMESPACE_KEY__)
-            }
-        )
-
-        logger.debug('Schema.org metadata successfully extracted in in JSON-LD format!')
-
-        self.metadata: SoftwareApplication = SoftwareApplication.model_validate(compacted, by_alias=True)
+        self.metadata: SoftwareApplication = SoftwareApplication.from_jsonld(self.raw_document)
 
     def update(self):
-        metadata_dict = self.metadata.model_dump(exclude_none=True, by_alias=True)
-
-        updated_metadata: MutableMapping[str, Any] = jsonld.compact(
-            input_=metadata_dict,
-            ctx=self.raw_document.get(__NAMESPACE_KEY__),
-            options={
-                'expandContext': self.raw_document.get(__NAMESPACE_KEY__)
-            }
-        ) # type: ignore
-
-        updated_metadata.pop(__CONTEXT_KEY__) # remove undesired keys, $namespace already in the source document
-        
-        logger.debug(f'JSON-LD format compacted metadata ready to be merged to the original raw CWL document...')
+        updated_metadata = self.metadata.to_jsonld()
 
         self.raw_document.update(updated_metadata)
 
@@ -107,13 +79,7 @@ class MetadataManager():
         self,
         sink: TextIO
     ):
-        compacted = jsonld.compact(
-            input_=self.raw_document,
-            ctx=self.raw_document.get(__NAMESPACE_KEY__),
-            options={
-                'expandContext': self.raw_document.get(__NAMESPACE_KEY__)
-            }
-        )
+        compacted = self.metadata.to_jsonld()
 
         json.dump(
             compacted,
