@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://terradue.github.io/transpiler-mate/</loc>
+         <lastmod>2025-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://terradue.github.io/transpiler-mate/api/latest/transpiler_mate/</loc>
+         <lastmod>2025-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://terradue.github.io/transpiler-mate/api/latest/transpiler_mate/cli/</loc>
+         <lastmod>2025-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://terradue.github.io/transpiler-mate/api/latest/transpiler_mate/invenio/</loc>
+         <lastmod>2025-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://terradue.github.io/transpiler-mate/api/latest/transpiler_mate/datacite/</loc>
+         <lastmod>2025-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://terradue.github.io/transpiler-mate/api/latest/transpiler_mate/datacite/datacite_4_6_models/</loc>
+         <lastmod>2025-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://terradue.github.io/transpiler-mate/api/latest/transpiler_mate/metadata/</loc>
+         <lastmod>2025-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://terradue.github.io/transpiler-mate/api/latest/transpiler_mate/metadata/software_application_models/</loc>
+         <lastmod>2025-10-23</lastmod>
+    </url>
+</urlset>
