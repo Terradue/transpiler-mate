@@ -31,7 +31,8 @@ dependencies = [
   "pyyaml",
   "click",
   "loguru",
-  "invenio-rest-api-client"
+  "invenio-rest-api-client",
+  "ogc-api-records-core-client"
 ]
 
 [tool.hatch.metadata]
