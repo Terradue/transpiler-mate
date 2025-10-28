@@ -13,12 +13,13 @@ from ..metadata.software_application_models import (
 from ..metadata import Transpiler
 from csv import DictReader
 from loguru import logger
+from ogc_api_records_core_client.models.language import Language
 from ogc_api_records_core_client.models.record_geo_json import RecordGeoJSON
 from ogc_api_records_core_client.models.record_geo_json_properties import RecordGeoJSONProperties
 from ogc_api_records_core_client.models.record_geo_json_type import RecordGeoJSONType
-from ogc_api_records_core_client.types import UNSET
 from ogc_api_records_core_client.models.theme import Theme
 from ogc_api_records_core_client.models.theme_concepts_item import ThemeConceptsItem
+from ogc_api_records_core_client.types import UNSET
 from pydantic import (
     AnyUrl,
     BaseModel,
@@ -69,6 +70,11 @@ class ScienceKeywordRecord(BaseModel):
 
 SCIENCE_KEYWORDS_TERM_SET = AnyUrl('https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords')
 
+DEFAULT_LANGUAGE: Language = Language(
+    code='en-US',
+    name='English (United States)'
+)
+
 class OgcRecordsTranspiler(Transpiler):
 
     def __init__(self):
@@ -94,8 +100,17 @@ class OgcRecordsTranspiler(Transpiler):
             type_=RecordGeoJSONType.FEATURE,
             geometry=None,
             properties=RecordGeoJSONProperties(
+                created=metadata_source.date_created, # type: ignore
+                updated=metadata_source.date_published, # type: ignore
+                title=metadata_source.headline, # type: ignore
+                description=metadata_source.about.description, # type: ignore
                 keywords=[],
-                themes=[]
+                themes=[],
+                language=DEFAULT_LANGUAGE,
+                resource_languages=[DEFAULT_LANGUAGE],
+                formats=[{ 'name': 'CWL', 'mediaType': 'application/x-yaml' }],
+                contacts=[metadata_source.publisher.email], # type: ignore
+                license_=str(metadata_source.license.url) # type: ignore
             )
         )
 
