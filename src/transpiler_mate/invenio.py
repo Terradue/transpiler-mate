@@ -18,6 +18,7 @@ from .metadata.software_application_models import (
     SoftwareApplication
 )
 from collections.abc import Iterable
+from datetime import date
 
 # required when a DOI is not assigned to an applicatrion package
 from invenio_rest_api_client.client import AuthenticatedClient as InvenioClient
@@ -61,9 +62,14 @@ from loguru import logger
 from pathlib import Path
 from pydantic import AnyUrl
 from shutil import copy2 as copy_file
-from typing import Sequence
+from typing import (
+    List,
+    Optional,
+    Tuple
+)
 
 import hashlib
+import time
 import os
 
 def _md5(file: Path):
@@ -79,19 +85,19 @@ def _to_creator(
     return Creator(
         person_or_org=PersonOrOrg(
             type_=PersonOrOrgType.PERSONAL if isinstance(author, Person) else PersonOrOrgType.ORGANIZATIONAL,
-            name=f"{author.family_name}, {author.given_name}" if isinstance(author, Person) else author.name if isinstance(author, Organization) else UNSET, # type: ignore
-            given_name=author.given_name if isinstance(author, Person) else UNSET, # type: ignore
-            family_name=author.family_name if isinstance(author, Person) else UNSET, # type: ignore
+            name=author.name,
+            given_name=author.given_name if isinstance(author, Person) else UNSET,
+            family_name=author.family_name if isinstance(author, Person) else UNSET,
             identifiers=[
                Identifier(
-                    scheme=PersonOrOrgIdentifierScheme(str(author.identifier.property_id).lower()), # type: ignore
-                    identifier=str(author.identifier.value_reference) # type: ignore
+                    scheme=PersonOrOrgIdentifierScheme(str(author.identifier.property_id).lower()),
+                    identifier=str(author.identifier.value_reference)
                 )
             ] if isinstance(author, Person) and author.identifier and isinstance(author.identifier, PropertyValue) else UNSET
         ),
         affiliations=[Affiliation(
             id=str(author.affiliation.identifier) if author.affiliation.identifier else UNSET,
-            name=author.affiliation.name if isinstance(author.affiliation, Organization) else UNSET, # type: ignore
+            name=author.affiliation.name if isinstance(author.affiliation, Organization) else UNSET,
         )] if isinstance(author, Person) and author.affiliation else UNSET
     )
 
@@ -113,7 +119,7 @@ class InvenioMetadataTranspiler(Transpiler):
 
         logger.debug('Setting up the HTTP logger...')
         init_http_logging(self.invenio_client.get_httpx_client())
-        logger.debug('HTTP logger correctly setup')        
+        logger.debug('HTTP logger correctly setup') 
 
     def transpile(
         self,
@@ -123,10 +129,10 @@ class InvenioMetadataTranspiler(Transpiler):
             resource_type=ResourceType(
                 id=ResourceTypeId.WORKFLOW
             ),
-            title=str(metadata_source.headline),
-            publication_date=metadata_source.date_published, # type: ignore
-            publisher=metadata_source.publisher.name, # type: ignore
-            description=metadata_source.about.description, # type: ignore
+            title=metadata_source.headline,
+            publication_date=date.fromtimestamp(time.time()),
+            publisher=', '.join([publisher.name for publisher in metadata_source.publisher]) if isinstance(metadata_source.publisher, list) else metadata_source.publisher.name,
+            description=metadata_source.abstract if metadata_source.abstract else UNSET,
             creators=list(
                 map(
                     _to_creator,
@@ -136,10 +142,27 @@ class InvenioMetadataTranspiler(Transpiler):
             version=metadata_source.software_version # type: ignore
         )
 
+    def _to_versioned_file_name(
+        self,
+        source: Path
+    ) -> str:
+        # Split the file name and extension
+        base_name, extension = os.path.splitext(source.name)
+        # Retrieve the version
+        version = self.metadata_manager.metadata.software_version
+        # Construct the new file name by appending the version
+
+        if self.metadata_manager.document_source.name == source.name:
+            return f"{base_name}_v{version}{extension}"
+
+        source_name, _ = os.path.splitext(self.metadata_manager.document_source.name)
+
+        return f"{source_name}_{base_name}_v{version}{extension}" 
+
     def _finalize(
         self,
         draft_id: str,
-        uploading_files: Sequence[Path],
+        uploading_files: List[Path],
         session_client: InvenioClient,
         invenio_metadata: Metadata
     ) -> str:
@@ -150,7 +173,7 @@ class InvenioMetadataTranspiler(Transpiler):
             draft_id=draft_id,
             client=session_client,
             body=[FileTransferItem(
-                key=file.name,
+                key=self._to_versioned_file_name(file),
                 size=file.stat().st_size,
                 checksum=f"md5:{_md5(file)}"
             ) for file in uploading_files ]
@@ -164,9 +187,9 @@ class InvenioMetadataTranspiler(Transpiler):
             with file.open('rb') as binary_stream:
                 step_2_upload_a_draft_files_content(
                     draft_id=draft_id,
-                    file_name=file.name,
+                    file_name=self._to_versioned_file_name(file),
                     body=FileContent(
-                        file_name=file.name,
+                        file_name=self._to_versioned_file_name(file),
                         mime_type='application/octet-stream',
                         payload=binary_stream
                     ),
@@ -179,7 +202,7 @@ class InvenioMetadataTranspiler(Transpiler):
 
             step_3_complete_a_draft_file_upload(
                 draft_id=draft_id,
-                file_name=file.name,
+                file_name=self._to_versioned_file_name(file),
                 client=session_client
             )
 
@@ -215,7 +238,8 @@ class InvenioMetadataTranspiler(Transpiler):
 
     def create_or_update_process(
         self,
-        source: Path
+        source: Path,
+        attach: Optional[Tuple[Path]] = None
     ) -> str:
         metadata: SoftwareApplication = self.metadata_manager.metadata
 
@@ -264,25 +288,14 @@ class InvenioMetadataTranspiler(Transpiler):
 
                 logger.info(f"New version {draft_id} for already existing Record {record_id} created!")
 
-            # Split the file name and extension
-            base_name, extension = os.path.splitext(source.name)
-            # Retrieve the version
-            version = metadata.software_version
-            # Construct the new file name by appending "_edited"
-            new_file_name = f"{base_name}_v{version}{extension}"
-            target = Path(source.parent, new_file_name)
-            copy_file(
-                src=source.absolute(),
-                dst=target.absolute()
-            )
-
-            codemeta_file = Path(source.parent, 'codemeta.json')
-            with codemeta_file.open('w') as output_stream:
-                self.metadata_manager.save_as_codemeta(output_stream)
+            uploading_files = [source]
+            if attach:
+                for attach_item in attach:
+                    uploading_files.append(attach_item)
 
             return self._finalize(
                 draft_id=draft_id,
-                uploading_files=[target, codemeta_file],
+                uploading_files=uploading_files,
                 session_client=invenio_rest_client,
                 invenio_metadata=self.transpile(metadata)
             )

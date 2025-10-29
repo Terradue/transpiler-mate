@@ -74,16 +74,3 @@ class MetadataManager():
             _dump(output_stream)
 
         logger.info(f"JSON-LD format compacted metadata merged to the original '{self.document_source}' document")
-
-    def save_as_codemeta(
-        self,
-        sink: TextIO
-    ):
-        compacted = self.metadata.to_jsonld()
-
-        json.dump(
-            compacted,
-            sink,
-            indent=2,
-            sort_keys=False
-        )

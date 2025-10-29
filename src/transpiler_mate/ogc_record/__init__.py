@@ -12,6 +12,11 @@ from ..metadata.software_application_models import (
 )
 from ..metadata import Transpiler
 from csv import DictReader
+from datetime import (
+    date,
+    datetime,
+    timezone
+)
 from loguru import logger
 from ogc_api_records_core_client.models.language import Language
 from ogc_api_records_core_client.models.record_geo_json import RecordGeoJSON
@@ -31,7 +36,10 @@ from typing import (
     Optional,
     Sequence
 )
+
 import os
+import time
+import uuid
 
 class ScienceKeywordRecord(BaseModel):
     @computed_field
@@ -75,6 +83,11 @@ DEFAULT_LANGUAGE: Language = Language(
     name='English (United States)'
 )
 
+def _to_datetime(value: date | datetime):
+    if isinstance(value, datetime):
+        return value if value.tzinfo else value.replace(tzinfo=timezone.utc)
+    return datetime.combine(value, datetime.min.time(), tzinfo=timezone.utc)
+
 class OgcRecordsTranspiler(Transpiler):
 
     def __init__(self):
@@ -96,20 +109,20 @@ class OgcRecordsTranspiler(Transpiler):
         metadata_source: SoftwareApplication
     ) -> RecordGeoJSON:
         record_geojson: RecordGeoJSON = RecordGeoJSON(
-            id=metadata_source.identifier, # type: ignore this is checked in previous step
+            id=f"urn:uuid:{uuid.uuid4()}",
             type_=RecordGeoJSONType.FEATURE,
             geometry=None,
             properties=RecordGeoJSONProperties(
-                created=metadata_source.date_created, # type: ignore
-                updated=metadata_source.date_published, # type: ignore
-                title=metadata_source.headline, # type: ignore
-                description=metadata_source.about.description, # type: ignore
+                created=_to_datetime(metadata_source.date_created),
+                updated=datetime.fromtimestamp(time.time()),
+                title=metadata_source.headline,
+                description=metadata_source.abstract if metadata_source.abstract else UNSET,
                 keywords=[],
                 themes=[],
                 language=DEFAULT_LANGUAGE,
                 resource_languages=[DEFAULT_LANGUAGE],
-                formats=[{ 'name': 'CWL', 'mediaType': 'application/x-yaml' }],
-                contacts=[metadata_source.publisher.email], # type: ignore
+                formats=[{ 'name': 'CWL', 'mediaType': 'application/cwl' }],
+                contacts=[publisher.email for publisher in metadata_source.publisher] if isinstance(metadata_source.publisher, list) else [metadata_source.publisher.email],
                 license_=str(metadata_source.license.url) # type: ignore
             )
         )
@@ -132,7 +145,7 @@ class OgcRecordsTranspiler(Transpiler):
                             )
 
                             for i, keyword in enumerate(science_keyword_record.hierarchy_list):
-                                current_theme.concepts.append( # type: ignore - manually set
+                                current_theme.concepts.append(
                                     ThemeConceptsItem(
                                         id=keyword,
                                         description=' > '.join(science_keyword_record.hierarchy_list[0:i+1]),

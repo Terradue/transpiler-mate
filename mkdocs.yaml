@@ -70,6 +70,10 @@ extra_javascript:
 
 nav:
   - index.md
+  - CLI Commands:
+    - ./cli/codemeta.md
+    - ./cli/ogc_record.md
+    - ./cli/invenio.md
   - API doc: ./api/latest/transpiler_mate/index.md
 
 copyright: <a href="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg">License CC BY-SA 4.0</a>, by <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons</a>

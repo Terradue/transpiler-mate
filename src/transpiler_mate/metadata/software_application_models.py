@@ -102,7 +102,7 @@ class Thing(TranspilerBaseModel):
         validation_alias=AliasChoices('sameAs', 'https://schema.org/sameAs'),
         serialization_alias='https://schema.org/sameAs',
     )
-    name: Optional[Union[str, List[str]]] = Field(
+    name: Optional[str] = Field(
         default=None,
         validation_alias=AliasChoices('name', 'https://schema.org/name'),
         serialization_alias='https://schema.org/name',
@@ -401,7 +401,7 @@ class CreativeWork(Thing):
         ),
         serialization_alias='https://schema.org/acquireLicensePage',
     )
-    headline: Optional[Union[str, List[str]]] = Field(
+    headline: Optional[str] = Field(
         default=None,
         validation_alias=AliasChoices('headline', 'https://schema.org/headline'),
         serialization_alias='https://schema.org/headline',
@@ -581,7 +581,7 @@ class CreativeWork(Thing):
         validation_alias=AliasChoices('expires', 'https://schema.org/expires'),
         serialization_alias='https://schema.org/expires',
     )
-    abstract: Optional[Union[str, List[str]]] = Field(
+    abstract: Optional[str] = Field(
         default=None,
         validation_alias=AliasChoices('abstract', 'https://schema.org/abstract'),
         serialization_alias='https://schema.org/abstract',
@@ -915,6 +915,12 @@ class CreativeWork(Thing):
 
 
 class Person(Thing):
+    def model_post_init(
+        self,
+        context: Any
+    ) -> None:
+        self.name = f"{self.family_name}, {self.given_name}"
+
     field_type: Literal['https://schema.org/Person'] = Field(
         'https://schema.org/Person', alias='@type'
     )
@@ -998,8 +1004,8 @@ class Person(Thing):
         validation_alias=AliasChoices('alumniOf', 'https://schema.org/alumniOf'),
         serialization_alias='https://schema.org/alumniOf',
     )
-    family_name: Optional[Union[str, List[str]]] = Field(
-        default=None,
+    family_name: str = Field(
+        ...,
         validation_alias=AliasChoices('familyName', 'https://schema.org/familyName'),
         serialization_alias='https://schema.org/familyName',
     )
@@ -1146,8 +1152,8 @@ class Person(Thing):
         validation_alias=AliasChoices('colleague', 'https://schema.org/colleague'),
         serialization_alias='https://schema.org/colleague',
     )
-    given_name: Optional[Union[str, List[str]]] = Field(
-        default=None,
+    given_name: str = Field(
+        ...,
         validation_alias=AliasChoices('givenName', 'https://schema.org/givenName'),
         serialization_alias='https://schema.org/givenName',
     )
