@@ -12,6 +12,7 @@ from abc import (
 )
 from loguru import logger
 from pathlib import Path
+from pyld import jsonld
 from typing import (
     Any,
     Generic,
@@ -31,8 +32,9 @@ class Transpiler(Generic[T]):
     ) -> T:
         pass
 
-import json
 import yaml
+
+__CONTEXT_KEY__ = '@context'
 
 class MetadataManager():
 
@@ -58,7 +60,19 @@ class MetadataManager():
         self.metadata: SoftwareApplication = SoftwareApplication.from_jsonld(self.raw_document)
 
     def update(self):
-        updated_metadata = self.metadata.to_jsonld()
+        metadata_dict = self.metadata.model_dump(exclude_none=True, by_alias=True)
+
+        namespaces = self.raw_document.get('$namespaces')
+
+        updated_metadata: MutableMapping[str, Any] = jsonld.compact(
+            input_=metadata_dict,
+            ctx=namespaces,
+            options={
+                'expandContext': namespaces
+            }
+        ) # type: ignore
+
+        updated_metadata.pop('@context') # remove undesired keys, $namespace already in the source document
 
         self.raw_document.update(updated_metadata)
 

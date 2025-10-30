@@ -6,15 +6,16 @@
 # You should have received a copy of the license along with this work.
 # If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 
-from .metadata import MetadataManager
-from .metadata.software_application_models import SoftwareApplication
+from .metadata import (
+    MetadataManager,
+    Transpiler
+)
 from datetime import datetime
 from functools import wraps
 from loguru import logger
 from pathlib import Path
 from typing import (
     Any,
-    List,
     Mapping,
     Tuple,
     Optional
@@ -54,7 +55,7 @@ def _track(func):
 def main():
     pass
 
-@main.command()
+@main.command(context_settings={'show_default': True})
 @click.argument(
     'source',
     type=click.Path(
@@ -75,6 +76,7 @@ def main():
     '--auth-token',
     type=click.STRING,
     required=True,
+    envvar='INVENIO_AUTH_TOKEN',
     help="The Invenio Access token"
 )
 @click.option(
@@ -114,20 +116,30 @@ def invenio_publish(
 
     logger.success(f"Record available on '{record_url}'")
 
-def _dump_json(
-    obj: Mapping[str, Any],
-    target: Path
+def _transpile(
+    source: Path,
+    transpiler: Transpiler,
+    output: Path
 ):
-    with target.open('w') as output_stream:
+    logger.info(f"Reading metadata from {source}...")
+    metadata_manager: MetadataManager = MetadataManager(source)
+
+    logger.success(f"Metadata successfully read!")
+    logger.info('Transpiling metadata...')
+    data = transpiler.transpile(metadata_manager.metadata)
+
+    logger.success(f"Metadata successfully transpiled!")
+    logger.info('Serializing metadata...')
+    with output.open('w') as output_stream:
         json.dump(
-            obj,
+            data,
             output_stream,
             indent=2
         )
     
-    logger.info(f"Metadata successfully traspiled to {target}.")
+    logger.success(f"Metadata successfully serialized to {output}.")
 
-@main.command
+@main.command(context_settings={'show_default': True})
 @click.argument(
     'source',
     type=click.Path(
@@ -138,20 +150,30 @@ def _dump_json(
     ),
     required=True
 )
+@click.option(
+    '--output',
+    type=click.Path(path_type=Path),
+    required=False,
+    default='codemeta.json',
+    help="The output file path"
+)
 def codemeta(
-    source: Path
+    source: Path,
+    output: Path
 ):
     """
     Transpiles the input CWL to CodeMeta representation.
     """
-    metadata_manager: MetadataManager = MetadataManager(source)
+    from .codemeta import CodeMetaTranspiler
+    transpiler: CodeMetaTranspiler = CodeMetaTranspiler()
 
-    _dump_json(
-        obj=metadata_manager.metadata.to_jsonld(),
-        target=Path(source.parent, 'codemeta.json')
+    _transpile(
+        source=source,
+        transpiler=transpiler,
+        output=output
     )
 
-@main.command
+@main.command(context_settings={'show_default': True})
 @click.argument(
     'source',
     type=click.Path(
@@ -162,19 +184,27 @@ def codemeta(
     ),
     required=True
 )
+@click.option(
+    '--output',
+    type=click.Path(path_type=Path),
+    required=False,
+    default='record.json',
+    help="The output file path"
+)
 def ogcrecord(
-    source: Path
+    source: Path,
+    output: Path
 ):
     """
     Transpiles the input CWL to OGC API Record.
     """
-    metadata_manager: MetadataManager = MetadataManager(source)
     from .ogc_record import OgcRecordsTranspiler
-    ogc_record = OgcRecordsTranspiler().transpile(metadata_manager.metadata)
+    transpiler = OgcRecordsTranspiler()
 
-    _dump_json(
-        obj=ogc_record.to_dict(),
-        target=Path(source.parent, 'record.json')
+    _transpile(
+        source=source,
+        transpiler=transpiler,
+        output=output
     )
 
 for command in [codemeta, invenio_publish, ogcrecord]:

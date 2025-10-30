@@ -2,7 +2,6 @@
 
 ```
 $ transpiler-mate invenio-publish --help
-
 Usage: transpiler-mate invenio-publish [OPTIONS] SOURCE
 
   Publishes the input CWL to an Invenio instance.
@@ -14,14 +13,21 @@ Options:
   --help
 ```
 
-i.e.
+> [!NOTE]  
+> The `--auth-token` option can be omitted if the `INVENIO_AUTH_TOKEN` environment variable is set, i.e.
+
+```
+export INVENIO_AUTH_TOKEN=<INVENIO_AUTH_TOKEN>
+```
+
+Invocation will look alike:
 
 ```
 $ transpiler-mate invenio-publish \
   --base-url=https://sandbox.zenodo.org/ \
   --auth-token=<INVENIO_AUTH_TOKEN> \
-  --attach=/path/to/codemeta.json \
-  --attach=/path/to/record.json \
+  --attach=./codemeta.json \
+  --attach=./record.json \
   --attach=/path/to/state.png \
   --attach=/path/to/sequence.png \
   --attach=/path/to/class.png 

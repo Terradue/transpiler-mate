@@ -26,7 +26,6 @@ from typing import (
     List,
     Literal,
     Mapping,
-    MutableMapping,
     Optional,
     Union
 )
@@ -6305,9 +6304,6 @@ class WebPageElement(CreativeWork):
     )
 
 
-__CONTEXT_KEY__ = '@context'
-__NAMESPACE_KEY__ = '$namespaces'
-
 class SoftwareApplication(CreativeWork):
     @staticmethod
     def from_jsonld(
@@ -6317,28 +6313,12 @@ class SoftwareApplication(CreativeWork):
             input_=raw_document,
             ctx={},
             options={
-                'expandContext': raw_document.get(__NAMESPACE_KEY__)
+                'expandContext': raw_document.get('$namespaces')
             }
         )
         metadata: SoftwareApplication = SoftwareApplication.model_validate(compacted, by_alias=True)
-        metadata.namespaces__ = raw_document.get(__NAMESPACE_KEY__)
         return metadata
 
-    def to_jsonld(self) -> Mapping[str, Any]:
-        metadata_dict = self.model_dump(exclude_none=True, by_alias=True)
-
-        updated_metadata: MutableMapping[str, Any] = jsonld.compact(
-            input_=metadata_dict,
-            ctx=self.namespaces__,
-            options={
-                'expandContext': self.namespaces__
-            }
-        ) # type: ignore
-
-        updated_metadata.pop(__CONTEXT_KEY__) # remove undesired keys, $namespace already in the source document
-        return updated_metadata
-
-    namespaces__: Optional[Mapping[str, str]] = Field(default=None, exclude=True)
     field_type: Literal['https://schema.org/SoftwareApplication'] = Field(
         'https://schema.org/SoftwareApplication', alias='@type'
     )

@@ -67,6 +67,7 @@ from typing import (
     Optional,
     Tuple
 )
+from urllib.parse import urlparse
 
 import hashlib
 import time
@@ -79,6 +80,21 @@ def _md5(file: Path):
             hash_md5.update(chunk)
     return hash_md5.hexdigest()
 
+def _to_identifier(
+    url_identifier: str | AnyUrl
+) -> Identifier:
+    _, netloc, path, _, _, _ = urlparse(str(url_identifier))
+    return Identifier(
+        scheme=PersonOrOrgIdentifierScheme(netloc.split('.')[0]),
+        identifier=path.split('/')[-1]
+    )
+
+def _affiliation_identifier(
+    url_identifier: str | AnyUrl
+) -> str:
+    _, _, path, _, _, _ = urlparse(str(url_identifier))
+    return path.split('/')[-1]
+
 def _to_creator(
     author: Person | Organization
 ) -> Creator:
@@ -89,14 +105,11 @@ def _to_creator(
             given_name=author.given_name if isinstance(author, Person) else UNSET,
             family_name=author.family_name if isinstance(author, Person) else UNSET,
             identifiers=[
-               Identifier(
-                    scheme=PersonOrOrgIdentifierScheme(str(author.identifier.property_id).lower()),
-                    identifier=str(author.identifier.value_reference)
-                )
-            ] if isinstance(author, Person) and author.identifier and isinstance(author.identifier, PropertyValue) else UNSET
+               _to_identifier(author.identifier)
+            ] if isinstance(author, Person) and author.identifier else UNSET
         ),
         affiliations=[Affiliation(
-            id=str(author.affiliation.identifier) if author.affiliation.identifier else UNSET,
+            id=_affiliation_identifier(author.affiliation.identifier) if author.affiliation.identifier else UNSET,
             name=author.affiliation.name if isinstance(author.affiliation, Organization) else UNSET,
         )] if isinstance(author, Person) and author.affiliation else UNSET
     )
@@ -129,10 +142,10 @@ class InvenioMetadataTranspiler(Transpiler):
             resource_type=ResourceType(
                 id=ResourceTypeId.WORKFLOW
             ),
-            title=metadata_source.headline,
+            title=metadata_source.name,
             publication_date=date.fromtimestamp(time.time()),
             publisher=', '.join([publisher.name for publisher in metadata_source.publisher]) if isinstance(metadata_source.publisher, list) else metadata_source.publisher.name,
-            description=metadata_source.abstract if metadata_source.abstract else UNSET,
+            description=metadata_source.description if metadata_source.description else UNSET,
             creators=list(
                 map(
                     _to_creator,

@@ -32,6 +32,8 @@ from pydantic import (
     Field
 )
 from typing import (
+    Any,
+    Mapping,
     MutableMapping,
     Optional,
     Sequence
@@ -107,7 +109,7 @@ class OgcRecordsTranspiler(Transpiler):
     def transpile(
         self,
         metadata_source: SoftwareApplication
-    ) -> RecordGeoJSON:
+    ) -> Mapping[str, Any]:
         record_geojson: RecordGeoJSON = RecordGeoJSON(
             id=f"urn:uuid:{uuid.uuid4()}",
             type_=RecordGeoJSONType.FEATURE,
@@ -159,4 +161,4 @@ class OgcRecordsTranspiler(Transpiler):
                 else:
                     logger.debug(f"Discarding keyword, {raw_keyword}, unsupported type {type(raw_keyword)}")
 
-        return record_geojson
+        return record_geojson.to_dict()
