@@ -117,8 +117,8 @@ class OgcRecordsTranspiler(Transpiler):
             properties=RecordGeoJSONProperties(
                 created=_to_datetime(metadata_source.date_created),
                 updated=datetime.fromtimestamp(time.time()),
-                title=metadata_source.headline,
-                description=metadata_source.abstract if metadata_source.abstract else UNSET,
+                title=metadata_source.name,
+                description=metadata_source.description if metadata_source.description else UNSET,
                 keywords=[],
                 themes=[],
                 language=DEFAULT_LANGUAGE,
