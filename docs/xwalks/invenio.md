@@ -10,6 +10,7 @@ Metadata
 
 | Schema.org                                | Metadata                |
 |-------------------------------------------|-------------------------|
+| https://schema.org/identifier             | N/A                     |
 | https://schema.org/softwareVersion        | version                 |
 | https://schema.org/description            | description             |
 | https://schema.org/applicationCategory    | N/A                     |

@@ -72,10 +72,12 @@ nav:
   - index.md
   - CLI Commands:
     - ./cli/codemeta.md
+    - ./cli/datacite.md
     - ./cli/ogc_record.md
     - ./cli/invenio.md
   - CrossWalks:
     - ./xwalks/codemeta.md
+    - ./xwalks/datacite.md
     - ./xwalks/ogc_record.md
     - ./xwalks/invenio.md
   - API doc: ./api/latest/transpiler_mate/index.md

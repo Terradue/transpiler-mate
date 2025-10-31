@@ -207,5 +207,39 @@ def ogcrecord(
         output=output
     )
 
-for command in [codemeta, invenio_publish, ogcrecord]:
+@main.command(context_settings={'show_default': True})
+@click.argument(
+    'source',
+    type=click.Path(
+        path_type=Path,
+        exists=True,
+        readable=True,
+        resolve_path=True
+    ),
+    required=True
+)
+@click.option(
+    '--output',
+    type=click.Path(path_type=Path),
+    required=False,
+    default='datacite.json',
+    help="The output file path"
+)
+def datacite(
+    source: Path,
+    output: Path
+):
+    """
+    Transpiles the input CWL to DataCite Metadata.
+    """
+    from .datacite import DataCiteTranspiler
+    transpiler = DataCiteTranspiler()
+
+    _transpile(
+        source=source,
+        transpiler=transpiler,
+        output=output
+    )
+
+for command in [codemeta, datacite, invenio_publish, ogcrecord]:
     command.callback = _track(command.callback)

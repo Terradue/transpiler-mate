@@ -14,7 +14,6 @@ from .metadata import (
 from .metadata.software_application_models import (
     Organization,
     Person,
-    PropertyValue,
     SoftwareApplication
 )
 from collections.abc import Iterable
@@ -61,7 +60,6 @@ from invenio_rest_api_client.types import UNSET
 from loguru import logger
 from pathlib import Path
 from pydantic import AnyUrl
-from shutil import copy2 as copy_file
 from typing import (
     List,
     Optional,

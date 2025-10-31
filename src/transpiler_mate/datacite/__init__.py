@@ -33,16 +33,20 @@ from ..metadata.software_application_models import (
     SoftwareApplication
 )
 from collections.abc import Iterable
-from typing import TextIO
+from datetime import date
+from typing import (
+    Any,
+    Mapping
+)
 
-import json
+import time
 
 def _to_creator(
     author: Person | Organization
 ) -> Creator:
     return Creator(
-        name=f"{author.family_name}, {author.given_name}" if isinstance(author, Person) else author.name if isinstance(author, Organization) else 'TBD',
-        name_type=NameType.organizational if isinstance(author, Organization) else NameType.personal,
+        name=author.name,
+        name_type=NameType.ORGANIZATIONAL if isinstance(author, Organization) else NameType.PERSONAL,
         given_name=author.given_name if isinstance(author, Person) else None,
         family_name=author.family_name if isinstance(author, Person) else None,
         affiliation=[Affiliation(
@@ -55,39 +59,43 @@ class DataCiteTranspiler(Transpiler):
     def transpile(
         self,
         metadata_source: SoftwareApplication
-    ) -> DataCiteAttributes:
+    ) -> Mapping[str, Any]:
         return DataCiteAttributes(
             doi=metadata_source.identifier,
             types=ResourceType(
-                resource_type=metadata_source.headline,
-                resourceTypeGeneral=ResourceTypeGeneral.software
+                resource_type=metadata_source.name,
+                resourceTypeGeneral=ResourceTypeGeneral.SOFTWARE
             ),
             identifiers=[Identifier(
+                identifier_type='DOI',
                 identifier=metadata_source.identifier
             )],
             related_identifiers=[RelatedIdentifier(
-                related_identifier=metadata_source.same_as,
-                related_identifier_type=RelatedIdentifierType.doi,
-                relation_type=RelationType.is_identical_to,
-                resource_type_general=ResourceTypeGeneral.software
-            )],
+                related_identifier=str(metadata_source.same_as),
+                related_identifier_type=RelatedIdentifierType.DOI,
+                relation_type=RelationType.IS_IDENTICAL_TO,
+                resource_type_general=ResourceTypeGeneral.SOFTWARE
+            )] if metadata_source.same_as else [],
             titles=[Title(
-               title= metadata_source.headline
+               title= metadata_source.name
             )],
             descriptions=[Description(
-                description=metadata_source.about.description, # type: ignore
-                description_type=DescriptionType.technical_info
+                description=metadata_source.description, # type: ignore
+                description_type=DescriptionType.TECHNICAL_INFO
             ), Description(
-                description=metadata_source.application_sub_category,
-                description_type=DescriptionType.technical_info
+                description=metadata_source.application_category if metadata_source.application_category else 'Undefined',
+                description_type=DescriptionType.TECHNICAL_INFO
+            ), Description(
+                description=metadata_source.application_sub_category if metadata_source.application_sub_category else 'Undefined',
+                description_type=DescriptionType.TECHNICAL_INFO
             )],
             publisher=Publisher(
                 name=metadata_source.publisher.name # type: ignore
             ),
             publication_year=metadata_source.copyright_year,
             dates=[Date(
-                date=metadata_source.date_published,
-                date_type=DateType.updated,
+                date=date.fromtimestamp(time.time()),
+                date_type=DateType.UPDATED,
                 date_information='New version release'
             )],
             rights=[Right(
@@ -102,4 +110,4 @@ class DataCiteTranspiler(Transpiler):
                     metadata_source.author if isinstance(metadata_source.author, Iterable) else [metadata_source.author]
                 )
             )
-        )
+        ).model_dump(exclude_none=True, by_alias=True)

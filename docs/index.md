@@ -23,6 +23,7 @@ Options:
 
 Commands:
   codemeta         Transpiles the input CWL to CodeMeta representation.
+  datacite         Transpiles the input CWL to DataCite Metadata..
   invenio-publish  Publishes the input CWL to an Invenio instance.
   ogcrecord        Transpiles the input CWL to OGC API Record.
 ```
