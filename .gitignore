@@ -1,4 +1,5 @@
 .venv
 codemeta.json
+datacite.json
 src/transpiler_mate/__pycache__
 record.json

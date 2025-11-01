@@ -35,6 +35,7 @@ class Transpiler(Generic[T]):
 import yaml
 
 __CONTEXT_KEY__ = '@context'
+__NAMESPACES_KEY__ = '$namespaces'
 
 class MetadataManager():
 
@@ -57,12 +58,19 @@ class MetadataManager():
         with document_source.open() as input_stream:
             self.raw_document: MutableMapping[str, Any] = yaml.safe_load(input_stream)
 
-        self.metadata: SoftwareApplication = SoftwareApplication.from_jsonld(self.raw_document)
+        compacted = jsonld.compact(
+            input_=self.raw_document,
+            ctx={},
+            options={
+                'expandContext': self.raw_document.get(__NAMESPACES_KEY__)
+            }
+        )
+        self.metadata: SoftwareApplication = SoftwareApplication.model_validate(compacted, by_alias=True)
 
     def update(self):
         metadata_dict = self.metadata.model_dump(exclude_none=True, by_alias=True)
 
-        namespaces = self.raw_document.get('$namespaces')
+        namespaces = self.raw_document.get(__NAMESPACES_KEY__)
 
         updated_metadata: MutableMapping[str, Any] = jsonld.compact(
             input_=metadata_dict,

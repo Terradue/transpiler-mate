@@ -15,6 +15,7 @@ from .datacite_4_6_models import (
     Description,
     DescriptionType,
     Identifier,
+    NameIdentifier,
     NameType,
     Publisher,
     RelatedIdentifier,
@@ -32,27 +33,52 @@ from ..metadata.software_application_models import (
     Person,
     SoftwareApplication
 )
-from collections.abc import Iterable
 from datetime import date
 from typing import (
     Any,
     Mapping
 )
+from urllib.parse import urlparse
 
 import time
 
 def _to_creator(
     author: Person | Organization
 ) -> Creator:
-    return Creator(
-        name=author.name,
+    creator: Creator = Creator(
         name_type=NameType.ORGANIZATIONAL if isinstance(author, Organization) else NameType.PERSONAL,
+        name=f"{author.family_name}, {author.given_name}" if isinstance(author, Person) else author.name,
         given_name=author.given_name if isinstance(author, Person) else None,
         family_name=author.family_name if isinstance(author, Person) else None,
-        affiliation=[Affiliation(
-            affiliation_identifier=author.affiliation.name if isinstance(author.affiliation, Organization) else None,
-        )] if isinstance(author, Person) else None
     )
+
+    if author.identifier:
+        creator.name_identifiers = []
+        for identifier in author.identifier if isinstance(author.identifier, list) else [author.identifier]:
+            scheme, netloc, _, _, _, _ = urlparse(str(identifier))
+            creator.name_identifiers.append(
+                NameIdentifier(
+                    name_identifier=str(identifier),
+                    name_identifier_scheme=netloc.split('.')[0].upper(),
+                    scheme_uri=f"{scheme}://{netloc}"
+                )
+            )
+
+    if isinstance(author, Person):
+        creator.affiliation = []
+        for affiliation in author.affiliation if isinstance(author.affiliation, list) else [author.affiliation]:
+            if affiliation.identifier:
+                for identifier in affiliation.identifier if isinstance(affiliation.identifier, list) else [affiliation.identifier]:
+                    scheme, netloc, _, _, _, _ = urlparse(str(identifier))
+                    creator.affiliation.append(
+                        Affiliation(
+                            affiliation_identifier=str(identifier),
+                            affiliation_identifier_scheme=netloc.split('.')[0].upper(),
+                            scheme_uri=f"{scheme}://{netloc}"
+                        )
+                    )
+
+    return creator
 
 class DataCiteTranspiler(Transpiler):
 
@@ -80,17 +106,11 @@ class DataCiteTranspiler(Transpiler):
                title= metadata_source.name
             )],
             descriptions=[Description(
-                description=metadata_source.description, # type: ignore
-                description_type=DescriptionType.TECHNICAL_INFO
-            ), Description(
-                description=metadata_source.application_category if metadata_source.application_category else 'Undefined',
-                description_type=DescriptionType.TECHNICAL_INFO
-            ), Description(
-                description=metadata_source.application_sub_category if metadata_source.application_sub_category else 'Undefined',
+                description=metadata_source.description,
                 description_type=DescriptionType.TECHNICAL_INFO
             )],
             publisher=Publisher(
-                name=metadata_source.publisher.name # type: ignore
+                name=metadata_source.publisher.name
             ),
             publication_year=metadata_source.copyright_year,
             dates=[Date(
@@ -107,7 +127,7 @@ class DataCiteTranspiler(Transpiler):
             creators=list(
                 map(
                     _to_creator,
-                    metadata_source.author if isinstance(metadata_source.author, Iterable) else [metadata_source.author]
+                    metadata_source.author if isinstance(metadata_source.author, list) else [metadata_source.author]
                 )
             )
         ).model_dump(exclude_none=True, by_alias=True)

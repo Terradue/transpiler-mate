@@ -16,7 +16,6 @@ from .metadata.software_application_models import (
     Person,
     SoftwareApplication
 )
-from collections.abc import Iterable
 from datetime import date
 
 # required when a DOI is not assigned to an applicatrion package
@@ -96,21 +95,27 @@ def _affiliation_identifier(
 def _to_creator(
     author: Person | Organization
 ) -> Creator:
-    return Creator(
+    creator: Creator = Creator(
         person_or_org=PersonOrOrg(
             type_=PersonOrOrgType.PERSONAL if isinstance(author, Person) else PersonOrOrgType.ORGANIZATIONAL,
-            name=author.name,
+            name=f"{author.family_name}, {author.given_name}" if isinstance(author, Person) else author.name,
             given_name=author.given_name if isinstance(author, Person) else UNSET,
             family_name=author.family_name if isinstance(author, Person) else UNSET,
-            identifiers=[
-               _to_identifier(author.identifier)
-            ] if isinstance(author, Person) and author.identifier else UNSET
-        ),
-        affiliations=[Affiliation(
-            id=_affiliation_identifier(author.affiliation.identifier) if author.affiliation.identifier else UNSET,
-            name=author.affiliation.name if isinstance(author.affiliation, Organization) else UNSET,
-        )] if isinstance(author, Person) and author.affiliation else UNSET
+            identifiers=[_to_identifier(author.identifier)] if author.identifier else UNSET
+        )
     )
+
+    if isinstance(author, Person):
+        creator.affiliations = []
+        for affiliation in author.affiliation if isinstance(author.affiliation, list) else [author.affiliation]:
+            creator.affiliations.append(
+                Affiliation(
+                    id=_affiliation_identifier(affiliation.identifier) if affiliation.identifier else UNSET,
+                    name=affiliation.name
+                )
+            )
+
+    return creator
 
 class InvenioMetadataTranspiler(Transpiler):
 
@@ -136,21 +141,23 @@ class InvenioMetadataTranspiler(Transpiler):
         self,
         metadata_source: SoftwareApplication
     ) -> Metadata:
+        raw_publishers = metadata_source.publisher if isinstance(metadata_source.publisher, list) else [metadata_source.publisher]
+
         return Metadata(
             resource_type=ResourceType(
                 id=ResourceTypeId.WORKFLOW
             ),
             title=metadata_source.name,
             publication_date=date.fromtimestamp(time.time()),
-            publisher=', '.join([publisher.name for publisher in metadata_source.publisher]) if isinstance(metadata_source.publisher, list) else metadata_source.publisher.name,
+            publisher=', '.join([f"{publisher.family_name} {publisher.given_name}" if isinstance(publisher, Person) else publisher.name for publisher in raw_publishers]),
             description=metadata_source.description if metadata_source.description else UNSET,
             creators=list(
                 map(
                     _to_creator,
-                    metadata_source.author if isinstance(metadata_source.author, Iterable) else [metadata_source.author] # type: ignore
+                    metadata_source.author if isinstance(metadata_source.author, list) else [metadata_source.author]
                 )
             ),
-            version=metadata_source.software_version # type: ignore
+            version=metadata_source.software_version
         )
 
     def _to_versioned_file_name(
@@ -187,7 +194,7 @@ class InvenioMetadataTranspiler(Transpiler):
                 key=self._to_versioned_file_name(file),
                 size=file.stat().st_size,
                 checksum=f"md5:{_md5(file)}"
-            ) for file in uploading_files ]
+            ) for file in uploading_files]
         )
 
         logger.success(f"File upload {uploading_files_names} drafted to Record '{draft_id}'")

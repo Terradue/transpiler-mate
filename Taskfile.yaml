@@ -1,0 +1,66 @@
+# Transpiler Mate (c) 2025
+# 
+# Transpiler Mate is licensed under
+# Creative Commons Attribution-ShareAlike 4.0 International.
+# 
+# You should have received a copy of the license along with this work.
+# If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+
+version: '3'
+
+tasks:
+
+  install_json_tools:
+    cmds:
+    - pip install datamodel-code-generator json-schema-for-humans check-jsonschema
+
+  generate_jsonschema_doc:
+    deps:
+    - install_json_tools
+    cmds:
+    - generate-schema-doc --config template_name=md ./schemas ./docs/schemas
+
+  datamodel_codegen:
+    internal: true
+    cmds:
+    - |
+      datamodel-codegen --input ./schemas/{{.SCHEMA}}.yaml \
+                        --input-file-type jsonschema \
+                        --output-model-type pydantic_v2.BaseModel \
+                        --base-class transpiler_mate.TranspilerBaseModel \
+                        --additional-imports "pydantic.AliasChoices,typing.Any,transpiler_mate.TranspilerBaseModel" \
+                        --field-constraints \
+                        --use-schema-description \
+                        --collapse-root-models \
+                        --capitalise-enum-members \
+                        --use-one-literal-as-default \
+                        --strip-default-none \
+                        --snake-case-field \
+                        {{if eq .USE_CUSTOM_TEMPLATES "true"}}--custom-template-dir ./templates{{end}}\
+                        --output ./src/transpiler_mate/{{.TARGET_DIR}}/{{.SCHEMA}}_models.py
+
+  process_datacite:
+    deps:
+    - install_json_tools
+    cmds:
+    - task: datamodel_codegen
+      vars:
+        SCHEMA: 'datacite_4_6'
+        USE_CUSTOM_TEMPLATES: 'false'
+        TARGET_DIR: 'datacite'
+
+  process_schemaorg:
+    deps:
+    - install_json_tools
+    cmds:
+    - task: datamodel_codegen
+      vars:
+        SCHEMA: 'software_application'
+        USE_CUSTOM_TEMPLATES: 'true'
+        TARGET_DIR: 'metadata'
+
+  default:
+    cmds:
+    - task: generate_jsonschema_doc
+    - task: process_datacite
+    - task: process_schemaorg

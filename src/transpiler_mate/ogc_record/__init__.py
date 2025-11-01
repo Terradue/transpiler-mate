@@ -7,6 +7,7 @@
 # If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 
 from ..metadata.software_application_models import (
+    CreativeWork,
     DefinedTerm,
     SoftwareApplication
 )
@@ -124,10 +125,20 @@ class OgcRecordsTranspiler(Transpiler):
                 language=DEFAULT_LANGUAGE,
                 resource_languages=[DEFAULT_LANGUAGE],
                 formats=[{ 'name': 'CWL', 'mediaType': 'application/cwl' }],
-                contacts=[publisher.email for publisher in metadata_source.publisher] if isinstance(metadata_source.publisher, list) else [metadata_source.publisher.email],
-                license_=str(metadata_source.license.url) # type: ignore
+                contacts=[author.email for author in metadata_source.author] if isinstance(metadata_source.author, list) else [metadata_source.author.email],
+                license_=': '.join(
+                    list(
+                        map(
+                            lambda license: str(license.url) if isinstance(license, CreativeWork) else str(license),
+                            metadata_source.license if isinstance(metadata_source.license, list) else [metadata_source.license]
+                        )
+                    )
+                )
             )
         )
+
+        if metadata_source.publisher.email:
+            record_geojson.properties.contacts.append(metadata_source.publisher.email) # type: ignore previously set
 
         if metadata_source.keywords:
             raw_keywords = metadata_source.keywords if isinstance(metadata_source.keywords, list) else [metadata_source.keywords]
