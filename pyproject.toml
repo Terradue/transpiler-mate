@@ -27,8 +27,10 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "yaml-ld",
+  "pydantic",
+  "email-validator",
   "pyyaml",
+  "yaml-ld",
   "click",
   "loguru",
   "invenio-rest-api-client",
@@ -79,11 +81,14 @@ exclude_lines = [
 skip-install = false
 
 dependencies = [
-  "yaml-ld",
+  "pydantic",
+  "email-validator",
   "pyyaml",
+  "yaml-ld",
   "click",
   "loguru",
-  "invenio-rest-api-client"
+  "invenio-rest-api-client",
+  "ogc-api-records-core-client"
 ]
 
 [tool.hatch.envs.test.scripts]
