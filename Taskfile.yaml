@@ -164,3 +164,4 @@ tasks:
     - task: process_datacite
     - task: process_schemaorg
     - task: download_licenses_index
+    - task: download_science_keywords_index
