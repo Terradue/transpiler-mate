@@ -6,7 +6,11 @@
 # You should have received a copy of the license along with this work.
 # If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 
-from .software_application_models import SoftwareApplication
+from .software_application_models import (
+    CreativeWork,
+    SoftwareApplication
+)
+from .licenses import licenses_index
 from abc import (
     abstractmethod
 )
@@ -66,6 +70,22 @@ class MetadataManager():
             }
         )
         self.metadata: SoftwareApplication = SoftwareApplication.model_validate(compacted, by_alias=True)
+
+        logger.info('Resolving License details from SPDX License List...')
+
+        def resolve_license(license: CreativeWork) -> CreativeWork:
+            if license.identifier and license.identifier in licenses_index:
+                logger.info(f"Detected {license.identifier} indexed in SPDX Licenses")
+                return licenses_index[str(license.identifier)]
+            logger.info('License is not indexed in SPDX Licenses')
+            return license
+
+        if isinstance(self.metadata.license, list):
+            for i, license in enumerate(self.metadata.license):
+                if isinstance(license, CreativeWork):
+                    self.metadata.license[i] = resolve_license(license)
+        elif isinstance(self.metadata.license, CreativeWork):
+            self.metadata.license = resolve_license(self.metadata.license)
 
     def update(self):
         metadata_dict = self.metadata.model_dump(exclude_none=True, by_alias=True)

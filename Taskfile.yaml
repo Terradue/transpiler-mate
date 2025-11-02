@@ -59,8 +59,36 @@ tasks:
         USE_CUSTOM_TEMPLATES: 'true'
         TARGET_DIR: 'metadata'
 
+  download_licenses_index:
+    cmds:
+    - |
+      echo "# Transpiler Mate (c) 2025
+      # 
+      # Transpiler Mate is licensed under
+      # Creative Commons Attribution-ShareAlike 4.0 International.
+      # 
+      # You should have received a copy of the license along with this work.
+      # If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+
+      from .software_application_models import CreativeWork
+      from pydantic import AnyUrl
+      from typing import Mapping
+      
+      licenses_index: Mapping[str, CreativeWork] = {" > ./src/transpiler_mate/metadata/licenses.py
+    - |
+      curl -s https://raw.githubusercontent.com/spdx/license-list-data/refs/heads/main/json/licenses.json \
+      | jq -r --arg sq "'" '.licenses[] |
+      "  \($sq)\(.licenseId)\($sq): CreativeWork(
+          identifier=\($sq)\(.licenseId)\($sq),
+          name=\($sq)\(.name | gsub($sq; "\u005C\u0027"))\($sq),
+          url=AnyUrl(\($sq)\((.seeAlso[0] // .reference // ""))\($sq))
+        ), # type: ignore"' \
+      >> ./src/transpiler_mate/metadata/licenses.py
+    - echo "}" >> ./src/transpiler_mate/metadata/licenses.py
+
   default:
     cmds:
     - task: generate_jsonschema_doc
     - task: process_datacite
     - task: process_schemaorg
+    - task: download_licenses_index
