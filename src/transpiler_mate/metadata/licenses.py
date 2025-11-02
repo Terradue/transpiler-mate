@@ -10,7 +10,7 @@ from .software_application_models import CreativeWork
 from pydantic import AnyUrl
 from typing import Mapping
 
-licenses_index: Mapping[str, CreativeWork] = {
+LICENSES_INDEX: Mapping[str, CreativeWork] = {
   '0BSD': CreativeWork(
     identifier='0BSD',
     name='BSD Zero Clause License',

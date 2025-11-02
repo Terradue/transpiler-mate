@@ -10,13 +10,12 @@ version: '3'
 
 tasks:
 
-  install_json_tools:
+  install_prerequisites:
+    internal: true
     cmds:
-    - pip install datamodel-code-generator json-schema-for-humans check-jsonschema
+    - pip install datamodel-code-generator json-schema-for-humans csvkit
 
   generate_jsonschema_doc:
-    deps:
-    - install_json_tools
     cmds:
     - generate-schema-doc --config template_name=md ./schemas ./docs/schemas
 
@@ -40,8 +39,6 @@ tasks:
                         --output ./src/transpiler_mate/{{.TARGET_DIR}}/{{.SCHEMA}}_models.py
 
   process_datacite:
-    deps:
-    - install_json_tools
     cmds:
     - task: datamodel_codegen
       vars:
@@ -50,8 +47,6 @@ tasks:
         TARGET_DIR: 'datacite'
 
   process_schemaorg:
-    deps:
-    - install_json_tools
     cmds:
     - task: datamodel_codegen
       vars:
@@ -74,7 +69,7 @@ tasks:
       from pydantic import AnyUrl
       from typing import Mapping
       
-      licenses_index: Mapping[str, CreativeWork] = {" > ./src/transpiler_mate/metadata/licenses.py
+      LICENSES_INDEX: Mapping[str, CreativeWork] = {" > ./src/transpiler_mate/metadata/licenses.py
     - |
       curl -s https://raw.githubusercontent.com/spdx/license-list-data/refs/heads/main/json/licenses.json \
       | jq -r --arg sq "'" '.licenses[] |
@@ -86,7 +81,84 @@ tasks:
       >> ./src/transpiler_mate/metadata/licenses.py
     - echo "}" >> ./src/transpiler_mate/metadata/licenses.py
 
+  download_science_keywords_index:
+    cmds:
+    - |
+      echo "# Transpiler Mate (c) 2025
+      # 
+      # Transpiler Mate is licensed under
+      # Creative Commons Attribution-ShareAlike 4.0 International.
+      # 
+      # You should have received a copy of the license along with this work.
+      # If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+
+      from pydantic import (
+        AnyUrl,
+        BaseModel,
+        computed_field
+      )
+      from typing import (
+        Mapping,
+        Optional,
+        Sequence
+      )
+      
+      class ScienceKeywordRecord(BaseModel):
+        @computed_field
+        @property
+        def scheme(self) -> str:
+            return 'GCMD Science Keywords'
+        category: str
+        topic: Optional[str] = None
+        term: Optional[str] = None
+        variable_level_1: Optional[str] = None
+        variable_level_2: Optional[str] = None
+        variable_level_3: Optional[str] = None
+        detailed_variable: Optional[str] = None
+        identifier: str
+        @computed_field
+        @property
+        def uri(self) -> AnyUrl:
+            return AnyUrl(f'https://cmr.earthdata.nasa.gov/kms/concept/{self.identifier}')
+        @computed_field
+        @property
+        def hierarchy_list(self) -> Sequence[str]:
+            hierarchy = [self.category]
+
+            def _add(keyword: str | None):
+                if keyword:
+                    hierarchy.append(keyword)
+
+            _add(self.topic)
+            _add(self.term)
+            _add(self.variable_level_1)
+            _add(self.variable_level_2)
+            _add(self.variable_level_3)
+            _add(self.detailed_variable)
+
+            return hierarchy
+
+      KEYWORDS_INDEX: Mapping[str, ScienceKeywordRecord] = {" > ./src/transpiler_mate/ogc_record/sciencekeywords.py
+    - |
+      curl -s --location "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords?format=csv" \
+      | tail -n +2 \
+      | mlr --icsv --ojson cat \
+      | jq -r --arg sq "'" '.[] |
+      "  \($sq)\(.UUID)\($sq): ScienceKeywordRecord(
+          category=\($sq)\(.Category)\($sq),
+          topic=\($sq)\(.Topic)\($sq),
+          term=\($sq)\(.Term)\($sq),
+          variable_level_1=\($sq)\(.Variable_Level_1)\($sq),
+          variable_level_2=\($sq)\(.Variable_Level_2)\($sq),
+          variable_level_3=\($sq)\(.Variable_Level_3)\($sq),
+          detailed_variable=\($sq)\(.Detailed_Variable)\($sq),
+          identifier=\($sq)\(.UUID)\($sq)
+        ),"' >> ./src/transpiler_mate/ogc_record/sciencekeywords.py
+    - echo "}" >> ./src/transpiler_mate/ogc_record/sciencekeywords.py
+
   default:
+    deps:
+    - install_prerequisites
     cmds:
     - task: generate_jsonschema_doc
     - task: process_datacite

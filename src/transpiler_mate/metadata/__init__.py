@@ -10,7 +10,7 @@ from .software_application_models import (
     CreativeWork,
     SoftwareApplication
 )
-from .licenses import licenses_index
+from .licenses import LICENSES_INDEX
 from abc import (
     abstractmethod
 )
@@ -74,9 +74,9 @@ class MetadataManager():
         logger.info('Resolving License details from SPDX License List...')
 
         def resolve_license(license: CreativeWork) -> CreativeWork:
-            if license.identifier and license.identifier in licenses_index:
+            if license.identifier and license.identifier in LICENSES_INDEX:
                 logger.info(f"Detected {license.identifier} indexed in SPDX Licenses")
-                return licenses_index[str(license.identifier)]
+                return LICENSES_INDEX[str(license.identifier)]
             logger.info('License is not indexed in SPDX Licenses')
             return license
 
