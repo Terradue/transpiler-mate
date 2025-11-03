@@ -15,8 +15,6 @@ from functools import wraps
 from loguru import logger
 from pathlib import Path
 from typing import (
-    Any,
-    Mapping,
     Tuple,
     Optional
 )
@@ -198,7 +196,7 @@ def ogcrecord(
     """
     Transpiles the input CWL to OGC API Record.
     """
-    from .ogc_record import OgcRecordsTranspiler
+    from .ogcapi_records import OgcRecordsTranspiler
     transpiler = OgcRecordsTranspiler()
 
     _transpile(

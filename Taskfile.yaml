@@ -24,7 +24,7 @@ tasks:
     cmds:
     - |
       datamodel-codegen --input ./schemas/{{.SCHEMA}}.yaml \
-                        --input-file-type jsonschema \
+                        --input-file-type {{.INPUT_FILE_TYPE}} \
                         --output-model-type pydantic_v2.BaseModel \
                         --base-class transpiler_mate.TranspilerBaseModel \
                         --additional-imports "pydantic.AliasChoices,typing.Any,transpiler_mate.TranspilerBaseModel" \
@@ -43,6 +43,7 @@ tasks:
     - task: datamodel_codegen
       vars:
         SCHEMA: 'datacite_4_6'
+        INPUT_FILE_TYPE: 'jsonschema'
         USE_CUSTOM_TEMPLATES: 'false'
         TARGET_DIR: 'datacite'
 
@@ -51,8 +52,18 @@ tasks:
     - task: datamodel_codegen
       vars:
         SCHEMA: 'software_application'
+        INPUT_FILE_TYPE: 'jsonschema'
         USE_CUSTOM_TEMPLATES: 'true'
         TARGET_DIR: 'metadata'
+
+  process_ogcrecord:
+    cmds:
+    - task: datamodel_codegen
+      vars:
+        SCHEMA: 'ogcapi_records'
+        INPUT_FILE_TYPE: 'openapi'
+        USE_CUSTOM_TEMPLATES: 'false'
+        TARGET_DIR: 'ogcapi_records'
 
   download_licenses_index:
     cmds:
