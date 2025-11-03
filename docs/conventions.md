@@ -10,10 +10,12 @@ The following is the recommended ordering for all CWL files:
 
 ## The software itself
 
-* Name
-* Description
-* Creation date
-* License(s)
+| Property      | Mandatory |
+|---------------|-----------|
+| Name          | YES       |
+| Description   | YES       |
+| Creation date | YES       |
+| License(s)    | YES       |
 
 ```yaml
 s:name: My shiny workflow
