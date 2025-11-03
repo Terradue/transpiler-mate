@@ -1,4 +1,4 @@
-# CWL Metadata code convetions
+# CWL Metadata code conventions
 
 ```yaml
 $namespaces:
