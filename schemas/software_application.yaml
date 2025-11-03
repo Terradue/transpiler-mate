@@ -259,3 +259,11 @@ $defs:
           items:
             oneOf:
             - $ref: '#/$defs/Person'
+      contributor:
+        description: A secondary contributor to the CreativeWork or Event.
+        oneOf:
+        - $ref: '#/$defs/Person'
+        - type: array
+          items:
+            oneOf:
+            - $ref: '#/$defs/Person'

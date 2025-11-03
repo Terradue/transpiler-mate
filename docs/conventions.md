@@ -106,7 +106,9 @@ s:publisher:
   s:identifier: https://ror.org/9999cx000
 ```
 
-## Authors
+## Authors & Contributor
+
+While `s:author` is mandatory, `s:contributor` is not.
 
 | Property       | Mandatory |
 |----------------|-----------|
@@ -134,5 +136,16 @@ s:author:
   s:affiliation:
     '@type': s:Organization
     s:name: Luthor Corp
+    s:identifier: https://ror.org/0000cx000
+
+s:contributor:
+- '@type': s:Person
+  s:givenName: Clark
+  s:familyName: Kent
+  s:email: clark.kent@dailyplanet.com
+  s:identifier: https://orcid.org/0000-9999-0000-9999
+  s:affiliation:
+    '@type': s:Organization
+    s:name: Daily Planet
     s:identifier: https://ror.org/0000cx000
 ```

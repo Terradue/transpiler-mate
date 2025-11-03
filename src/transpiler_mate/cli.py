@@ -51,7 +51,7 @@ def _track(func):
 
     return wrapper
 
-@click.group
+@click.group()
 def main():
     pass
 

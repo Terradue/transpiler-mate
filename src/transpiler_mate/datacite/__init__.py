@@ -9,6 +9,8 @@
 from .datacite_4_6_models import (
     Affiliation,
     Creator,
+    Contributor,
+    ContributorType,
     DataCiteAttributes,
     Date,
     DateType,
@@ -42,6 +44,24 @@ from urllib.parse import urlparse
 
 import time
 
+def _to_contributor(
+    author: Person
+) -> Contributor:
+    contributor: Contributor = Contributor(
+        contributor_type=ContributorType.OTHER,
+        name_type=NameType.PERSONAL,
+        name=f"{author.family_name}, {author.given_name}" if isinstance(author, Person) else author.name,
+        given_name=author.given_name if isinstance(author, Person) else None,
+        family_name=author.family_name if isinstance(author, Person) else None,
+    )
+
+    _finalize(
+        author=author,
+        creator=contributor
+    )
+
+    return contributor
+
 def _to_creator(
     author: Person | Organization
 ) -> Creator:
@@ -52,6 +72,17 @@ def _to_creator(
         family_name=author.family_name if isinstance(author, Person) else None,
     )
 
+    _finalize(
+        author=author,
+        creator=creator
+    )
+
+    return creator
+
+def _finalize(
+    author: Person | Organization,
+    creator: Creator
+):
     if author.identifier:
         creator.name_identifiers = []
         for identifier in author.identifier if isinstance(author.identifier, list) else [author.identifier]:
@@ -77,8 +108,6 @@ def _to_creator(
                             scheme_uri=f"{scheme}://{netloc}"
                         )
                     )
-
-    return creator
 
 class DataCiteTranspiler(Transpiler):
 
@@ -129,5 +158,11 @@ class DataCiteTranspiler(Transpiler):
                     _to_creator,
                     metadata_source.author if isinstance(metadata_source.author, list) else [metadata_source.author]
                 )
-            )
+            ),
+            contributors=list(
+                map(
+                    _to_contributor,
+                    metadata_source.contributor if isinstance(metadata_source.contributor, list) else [metadata_source.contributor]
+                )
+            ) if metadata_source.contributor else None
         ).model_dump(exclude_none=True, by_alias=True)

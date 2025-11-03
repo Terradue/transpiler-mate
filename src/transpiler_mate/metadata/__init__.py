@@ -108,7 +108,8 @@ class MetadataManager():
             yaml.dump(
                 self.raw_document,
                 stream,
-                indent=2
+                indent=2,
+                sort_keys=False
             )
 
         logger.debug(f"JSON-LD format compacted metadata merged to the original document")

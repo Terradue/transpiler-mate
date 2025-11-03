@@ -48,6 +48,8 @@ from invenio_rest_api_client.models.person_or_org import PersonOrOrg
 from invenio_rest_api_client.models.person_or_org_type import PersonOrOrgType
 from invenio_rest_api_client.models.resource_type import ResourceType
 from invenio_rest_api_client.models.resource_type_id import ResourceTypeId
+from invenio_rest_api_client.models.role import Role
+from invenio_rest_api_client.models.role_id import RoleId
 from invenio_rest_api_client.models.update_draft_record import UpdateDraftRecord
 
 from invenio_rest_api_client.api.drafts.publish_a_draft_record import sync as publish_a_draft_record
@@ -102,6 +104,9 @@ def _to_creator(
             given_name=author.given_name if isinstance(author, Person) else UNSET,
             family_name=author.family_name if isinstance(author, Person) else UNSET,
             identifiers=[_to_identifier(author.identifier)] if author.identifier else UNSET
+        ),
+        role=Role(
+            id=RoleId.OTHER
         )
     )
 
@@ -157,6 +162,12 @@ class InvenioMetadataTranspiler(Transpiler):
                     metadata_source.author if isinstance(metadata_source.author, list) else [metadata_source.author]
                 )
             ),
+            contributors=list(
+                map(
+                    _to_creator,
+                    metadata_source.contributor if isinstance(metadata_source.contributor, list) else [metadata_source.contributor]
+                )
+            ) if metadata_source.contributor else UNSET,
             version=metadata_source.software_version
         )
 
