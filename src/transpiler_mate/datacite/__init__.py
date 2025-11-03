@@ -112,7 +112,7 @@ class DataCiteTranspiler(Transpiler):
             publisher=Publisher(
                 name=metadata_source.publisher.name
             ),
-            publication_year=metadata_source.copyright_year,
+            publication_year=metadata_source.date_created.year,
             dates=[Date(
                 date=date.fromtimestamp(time.time()),
                 date_type=DateType.UPDATED,

@@ -70,6 +70,7 @@ extra_javascript:
 
 nav:
   - index.md
+  - conventions.md
   - JSON Schemas:
     - DataCite 4.6: ./schemas/datacite_4_6.md
     - Schema.org/SoftwareApplication: ./schemas/software_application.md
