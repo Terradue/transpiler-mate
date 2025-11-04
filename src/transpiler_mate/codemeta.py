@@ -6,23 +6,82 @@
 # You should have received a copy of the license along with this work.
 # If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
 
-from transpiler_mate.metadata.software_application_models import SoftwareApplication
+from transpiler_mate.metadata.software_application_models import (
+    SoftwareApplication,
+    SoftwareSourceCode
+)
 from .metadata import Transpiler
 
+from giturlparse import parse as gitparse
+from loguru import logger
+from pydantic import (
+    AnyUrl,
+    BaseModel
+)
 from pyld import jsonld
 from typing import (
     Any,
+    List,
     Mapping,
     MutableMapping
 )
 
 class CodeMetaTranspiler(Transpiler):
 
+    def __init__(
+        self,
+        code_repository: str | None
+    ) -> None:
+        self.code_repository = code_repository
+
     def transpile(
         self,
         metadata_source: SoftwareApplication
     ) -> Mapping[str, Any]:
-        doc: MutableMapping[str, Any] = metadata_source.model_dump(
+        model: BaseModel = metadata_source
+
+        if self.code_repository:
+            parsed_url = gitparse(self.code_repository)
+
+            continuous_integration: str | None = None
+            issue_tracker: str | None = None
+            related_link: List[str] | None = None
+
+            match parsed_url.platform:
+                case 'github':
+                    continuous_integration = parsed_url.url2https.replace('.git', '/actions')
+                    issue_tracker = parsed_url.url2https.replace('.git', '/issues')
+                    related_link = [
+                        parsed_url.url2https.replace('.git', page) for page in [
+                            '/wiki',
+                            '/releases',
+                            '/deployments'
+                        ]
+                    ]
+
+                case 'gitlab':
+                    continuous_integration = parsed_url.url2https.replace('.git', '/-/pipelines')
+                    issue_tracker = parsed_url.url2https.replace('.git', '/-/issues')
+                    related_link = [
+                        parsed_url.url2https.replace('.git', page) for page in [
+                            '/-/wikis/home',
+                            '/-/packages',
+                            '/-/pipelines'
+                        ]
+                    ]
+
+                case _:
+                    logger.warning(f"Platform {parsed_url.platform} unsupported yet")
+
+            model = SoftwareSourceCode(
+                code_repository=parsed_url.url2https,
+                target_product=metadata_source,
+                continuous_integration=continuous_integration,
+                issue_tracker=issue_tracker,
+                related_link=related_link
+            ) # type: ignore @type is a constant
+
+        doc: MutableMapping[str, Any] = model.model_dump(
             exclude_none=True,
             by_alias=True
         )
@@ -39,7 +98,7 @@ class CodeMetaTranspiler(Transpiler):
             },
             options={
                 "processingMode": "json-ld-1.1",
-                "ordered": True
+                "ordered": None
             }
         ) # type: ignore
 

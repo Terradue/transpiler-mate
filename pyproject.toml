@@ -33,7 +33,8 @@ dependencies = [
   "yaml-ld",
   "click",
   "loguru",
-  "invenio-rest-api-client"
+  "invenio-rest-api-client",
+  "giturlparse"
 ]
 
 [tool.hatch.metadata]
@@ -86,7 +87,8 @@ dependencies = [
   "yaml-ld",
   "click",
   "loguru",
-  "invenio-rest-api-client"
+  "invenio-rest-api-client",
+  "giturlparse"
 ]
 
 [tool.hatch.envs.test.scripts]

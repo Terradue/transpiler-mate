@@ -150,6 +150,11 @@ def _transpile(
     required=True
 )
 @click.option(
+    '--code-repository',
+    required=False,
+    help="The (SVN, GitHub, CodePlex, ...) code repository URL"
+)
+@click.option(
     '--output',
     type=click.Path(path_type=Path),
     required=False,
@@ -158,13 +163,14 @@ def _transpile(
 )
 def codemeta(
     source: Path,
+    code_repository: str | None,
     output: Path
 ):
     """
     Transpiles the input CWL to CodeMeta representation.
     """
     from .codemeta import CodeMetaTranspiler
-    transpiler: CodeMetaTranspiler = CodeMetaTranspiler()
+    transpiler: CodeMetaTranspiler = CodeMetaTranspiler(code_repository)
 
     _transpile(
         source=source,

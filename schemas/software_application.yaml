@@ -316,3 +316,30 @@ $defs:
             oneOf:
             - $ref: '#/$defs/ContributorRole'
             - $ref: '#/$defs/Person'
+
+  SoftwareSourceCode:
+    description: Computer programming source code.
+    type: object
+    required:
+    - codeRepository
+    - targetProduct
+    properties:
+      '@type':
+        type: string
+        const: https://schema.org/SoftwareSourceCode
+      codeRepository:
+        description: Link to the repository where the un-compiled, human readable code and related code is located (SVN, GitHub, CodePlex).
+        type: string
+        format: uri
+      targetProduct:
+        description: Target Operating System / Product to which the code applies. If applies to several versions, just the product name can be used.
+        $ref: '#/$defs/SoftwareApplication'
+      # CodeMeta properties
+      continuousIntegration:
+        type: string
+        format: uri
+      issueTracker:
+        type: string
+        format: uri
+      relatedLink:
+        $ref: '#/$defs/URI'
