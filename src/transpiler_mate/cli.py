@@ -128,6 +128,7 @@ def _transpile(
 
     logger.success(f"Metadata successfully transpiled!")
     logger.info('Serializing metadata...')
+    output.parent.mkdir(parents=True, exist_ok=True)
     with output.open('w') as output_stream:
         json.dump(
             data,
