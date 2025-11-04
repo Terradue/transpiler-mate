@@ -2308,4 +2308,4 @@ Must be one of:
 **Description:** The type of contributor of the resource
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-11-02 at 00:11:30 +0100
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-11-04 at 13:34:38 +0100

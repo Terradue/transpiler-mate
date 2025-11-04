@@ -93,6 +93,51 @@ $defs:
           items:
             $ref: '#/$defs/Organization'
 
+  Role:
+    description: Represents additional information about a relationship or property.
+    type: object
+    required:
+    - roleName
+    properties:
+      '@type':
+        type: string
+        const: https://schema.org/Role
+      roleName:
+        description: A role played, performed or filled by a person or organization.
+        type: string
+      startDate:
+        description: The start date and time of the item
+        type: string
+        format: date
+      endDate:
+        description: The end date and time of the item
+        type: string
+        format: date
+      additionalType:
+        description: An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax.
+        type: string
+        format: uri
+
+  AuthorRole:
+    allOf:
+    - $ref: '#/$defs/Role'
+    - type: object
+      required:
+      - author
+      properties:
+        author:
+          $ref: '#/$defs/Person'
+
+  ContributorRole:
+    allOf:
+    - $ref: '#/$defs/Role'
+    - type: object
+      required:
+      - contributor
+      properties:
+        contributor:
+          $ref: '#/$defs/Person'
+
   DefinedTerm:
     description: A word, name, acronym, phrase, etc. with a formal definition. Often
       used in the context of category or subject classification, glossaries or dictionaries,
@@ -254,16 +299,20 @@ $defs:
           authorship via the rel tag. That is equivalent to this and may be used
           interchangeably.
         oneOf:
+        - $ref: '#/$defs/AuthorRole'
         - $ref: '#/$defs/Person'
         - type: array
           items:
             oneOf:
+            - $ref: '#/$defs/AuthorRole'
             - $ref: '#/$defs/Person'
       contributor:
         description: A secondary contributor to the CreativeWork or Event.
         oneOf:
+        - $ref: '#/$defs/ContributorRole'
         - $ref: '#/$defs/Person'
         - type: array
           items:
             oneOf:
+            - $ref: '#/$defs/ContributorRole'
             - $ref: '#/$defs/Person'

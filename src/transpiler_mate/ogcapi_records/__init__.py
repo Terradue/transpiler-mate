@@ -22,8 +22,10 @@ from .sciencekeywords import (
     ScienceKeywordRecord
 )
 from ..metadata.software_application_models import (
+    AuthorRole,
     CreativeWork,
     DefinedTerm,
+    Person,
     SoftwareApplication
 )
 from ..metadata import Transpiler
@@ -57,6 +59,25 @@ def _to_datetime(value: date | datetime):
     if isinstance(value, datetime):
         return value if value.tzinfo else value.replace(tzinfo=timezone.utc)
     return datetime.combine(value, datetime.min.time(), tzinfo=timezone.utc)
+
+def _to_contact(
+    author: Person | AuthorRole
+) -> Contact1:
+    position = None
+
+    if isinstance(author, AuthorRole):
+        position = author.role_name
+        author = author.author
+
+    return Contact1(
+        identifier=str(author.identifier),
+        name=f"{author.family_name}, {author.given_name}",
+        organization=author.affiliation.name,
+        position=position,
+        emails=[Email(
+            value=author.email
+        )]
+    )
 
 class OgcRecordsTranspiler(Transpiler):
 
@@ -122,14 +143,7 @@ class OgcRecordsTranspiler(Transpiler):
                 )],
                 contacts=list(
                     map(
-                        lambda author: Contact1(
-                            identifier=str(author.identifier),
-                            name=f"{author.family_name}, {author.given_name}",
-                            organization=author.affiliation.name,
-                            emails=[Email(
-                                value=author.email
-                            )]
-                        ),
+                        _to_contact,
                         metadata_source.author if isinstance(metadata_source.author, list) else [metadata_source.author]
                     )
                 ),

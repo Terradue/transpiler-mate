@@ -41,7 +41,14 @@ class {{ class_name }}({{ base_class }}):{% if comment is defined %}  # {{ comme
     {%- if field.annotated %}
     {{ field.name }}: {{ field.annotated }}
     {%- else %}
-    {{ field.name }}: {{ field.type_hint }}
+    {{ field.name }}: {{ field.type_hint }} = Field(
+        {%- if field.required %}...{%- else %}default=None{%- endif %},
+        validation_alias=AliasChoices(
+            '{%- if field.alias %}{{ field.alias }}{%- else %}{{ field.name }}{%- endif %}',
+            'https://schema.org/{%- if field.alias %}{{ field.alias }}{%- else %}{{ field.name }}{%- endif %}'
+        ),
+        serialization_alias='https://schema.org/{%- if field.alias %}{{ field.alias }}{%- else %}{{ field.name }}{%- endif %}'
+    )
     {%- endif %}
     {%- if not (field.required or (field.represented_default == 'None' and field.strip_default_none)) or field.data_type.is_optional
             %} = {{ field.represented_default }}

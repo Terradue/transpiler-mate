@@ -22,7 +22,10 @@ class CodeMetaTranspiler(Transpiler):
         self,
         metadata_source: SoftwareApplication
     ) -> Mapping[str, Any]:
-        doc: MutableMapping[str, Any] = metadata_source.model_dump(exclude_none=True, by_alias=True)
+        doc: MutableMapping[str, Any] = metadata_source.model_dump(
+            exclude_none=True,
+            by_alias=True
+        )
 
         compacted: MutableMapping[str, Any] = jsonld.compact(
             doc,

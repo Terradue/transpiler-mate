@@ -12,8 +12,11 @@ from .metadata import (
     Transpiler
 )
 from .metadata.software_application_models import (
+    AuthorRole,
+    ContributorRole,
     Organization,
     Person,
+    Role as SWARole,
     SoftwareApplication
 )
 from datetime import date
@@ -63,6 +66,7 @@ from pathlib import Path
 from pydantic import AnyUrl
 from typing import (
     List,
+    Mapping,
     Optional,
     Tuple
 )
@@ -71,6 +75,30 @@ from urllib.parse import urlparse
 import hashlib
 import time
 import os
+
+__ROLES_MAPPING_: Mapping[AnyUrl, RoleId] = {
+    AnyUrl('http://purl.org/spar/datacite/ContactPerson'): RoleId.CONTACTPERSON,
+    AnyUrl('http://purl.org/spar/datacite/DataCollector'): RoleId.DATACOLLECTOR,
+    AnyUrl('http://purl.org/spar/datacite/DataCurator'): RoleId.DATACURATOR,
+    AnyUrl('http://purl.org/spar/datacite/DataManager'): RoleId.DATAMANAGER,
+    AnyUrl('http://purl.org/spar/datacite/Distributor'): RoleId.DISTRIBUTOR,
+    AnyUrl('http://purl.org/spar/datacite/Editor'): RoleId.EDITOR,
+    AnyUrl('http://purl.org/spar/datacite/HostingInstitution'): RoleId.HOSTINGINSTITUTION,
+    AnyUrl('http://purl.org/spar/datacite/Other'): RoleId.OTHER,
+    AnyUrl('http://purl.org/spar/datacite/Producer'): RoleId.PRODUCER,
+    AnyUrl('http://purl.org/spar/datacite/ProjectLeader'): RoleId.PROJECTLEADER,
+    AnyUrl('http://purl.org/spar/datacite/ProjectManager'): RoleId.PROJECTMANAGER,
+    AnyUrl('http://purl.org/spar/datacite/ProjectMember'): RoleId.PROJECTMEMBER,
+    AnyUrl('http://purl.org/spar/datacite/RegistrationAgency'): RoleId.REGISTRATIONAGENCY,
+    AnyUrl('http://purl.org/spar/datacite/RegistrationAuthority'): RoleId.REGISTRATIONAUTHORITY,
+    AnyUrl('http://purl.org/spar/datacite/RelatedPerson'): RoleId.RELATEDPERSON,
+    AnyUrl('http://purl.org/spar/datacite/Researcher'): RoleId.RESEARCHER,
+    AnyUrl('http://purl.org/spar/datacite/ResearchGroup'): RoleId.RESEARCHGROUP,
+    AnyUrl('http://purl.org/spar/datacite/RightsHolder'): RoleId.RIGHTSHOLDER,
+    AnyUrl('http://purl.org/spar/datacite/Sponsor'): RoleId.SPONSOR,
+    AnyUrl('http://purl.org/spar/datacite/Supervisor'): RoleId.SUPERVISOR,
+    AnyUrl('http://purl.org/spar/datacite/WorkPackageLeader'): RoleId.WORKPACKAGELEADER,
+}
 
 def _md5(file: Path):
     hash_md5 = hashlib.md5()
@@ -95,18 +123,29 @@ def _affiliation_identifier(
     return path.split('/')[-1]
 
 def _to_creator(
-    author: Person | Organization
+    author: Person | SWARole
 ) -> Creator:
+    role_id: RoleId = RoleId.OTHER
+
+    if isinstance(author, SWARole):
+        if author.additional_type:
+            role_id = __ROLES_MAPPING_.get(author.additional_type, RoleId.OTHER)
+
+        if isinstance(author, AuthorRole):
+            author = author.author
+        elif isinstance(author, ContributorRole):
+            author = author.contributor
+
     creator: Creator = Creator(
         person_or_org=PersonOrOrg(
-            type_=PersonOrOrgType.PERSONAL if isinstance(author, Person) else PersonOrOrgType.ORGANIZATIONAL,
-            name=f"{author.family_name}, {author.given_name}" if isinstance(author, Person) else author.name,
+            type_=PersonOrOrgType.PERSONAL,
+            name=f"{author.family_name}, {author.given_name}" if isinstance(author, Person) else UNSET,
             given_name=author.given_name if isinstance(author, Person) else UNSET,
             family_name=author.family_name if isinstance(author, Person) else UNSET,
-            identifiers=[_to_identifier(author.identifier)] if author.identifier else UNSET
+            identifiers=[_to_identifier(author.identifier)] if isinstance(author, Person) and author.identifier else UNSET
         ),
         role=Role(
-            id=RoleId.OTHER
+            id=role_id
         )
     )
 
@@ -146,7 +185,7 @@ class InvenioMetadataTranspiler(Transpiler):
         self,
         metadata_source: SoftwareApplication
     ) -> Metadata:
-        raw_publishers = metadata_source.publisher if isinstance(metadata_source.publisher, list) else [metadata_source.publisher]
+        raw_publishers: List[Organization] = metadata_source.publisher if isinstance(metadata_source.publisher, list) else [metadata_source.publisher]
 
         return Metadata(
             resource_type=ResourceType(
@@ -154,7 +193,7 @@ class InvenioMetadataTranspiler(Transpiler):
             ),
             title=metadata_source.name,
             publication_date=date.fromtimestamp(time.time()),
-            publisher=', '.join([f"{publisher.family_name} {publisher.given_name}" if isinstance(publisher, Person) else publisher.name for publisher in raw_publishers]),
+            publisher=', '.join([publisher.name for publisher in raw_publishers]),
             description=metadata_source.description if metadata_source.description else UNSET,
             creators=list(
                 map(

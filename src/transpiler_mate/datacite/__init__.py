@@ -30,12 +30,15 @@ from .datacite_4_6_models import (
 )
 from ..metadata import Transpiler
 from ..metadata.software_application_models import (
+    AuthorRole,
     CreativeWork,
     Organization,
     Person,
+    ContributorRole,
     SoftwareApplication
 )
 from datetime import date
+from pydantic import AnyUrl
 from typing import (
     Any,
     Mapping
@@ -44,15 +47,48 @@ from urllib.parse import urlparse
 
 import time
 
+__ROLES_MAPPING_: Mapping[AnyUrl, ContributorType] = {
+    AnyUrl('http://purl.org/spar/datacite/ContactPerson'): ContributorType.CONTACT_PERSON,
+    AnyUrl('http://purl.org/spar/datacite/DataCollector'): ContributorType.DATA_COLLECTOR,
+    AnyUrl('http://purl.org/spar/datacite/DataCurator'): ContributorType.DATA_CURATOR,
+    AnyUrl('http://purl.org/spar/datacite/DataManager'): ContributorType.DATA_MANAGER,
+    AnyUrl('http://purl.org/spar/datacite/Distributor'): ContributorType.DISTRIBUTOR,
+    AnyUrl('http://purl.org/spar/datacite/Editor'): ContributorType.EDITOR,
+    AnyUrl('http://purl.org/spar/datacite/HostingInstitution'): ContributorType.HOSTING_INSTITUTION,
+    AnyUrl('http://purl.org/spar/datacite/Other'): ContributorType.OTHER,
+    AnyUrl('http://purl.org/spar/datacite/Producer'): ContributorType.PRODUCER,
+    AnyUrl('http://purl.org/spar/datacite/ProjectLeader'): ContributorType.PROJECT_LEADER,
+    AnyUrl('http://purl.org/spar/datacite/ProjectManager'): ContributorType.PROJECT_MANAGER,
+    AnyUrl('http://purl.org/spar/datacite/ProjectMember'): ContributorType.PROJECT_MEMBER,
+    AnyUrl('http://purl.org/spar/datacite/RegistrationAgency'): ContributorType.REGISTRATION_AGENCY,
+    AnyUrl('http://purl.org/spar/datacite/RegistrationAuthority'): ContributorType.REGISTRATION_AUTHORITY,
+    AnyUrl('http://purl.org/spar/datacite/RelatedPerson'): ContributorType.RELATED_PERSON,
+    AnyUrl('http://purl.org/spar/datacite/Researcher'): ContributorType.RESEARCHER,
+    AnyUrl('http://purl.org/spar/datacite/ResearchGroup'): ContributorType.RESEARCH_GROUP,
+    AnyUrl('http://purl.org/spar/datacite/RightsHolder'): ContributorType.RIGHTS_HOLDER,
+    AnyUrl('http://purl.org/spar/datacite/Sponsor'): ContributorType.SPONSOR,
+    AnyUrl('http://purl.org/spar/datacite/Supervisor'): ContributorType.SUPERVISOR,
+    AnyUrl('http://purl.org/spar/datacite/Translator'): ContributorType.TRANSLATOR,
+    AnyUrl('http://purl.org/spar/datacite/WorkPackageLeader'): ContributorType.WORK_PACKAGE_LEADER,
+}
+
 def _to_contributor(
-    author: Person
+    author: Person | ContributorRole
 ) -> Contributor:
+    contributor_type=ContributorType.OTHER
+
+    if isinstance(author, ContributorRole):
+        if author.additional_type:
+            contributor_type = __ROLES_MAPPING_.get(author.additional_type, ContributorType.OTHER)
+
+        author = author.contributor
+
     contributor: Contributor = Contributor(
-        contributor_type=ContributorType.OTHER,
+        contributor_type=contributor_type,
         name_type=NameType.PERSONAL,
-        name=f"{author.family_name}, {author.given_name}" if isinstance(author, Person) else author.name,
-        given_name=author.given_name if isinstance(author, Person) else None,
-        family_name=author.family_name if isinstance(author, Person) else None,
+        name=f"{author.family_name}, {author.given_name}",
+        given_name=author.given_name,
+        family_name=author.family_name,
     )
 
     _finalize(
@@ -63,13 +99,16 @@ def _to_contributor(
     return contributor
 
 def _to_creator(
-    author: Person | Organization
+    author: Person | AuthorRole
 ) -> Creator:
+    if isinstance(author, AuthorRole):
+        author = author.author
+
     creator: Creator = Creator(
-        name_type=NameType.ORGANIZATIONAL if isinstance(author, Organization) else NameType.PERSONAL,
-        name=f"{author.family_name}, {author.given_name}" if isinstance(author, Person) else author.name,
-        given_name=author.given_name if isinstance(author, Person) else None,
-        family_name=author.family_name if isinstance(author, Person) else None,
+        name_type=NameType.PERSONAL,
+        name=f"{author.family_name}, {author.given_name}",
+        given_name=author.given_name,
+        family_name=author.family_name,
     )
 
     _finalize(
