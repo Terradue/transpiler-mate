@@ -29,12 +29,13 @@ classifiers = [
 dependencies = [
   "pydantic",
   "email-validator",
-  "pyyaml",
+  "ruamel.yaml>=0.18.16",
   "yaml-ld",
-  "click",
+  "click>=8.3.0",
   "loguru",
   "invenio-rest-api-client",
-  "giturlparse"
+  "giturlparse",
+  "semver"
 ]
 
 [tool.hatch.metadata]
@@ -83,12 +84,13 @@ skip-install = false
 dependencies = [
   "pydantic",
   "email-validator",
-  "pyyaml",
+  "ruamel.yaml>=0.18.16",
   "yaml-ld",
-  "click",
+  "click>=8.3.0",
   "loguru",
   "invenio-rest-api-client",
-  "giturlparse"
+  "giturlparse",
+  "semver"
 ]
 
 [tool.hatch.envs.test.scripts]

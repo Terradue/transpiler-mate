@@ -11,9 +11,14 @@ from .metadata import (
     Transpiler
 )
 from datetime import datetime
+from enum import (
+    auto,
+    Enum
+)
 from functools import wraps
 from loguru import logger
 from pathlib import Path
+from semver import Version
 from typing import (
     Tuple,
     Optional
@@ -246,5 +251,75 @@ def datacite(
         output=output
     )
 
-for command in [codemeta, datacite, invenio_publish, ogcrecord]:
+class VersionPart(Enum):
+    MAJOR = auto()
+    MINOR = auto()
+    PATCH = auto()
+    BUILD = auto()
+    PRE_RELEASE = auto()
+
+@main.command(context_settings={'show_default': True})
+@click.argument(
+    'source',
+    type=click.Path(
+        path_type=Path,
+        exists=True,
+        readable=True,
+        resolve_path=True
+    ),
+    required=True
+)
+@click.option(
+    '--version-part',
+    type=click.Choice(
+        VersionPart,
+        case_sensitive=False
+    ),
+    required=False,
+    default=VersionPart.MINOR,
+    help="The version part to update"
+)
+def bump_version(
+    source: Path,
+    version_part: VersionPart
+):
+    """
+    Bumps the CWL SW version via SemVer Spec 2.0.0.
+    """
+    logger.info(f"Reading metadata from {source}...")
+    metadata_manager: MetadataManager = MetadataManager(source)
+
+    version = Version.parse(metadata_manager.metadata.software_version)
+
+    if not version.is_valid:
+        raise ValueError(f"Version {metadata_manager.metadata.software_version} is not compliant to the Semantic Versioning Specification 2.0.0, see https://semver.org/")
+
+    bumped_version = None
+
+    match version_part:
+        case VersionPart.MAJOR:
+            bumped_version = version.bump_major()
+
+        case VersionPart.MINOR:
+            bumped_version = version.bump_minor()
+
+        case VersionPart.PATCH:
+            bumped_version = version.bump_patch()
+
+        case VersionPart.BUILD:
+            bumped_version = version.bump_build()
+
+        case VersionPart.PRE_RELEASE:
+            bumped_version = version.bump_prerelease()
+
+        case _:
+            raise ValueError(f"It's not you, it is us: {version_part} unsupported, but it shouldn't have been happened...")
+
+    logger.success(f"Software Version {metadata_manager.metadata.software_version} updated to {bumped_version}")
+
+    metadata_manager.metadata.software_version = str(bumped_version)
+
+    metadata_manager.update()
+
+for command in [bump_version, codemeta, datacite, invenio_publish, ogcrecord]:
     command.callback = _track(command.callback)

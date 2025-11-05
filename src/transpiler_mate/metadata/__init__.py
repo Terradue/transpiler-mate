@@ -17,6 +17,7 @@ from abc import (
 from loguru import logger
 from pathlib import Path
 from pyld import jsonld
+from ruamel.yaml import YAML
 from typing import (
     Any,
     Generic,
@@ -35,8 +36,6 @@ class Transpiler(Generic[T]):
         metadata_source: SoftwareApplication
     ) -> T:
         pass
-
-import yaml
 
 __CONTEXT_KEY__ = '@context'
 __NAMESPACES_KEY__ = '$namespaces'
@@ -58,9 +57,9 @@ class MetadataManager():
         logger.debug(f"Loading raw document from {document_source}...")
 
         self.document_source = document_source
+        self.yaml = YAML()
 
-        with document_source.open() as input_stream:
-            self.raw_document: MutableMapping[str, Any] = yaml.safe_load(input_stream)
+        self.raw_document: MutableMapping[str, Any] = self.yaml.load(document_source)
 
         compacted = jsonld.compact(
             input_=self.raw_document,
@@ -105,11 +104,9 @@ class MetadataManager():
         self.raw_document.update(updated_metadata)
 
         def _dump(stream: TextIO):
-            yaml.dump(
-                self.raw_document,
-                stream,
-                indent=2,
-                sort_keys=False
+            self.yaml.dump(
+                data=self.raw_document,
+                stream=stream
             )
 
         logger.debug(f"JSON-LD format compacted metadata merged to the original document")
