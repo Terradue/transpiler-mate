@@ -25,6 +25,7 @@ from loguru import logger
 from typing import (
     Mapping
 )
+import re
 
 def _decode(value):
     if not value:
@@ -44,7 +45,8 @@ def _log_request(func):
 
         headers: Headers = request.headers
         for name, value in headers.raw:
-            logger.warning(f"> {_decode(name)}: {_decode(value)}")
+            header_value = re.sub(r'(\bBearer\s+)[^\s]+', r'\1********', _decode(value), flags=re.IGNORECASE)
+            logger.warning(f"> {_decode(name)}: {header_value}")
 
         logger.warning('>')
         try:
