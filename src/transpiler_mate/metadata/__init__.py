@@ -11,13 +11,12 @@ from .software_application_models import (
     SoftwareApplication
 )
 from .licenses import LICENSES_INDEX
-from abc import (
-    abstractmethod
-)
+from abc import abstractmethod
 from loguru import logger
 from pathlib import Path
 from pyld import jsonld
 from ruamel.yaml import YAML
+from ruamel.yaml.comments import CommentedMap
 from typing import (
     Any,
     Generic,
@@ -59,7 +58,7 @@ class MetadataManager():
         self.document_source = document_source
         self.yaml = YAML()
 
-        self.raw_document: MutableMapping[str, Any] = self.yaml.load(document_source)
+        self.raw_document: CommentedMap = self.yaml.load(document_source)
 
         compacted = jsonld.compact(
             input_=self.raw_document,
