@@ -7,14 +7,15 @@ Usage: transpiler-mate codemeta [OPTIONS] SOURCE
   Transpiles the input CWL to CodeMeta representation.
 
 Options:
-  --output PATH  The output file path  [default: codemeta.json]
-  --help         Show this message and exit.
+  --code-repository TEXT  The (SVN, GitHub, CodePlex, ...) code repository URL
+  --output PATH           The output file path  [default: codemeta.json]
+  --help                  Show this message and exit.
 ```
 
 i.e.
 
 ```
-$ transpiler-mate codemeta /path/to/pattern-1.cwl
+$ transpiler-mate codemeta --code-repository=`git remote get-url origin` /path/to/pattern-1.cwl
 2025-10-30 13:12:46.203 | INFO     | transpiler_mate.cli:wrapper:33 - Started at: 2025-10-30T13:12:46.203
 2025-10-30 13:12:46.203 | INFO     | transpiler_mate.cli:_transpile:123 - Reading metadata from /home/stripodi/Downloads/pattern-1.cwl...
 2025-10-30 13:12:46.203 | DEBUG    | transpiler_mate.metadata:__init__:53 - Loading raw document from /home/stripodi/Downloads/pattern-1.cwl...
