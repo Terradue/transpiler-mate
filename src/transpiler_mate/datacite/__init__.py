@@ -46,6 +46,7 @@ from typing import (
 from urllib.parse import urlparse
 
 import time
+import uuid
 
 __ROLES_MAPPING_: Mapping[AnyUrl, ContributorType] = {
     AnyUrl('http://purl.org/spar/datacite/ContactPerson'): ContributorType.CONTACT_PERSON,
@@ -163,7 +164,10 @@ class DataCiteTranspiler(Transpiler):
             identifiers=[Identifier(
                 identifier_type='DOI',
                 identifier=metadata_source.identifier
-            )],
+            ) if metadata_source.identifier else Identifier(
+                identifier_type='URN',
+                identifier=f"urn:uuid:{uuid.uuid4()}"
+            )], # supply a fake required identifier if the DOI hasn't been associated yet
             related_identifiers=[RelatedIdentifier(
                 related_identifier=str(metadata_source.same_as),
                 related_identifier_type=RelatedIdentifierType.DOI,
