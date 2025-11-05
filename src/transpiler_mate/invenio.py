@@ -185,15 +185,13 @@ class InvenioMetadataTranspiler(Transpiler):
         self,
         metadata_source: SoftwareApplication
     ) -> Metadata:
-        raw_publishers: List[Organization] = metadata_source.publisher if isinstance(metadata_source.publisher, list) else [metadata_source.publisher]
-
         return Metadata(
             resource_type=ResourceType(
                 id=ResourceTypeId.WORKFLOW
             ),
             title=metadata_source.name,
             publication_date=date.fromtimestamp(time.time()),
-            publisher=', '.join([publisher.name for publisher in raw_publishers]),
+            publisher=metadata_source.publisher.name,
             description=metadata_source.description if metadata_source.description else UNSET,
             creators=list(
                 map(
@@ -210,23 +208,6 @@ class InvenioMetadataTranspiler(Transpiler):
             version=metadata_source.software_version
         )
 
-    def _to_versioned_file_name(
-        self,
-        source: Path
-    ) -> str:
-        # Split the file name and extension
-        base_name, extension = os.path.splitext(source.name)
-        # Retrieve the version
-        version = self.metadata_manager.metadata.software_version
-        # Construct the new file name by appending the version
-
-        if self.metadata_manager.document_source.name == source.name:
-            return f"{base_name}_v{version}{extension}"
-
-        source_name, _ = os.path.splitext(self.metadata_manager.document_source.name)
-
-        return f"{source_name}_{base_name}_v{version}{extension}" 
-
     def _finalize(
         self,
         draft_id: str,
@@ -241,7 +222,7 @@ class InvenioMetadataTranspiler(Transpiler):
             draft_id=draft_id,
             client=session_client,
             body=[FileTransferItem(
-                key=self._to_versioned_file_name(file),
+                key=file.name,
                 size=file.stat().st_size,
                 checksum=f"md5:{_md5(file)}"
             ) for file in uploading_files]
@@ -255,9 +236,9 @@ class InvenioMetadataTranspiler(Transpiler):
             with file.open('rb') as binary_stream:
                 step_2_upload_a_draft_files_content(
                     draft_id=draft_id,
-                    file_name=self._to_versioned_file_name(file),
+                    file_name=file.name,
                     body=FileContent(
-                        file_name=self._to_versioned_file_name(file),
+                        file_name=file.name,
                         mime_type='application/octet-stream',
                         payload=binary_stream
                     ),
@@ -270,7 +251,7 @@ class InvenioMetadataTranspiler(Transpiler):
 
             step_3_complete_a_draft_file_upload(
                 draft_id=draft_id,
-                file_name=self._to_versioned_file_name(file),
+                file_name=file.name,
                 client=session_client
             )
 
