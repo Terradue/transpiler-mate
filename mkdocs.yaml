@@ -1,10 +1,16 @@
-# transpiler-mate (c) 2025
+# Copyright 2025 Terradue
 #
-# transpiler-mate is licensed under
-# Creative Commons Attribution-ShareAlike 4.0 International.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# You should have received a copy of the license along with this work.
-# If not, see <https://creativecommons.org/licenses/by-sa/4.0/>.
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 site_name: transpiler-mate
 site_url: https://terradue.github.io/transpiler-mate/
@@ -87,4 +93,4 @@ nav:
     - ./cli/bump-version.md
   - API doc: ./api/latest/transpiler_mate/index.md
 
-copyright: <a href="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg">License CC BY-SA 4.0</a>, by <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons</a>
+copyright: <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a>
