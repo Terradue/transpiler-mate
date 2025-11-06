@@ -1266,4 +1266,4 @@ Specific value: `"https://schema.org/Person"`
 **Description:** A person (alive, dead, undead, or fictional).
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-11-04 at 13:34:38 +0100
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-11-07 at 00:41:11 +0100

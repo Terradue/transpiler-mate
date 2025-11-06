@@ -79,6 +79,7 @@ nav:
   - conventions.md
   - JSON Schemas:
     - DataCite 4.6: ./schemas/datacite_4_6.md
+    - OGC API - Records: ./schemas/ogcapi_records.md
     - Schema.org/SoftwareApplication: ./schemas/software_application.md
   - CrossWalks:
     - ./xwalks/codemeta.md
