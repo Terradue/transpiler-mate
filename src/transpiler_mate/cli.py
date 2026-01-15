@@ -280,8 +280,8 @@ def datacite(
     '--output',
     type=click.Path(path_type=Path),
     required=False,
-    default='workflow.md',
-    help="The output file path"
+    default='.',
+    help="The output directory path"
 )
 @click.option(
     '--code-repository',
@@ -297,13 +297,21 @@ def markdown(
     """
     Transpiles the input CWL to Markdown documentation.
     """
-    with output.open("w") as output_stream:
+    output.mkdir(parents=True, exist_ok=True)
+
+    target: Path = Path(output, f"{workflow_id}.md")
+
+    logger.info(f"Rendering Markdown documentation of {source} to {target}...")
+
+    with target.open("w") as output_stream:
         markdown_transpile(
             source,
             workflow_id,
             output_stream,
             code_repository
         )
+
+    logger.info(f"Markdown documentation successfully serialized to {target}!")
 
 
 class VersionPart(Enum):

@@ -12,6 +12,12 @@
 |------|-------|--------------|------|------------|
 {% for role in software_application.author %}| {{role.author.familyName}}, {{role.author.givenName}} | [{{role.author.email}}](mailto:{{role.author.email}}) | [{{role.author.affiliation.name}}]({{role.author.affiliation.identifier}}) | [{{role.roleName}}]({{role.additionalType}}) | [{{role.author.identifier}}]({{role.author.identifier}}) |
 {% endfor %}
+
+{% if software_application.softwareHelp %}# {{software_application.softwareHelp.name}}
+
+{{software_application.softwareHelp.name}} can be found on [{{software_application.softwareHelp.url}}]({{software_application.softwareHelp.url}}).
+{% endif %}
+
 # Runtime environment
 
 ## Supported Operating Systems
