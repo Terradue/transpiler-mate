@@ -16,6 +16,7 @@ from .metadata import (
     MetadataManager,
     Transpiler
 )
+from .markdown import markdown_transpile
 from datetime import datetime
 from enum import (
     auto,
@@ -257,6 +258,54 @@ def datacite(
         output=output
     )
 
+@main.command(context_settings={'show_default': True})
+@click.argument(
+    'source',
+    type=click.Path(
+        path_type=Path,
+        exists=True,
+        readable=True,
+        resolve_path=True
+    ),
+    required=True
+)
+@click.option(
+    '--workflow-id',
+    required=True,
+    type=click.STRING,
+    default="main",
+    help="ID of the main Workflow"
+)
+@click.option(
+    '--output',
+    type=click.Path(path_type=Path),
+    required=False,
+    default='workflow.md',
+    help="The output file path"
+)
+@click.option(
+    '--code-repository',
+    required=False,
+    help="The (SVN, GitHub, CodePlex, ...) code repository URL"
+)
+def markdown(
+    source: Path,
+    workflow_id: str,
+    output: Path,
+    code_repository: str | None
+):
+    """
+    Transpiles the input CWL to Markdown documentation.
+    """
+    with output.open("w") as output_stream:
+        markdown_transpile(
+            source,
+            workflow_id,
+            output_stream,
+            code_repository
+        )
+
+
 class VersionPart(Enum):
     MAJOR = auto()
     MINOR = auto()
@@ -327,5 +376,5 @@ def bump_version(
 
     metadata_manager.update()
 
-for command in [bump_version, codemeta, datacite, invenio_publish, ogcrecord]:
+for command in [bump_version, codemeta, datacite, invenio_publish, ogcrecord, markdown]:
     command.callback = _track(command.callback)

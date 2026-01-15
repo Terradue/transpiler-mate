@@ -35,7 +35,9 @@ dependencies = [
   "loguru",
   "invenio-rest-api-client",
   "giturlparse",
-  "semver"
+  "semver",
+  "Jinja2>=3.1.6",
+  "cwl-loader"
 ]
 
 [tool.hatch.metadata]
@@ -90,7 +92,9 @@ dependencies = [
   "loguru",
   "invenio-rest-api-client",
   "giturlparse",
-  "semver"
+  "semver",
+  "Jinja2>=3.1.6",
+  "cwl-loader"
 ]
 
 [tool.hatch.envs.test.scripts]
