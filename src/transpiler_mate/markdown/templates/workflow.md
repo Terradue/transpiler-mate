@@ -1,71 +1,72 @@
-# {{software_application.name}} v{{software_application.softwareVersion}}
+{% macro serialize_clt(clt) -%}## {{clt.id}}
 
-{{software_application.description}}
+### CWL Class
 
-> This software is licensed under the terms of the [{{software_application.license.name}}]({{software_application.license.url}}) license - SPDX short identifier: [{{software_application.license.identifier}}](https://spdx.org/licenses/{{software_application.license.identifier}})
->
-> {{software_application.dateCreated}} - {{timestamp}} Copyright [{{software_application.publisher.name}}](mailto:{{software_application.publisher.email}}) - {% if software_application.publisher.identifier %}> [{{software_application.publisher.identifier}}]({{software_application.publisher.identifier}}){% endif %}
+```
+{{clt.class_}}
+```
 
-# Project Team
+### Inputs
 
-| Name | Email | Organization | Role | Identifier |
-|------|-------|--------------|------|------------|
-{% for role in software_application.author %}| {{role.author.familyName}}, {{role.author.givenName}} | [{{role.author.email}}](mailto:{{role.author.email}}) | [{{role.author.affiliation.name}}]({{role.author.affiliation.identifier}}) | [{{role.roleName}}]({{role.additionalType}}) | [{{role.author.identifier}}]({{role.author.identifier}}) |
+| Id | Option | Type |
+|----|------|-------|
+{% for input in clt.inputs %}| `{{input.id}}` | `{% if input.inputBinding.prefix %}{{input.inputBinding.prefix}}{% else %}--{{input.id}}{% endif %}` | `{{ input.type_ | type_to_string }}` |
 {% endfor %}
+### Execution usage example:
 
-{% if software_application.softwareHelp %}# {{software_application.softwareHelp.name}}
+```
+{{clt | get_exection_command}} \
+{% for input in clt.inputs %}{% if input.type_ is nullable %}({% endif %}{% if input.inputBinding.prefix %}{{input.inputBinding.prefix}}{% else %}--{{input.id}}{% endif %} <{{input.id.upper()}}>{% if input.type_ is nullable %}){% endif %}{% if not loop.last %} \{% endif %}
+{% endfor %}```
+{%- endmacro %}
 
-{{software_application.softwareHelp.name}} can be found on [{{software_application.softwareHelp.url}}]({{software_application.softwareHelp.url}}).
-{% endif %}
+{% macro serialize_workflow(workflow) -%}## {{workflow.id}}
 
-# Runtime environment
+### CWL Class
 
-## Supported Operating Systems
+`{{workflow.class_}}`
 
-{% for operatingSystem in software_application.operatingSystem %}- {{operatingSystem}}
-{% endfor %}
-## Requirements
-
-{% for softwareRequirement in software_application.softwareRequirements %}- [{{softwareRequirement}}]({{softwareRequirement}})
-{% endfor %}
-
-{% if software_source_code %}# Software Source code
-
-- Browsable version of the [source repository]({{software_source_code.codeRepository}});
-- [Continuous integration]({{software_source_code.continuousIntegration}}) system used by the project;
-- Issues, bugs, and feature requests should be submitted to the following [issue management]({{software_source_code.issueTracker}}) system for this project
-{% endif %}
-
----
-
-# Worflow `{{workflow.id}}`
-
-## Inputs
+### Inputs
 
 | Id | Type | Label | Doc |
 |----|------|-------|-----|
 {% for input in workflow.inputs %}| `{{input.id}}` | `{{ input.type_ | type_to_string }}` | {{input.label}} | {{input.doc}} |
 {% endfor %}
 
-## Steps
+### Steps
 
 | Id | Runs | Label | Doc |
 |----|------|-------|-----|
-{% for step in workflow.steps %}| `{{step.id}}` | `{{step.run}}` | {{step.label}} | {{step.doc}} |
+{% for step in workflow.steps %}| [{{step.id}}](#{{step.run[1:]}}) | `{{step.run}}` | {{step.label}} | {{step.doc}} |
 {% endfor %}
 
-## Outputs
+### Outputs
 
 | Id | Type | Label | Doc |
 |----|------|-------|-----|
 {% for output in workflow.outputs %}| `{{output.id}}` | `{{ output.type_ | type_to_string }}` | {{output.label}} | {{output.doc}} |
 {% endfor %}
 
-## UML Diagrams
-
+### UML Diagrams
 {% set diagrams=['activity', 'component', 'class', 'sequence', 'state'] %}
 {% for diagram in diagrams %}
-### UML `{{diagram}}` diagram
+#### UML `{{diagram}}` diagram
 
 ![{{workflow.id}} flow diagram](./{{workflow.id}}/{{diagram}}.svg "{{workflow.id}} {{diagram}} diagram")
 {% endfor %}
+
+{% for step in workflow.steps %}
+
+{% set resolved_step = index.get(step.run[1:]) %}
+{% if "Workflow" == resolved_step.class_ %}
+{{serialize_workflow(resolved_step)}}
+{% else %}
+{{serialize_clt(resolved_step)}}
+{% endif %}
+
+### Run in step
+
+`{{step.id}}`
+{% endfor %}
+
+{%- endmacro %}

@@ -384,5 +384,5 @@ def bump_version(
 
     metadata_manager.update()
 
-for command in [bump_version, codemeta, datacite, invenio_publish, ogcrecord, markdown]:
+for command in [bump_version, codemeta, datacite, invenio_publish, ogcrecord, ]:
     command.callback = _track(command.callback)
