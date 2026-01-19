@@ -180,17 +180,21 @@ def get_exection_command(
 ) -> str:
     result: List[str] = []
 
-    if hasattr(clt, "baseCommand") and clt.baseCommand:
-        if isinstance(clt.baseCommand, list):
-            result += clt.baseCommand
+    def _append_arg(arg: Any):
+        if isinstance(arg, list):
+            for arg_i in arg:
+                _append_arg(arg_i)
+        elif isinstance(arg, str):
+            result.append(arg)
         else:
-            result.append(clt.baseCommand)
+            result.append(f"<ARGUMENT_DYNAMICALLY_SET>")
 
-    if hasattr(clt, "arguments") and clt.arguments:
-        if isinstance(clt.arguments, list):
-            result += clt.arguments
-        else:
-            result.append(clt.arguments)
+    def _check_then_append(arg_name: str):
+        if hasattr(clt, arg_name) and getattr(clt, arg_name):
+            _append_arg(getattr(clt, arg_name))
+
+    _check_then_append("baseCommand")
+    _check_then_append( "arguments")
 
     return " ".join(result)
 
