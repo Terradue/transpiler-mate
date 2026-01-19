@@ -169,10 +169,11 @@ def _to_mapping(
 
     return mapping
 
+
 def nullable(
     type_: Any
 ) -> bool:
-    return isinstance(type_, list) and "null" in type_ or hasattr(type_, "items") and "null" in getattr(type_, "items")
+    return isinstance(type_, list) and "null" in type_ or hasattr(type_, "items") and nullable(getattr(type_, "items"))
 
 
 def get_exection_command(
