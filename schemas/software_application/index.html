@@ -1,0 +1,7127 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Fabrice Brito, Simone Tripodi">
+      
+      
+        <link rel="canonical" href="https://terradue.github.io/transpiler-mate/schemas/software_application/">
+      
+      
+        <link rel="prev" href="../ogcapi_records/">
+      
+      
+        <link rel="next" href="../../xwalks/codemeta/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Schema.org/SoftwareApplication - transpiler-mate</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../styles/css/app.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#schema-docs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="transpiler-mate" class="md-header__button md-logo" aria-label="transpiler-mate" data-md-component="logo">
+      
+  <img src="../../imgs/icon-eoap.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            transpiler-mate
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Schema.org/SoftwareApplication
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Terradue/transpiler-mate/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Terradue/transpiler-mate
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="transpiler-mate" class="md-nav__button md-logo" aria-label="transpiler-mate" data-md-component="logo">
+      
+  <img src="../../imgs/icon-eoap.png" alt="logo">
+
+    </a>
+    transpiler-mate
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Terradue/transpiler-mate/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Terradue/transpiler-mate
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transpiler Mate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CWL Metadata code conventions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Schemas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JSON Schemas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datacite_4_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DataCite 4.6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ogcapi_records/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OGC API - Records
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema.org/SoftwareApplication
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema.org/SoftwareApplication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-property-root-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Property root &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-property-root-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Property root &gt; name
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-property-root-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Property root &gt; description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-property-root-datecreated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Property root &gt; dateCreated
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Property root &gt; dateCreated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-property-root-datecreated-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Property root &gt; dateCreated &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-property-root-datecreated-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Property root &gt; dateCreated &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-property-root-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Property root &gt; license
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Property root &gt; license">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-property-root-license-oneof-creativework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Property root &gt; license &gt; oneOf &gt; CreativeWork
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1. Property root &gt; license &gt; oneOf &gt; CreativeWork">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#511-property-root-license-oneof-item-0-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.1. Property root &gt; license &gt; oneOf &gt; item 0 &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#512-property-root-license-oneof-item-0-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.2. Property root &gt; license &gt; oneOf &gt; item 0 &gt; name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#513-property-root-license-oneof-item-0-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.3. Property root &gt; license &gt; oneOf &gt; item 0 &gt; url
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#514-property-root-license-oneof-item-0-identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.4. Property root &gt; license &gt; oneOf &gt; item 0 &gt; identifier
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1.4. Property root &gt; license &gt; oneOf &gt; item 0 &gt; identifier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5141-property-root-license-oneof-item-0-identifier-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.4.1. Property root &gt; license &gt; oneOf &gt; item 0 &gt; identifier &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5142-property-root-license-oneof-item-0-identifier-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.4.2. Property root &gt; license &gt; oneOf &gt; item 0 &gt; identifier &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-property-root-license-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Property root &gt; license &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-property-root-license-oneof-item-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. Property root &gt; license &gt; oneOf &gt; item 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3. Property root &gt; license &gt; oneOf &gt; item 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-root-license-oneof-item-2-item-2-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.1. root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3.1. root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5311-property-root-license-oneof-item-2-item-2-items-oneof-creativework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.1.1. Property root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; CreativeWork
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5312-property-root-license-oneof-item-2-item-2-items-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.1.2. Property root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-property-root-identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Property root &gt; identifier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-property-root-sameas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Property root &gt; sameAs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Property root &gt; sameAs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-property-root-sameas-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. Property root &gt; sameAs &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-property-root-sameas-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. Property root &gt; sameAs &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2. Property root &gt; sameAs &gt; oneOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#721-root-sameas-oneof-item-1-item-1-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2.1. root &gt; sameAs &gt; oneOf &gt; item 1 &gt; item 1 items
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-property-root-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Property root &gt; keywords
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Property root &gt; keywords">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-property-root-keywords-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Property root &gt; keywords &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-property-root-keywords-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Property root &gt; keywords &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-property-root-keywords-oneof-definedterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. Property root &gt; keywords &gt; oneOf &gt; DefinedTerm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3. Property root &gt; keywords &gt; oneOf &gt; DefinedTerm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#831-property-root-keywords-oneof-item-2-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.1. Property root &gt; keywords &gt; oneOf &gt; item 2 &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#832-property-root-keywords-oneof-item-2-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.2. Property root &gt; keywords &gt; oneOf &gt; item 2 &gt; name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#833-property-root-keywords-oneof-item-2-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.3. Property root &gt; keywords &gt; oneOf &gt; item 2 &gt; description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#834-property-root-keywords-oneof-item-2-termcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.4. Property root &gt; keywords &gt; oneOf &gt; item 2 &gt; termCode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#835-property-root-keywords-oneof-item-2-indefinedtermset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.5. Property root &gt; keywords &gt; oneOf &gt; item 2 &gt; inDefinedTermSet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-property-root-keywords-oneof-item-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4. Property root &gt; keywords &gt; oneOf &gt; item 3
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4. Property root &gt; keywords &gt; oneOf &gt; item 3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#841-root-keywords-oneof-item-3-item-3-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1. root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4.1. root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8411-property-root-keywords-oneof-item-3-item-3-items-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1.1. Property root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8412-property-root-keywords-oneof-item-3-item-3-items-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1.2. Property root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8413-property-root-keywords-oneof-item-3-item-3-items-oneof-definedterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1.3. Property root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; DefinedTerm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-property-root-operatingsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Property root &gt; operatingSystem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Property root &gt; operatingSystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-property-root-operatingsystem-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1. Property root &gt; operatingSystem &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-property-root-operatingsystem-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2. Property root &gt; operatingSystem &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.2. Property root &gt; operatingSystem &gt; oneOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#921-root-operatingsystem-oneof-item-1-item-1-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2.1. root &gt; operatingSystem &gt; oneOf &gt; item 1 &gt; item 1 items
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-property-root-softwarerequirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Property root &gt; softwareRequirements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Property root &gt; softwareRequirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-property-root-softwarerequirements-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1. Property root &gt; softwareRequirements &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-property-root-softwarerequirements-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2. Property root &gt; softwareRequirements &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-property-root-softwarerequirements-oneof-item-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3. Property root &gt; softwareRequirements &gt; oneOf &gt; item 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.3. Property root &gt; softwareRequirements &gt; oneOf &gt; item 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1031-root-softwarerequirements-oneof-item-2-item-2-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.1. root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.3.1. root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10311-property-root-softwarerequirements-oneof-item-2-item-2-items-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.1.1. Property root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10312-property-root-softwarerequirements-oneof-item-2-item-2-items-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.1.2. Property root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-property-root-softwareversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Property root &gt; softwareVersion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-property-root-softwarehelp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Property root &gt; softwareHelp
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Property root &gt; softwareHelp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-property-root-softwarehelp-oneof-creativework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1. Property root &gt; softwareHelp &gt; oneOf &gt; CreativeWork
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-property-root-softwarehelp-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2. Property root &gt; softwareHelp &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.2. Property root &gt; softwareHelp &gt; oneOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1221-root-softwarehelp-oneof-item-1-creativework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2.1. root &gt; softwareHelp &gt; oneOf &gt; item 1 &gt; CreativeWork
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-property-root-publisher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Property root &gt; publisher
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Property root &gt; publisher">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-property-root-publisher-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1. Property root &gt; publisher &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-property-root-publisher-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2. Property root &gt; publisher &gt; name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133-property-root-publisher-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3. Property root &gt; publisher &gt; email
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.3. Property root &gt; publisher &gt; email">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1331-property-root-publisher-email-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3.1. Property root &gt; publisher &gt; email &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1332-property-root-publisher-email-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3.2. Property root &gt; publisher &gt; email &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.3.2. Property root &gt; publisher &gt; email &gt; oneOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13321-root-publisher-email-oneof-item-1-item-1-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3.2.1. root &gt; publisher &gt; email &gt; oneOf &gt; item 1 &gt; item 1 items
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#134-property-root-publisher-identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.4. Property root &gt; publisher &gt; identifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-property-root-author" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Property root &gt; author
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Property root &gt; author">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-property-root-author-oneof-authorrole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1. Property root &gt; author &gt; oneOf &gt; AuthorRole
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.1. Property root &gt; author &gt; oneOf &gt; AuthorRole">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1411-property-root-author-oneof-item-0-allof-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; Role
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.1.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; Role">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14111-property-root-author-oneof-item-0-allof-item-0-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14112-property-root-author-oneof-item-0-allof-item-0-rolename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1.2. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; roleName
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14113-property-root-author-oneof-item-0-allof-item-0-startdate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1.3. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; startDate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14114-property-root-author-oneof-item-0-allof-item-0-enddate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1.4. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; endDate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14115-property-root-author-oneof-item-0-allof-item-0-additionaltype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1.5. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; additionalType
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1412-property-root-author-oneof-item-0-allof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.1.2. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14121-property-root-author-oneof-item-0-allof-item-1-author" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.1.2.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141211-property-root-author-oneof-item-0-allof-item-1-author-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#141212-property-root-author-oneof-item-0-allof-item-1-author-givenname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.2. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; givenName
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#141213-property-root-author-oneof-item-0-allof-item-1-author-familyname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.3. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; familyName
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#141214-property-root-author-oneof-item-0-allof-item-1-author-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.4. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; email
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#141215-property-root-author-oneof-item-0-allof-item-1-author-identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.5. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; identifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#141216-property-root-author-oneof-item-0-allof-item-1-author-affiliation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.6. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1412161-property-root-author-oneof-item-0-allof-item-1-author-affiliation-oneof-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.6.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; Organization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1412162-property-root-author-oneof-item-0-allof-item-1-author-affiliation-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.6.2. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14121621-root-author-oneof-item-0-allof-item-1-author-affiliation-oneof-item-1-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.6.2.1. root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; item 1 &gt; Organization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-property-root-author-oneof-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2. Property root &gt; author &gt; oneOf &gt; Person
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143-property-root-author-oneof-item-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3. Property root &gt; author &gt; oneOf &gt; item 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.3. Property root &gt; author &gt; oneOf &gt; item 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1431-root-author-oneof-item-2-item-2-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.1. root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.3.1. root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14311-property-root-author-oneof-item-2-item-2-items-oneof-authorrole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.1.1. Property root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; AuthorRole
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14312-property-root-author-oneof-item-2-item-2-items-oneof-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.1.2. Property root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; Person
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-property-root-contributor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Property root &gt; contributor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Property root &gt; contributor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#151-property-root-contributor-oneof-contributorrole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1. Property root &gt; contributor &gt; oneOf &gt; ContributorRole
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.1. Property root &gt; contributor &gt; oneOf &gt; ContributorRole">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1511-property-root-contributor-oneof-item-0-allof-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1.1. Property root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; Role
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1512-property-root-contributor-oneof-item-0-allof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1.2. Property root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.1.2. Property root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#15121-property-root-contributor-oneof-item-0-allof-item-1-contributor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1.2.1. Property root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; contributor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#152-property-root-contributor-oneof-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.2. Property root &gt; contributor &gt; oneOf &gt; Person
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#153-property-root-contributor-oneof-item-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.3. Property root &gt; contributor &gt; oneOf &gt; item 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.3. Property root &gt; contributor &gt; oneOf &gt; item 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1531-root-contributor-oneof-item-2-item-2-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.3.1. root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.3.1. root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#15311-property-root-contributor-oneof-item-2-item-2-items-oneof-contributorrole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.3.1.1. Property root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; ContributorRole
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15312-property-root-contributor-oneof-item-2-item-2-items-oneof-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.3.1.2. Property root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; Person
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CrossWalks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CrossWalks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xwalks/codemeta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    https://schema.org/SoftwareApplication Crosswalk for CodeMeta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xwalks/datacite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    https://schema.org/SoftwareApplication Crosswalk for DataCite Metadata Properties 4.6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xwalks/ogc_record/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    https://schema.org/SoftwareApplication Crosswalk for OGC API - Records
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xwalks/invenio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    https://schema.org/SoftwareApplication Crosswalk for Invenio Records Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CLI Commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/codemeta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transpile a CWL Workflow to CodeMeta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/datacite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transpile a CWL Workflow to DataCite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/ogc_record/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transpile a CWL Workflow to an OGC API - Record
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/invenio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publish a CWL Workflow on an Invenio instance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/bump-version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bump the CWL Software version
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/markdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transpile a CWL Workflow to a Markdown page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/latest/transpiler_mate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API doc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-property-root-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Property root &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-property-root-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Property root &gt; name
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-property-root-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Property root &gt; description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-property-root-datecreated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Property root &gt; dateCreated
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Property root &gt; dateCreated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-property-root-datecreated-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Property root &gt; dateCreated &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-property-root-datecreated-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Property root &gt; dateCreated &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-property-root-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Property root &gt; license
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Property root &gt; license">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-property-root-license-oneof-creativework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Property root &gt; license &gt; oneOf &gt; CreativeWork
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1. Property root &gt; license &gt; oneOf &gt; CreativeWork">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#511-property-root-license-oneof-item-0-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.1. Property root &gt; license &gt; oneOf &gt; item 0 &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#512-property-root-license-oneof-item-0-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.2. Property root &gt; license &gt; oneOf &gt; item 0 &gt; name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#513-property-root-license-oneof-item-0-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.3. Property root &gt; license &gt; oneOf &gt; item 0 &gt; url
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#514-property-root-license-oneof-item-0-identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.4. Property root &gt; license &gt; oneOf &gt; item 0 &gt; identifier
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1.4. Property root &gt; license &gt; oneOf &gt; item 0 &gt; identifier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5141-property-root-license-oneof-item-0-identifier-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.4.1. Property root &gt; license &gt; oneOf &gt; item 0 &gt; identifier &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5142-property-root-license-oneof-item-0-identifier-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1.4.2. Property root &gt; license &gt; oneOf &gt; item 0 &gt; identifier &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-property-root-license-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Property root &gt; license &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-property-root-license-oneof-item-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. Property root &gt; license &gt; oneOf &gt; item 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3. Property root &gt; license &gt; oneOf &gt; item 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-root-license-oneof-item-2-item-2-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.1. root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3.1. root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5311-property-root-license-oneof-item-2-item-2-items-oneof-creativework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.1.1. Property root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; CreativeWork
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5312-property-root-license-oneof-item-2-item-2-items-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.1.2. Property root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-property-root-identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Property root &gt; identifier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-property-root-sameas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Property root &gt; sameAs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Property root &gt; sameAs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-property-root-sameas-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. Property root &gt; sameAs &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-property-root-sameas-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. Property root &gt; sameAs &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2. Property root &gt; sameAs &gt; oneOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#721-root-sameas-oneof-item-1-item-1-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2.1. root &gt; sameAs &gt; oneOf &gt; item 1 &gt; item 1 items
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-property-root-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Property root &gt; keywords
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Property root &gt; keywords">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-property-root-keywords-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Property root &gt; keywords &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-property-root-keywords-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Property root &gt; keywords &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-property-root-keywords-oneof-definedterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. Property root &gt; keywords &gt; oneOf &gt; DefinedTerm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3. Property root &gt; keywords &gt; oneOf &gt; DefinedTerm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#831-property-root-keywords-oneof-item-2-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.1. Property root &gt; keywords &gt; oneOf &gt; item 2 &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#832-property-root-keywords-oneof-item-2-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.2. Property root &gt; keywords &gt; oneOf &gt; item 2 &gt; name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#833-property-root-keywords-oneof-item-2-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.3. Property root &gt; keywords &gt; oneOf &gt; item 2 &gt; description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#834-property-root-keywords-oneof-item-2-termcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.4. Property root &gt; keywords &gt; oneOf &gt; item 2 &gt; termCode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#835-property-root-keywords-oneof-item-2-indefinedtermset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.5. Property root &gt; keywords &gt; oneOf &gt; item 2 &gt; inDefinedTermSet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-property-root-keywords-oneof-item-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4. Property root &gt; keywords &gt; oneOf &gt; item 3
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4. Property root &gt; keywords &gt; oneOf &gt; item 3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#841-root-keywords-oneof-item-3-item-3-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1. root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4.1. root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8411-property-root-keywords-oneof-item-3-item-3-items-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1.1. Property root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8412-property-root-keywords-oneof-item-3-item-3-items-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1.2. Property root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8413-property-root-keywords-oneof-item-3-item-3-items-oneof-definedterm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1.3. Property root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; DefinedTerm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-property-root-operatingsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Property root &gt; operatingSystem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Property root &gt; operatingSystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-property-root-operatingsystem-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1. Property root &gt; operatingSystem &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-property-root-operatingsystem-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2. Property root &gt; operatingSystem &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.2. Property root &gt; operatingSystem &gt; oneOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#921-root-operatingsystem-oneof-item-1-item-1-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2.1. root &gt; operatingSystem &gt; oneOf &gt; item 1 &gt; item 1 items
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-property-root-softwarerequirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Property root &gt; softwareRequirements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Property root &gt; softwareRequirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-property-root-softwarerequirements-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1. Property root &gt; softwareRequirements &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-property-root-softwarerequirements-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2. Property root &gt; softwareRequirements &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-property-root-softwarerequirements-oneof-item-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3. Property root &gt; softwareRequirements &gt; oneOf &gt; item 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.3. Property root &gt; softwareRequirements &gt; oneOf &gt; item 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1031-root-softwarerequirements-oneof-item-2-item-2-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.1. root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.3.1. root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10311-property-root-softwarerequirements-oneof-item-2-item-2-items-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.1.1. Property root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10312-property-root-softwarerequirements-oneof-item-2-item-2-items-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.1.2. Property root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-property-root-softwareversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Property root &gt; softwareVersion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-property-root-softwarehelp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Property root &gt; softwareHelp
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Property root &gt; softwareHelp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-property-root-softwarehelp-oneof-creativework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1. Property root &gt; softwareHelp &gt; oneOf &gt; CreativeWork
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-property-root-softwarehelp-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2. Property root &gt; softwareHelp &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.2. Property root &gt; softwareHelp &gt; oneOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1221-root-softwarehelp-oneof-item-1-creativework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2.1. root &gt; softwareHelp &gt; oneOf &gt; item 1 &gt; CreativeWork
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-property-root-publisher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Property root &gt; publisher
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Property root &gt; publisher">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-property-root-publisher-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1. Property root &gt; publisher &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-property-root-publisher-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2. Property root &gt; publisher &gt; name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133-property-root-publisher-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3. Property root &gt; publisher &gt; email
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.3. Property root &gt; publisher &gt; email">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1331-property-root-publisher-email-oneof-item-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3.1. Property root &gt; publisher &gt; email &gt; oneOf &gt; item 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1332-property-root-publisher-email-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3.2. Property root &gt; publisher &gt; email &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.3.2. Property root &gt; publisher &gt; email &gt; oneOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13321-root-publisher-email-oneof-item-1-item-1-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3.2.1. root &gt; publisher &gt; email &gt; oneOf &gt; item 1 &gt; item 1 items
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#134-property-root-publisher-identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.4. Property root &gt; publisher &gt; identifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-property-root-author" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Property root &gt; author
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Property root &gt; author">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-property-root-author-oneof-authorrole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1. Property root &gt; author &gt; oneOf &gt; AuthorRole
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.1. Property root &gt; author &gt; oneOf &gt; AuthorRole">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1411-property-root-author-oneof-item-0-allof-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; Role
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.1.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; Role">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14111-property-root-author-oneof-item-0-allof-item-0-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14112-property-root-author-oneof-item-0-allof-item-0-rolename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1.2. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; roleName
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14113-property-root-author-oneof-item-0-allof-item-0-startdate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1.3. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; startDate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14114-property-root-author-oneof-item-0-allof-item-0-enddate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1.4. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; endDate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14115-property-root-author-oneof-item-0-allof-item-0-additionaltype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.1.5. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; additionalType
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1412-property-root-author-oneof-item-0-allof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.1.2. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14121-property-root-author-oneof-item-0-allof-item-1-author" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.1.2.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141211-property-root-author-oneof-item-0-allof-item-1-author-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; @type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#141212-property-root-author-oneof-item-0-allof-item-1-author-givenname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.2. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; givenName
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#141213-property-root-author-oneof-item-0-allof-item-1-author-familyname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.3. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; familyName
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#141214-property-root-author-oneof-item-0-allof-item-1-author-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.4. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; email
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#141215-property-root-author-oneof-item-0-allof-item-1-author-identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.5. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; identifier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#141216-property-root-author-oneof-item-0-allof-item-1-author-affiliation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.6. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1412161-property-root-author-oneof-item-0-allof-item-1-author-affiliation-oneof-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.6.1. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; Organization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1412162-property-root-author-oneof-item-0-allof-item-1-author-affiliation-oneof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.6.2. Property root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; item 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14121621-root-author-oneof-item-0-allof-item-1-author-affiliation-oneof-item-1-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1.2.1.6.2.1. root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; item 1 &gt; Organization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-property-root-author-oneof-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2. Property root &gt; author &gt; oneOf &gt; Person
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143-property-root-author-oneof-item-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3. Property root &gt; author &gt; oneOf &gt; item 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.3. Property root &gt; author &gt; oneOf &gt; item 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1431-root-author-oneof-item-2-item-2-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.1. root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14.3.1. root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14311-property-root-author-oneof-item-2-item-2-items-oneof-authorrole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.1.1. Property root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; AuthorRole
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14312-property-root-author-oneof-item-2-item-2-items-oneof-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3.1.2. Property root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; Person
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-property-root-contributor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Property root &gt; contributor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Property root &gt; contributor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#151-property-root-contributor-oneof-contributorrole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1. Property root &gt; contributor &gt; oneOf &gt; ContributorRole
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.1. Property root &gt; contributor &gt; oneOf &gt; ContributorRole">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1511-property-root-contributor-oneof-item-0-allof-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1.1. Property root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; Role
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1512-property-root-contributor-oneof-item-0-allof-item-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1.2. Property root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.1.2. Property root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#15121-property-root-contributor-oneof-item-0-allof-item-1-contributor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1.2.1. Property root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; contributor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#152-property-root-contributor-oneof-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.2. Property root &gt; contributor &gt; oneOf &gt; Person
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#153-property-root-contributor-oneof-item-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.3. Property root &gt; contributor &gt; oneOf &gt; item 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.3. Property root &gt; contributor &gt; oneOf &gt; item 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1531-root-contributor-oneof-item-2-item-2-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.3.1. root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15.3.1. root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#15311-property-root-contributor-oneof-item-2-item-2-items-oneof-contributorrole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.3.1.1. Property root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; ContributorRole
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15312-property-root-contributor-oneof-item-2-item-2-items-oneof-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.3.1.2. Property root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; Person
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="schema-docs">Schema Docs</h1>
+<ul>
+<li><a href="#@type">1. Property <code>root &gt; @type</code></a></li>
+<li><a href="#name">2. Property <code>root &gt; name</code></a></li>
+<li><a href="#description">3. Property <code>root &gt; description</code></a></li>
+<li><a href="#dateCreated">4. Property <code>root &gt; dateCreated</code></a></li>
+<li><a href="#dateCreated_oneOf_i0">4.1. Property <code>root &gt; dateCreated &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#dateCreated_oneOf_i1">4.2. Property <code>root &gt; dateCreated &gt; oneOf &gt; item 1</code></a></li>
+<li><a href="#license">5. Property <code>root &gt; license</code></a></li>
+<li><a href="#license_oneOf_i0">5.1. Property <code>root &gt; license &gt; oneOf &gt; CreativeWork</code></a><ul>
+<li><a href="#license_oneOf_i0_@type">5.1.1. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; @type</code></a></li>
+<li><a href="#license_oneOf_i0_name">5.1.2. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; name</code></a></li>
+<li><a href="#license_oneOf_i0_url">5.1.3. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; url</code></a></li>
+<li><a href="#license_oneOf_i0_identifier">5.1.4. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; identifier</code></a></li>
+<li><a href="#license_oneOf_i0_identifier_oneOf_i0">5.1.4.1. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; identifier &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#license_oneOf_i0_identifier_oneOf_i1">5.1.4.2. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; identifier &gt; oneOf &gt; item 1</code></a></li>
+</ul>
+</li>
+<li><a href="#license_oneOf_i1">5.2. Property <code>root &gt; license &gt; oneOf &gt; item 1</code></a></li>
+<li><a href="#license_oneOf_i2">5.3. Property <code>root &gt; license &gt; oneOf &gt; item 2</code></a><ul>
+<li><a href="#license_oneOf_i2_items">5.3.1. root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items</a></li>
+<li><a href="#license_oneOf_i2_items_oneOf_i0">5.3.1.1. Property <code>root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; CreativeWork</code></a></li>
+<li><a href="#license_oneOf_i2_items_oneOf_i1">5.3.1.2. Property <code>root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 1</code></a></li>
+</ul>
+</li>
+<li><a href="#identifier">6. Property <code>root &gt; identifier</code></a></li>
+<li><a href="#sameAs">7. Property <code>root &gt; sameAs</code></a></li>
+<li><a href="#sameAs_oneOf_i0">7.1. Property <code>root &gt; sameAs &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#sameAs_oneOf_i1">7.2. Property <code>root &gt; sameAs &gt; oneOf &gt; item 1</code></a><ul>
+<li><a href="#sameAs_oneOf_i1_items">7.2.1. root &gt; sameAs &gt; oneOf &gt; item 1 &gt; item 1 items</a></li>
+</ul>
+</li>
+<li><a href="#keywords">8. Property <code>root &gt; keywords</code></a></li>
+<li><a href="#keywords_oneOf_i0">8.1. Property <code>root &gt; keywords &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#keywords_oneOf_i1">8.2. Property <code>root &gt; keywords &gt; oneOf &gt; item 1</code></a></li>
+<li><a href="#keywords_oneOf_i2">8.3. Property <code>root &gt; keywords &gt; oneOf &gt; DefinedTerm</code></a><ul>
+<li><a href="#keywords_oneOf_i2_@type">8.3.1. Property <code>root &gt; keywords &gt; oneOf &gt; item 2 &gt; @type</code></a></li>
+<li><a href="#keywords_oneOf_i2_name">8.3.2. Property <code>root &gt; keywords &gt; oneOf &gt; item 2 &gt; name</code></a></li>
+<li><a href="#keywords_oneOf_i2_description">8.3.3. Property <code>root &gt; keywords &gt; oneOf &gt; item 2 &gt; description</code></a></li>
+<li><a href="#keywords_oneOf_i2_termCode">8.3.4. Property <code>root &gt; keywords &gt; oneOf &gt; item 2 &gt; termCode</code></a></li>
+<li><a href="#keywords_oneOf_i2_inDefinedTermSet">8.3.5. Property <code>root &gt; keywords &gt; oneOf &gt; item 2 &gt; inDefinedTermSet</code></a></li>
+</ul>
+</li>
+<li><a href="#keywords_oneOf_i3">8.4. Property <code>root &gt; keywords &gt; oneOf &gt; item 3</code></a><ul>
+<li><a href="#keywords_oneOf_i3_items">8.4.1. root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items</a></li>
+<li><a href="#keywords_oneOf_i3_items_oneOf_i0">8.4.1.1. Property <code>root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#keywords_oneOf_i3_items_oneOf_i1">8.4.1.2. Property <code>root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; item 1</code></a></li>
+<li><a href="#keywords_oneOf_i3_items_oneOf_i2">8.4.1.3. Property <code>root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; DefinedTerm</code></a></li>
+</ul>
+</li>
+<li><a href="#operatingSystem">9. Property <code>root &gt; operatingSystem</code></a></li>
+<li><a href="#operatingSystem_oneOf_i0">9.1. Property <code>root &gt; operatingSystem &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#operatingSystem_oneOf_i1">9.2. Property <code>root &gt; operatingSystem &gt; oneOf &gt; item 1</code></a><ul>
+<li><a href="#operatingSystem_oneOf_i1_items">9.2.1. root &gt; operatingSystem &gt; oneOf &gt; item 1 &gt; item 1 items</a></li>
+</ul>
+</li>
+<li><a href="#softwareRequirements">10. Property <code>root &gt; softwareRequirements</code></a></li>
+<li><a href="#softwareRequirements_oneOf_i0">10.1. Property <code>root &gt; softwareRequirements &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#softwareRequirements_oneOf_i1">10.2. Property <code>root &gt; softwareRequirements &gt; oneOf &gt; item 1</code></a></li>
+<li><a href="#softwareRequirements_oneOf_i2">10.3. Property <code>root &gt; softwareRequirements &gt; oneOf &gt; item 2</code></a><ul>
+<li><a href="#softwareRequirements_oneOf_i2_items">10.3.1. root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items</a></li>
+<li><a href="#softwareRequirements_oneOf_i2_items_oneOf_i0">10.3.1.1. Property <code>root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#softwareRequirements_oneOf_i2_items_oneOf_i1">10.3.1.2. Property <code>root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 1</code></a></li>
+</ul>
+</li>
+<li><a href="#softwareVersion">11. Property <code>root &gt; softwareVersion</code></a></li>
+<li><a href="#softwareHelp">12. Property <code>root &gt; softwareHelp</code></a></li>
+<li><a href="#softwareHelp_oneOf_i0">12.1. Property <code>root &gt; softwareHelp &gt; oneOf &gt; CreativeWork</code></a></li>
+<li><a href="#softwareHelp_oneOf_i1">12.2. Property <code>root &gt; softwareHelp &gt; oneOf &gt; item 1</code></a><ul>
+<li><a href="#softwareHelp_oneOf_i1_items">12.2.1. root &gt; softwareHelp &gt; oneOf &gt; item 1 &gt; CreativeWork</a></li>
+</ul>
+</li>
+<li><a href="#publisher">13. Property <code>root &gt; publisher</code></a></li>
+<li><a href="#publisher_@type">13.1. Property <code>root &gt; publisher &gt; @type</code></a></li>
+<li><a href="#publisher_name">13.2. Property <code>root &gt; publisher &gt; name</code></a></li>
+<li><a href="#publisher_email">13.3. Property <code>root &gt; publisher &gt; email</code></a><ul>
+<li><a href="#publisher_email_oneOf_i0">13.3.1. Property <code>root &gt; publisher &gt; email &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#publisher_email_oneOf_i1">13.3.2. Property <code>root &gt; publisher &gt; email &gt; oneOf &gt; item 1</code></a></li>
+<li><a href="#publisher_email_oneOf_i1_items">13.3.2.1. root &gt; publisher &gt; email &gt; oneOf &gt; item 1 &gt; item 1 items</a></li>
+</ul>
+</li>
+<li><a href="#publisher_identifier">13.4. Property <code>root &gt; publisher &gt; identifier</code></a></li>
+<li><a href="#author">14. Property <code>root &gt; author</code></a></li>
+<li><a href="#author_oneOf_i0">14.1. Property <code>root &gt; author &gt; oneOf &gt; AuthorRole</code></a><ul>
+<li><a href="#author_oneOf_i0_allOf_i0">14.1.1. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; Role</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i0_@type">14.1.1.1. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; @type</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i0_roleName">14.1.1.2. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; roleName</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i0_startDate">14.1.1.3. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; startDate</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i0_endDate">14.1.1.4. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; endDate</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i0_additionalType">14.1.1.5. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; additionalType</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i1">14.1.2. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i1_author">14.1.2.1. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author</code></a><ul>
+<li><a href="#author_oneOf_i0_allOf_i1_author_@type">14.1.2.1.1. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; @type</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i1_author_givenName">14.1.2.1.2. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; givenName</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i1_author_familyName">14.1.2.1.3. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; familyName</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i1_author_email">14.1.2.1.4. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; email</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i1_author_identifier">14.1.2.1.5. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; identifier</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i1_author_affiliation">14.1.2.1.6. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i1_author_affiliation_oneOf_i0">14.1.2.1.6.1. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; Organization</code></a></li>
+<li><a href="#author_oneOf_i0_allOf_i1_author_affiliation_oneOf_i1">14.1.2.1.6.2. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; item 1</code></a><ul>
+<li><a href="#author_oneOf_i0_allOf_i1_author_affiliation_oneOf_i1_items">14.1.2.1.6.2.1. root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; item 1 &gt; Organization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#author_oneOf_i1">14.2. Property <code>root &gt; author &gt; oneOf &gt; Person</code></a></li>
+<li><a href="#author_oneOf_i2">14.3. Property <code>root &gt; author &gt; oneOf &gt; item 2</code></a><ul>
+<li><a href="#author_oneOf_i2_items">14.3.1. root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items</a></li>
+<li><a href="#author_oneOf_i2_items_oneOf_i0">14.3.1.1. Property <code>root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; AuthorRole</code></a></li>
+<li><a href="#author_oneOf_i2_items_oneOf_i1">14.3.1.2. Property <code>root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; Person</code></a></li>
+</ul>
+</li>
+<li><a href="#contributor">15. Property <code>root &gt; contributor</code></a></li>
+<li><a href="#contributor_oneOf_i0">15.1. Property <code>root &gt; contributor &gt; oneOf &gt; ContributorRole</code></a><ul>
+<li><a href="#contributor_oneOf_i0_allOf_i0">15.1.1. Property <code>root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; Role</code></a></li>
+<li><a href="#contributor_oneOf_i0_allOf_i1">15.1.2. Property <code>root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1</code></a></li>
+<li><a href="#contributor_oneOf_i0_allOf_i1_contributor">15.1.2.1. Property <code>root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; contributor</code></a></li>
+</ul>
+</li>
+<li><a href="#contributor_oneOf_i1">15.2. Property <code>root &gt; contributor &gt; oneOf &gt; Person</code></a></li>
+<li><a href="#contributor_oneOf_i2">15.3. Property <code>root &gt; contributor &gt; oneOf &gt; item 2</code></a><ul>
+<li><a href="#contributor_oneOf_i2_items">15.3.1. root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items</a></li>
+<li><a href="#contributor_oneOf_i2_items_oneOf_i0">15.3.1.1. Property <code>root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; ContributorRole</code></a></li>
+<li><a href="#contributor_oneOf_i2_items_oneOf_i1">15.3.1.2. Property <code>root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; Person</code></a></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/SoftwareApplication</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A software application.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#@type">@type</a></td>
+<td>No</td>
+<td>const</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#name">name</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The name of the item.</td>
+</tr>
+<tr>
+<td>+ <a href="#description">description</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A description of the item.</td>
+</tr>
+<tr>
+<td>+ <a href="#dateCreated">dateCreated</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>The date on which the CreativeWork was created or the item was added to a DataFeed.</td>
+</tr>
+<tr>
+<td>+ <a href="#license">license</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>A license document that applies to this content, typically indicated by URL.</td>
+</tr>
+<tr>
+<td>- <a href="#identifier">identifier</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>Same as <a href="#license_oneOf_i0_identifier">identifier</a></td>
+<td>The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.<br /></td>
+</tr>
+<tr>
+<td>- <a href="#sameAs">sameAs</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>In #/$defs/URI</td>
+<td>URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.</td>
+</tr>
+<tr>
+<td>- <a href="#keywords">keywords</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property.</td>
+</tr>
+<tr>
+<td>- <a href="#operatingSystem">operatingSystem</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>Operating systems supported (Windows 7, OS X 10.6, Android 1.6).</td>
+</tr>
+<tr>
+<td>- <a href="#softwareRequirements">softwareRequirements</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (examples: DirectX, Java or .NET runtime).</td>
+</tr>
+<tr>
+<td>+ <a href="#softwareVersion">softwareVersion</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Version of the software instance.</td>
+</tr>
+<tr>
+<td>+ <a href="#softwareHelp">softwareHelp</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>Software application help.</td>
+</tr>
+<tr>
+<td>+ <a href="#publisher">publisher</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>In #/$defs/Organization</td>
+<td>The publisher of the article in question.</td>
+</tr>
+<tr>
+<td>+ <a href="#author">author</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.</td>
+</tr>
+<tr>
+<td>- <a href="#contributor">contributor</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>A secondary contributor to the CreativeWork or Event.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-property-root-type"><a name="@type"></a>1. Property <code>root &gt; @type</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>const</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Specific value: <code>"https://schema.org/SoftwareApplication"</code></p>
+<h2 id="2-property-root-name"><a name="name"></a>2. Property <code>root &gt; name</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The name of the item.</p>
+<h2 id="3-property-root-description"><a name="description"></a>3. Property <code>root &gt; description</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A description of the item.</p>
+<h2 id="4-property-root-datecreated"><a name="dateCreated"></a>4. Property <code>root &gt; dateCreated</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The date on which the CreativeWork was created or the item was added to a DataFeed.</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#dateCreated_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#dateCreated_oneOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="41-property-root-datecreated-oneof-item-0"><a name="dateCreated_oneOf_i0"></a>4.1. Property <code>root &gt; dateCreated &gt; oneOf &gt; item 0</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>date</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-property-root-datecreated-oneof-item-1"><a name="dateCreated_oneOf_i1"></a>4.2. Property <code>root &gt; dateCreated &gt; oneOf &gt; item 1</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>date-time</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-property-root-license"><a name="license"></a>5. Property <code>root &gt; license</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A license document that applies to this content, typically indicated by URL.</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#license_oneOf_i0">CreativeWork</a></td>
+</tr>
+<tr>
+<td><a href="#license_oneOf_i1">item 1</a></td>
+</tr>
+<tr>
+<td><a href="#license_oneOf_i2">item 2</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="51-property-root-license-oneof-creativework"><a name="license_oneOf_i0"></a>5.1. Property <code>root &gt; license &gt; oneOf &gt; CreativeWork</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/CreativeWork</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The most generic kind of creative work, including books, movies, photographs, software programs, etc.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#license_oneOf_i0_@type">@type</a></td>
+<td>No</td>
+<td>const</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#license_oneOf_i0_name">name</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The name of the item.</td>
+</tr>
+<tr>
+<td>- <a href="#license_oneOf_i0_url">url</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>URL of the item.</td>
+</tr>
+<tr>
+<td>- <a href="#license_oneOf_i0_identifier">identifier</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>In #/$defs/Identifier</td>
+<td>The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.<br /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="511-property-root-license-oneof-item-0-type"><a name="license_oneOf_i0_@type"></a>5.1.1. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; @type</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>const</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Specific value: <code>"https://schema.org/CreativeWork"</code></p>
+<h4 id="512-property-root-license-oneof-item-0-name"><a name="license_oneOf_i0_name"></a>5.1.2. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; name</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The name of the item.</p>
+<h4 id="513-property-root-license-oneof-item-0-url"><a name="license_oneOf_i0_url"></a>5.1.3. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; url</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> URL of the item.</p>
+<h4 id="514-property-root-license-oneof-item-0-identifier"><a name="license_oneOf_i0_identifier"></a>5.1.4. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; identifier</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/Identifier</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#license_oneOf_i0_identifier_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#license_oneOf_i0_identifier_oneOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="5141-property-root-license-oneof-item-0-identifier-oneof-item-0"><a name="license_oneOf_i0_identifier_oneOf_i0"></a>5.1.4.1. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; identifier &gt; oneOf &gt; item 0</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="5142-property-root-license-oneof-item-0-identifier-oneof-item-1"><a name="license_oneOf_i0_identifier_oneOf_i1"></a>5.1.4.2. Property <code>root &gt; license &gt; oneOf &gt; item 0 &gt; identifier &gt; oneOf &gt; item 1</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-property-root-license-oneof-item-1"><a name="license_oneOf_i1"></a>5.2. Property <code>root &gt; license &gt; oneOf &gt; item 1</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-property-root-license-oneof-item-2"><a name="license_oneOf_i2"></a>5.3. Property <code>root &gt; license &gt; oneOf &gt; item 2</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#license_oneOf_i2_items">item 2 items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="531-root-license-oneof-item-2-item-2-items"><a name="license_oneOf_i2_items"></a>5.3.1. root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#license_oneOf_i2_items_oneOf_i0">CreativeWork</a></td>
+</tr>
+<tr>
+<td><a href="#license_oneOf_i2_items_oneOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="5311-property-root-license-oneof-item-2-item-2-items-oneof-creativework"><a name="license_oneOf_i2_items_oneOf_i0"></a>5.3.1.1. Property <code>root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; CreativeWork</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#license_oneOf_i0">license_oneOf_i0</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The most generic kind of creative work, including books, movies, photographs, software programs, etc.</p>
+<h5 id="5312-property-root-license-oneof-item-2-item-2-items-oneof-item-1"><a name="license_oneOf_i2_items_oneOf_i1"></a>5.3.1.2. Property <code>root &gt; license &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 1</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-property-root-identifier"><a name="identifier"></a>6. Property <code>root &gt; identifier</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#license_oneOf_i0_identifier">identifier</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.</p>
+<h2 id="7-property-root-sameas"><a name="sameAs"></a>7. Property <code>root &gt; sameAs</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/URI</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#sameAs_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#sameAs_oneOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="71-property-root-sameas-oneof-item-0"><a name="sameAs_oneOf_i0"></a>7.1. Property <code>root &gt; sameAs &gt; oneOf &gt; item 0</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-property-root-sameas-oneof-item-1"><a name="sameAs_oneOf_i1"></a>7.2. Property <code>root &gt; sameAs &gt; oneOf &gt; item 1</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#sameAs_oneOf_i1_items">item 1 items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="721-root-sameas-oneof-item-1-item-1-items"><a name="sameAs_oneOf_i1_items"></a>7.2.1. root &gt; sameAs &gt; oneOf &gt; item 1 &gt; item 1 items</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-property-root-keywords"><a name="keywords"></a>8. Property <code>root &gt; keywords</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Keywords or tags used to describe some item. Multiple textual entries in a keywords list are typically delimited by commas, or by repeating the property.</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#keywords_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#keywords_oneOf_i1">item 1</a></td>
+</tr>
+<tr>
+<td><a href="#keywords_oneOf_i2">DefinedTerm</a></td>
+</tr>
+<tr>
+<td><a href="#keywords_oneOf_i3">item 3</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="81-property-root-keywords-oneof-item-0"><a name="keywords_oneOf_i0"></a>8.1. Property <code>root &gt; keywords &gt; oneOf &gt; item 0</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-property-root-keywords-oneof-item-1"><a name="keywords_oneOf_i1"></a>8.2. Property <code>root &gt; keywords &gt; oneOf &gt; item 1</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="83-property-root-keywords-oneof-definedterm"><a name="keywords_oneOf_i2"></a>8.3. Property <code>root &gt; keywords &gt; oneOf &gt; DefinedTerm</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/DefinedTerm</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A word, name, acronym, phrase, etc. with a formal definition. Often used in the context of category or subject classification, glossaries or dictionaries, product or creative work types, etc. Use the name property for the term being defined, use termCode if the term has an alpha-numeric code allocated, use description to provide the definition of the term.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#keywords_oneOf_i2_@type">@type</a></td>
+<td>No</td>
+<td>const</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#keywords_oneOf_i2_name">name</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The name of the item.</td>
+</tr>
+<tr>
+<td>- <a href="#keywords_oneOf_i2_description">description</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A description of the item.</td>
+</tr>
+<tr>
+<td>- <a href="#keywords_oneOf_i2_termCode">termCode</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]].</td>
+</tr>
+<tr>
+<td>- <a href="#keywords_oneOf_i2_inDefinedTermSet">inDefinedTermSet</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A [[DefinedTermSet]] that contains this term.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="831-property-root-keywords-oneof-item-2-type"><a name="keywords_oneOf_i2_@type"></a>8.3.1. Property <code>root &gt; keywords &gt; oneOf &gt; item 2 &gt; @type</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>const</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Specific value: <code>"https://schema.org/DefinedTerm"</code></p>
+<h4 id="832-property-root-keywords-oneof-item-2-name"><a name="keywords_oneOf_i2_name"></a>8.3.2. Property <code>root &gt; keywords &gt; oneOf &gt; item 2 &gt; name</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The name of the item.</p>
+<h4 id="833-property-root-keywords-oneof-item-2-description"><a name="keywords_oneOf_i2_description"></a>8.3.3. Property <code>root &gt; keywords &gt; oneOf &gt; item 2 &gt; description</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A description of the item.</p>
+<h4 id="834-property-root-keywords-oneof-item-2-termcode"><a name="keywords_oneOf_i2_termCode"></a>8.3.4. Property <code>root &gt; keywords &gt; oneOf &gt; item 2 &gt; termCode</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]].</p>
+<h4 id="835-property-root-keywords-oneof-item-2-indefinedtermset"><a name="keywords_oneOf_i2_inDefinedTermSet"></a>8.3.5. Property <code>root &gt; keywords &gt; oneOf &gt; item 2 &gt; inDefinedTermSet</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A [[DefinedTermSet]] that contains this term.</p>
+<h3 id="84-property-root-keywords-oneof-item-3"><a name="keywords_oneOf_i3"></a>8.4. Property <code>root &gt; keywords &gt; oneOf &gt; item 3</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#keywords_oneOf_i3_items">item 3 items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="841-root-keywords-oneof-item-3-item-3-items"><a name="keywords_oneOf_i3_items"></a>8.4.1. root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#keywords_oneOf_i3_items_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#keywords_oneOf_i3_items_oneOf_i1">item 1</a></td>
+</tr>
+<tr>
+<td><a href="#keywords_oneOf_i3_items_oneOf_i2">DefinedTerm</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="8411-property-root-keywords-oneof-item-3-item-3-items-oneof-item-0"><a name="keywords_oneOf_i3_items_oneOf_i0"></a>8.4.1.1. Property <code>root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; item 0</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h5 id="8412-property-root-keywords-oneof-item-3-item-3-items-oneof-item-1"><a name="keywords_oneOf_i3_items_oneOf_i1"></a>8.4.1.2. Property <code>root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; item 1</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="8413-property-root-keywords-oneof-item-3-item-3-items-oneof-definedterm"><a name="keywords_oneOf_i3_items_oneOf_i2"></a>8.4.1.3. Property <code>root &gt; keywords &gt; oneOf &gt; item 3 &gt; item 3 items &gt; oneOf &gt; DefinedTerm</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#keywords_oneOf_i2">keywords_oneOf_i2</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A word, name, acronym, phrase, etc. with a formal definition. Often used in the context of category or subject classification, glossaries or dictionaries, product or creative work types, etc. Use the name property for the term being defined, use termCode if the term has an alpha-numeric code allocated, use description to provide the definition of the term.</p>
+<h2 id="9-property-root-operatingsystem"><a name="operatingSystem"></a>9. Property <code>root &gt; operatingSystem</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Operating systems supported (Windows 7, OS X 10.6, Android 1.6).</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#operatingSystem_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#operatingSystem_oneOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="91-property-root-operatingsystem-oneof-item-0"><a name="operatingSystem_oneOf_i0"></a>9.1. Property <code>root &gt; operatingSystem &gt; oneOf &gt; item 0</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="92-property-root-operatingsystem-oneof-item-1"><a name="operatingSystem_oneOf_i1"></a>9.2. Property <code>root &gt; operatingSystem &gt; oneOf &gt; item 1</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#operatingSystem_oneOf_i1_items">item 1 items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="921-root-operatingsystem-oneof-item-1-item-1-items"><a name="operatingSystem_oneOf_i1_items"></a>9.2.1. root &gt; operatingSystem &gt; oneOf &gt; item 1 &gt; item 1 items</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-property-root-softwarerequirements"><a name="softwareRequirements"></a>10. Property <code>root &gt; softwareRequirements</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Component dependency requirements for application. This includes runtime environments and shared libraries that are not included in the application distribution package, but required to run the application (examples: DirectX, Java or .NET runtime).</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#softwareRequirements_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#softwareRequirements_oneOf_i1">item 1</a></td>
+</tr>
+<tr>
+<td><a href="#softwareRequirements_oneOf_i2">item 2</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="101-property-root-softwarerequirements-oneof-item-0"><a name="softwareRequirements_oneOf_i0"></a>10.1. Property <code>root &gt; softwareRequirements &gt; oneOf &gt; item 0</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-property-root-softwarerequirements-oneof-item-1"><a name="softwareRequirements_oneOf_i1"></a>10.2. Property <code>root &gt; softwareRequirements &gt; oneOf &gt; item 1</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="103-property-root-softwarerequirements-oneof-item-2"><a name="softwareRequirements_oneOf_i2"></a>10.3. Property <code>root &gt; softwareRequirements &gt; oneOf &gt; item 2</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#softwareRequirements_oneOf_i2_items">item 2 items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1031-root-softwarerequirements-oneof-item-2-item-2-items"><a name="softwareRequirements_oneOf_i2_items"></a>10.3.1. root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#softwareRequirements_oneOf_i2_items_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#softwareRequirements_oneOf_i2_items_oneOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="10311-property-root-softwarerequirements-oneof-item-2-item-2-items-oneof-item-0"><a name="softwareRequirements_oneOf_i2_items_oneOf_i0"></a>10.3.1.1. Property <code>root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 0</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h5 id="10312-property-root-softwarerequirements-oneof-item-2-item-2-items-oneof-item-1"><a name="softwareRequirements_oneOf_i2_items_oneOf_i1"></a>10.3.1.2. Property <code>root &gt; softwareRequirements &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; item 1</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-property-root-softwareversion"><a name="softwareVersion"></a>11. Property <code>root &gt; softwareVersion</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Version of the software instance.</p>
+<h2 id="12-property-root-softwarehelp"><a name="softwareHelp"></a>12. Property <code>root &gt; softwareHelp</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Software application help.</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#softwareHelp_oneOf_i0">CreativeWork</a></td>
+</tr>
+<tr>
+<td><a href="#softwareHelp_oneOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="121-property-root-softwarehelp-oneof-creativework"><a name="softwareHelp_oneOf_i0"></a>12.1. Property <code>root &gt; softwareHelp &gt; oneOf &gt; CreativeWork</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#license_oneOf_i0">license_oneOf_i0</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The most generic kind of creative work, including books, movies, photographs, software programs, etc.</p>
+<h3 id="122-property-root-softwarehelp-oneof-item-1"><a name="softwareHelp_oneOf_i1"></a>12.2. Property <code>root &gt; softwareHelp &gt; oneOf &gt; item 1</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#softwareHelp_oneOf_i1_items">CreativeWork</a></td>
+<td>The most generic kind of creative work, including books, movies, photographs, software programs, etc.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1221-root-softwarehelp-oneof-item-1-creativework"><a name="softwareHelp_oneOf_i1_items"></a>12.2.1. root &gt; softwareHelp &gt; oneOf &gt; item 1 &gt; CreativeWork</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#license_oneOf_i0">license_oneOf_i0</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The most generic kind of creative work, including books, movies, photographs, software programs, etc.</p>
+<h2 id="13-property-root-publisher"><a name="publisher"></a>13. Property <code>root &gt; publisher</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/Organization</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The publisher of the article in question.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#publisher_@type">@type</a></td>
+<td>No</td>
+<td>const</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#publisher_name">name</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The name of the item.</td>
+</tr>
+<tr>
+<td>- <a href="#publisher_email">email</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>In #/$defs/Email</td>
+<td>Email address.</td>
+</tr>
+<tr>
+<td>- <a href="#publisher_identifier">identifier</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>Same as <a href="#license_oneOf_i0_identifier">identifier</a></td>
+<td>The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.<br /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="131-property-root-publisher-type"><a name="publisher_@type"></a>13.1. Property <code>root &gt; publisher &gt; @type</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>const</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Specific value: <code>"https://schema.org/Organization"</code></p>
+<h3 id="132-property-root-publisher-name"><a name="publisher_name"></a>13.2. Property <code>root &gt; publisher &gt; name</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The name of the item.</p>
+<h3 id="133-property-root-publisher-email"><a name="publisher_email"></a>13.3. Property <code>root &gt; publisher &gt; email</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/Email</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Email address.</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#publisher_email_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#publisher_email_oneOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1331-property-root-publisher-email-oneof-item-0"><a name="publisher_email_oneOf_i0"></a>13.3.1. Property <code>root &gt; publisher &gt; email &gt; oneOf &gt; item 0</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>email</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1332-property-root-publisher-email-oneof-item-1"><a name="publisher_email_oneOf_i1"></a>13.3.2. Property <code>root &gt; publisher &gt; email &gt; oneOf &gt; item 1</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#publisher_email_oneOf_i1_items">item 1 items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="13321-root-publisher-email-oneof-item-1-item-1-items"><a name="publisher_email_oneOf_i1_items"></a>13.3.2.1. root &gt; publisher &gt; email &gt; oneOf &gt; item 1 &gt; item 1 items</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>email</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="134-property-root-publisher-identifier"><a name="publisher_identifier"></a>13.4. Property <code>root &gt; publisher &gt; identifier</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#license_oneOf_i0_identifier">identifier</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.</p>
+<h2 id="14-property-root-author"><a name="author"></a>14. Property <code>root &gt; author</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#author_oneOf_i0">AuthorRole</a></td>
+</tr>
+<tr>
+<td><a href="#author_oneOf_i1">Person</a></td>
+</tr>
+<tr>
+<td><a href="#author_oneOf_i2">item 2</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="141-property-root-author-oneof-authorrole"><a name="author_oneOf_i0"></a>14.1. Property <code>root &gt; author &gt; oneOf &gt; AuthorRole</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/AuthorRole</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>All of(Requirement)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#author_oneOf_i0_allOf_i0">Role</a></td>
+</tr>
+<tr>
+<td><a href="#author_oneOf_i0_allOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1411-property-root-author-oneof-item-0-allof-role"><a name="author_oneOf_i0_allOf_i0"></a>14.1.1. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; Role</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/Role</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Represents additional information about a relationship or property.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#author_oneOf_i0_allOf_i0_@type">@type</a></td>
+<td>No</td>
+<td>const</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#author_oneOf_i0_allOf_i0_roleName">roleName</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A role played, performed or filled by a person or organization.</td>
+</tr>
+<tr>
+<td>- <a href="#author_oneOf_i0_allOf_i0_startDate">startDate</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The start date and time of the item</td>
+</tr>
+<tr>
+<td>- <a href="#author_oneOf_i0_allOf_i0_endDate">endDate</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The end date and time of the item</td>
+</tr>
+<tr>
+<td>- <a href="#author_oneOf_i0_allOf_i0_additionalType">additionalType</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="14111-property-root-author-oneof-item-0-allof-item-0-type"><a name="author_oneOf_i0_allOf_i0_@type"></a>14.1.1.1. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; @type</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>const</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Specific value: <code>"https://schema.org/Role"</code></p>
+<h5 id="14112-property-root-author-oneof-item-0-allof-item-0-rolename"><a name="author_oneOf_i0_allOf_i0_roleName"></a>14.1.1.2. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; roleName</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A role played, performed or filled by a person or organization.</p>
+<h5 id="14113-property-root-author-oneof-item-0-allof-item-0-startdate"><a name="author_oneOf_i0_allOf_i0_startDate"></a>14.1.1.3. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; startDate</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>date</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The start date and time of the item</p>
+<h5 id="14114-property-root-author-oneof-item-0-allof-item-0-enddate"><a name="author_oneOf_i0_allOf_i0_endDate"></a>14.1.1.4. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; endDate</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>date</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The end date and time of the item</p>
+<h5 id="14115-property-root-author-oneof-item-0-allof-item-0-additionaltype"><a name="author_oneOf_i0_allOf_i0_additionalType"></a>14.1.1.5. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 0 &gt; additionalType</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax.</p>
+<h4 id="1412-property-root-author-oneof-item-0-allof-item-1"><a name="author_oneOf_i0_allOf_i1"></a>14.1.2. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#author_oneOf_i0_allOf_i1_author">author</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>In #/$defs/Person</td>
+<td>A person (alive, dead, undead, or fictional).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="14121-property-root-author-oneof-item-0-allof-item-1-author"><a name="author_oneOf_i0_allOf_i1_author"></a>14.1.2.1. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/Person</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A person (alive, dead, undead, or fictional).</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#author_oneOf_i0_allOf_i1_author_@type">@type</a></td>
+<td>No</td>
+<td>const</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#author_oneOf_i0_allOf_i1_author_givenName">givenName</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Given name. In the U.S., the first name of a Person.</td>
+</tr>
+<tr>
+<td>+ <a href="#author_oneOf_i0_allOf_i1_author_familyName">familyName</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Family name. In the U.S., the last name of a Person.</td>
+</tr>
+<tr>
+<td>+ <a href="#author_oneOf_i0_allOf_i1_author_email">email</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>Same as <a href="#publisher_email">email</a></td>
+<td>Email address.</td>
+</tr>
+<tr>
+<td>- <a href="#author_oneOf_i0_allOf_i1_author_identifier">identifier</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>Same as <a href="#license_oneOf_i0_identifier">identifier</a></td>
+<td>The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.<br /></td>
+</tr>
+<tr>
+<td>+ <a href="#author_oneOf_i0_allOf_i1_author_affiliation">affiliation</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>An organization that this person is affiliated with. For example, a school/university, a club, or a team.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="141211-property-root-author-oneof-item-0-allof-item-1-author-type"><a name="author_oneOf_i0_allOf_i1_author_@type"></a>14.1.2.1.1. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; @type</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>const</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Specific value: <code>"https://schema.org/Person"</code></p>
+<h6 id="141212-property-root-author-oneof-item-0-allof-item-1-author-givenname"><a name="author_oneOf_i0_allOf_i1_author_givenName"></a>14.1.2.1.2. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; givenName</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Given name. In the U.S., the first name of a Person.</p>
+<h6 id="141213-property-root-author-oneof-item-0-allof-item-1-author-familyname"><a name="author_oneOf_i0_allOf_i1_author_familyName"></a>14.1.2.1.3. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; familyName</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Family name. In the U.S., the last name of a Person.</p>
+<h6 id="141214-property-root-author-oneof-item-0-allof-item-1-author-email"><a name="author_oneOf_i0_allOf_i1_author_email"></a>14.1.2.1.4. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; email</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#publisher_email">email</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Email address.</p>
+<h6 id="141215-property-root-author-oneof-item-0-allof-item-1-author-identifier"><a name="author_oneOf_i0_allOf_i1_author_identifier"></a>14.1.2.1.5. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; identifier</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#license_oneOf_i0_identifier">identifier</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The identifier property represents any kind of identifier for any kind of [[Thing]], such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href="/docs/datamodel.html#identifierBg">background notes</a> for more details.</p>
+<h6 id="141216-property-root-author-oneof-item-0-allof-item-1-author-affiliation"><a name="author_oneOf_i0_allOf_i1_author_affiliation"></a>14.1.2.1.6. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> An organization that this person is affiliated with. For example, a school/university, a club, or a team.</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#author_oneOf_i0_allOf_i1_author_affiliation_oneOf_i0">Organization</a></td>
+</tr>
+<tr>
+<td><a href="#author_oneOf_i0_allOf_i1_author_affiliation_oneOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="1412161-property-root-author-oneof-item-0-allof-item-1-author-affiliation-oneof-organization"><a name="author_oneOf_i0_allOf_i1_author_affiliation_oneOf_i0"></a>14.1.2.1.6.1. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; Organization</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#publisher">publisher</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> An organization such as a school, NGO, corporation, club, etc.</p>
+<h6 id="1412162-property-root-author-oneof-item-0-allof-item-1-author-affiliation-oneof-item-1"><a name="author_oneOf_i0_allOf_i1_author_affiliation_oneOf_i1"></a>14.1.2.1.6.2. Property <code>root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; item 1</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#author_oneOf_i0_allOf_i1_author_affiliation_oneOf_i1_items">Organization</a></td>
+<td>An organization such as a school, NGO, corporation, club, etc.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="14121621-root-author-oneof-item-0-allof-item-1-author-affiliation-oneof-item-1-organization"><a name="author_oneOf_i0_allOf_i1_author_affiliation_oneOf_i1_items"></a>14.1.2.1.6.2.1. root &gt; author &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; author &gt; affiliation &gt; oneOf &gt; item 1 &gt; Organization</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#publisher">publisher</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> An organization such as a school, NGO, corporation, club, etc.</p>
+<h3 id="142-property-root-author-oneof-person"><a name="author_oneOf_i1"></a>14.2. Property <code>root &gt; author &gt; oneOf &gt; Person</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#author_oneOf_i0_allOf_i1_author">author</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A person (alive, dead, undead, or fictional).</p>
+<h3 id="143-property-root-author-oneof-item-2"><a name="author_oneOf_i2"></a>14.3. Property <code>root &gt; author &gt; oneOf &gt; item 2</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#author_oneOf_i2_items">item 2 items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1431-root-author-oneof-item-2-item-2-items"><a name="author_oneOf_i2_items"></a>14.3.1. root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#author_oneOf_i2_items_oneOf_i0">AuthorRole</a></td>
+</tr>
+<tr>
+<td><a href="#author_oneOf_i2_items_oneOf_i1">Person</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="14311-property-root-author-oneof-item-2-item-2-items-oneof-authorrole"><a name="author_oneOf_i2_items_oneOf_i0"></a>14.3.1.1. Property <code>root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; AuthorRole</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#author_oneOf_i0">author_oneOf_i0</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="14312-property-root-author-oneof-item-2-item-2-items-oneof-person"><a name="author_oneOf_i2_items_oneOf_i1"></a>14.3.1.2. Property <code>root &gt; author &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; Person</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#author_oneOf_i0_allOf_i1_author">author</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A person (alive, dead, undead, or fictional).</p>
+<h2 id="15-property-root-contributor"><a name="contributor"></a>15. Property <code>root &gt; contributor</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A secondary contributor to the CreativeWork or Event.</p>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#contributor_oneOf_i0">ContributorRole</a></td>
+</tr>
+<tr>
+<td><a href="#contributor_oneOf_i1">Person</a></td>
+</tr>
+<tr>
+<td><a href="#contributor_oneOf_i2">item 2</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="151-property-root-contributor-oneof-contributorrole"><a name="contributor_oneOf_i0"></a>15.1. Property <code>root &gt; contributor &gt; oneOf &gt; ContributorRole</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/ContributorRole</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>All of(Requirement)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#contributor_oneOf_i0_allOf_i0">Role</a></td>
+</tr>
+<tr>
+<td><a href="#contributor_oneOf_i0_allOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="1511-property-root-contributor-oneof-item-0-allof-role"><a name="contributor_oneOf_i0_allOf_i0"></a>15.1.1. Property <code>root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; Role</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#author_oneOf_i0_allOf_i0">author_oneOf_i0_allOf_i0</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Represents additional information about a relationship or property.</p>
+<h4 id="1512-property-root-contributor-oneof-item-0-allof-item-1"><a name="contributor_oneOf_i0_allOf_i1"></a>15.1.2. Property <code>root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#contributor_oneOf_i0_allOf_i1_contributor">contributor</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>Same as <a href="#author_oneOf_i0_allOf_i1_author">author</a></td>
+<td>A person (alive, dead, undead, or fictional).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="15121-property-root-contributor-oneof-item-0-allof-item-1-contributor"><a name="contributor_oneOf_i0_allOf_i1_contributor"></a>15.1.2.1. Property <code>root &gt; contributor &gt; oneOf &gt; item 0 &gt; allOf &gt; item 1 &gt; contributor</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#author_oneOf_i0_allOf_i1_author">author</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A person (alive, dead, undead, or fictional).</p>
+<h3 id="152-property-root-contributor-oneof-person"><a name="contributor_oneOf_i1"></a>15.2. Property <code>root &gt; contributor &gt; oneOf &gt; Person</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#author_oneOf_i0_allOf_i1_author">author</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A person (alive, dead, undead, or fictional).</p>
+<h3 id="153-property-root-contributor-oneof-item-2"><a name="contributor_oneOf_i2"></a>15.3. Property <code>root &gt; contributor &gt; oneOf &gt; item 2</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#contributor_oneOf_i2_items">item 2 items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1531-root-contributor-oneof-item-2-item-2-items"><a name="contributor_oneOf_i2_items"></a>15.3.1. root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#contributor_oneOf_i2_items_oneOf_i0">ContributorRole</a></td>
+</tr>
+<tr>
+<td><a href="#contributor_oneOf_i2_items_oneOf_i1">Person</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="15311-property-root-contributor-oneof-item-2-item-2-items-oneof-contributorrole"><a name="contributor_oneOf_i2_items_oneOf_i0"></a>15.3.1.1. Property <code>root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; ContributorRole</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#contributor_oneOf_i0">contributor_oneOf_i0</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="15312-property-root-contributor-oneof-item-2-item-2-items-oneof-person"><a name="contributor_oneOf_i2_items_oneOf_i1"></a>15.3.1.2. Property <code>root &gt; contributor &gt; oneOf &gt; item 2 &gt; item 2 items &gt; oneOf &gt; Person</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#author_oneOf_i0_allOf_i1_author">author</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A person (alive, dead, undead, or fictional).</p>
+<hr />
+<p>Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-11-07 at 00:41:11 +0100</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
