@@ -497,10 +497,6 @@ class Geometry(Enum):
     NONE_TYPE_NONE = None
 
 
-class Model(RootModel[RecordGeoJSON]):
-    root: RecordGeoJSON
-
-
 class GeometrycollectionGeoJSON(TranspilerBaseModel):
     type: Type6
     geometries: List[
@@ -542,6 +538,10 @@ class RecordGeoJSON(TranspilerBaseModel):
     properties: RecordCommonProperties
     links: Optional[List[Link]] = None
     link_templates: Optional[List[LinkTemplate]] = Field(None, alias='linkTemplates')
+
+
+class Model(RootModel[RecordGeoJSON]):
+    root: RecordGeoJSON
 
 
 Model.model_rebuild()
