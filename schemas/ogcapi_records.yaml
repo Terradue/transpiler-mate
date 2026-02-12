@@ -516,7 +516,6 @@ $defs:
     required:
       - id
       - type
-      - geometry
       - properties
     properties:
       id:

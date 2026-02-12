@@ -18,6 +18,7 @@ from .ogcapi_records_models import (
     Email,
     Format1,
     Language,
+    Link,
     RecordCommonProperties,
     RecordGeoJSON,
     Theme,
@@ -131,9 +132,20 @@ class OgcRecordsTranspiler(Transpiler):
         record_geojson: RecordGeoJSON = RecordGeoJSON(
             id=f"urn:uuid:{uuid.uuid4()}",
             type=Type7.FEATURE,
-            geometry=None,
-            time=None,
-            links=None,
+            links=list(
+                map(
+                    lambda creative_work: Link(
+                        href=creative_work.url,
+                        hreflang="en",
+                        title=creative_work.name,
+                        rel="help",
+                        created=_to_datetime(metadata_source.date_created),
+                        updated=_to_datetime(datetime.fromtimestamp(time.time())),
+                        
+                    ),
+                    metadata_source.software_help if isinstance(metadata_source.software_help, list) else [metadata_source.software_help]
+                )
+            ),
             properties=RecordCommonProperties(
                 created=_to_datetime(metadata_source.date_created),
                 updated=_to_datetime(datetime.fromtimestamp(time.time())),

@@ -39,7 +39,6 @@ tasks:
                         --collapse-root-models \
                         --capitalise-enum-members \
                         --use-one-literal-as-default \
-                        --strip-default-none \
                         --snake-case-field \
                         {{if eq .USE_CUSTOM_TEMPLATES "true"}}--custom-template-dir ./templates{{end}}\
                         --output ./src/transpiler_mate/{{.TARGET_DIR}}/{{.SCHEMA}}_models.py
