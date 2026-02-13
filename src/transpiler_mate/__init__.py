@@ -98,7 +98,7 @@ def init_http_logging(http_client: Client):
 class TranspilerBaseModel(BaseModel):
     model_config = ConfigDict(
         validate_by_name=True,
-        extra='ignore',
+        extra="allow",
         use_enum_values=True,  # Enums dump as .value everywhere
     )
 
