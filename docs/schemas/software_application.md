@@ -96,6 +96,13 @@
     - [15.3.1. root > contributor > oneOf > item 2 > item 2 items](#contributor_oneOf_i2_items)
       - [15.3.1.1. Property `root > contributor > oneOf > item 2 > item 2 items > oneOf > ContributorRole`](#contributor_oneOf_i2_items_oneOf_i0)
       - [15.3.1.2. Property `root > contributor > oneOf > item 2 > item 2 items > oneOf > Person`](#contributor_oneOf_i2_items_oneOf_i1)
+- [16. Property `root > thumbnail`](#thumbnail)
+  - [16.1. Property `root > thumbnail > @type`](#thumbnail_@type)
+  - [16.2. Property `root > thumbnail > contentUrl`](#thumbnail_contentUrl)
+  - [16.3. Property `root > thumbnail > caption`](#thumbnail_caption)
+  - [16.4. Property `root > thumbnail > encodingFormat`](#thumbnail_encodingFormat)
+  - [16.5. Property `root > thumbnail > width`](#thumbnail_width)
+  - [16.6. Property `root > thumbnail > height`](#thumbnail_height)
 
 |                           |                             |
 | ------------------------- | --------------------------- |
@@ -123,6 +130,7 @@
 | + [publisher](#publisher )                       | No      | object      | No         | In #/$defs/Organization                             | The publisher of the article in question.                                                                                                                                                                                                                                                                                                      |
 | + [author](#author )                             | No      | Combination | No         | -                                                   | The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably.                                                                                                                    |
 | - [contributor](#contributor )                   | No      | Combination | No         | -                                                   | A secondary contributor to the CreativeWork or Event.                                                                                                                                                                                                                                                                                          |
+| - [thumbnail](#thumbnail )                       | No      | object      | No         | In #/$defs/ImageObject                              | Thumbnail image for an image or video.                                                                                                                                                                                                                                                                                                         |
 
 ## <a name="@type"></a>1. Property `root > @type`
 
@@ -1265,5 +1273,82 @@ Specific value: `"https://schema.org/Person"`
 
 **Description:** A person (alive, dead, undead, or fictional).
 
+## <a name="thumbnail"></a>16. Property `root > thumbnail`
+
+|                           |                     |
+| ------------------------- | ------------------- |
+| **Type**                  | `object`            |
+| **Required**              | No                  |
+| **Additional properties** | Any type allowed    |
+| **Defined in**            | #/$defs/ImageObject |
+
+**Description:** Thumbnail image for an image or video.
+
+| Property                                       | Pattern | Type    | Deprecated | Definition | Title/Description                                                                                                                                                                                                                                                                                                           |
+| ---------------------------------------------- | ------- | ------- | ---------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| - [@type](#thumbnail_@type )                   | No      | const   | No         | -          | -                                                                                                                                                                                                                                                                                                                           |
+| - [contentUrl](#thumbnail_contentUrl )         | No      | string  | No         | -          | Actual bytes of the media object, for example the image file or video file.                                                                                                                                                                                                                                                 |
+| - [caption](#thumbnail_caption )               | No      | string  | No         | -          | The caption for this object.                                                                                                                                                                                                                                                                                                |
+| - [encodingFormat](#thumbnail_encodingFormat ) | No      | string  | No         | -          | Media type typically expressed using a MIME format (see [IANA site](http://www.iana.org/assignments/media-types/media-types.xhtml) and [MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)), e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.<br /> |
+| - [width](#thumbnail_width )                   | No      | integer | No         | -          | The width of the item.                                                                                                                                                                                                                                                                                                      |
+| - [height](#thumbnail_height )                 | No      | integer | No         | -          | The width of the item.                                                                                                                                                                                                                                                                                                      |
+
+### <a name="thumbnail_@type"></a>16.1. Property `root > thumbnail > @type`
+
+|              |         |
+| ------------ | ------- |
+| **Type**     | `const` |
+| **Required** | No      |
+
+Specific value: `"https://schema.org/ImageObject"`
+
+### <a name="thumbnail_contentUrl"></a>16.2. Property `root > thumbnail > contentUrl`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+| **Format**   | `uri`    |
+
+**Description:** Actual bytes of the media object, for example the image file or video file.
+
+### <a name="thumbnail_caption"></a>16.3. Property `root > thumbnail > caption`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** The caption for this object.
+
+### <a name="thumbnail_encodingFormat"></a>16.4. Property `root > thumbnail > encodingFormat`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Description:** Media type typically expressed using a MIME format (see [IANA site](http://www.iana.org/assignments/media-types/media-types.xhtml) and [MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)), e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.
+
+### <a name="thumbnail_width"></a>16.5. Property `root > thumbnail > width`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+| **Format**   | `int64`   |
+
+**Description:** The width of the item.
+
+### <a name="thumbnail_height"></a>16.6. Property `root > thumbnail > height`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | No        |
+| **Format**   | `int64`   |
+
+**Description:** The width of the item.
+
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-11-07 at 00:41:11 +0100
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2026-03-05 at 15:53:15 +0100

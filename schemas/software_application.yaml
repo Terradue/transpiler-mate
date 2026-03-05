@@ -187,6 +187,33 @@ $defs:
       identifier:
         $ref: '#/$defs/Identifier'
 
+  ImageObject:
+    description: An image file.
+    type: object
+    properties:
+      '@type':
+        type: string
+        const: https://schema.org/ImageObject
+      contentUrl:
+        description: Actual bytes of the media object, for example the image file or video file.
+        type: string
+        format: uri
+      caption:
+        description: The caption for this object.
+        type: string
+      encodingFormat:
+        description: |
+          Media type typically expressed using a MIME format (see [IANA site](http://www.iana.org/assignments/media-types/media-types.xhtml) and [MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)), e.g. application/zip for a SoftwareApplication binary, audio/mpeg for .mp3 etc.
+        type: string
+      width:
+        description: The width of the item.
+        type: integer
+        format: int64
+      height:
+        description: The width of the item.
+        type: integer
+        format: int64
+
   SoftwareApplication:
     description: A software application.
     type: object
@@ -322,6 +349,9 @@ $defs:
             oneOf:
             - $ref: '#/$defs/ContributorRole'
             - $ref: '#/$defs/Person'
+      thumbnail:
+        description: Thumbnail image for an image or video.
+        $ref: '#/$defs/ImageObject'
 
   SoftwareSourceCode:
     description: Computer programming source code.
