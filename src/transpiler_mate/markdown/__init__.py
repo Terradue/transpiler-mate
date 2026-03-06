@@ -18,14 +18,8 @@ from cwl_loader import load_cwl_from_yaml
 from cwl_loader.utils import to_index
 from cwl_loader.utils import search_process
 from datetime import datetime
-from importlib.metadata import (
-    version,
-    PackageNotFoundError
-)
-from jinja2 import (
-    Environment,
-    PackageLoader
-)
+from importlib.metadata import version, PackageNotFoundError
+from jinja2 import Environment, PackageLoader
 from loguru import logger
 from pathlib import Path
 from transpiler_mate.metadata import MetadataManager
@@ -54,6 +48,7 @@ ROLE_TYPE = "https://schema.org/Role"
 
 RoleKind = Literal["author", "contributor"]
 
+
 def _normalize_role_people(value: Any, *, person_key: RoleKind) -> list[dict]:
     """
     Normalize a JSON-ish field that can be:
@@ -70,9 +65,9 @@ def _normalize_role_people(value: Any, *, person_key: RoleKind) -> list[dict]:
     """
 
     def looks_like_person(d: dict) -> bool:
-        return (
-            d.get("@type") == PERSON_TYPE
-            or any(k in d for k in ("given_name", "family_name", "email", "identifier", "affiliation"))
+        return d.get("@type") == PERSON_TYPE or any(
+            k in d
+            for k in ("given_name", "family_name", "email", "identifier", "affiliation")
         )
 
     def ensure_person_dict(d: dict) -> dict:
@@ -111,7 +106,9 @@ def _normalize_role_people(value: Any, *, person_key: RoleKind) -> list[dict]:
         person = ensure_person_dict(value)
         return [ensure_role_dict({person_key: person})]
 
-    raise ValueError(f"Unrecognized {person_key} dict shape (keys={sorted(value.keys())})")
+    raise ValueError(
+        f"Unrecognized {person_key} dict shape (keys={sorted(value.keys())})"
+    )
 
 
 def normalize_author(value: Any) -> list[dict]:
@@ -123,7 +120,7 @@ def normalize_contributor(value: Any) -> list[dict]:
 
 
 def type_to_string(typ: Any) -> str:
-    '''
+    """
     Serializes a CWL type to a human-readable string.
 
     Args:
@@ -131,7 +128,7 @@ def type_to_string(typ: Any) -> str:
 
     Returns:
         `str`: The human-readable string representing the input CWL type.
-    '''
+    """
     if get_origin(typ) is Union:
         return " or ".join([type_to_string(inner_type) for inner_type in get_args(typ)])
 
@@ -144,24 +141,24 @@ def type_to_string(typ: Any) -> str:
     if isinstance(typ, str):
         return typ
 
-    if hasattr(typ, '__name__'):
+    if hasattr(typ, "__name__"):
         return typ.__name__
 
-    if hasattr(typ, 'type_'):
+    if hasattr(typ, "type_"):
         return typ.type_
-    
+
     # last hope to follow back
     return str(type)
+
 
 def _get_version() -> str:
     try:
         return version("transpiler_mate")
     except PackageNotFoundError:
-        return 'N/A'
+        return "N/A"
 
-def _to_mapping(
-    functions: List[Any]
-) -> Mapping[str, Any]:
+
+def _to_mapping(functions: List[Any]) -> Mapping[str, Any]:
     mapping: Mapping[str, Any] = {}
 
     for function in functions:
@@ -170,15 +167,16 @@ def _to_mapping(
     return mapping
 
 
-def nullable(
-    type_: Any
-) -> bool:
-    return isinstance(type_, list) and "null" in type_ or hasattr(type_, "items") and nullable(getattr(type_, "items"))
+def nullable(type_: Any) -> bool:
+    return (
+        isinstance(type_, list)
+        and "null" in type_
+        or hasattr(type_, "items")
+        and nullable(getattr(type_, "items"))
+    )
 
 
-def get_exection_command(
-    clt: Any
-) -> str:
+def get_exection_command(clt: Any) -> str:
     result: List[str] = []
 
     def _append_arg(arg: Any):
@@ -188,21 +186,20 @@ def get_exection_command(
         elif isinstance(arg, str):
             result.append(arg)
         else:
-            result.append(f"<ARGUMENT_DYNAMICALLY_SET>")
+            result.append("<ARGUMENT_DYNAMICALLY_SET>")
 
     def _check_then_append(arg_name: str):
         if hasattr(clt, arg_name) and getattr(clt, arg_name):
             _append_arg(getattr(clt, arg_name))
 
     _check_then_append("baseCommand")
-    _check_then_append( "arguments")
+    _check_then_append("arguments")
 
     return " ".join(result)
 
+
 _jinja_environment = Environment(
-    loader=PackageLoader(
-        package_name='transpiler_mate.markdown'
-    )
+    loader=PackageLoader(package_name="transpiler_mate.markdown")
 )
 _jinja_environment.filters.update(
     _to_mapping(
@@ -214,51 +211,53 @@ _jinja_environment.filters.update(
         ]
     )
 )
-_jinja_environment.tests.update(
-    _to_mapping(
-        [
-            nullable
-        ]
-    )
-)
+_jinja_environment.tests.update(_to_mapping([nullable]))
 
 # END
 
+
 def markdown_transpile(
-    source: Path,
-    workflow_id: str,
-    output_stream: TextIO,
-    code_repository: str | None
+    source: Path, workflow_id: str, output_stream: TextIO, code_repository: str | None
 ):
     logger.info(f"Reading metadata from {source}...")
     metadata_manager: MetadataManager = MetadataManager(source)
 
-    logger.success(f"Metadata successfully read!")
-    logger.info('Transpiling metadata...')
+    logger.success("Metadata successfully read!")
+    logger.info("Transpiling metadata...")
 
     transpiler: CodeMetaTranspiler = CodeMetaTranspiler(code_repository)
     metadata = transpiler.transpile(metadata_manager.metadata)
 
-    logger.success(f"Metadata successfully transpiled!")
-    logger.info('Reading Workflow model...')
+    logger.success("Metadata successfully transpiled!")
+    logger.info("Reading Workflow model...")
 
     cwl_document = load_cwl_from_yaml(metadata_manager.raw_document)
 
     process = search_process(workflow_id, cwl_document)
     if not process:
-        raise ValueError(f"Workflow {workflow_id} does not exist in input CWL document, only {list(map(lambda p: p.id, process)) if isinstance(process, list) else [process.id]} available.")
+        raise ValueError(
+            f"Workflow {workflow_id} does not exist in input CWL document, only {list(map(lambda p: p.id, process)) if isinstance(process, list) else [process.id]} available."
+        )
 
-    logger.success(f"Workflow model successfully read!")
+    logger.success("Workflow model successfully read!")
 
-    template = _jinja_environment.get_template(f"index.md")
+    template = _jinja_environment.get_template("index.md")
 
     output_stream.write(
         template.render(
             version=_get_version(),
-            timestamp=datetime.fromtimestamp(time.time()).isoformat(timespec='milliseconds'),
-            software_source_code=metadata if "SoftwareSourceCode" == metadata["@type"] else None,
-            software_application=metadata["targetProduct"] if "SoftwareSourceCode" == metadata["@type"] else metadata,
+            timestamp=datetime.fromtimestamp(time.time()).isoformat(
+                timespec="milliseconds"
+            ),
+            software_source_code=metadata
+            if "SoftwareSourceCode" == metadata["@type"]
+            else None,
+            software_application=metadata["targetProduct"]
+            if "SoftwareSourceCode" == metadata["@type"]
+            else metadata,
             workflow=process,
-            index=to_index(cwl_document) if isinstance(cwl_document, list) else { workflow_id: cwl_document }
+            index=to_index(cwl_document)
+            if isinstance(cwl_document, list)
+            else {workflow_id: cwl_document},
         )
     )
