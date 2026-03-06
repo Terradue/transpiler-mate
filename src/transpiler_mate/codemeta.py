@@ -14,36 +14,22 @@
 
 from transpiler_mate.metadata.software_application_models import (
     SoftwareApplication,
-    SoftwareSourceCode
+    SoftwareSourceCode,
 )
 from .metadata import Transpiler
 
 from giturlparse import parse as gitparse
 from loguru import logger
-from pydantic import (
-    AnyUrl,
-    BaseModel
-)
+from pydantic import BaseModel
 from pyld import jsonld
-from typing import (
-    Any,
-    List,
-    Mapping,
-    MutableMapping
-)
+from typing import Any, List, Mapping, MutableMapping
+
 
 class CodeMetaTranspiler(Transpiler):
-
-    def __init__(
-        self,
-        code_repository: str | None
-    ) -> None:
+    def __init__(self, code_repository: str | None) -> None:
         self.code_repository = code_repository
 
-    def transpile(
-        self,
-        metadata_source: SoftwareApplication
-    ) -> Mapping[str, Any]:
+    def transpile(self, metadata_source: SoftwareApplication) -> Mapping[str, Any]:
         model: BaseModel = metadata_source
 
         if self.code_repository:
@@ -54,26 +40,24 @@ class CodeMetaTranspiler(Transpiler):
             related_link: List[str] | None = None
 
             match parsed_url.platform:
-                case 'github':
-                    continuous_integration = parsed_url.url2https.replace('.git', '/actions')
-                    issue_tracker = parsed_url.url2https.replace('.git', '/issues')
+                case "github":
+                    continuous_integration = parsed_url.url2https.replace(
+                        ".git", "/actions"
+                    )
+                    issue_tracker = parsed_url.url2https.replace(".git", "/issues")
                     related_link = [
-                        parsed_url.url2https.replace('.git', page) for page in [
-                            '/wiki',
-                            '/releases',
-                            '/deployments'
-                        ]
+                        parsed_url.url2https.replace(".git", page)
+                        for page in ["/wiki", "/releases", "/deployments"]
                     ]
 
-                case 'gitlab':
-                    continuous_integration = parsed_url.url2https.replace('.git', '/-/pipelines')
-                    issue_tracker = parsed_url.url2https.replace('.git', '/-/issues')
+                case "gitlab":
+                    continuous_integration = parsed_url.url2https.replace(
+                        ".git", "/-/pipelines"
+                    )
+                    issue_tracker = parsed_url.url2https.replace(".git", "/-/issues")
                     related_link = [
-                        parsed_url.url2https.replace('.git', page) for page in [
-                            '/-/wikis/home',
-                            '/-/packages',
-                            '/-/pipelines'
-                        ]
+                        parsed_url.url2https.replace(".git", page)
+                        for page in ["/-/wikis/home", "/-/packages", "/-/pipelines"]
                     ]
 
                 case _:
@@ -84,12 +68,11 @@ class CodeMetaTranspiler(Transpiler):
                 target_product=metadata_source,
                 continuous_integration=continuous_integration,
                 issue_tracker=issue_tracker,
-                related_link=related_link
-            ) # type: ignore @type is a constant
+                related_link=related_link,
+            )  # type: ignore @type is a constant
 
         doc: MutableMapping[str, Any] = model.model_dump(
-            exclude_none=True,
-            by_alias=True
+            exclude_none=True, by_alias=True
         )
 
         compacted: MutableMapping[str, Any] = jsonld.compact(
@@ -102,19 +85,15 @@ class CodeMetaTranspiler(Transpiler):
                     # "@base": None,
                 }
             },
-            options={
-                "processingMode": "json-ld-1.1",
-                "ordered": None
-            }
-        ) # type: ignore
+            options={"processingMode": "json-ld-1.1", "ordered": None},
+        )  # type: ignore
 
-        compacted['@context'] = 'https://w3id.org/codemeta/3.0'
+        compacted["@context"] = "https://w3id.org/codemeta/3.0"
 
         if metadata_source.keywords and isinstance(metadata_source.keywords, list):
-            compacted['keywords'] = list(
+            compacted["keywords"] = list(
                 filter(
-                    lambda keyword: isinstance(keyword, str),
-                    metadata_source.keywords
+                    lambda keyword: isinstance(keyword, str), metadata_source.keywords
                 )
             )
 
