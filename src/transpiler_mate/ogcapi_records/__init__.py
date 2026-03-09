@@ -22,54 +22,42 @@ from .ogcapi_records_models import (
     RecordCommonProperties,
     RecordGeoJSON,
     Theme,
-    Type7
+    Type7,
 )
-from .sciencekeywords import (
-    KEYWORDS_INDEX,
-    ScienceKeywordRecord
-)
+from .sciencekeywords import KEYWORDS_INDEX, ScienceKeywordRecord
 from ..metadata.software_application_models import (
     AuthorRole,
     CreativeWork,
     DefinedTerm,
     Person,
-    SoftwareApplication
+    SoftwareApplication,
 )
 from ..metadata import Transpiler
-from datetime import (
-    date,
-    datetime,
-    timezone
-)
+from datetime import date, datetime, timezone
 from loguru import logger
 
 from pydantic import AnyUrl
-from typing import (
-    Any,
-    Mapping,
-    List
-)
+from typing import Any, Mapping, List
 
-import os
 import time
 import uuid
 
-SCIENCE_KEYWORDS_TERM_SET = AnyUrl('https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords')
+SCIENCE_KEYWORDS_TERM_SET = AnyUrl(
+    "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords"
+)
 
 DEFAULT_LANGUAGE: Language = Language(
-    code='en-US',
-    name='English (United States)',
-    dir=None
+    code="en-US", name="English (United States)", dir=None
 )
+
 
 def _to_datetime(value: date | datetime):
     if isinstance(value, datetime):
         return value if value.tzinfo else value.replace(tzinfo=timezone.utc)
     return datetime.combine(value, datetime.min.time(), tzinfo=timezone.utc)
 
-def _to_contact(
-    author: Person | AuthorRole
-) -> Contact1:
+
+def _to_contact(author: Person | AuthorRole) -> Contact1:
     position = None
 
     if isinstance(author, AuthorRole):
@@ -81,53 +69,67 @@ def _to_contact(
         name=f"{author.family_name}, {author.given_name}",
         organization=author.affiliation.name,
         position=position,
-        emails=[Email(
-            value=author.email
-        )]
+        emails=[Email(value=author.email)],
     )
 
-class OgcRecordsTranspiler(Transpiler):
 
-    def transpile(
-        self,
-        metadata_source: SoftwareApplication
-    ) -> Mapping[str, Any]:
+class OgcRecordsTranspiler(Transpiler):
+    def transpile(self, metadata_source: SoftwareApplication) -> Mapping[str, Any]:
         keywords: List[str] = []
         themes: List[Theme] = []
 
         if metadata_source.keywords:
-            for raw_keyword in metadata_source.keywords if isinstance(metadata_source.keywords, list) else [metadata_source.keywords]:
+            for raw_keyword in (
+                metadata_source.keywords
+                if isinstance(metadata_source.keywords, list)
+                else [metadata_source.keywords]
+            ):
                 if isinstance(raw_keyword, str):
                     keywords.append(raw_keyword)
                 elif isinstance(raw_keyword, DefinedTerm):
-                    if SCIENCE_KEYWORDS_TERM_SET == raw_keyword.in_defined_term_set and raw_keyword.term_code:
-                        if not raw_keyword.term_code in KEYWORDS_INDEX:
-                            logger.warning(f"Science Keyword UUID {raw_keyword.term_code} not found in the index")
+                    if (
+                        SCIENCE_KEYWORDS_TERM_SET == raw_keyword.in_defined_term_set
+                        and raw_keyword.term_code
+                    ):
+                        if raw_keyword.term_code not in KEYWORDS_INDEX:
+                            logger.warning(
+                                f"Science Keyword UUID {raw_keyword.term_code} not found in the index"
+                            )
                         else:
-                            science_keyword_record: ScienceKeywordRecord = KEYWORDS_INDEX[str(raw_keyword.term_code)]
+                            science_keyword_record: ScienceKeywordRecord = (
+                                KEYWORDS_INDEX[str(raw_keyword.term_code)]
+                            )
 
                             concepts: List[Concept] = []
 
-                            for i, keyword in enumerate(science_keyword_record.hierarchy_list):
+                            for i, keyword in enumerate(
+                                science_keyword_record.hierarchy_list
+                            ):
                                 concepts.append(
                                     Concept(
                                         id=keyword,
                                         title=None,
-                                        description=' > '.join(science_keyword_record.hierarchy_list[0:i+1]),
-                                        url=science_keyword_record.uri
+                                        description=" > ".join(
+                                            science_keyword_record.hierarchy_list[
+                                                0 : i + 1
+                                            ]
+                                        ),
+                                        url=science_keyword_record.uri,
                                     )
                                 )
 
                             themes.append(
                                 Theme(
                                     scheme=str(SCIENCE_KEYWORDS_TERM_SET),
-                                    concepts=concepts
+                                    concepts=concepts,
                                 )
                             )
                     else:
                         logger.debug(f"Discarding keyword, {raw_keyword}, unsupported")
                 else:
-                    logger.debug(f"Discarding keyword, {raw_keyword}, unsupported type {type(raw_keyword)}")
+                    logger.debug(
+                        f"Discarding keyword, {raw_keyword}, unsupported type {type(raw_keyword)}"
+                    )
 
         record_geojson: RecordGeoJSON = RecordGeoJSON(
             id=f"urn:uuid:{uuid.uuid4()}",
@@ -141,39 +143,47 @@ class OgcRecordsTranspiler(Transpiler):
                         rel="help",
                         created=_to_datetime(metadata_source.date_created),
                         updated=_to_datetime(datetime.fromtimestamp(time.time())),
-                        
                     ),
-                    metadata_source.software_help if isinstance(metadata_source.software_help, list) else [metadata_source.software_help]
+                    metadata_source.software_help
+                    if isinstance(metadata_source.software_help, list)
+                    else [metadata_source.software_help],
                 )
             ),
             properties=RecordCommonProperties(
                 created=_to_datetime(metadata_source.date_created),
                 updated=_to_datetime(datetime.fromtimestamp(time.time())),
                 title=metadata_source.name,
-                description=metadata_source.description if metadata_source.description else None,
+                description=metadata_source.description
+                if metadata_source.description
+                else None,
                 keywords=keywords if keywords else None,
                 themes=themes if themes else None,
                 language=DEFAULT_LANGUAGE,
                 resource_languages=[DEFAULT_LANGUAGE],
-                formats=[Format1(
-                    name='CWL',
-                    media_type='application/cwl'
-                )],
+                formats=[Format1(name="CWL", media_type="application/cwl")],
                 contacts=list(
                     map(
                         _to_contact,
-                        metadata_source.author if isinstance(metadata_source.author, list) else [metadata_source.author]
+                        metadata_source.author
+                        if isinstance(metadata_source.author, list)
+                        else [metadata_source.author],
                     )
                 ),
-                license_=': '.join(
+                license_=": ".join(
                     list(
                         map(
-                            lambda license: str(license.url) if isinstance(license, CreativeWork) else str(license),
-                            metadata_source.license if isinstance(metadata_source.license, list) else [metadata_source.license]
+                            lambda license: (
+                                str(license.url)
+                                if isinstance(license, CreativeWork)
+                                else str(license)
+                            ),
+                            metadata_source.license
+                            if isinstance(metadata_source.license, list)
+                            else [metadata_source.license],
                         )
                     )
-                )
-            )
+                ),
+            ),
         )
 
         return record_geojson.model_dump(by_alias=True, exclude_none=True)

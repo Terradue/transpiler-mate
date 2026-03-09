@@ -8,27 +8,27 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import AliasChoices, AnyUrl, EmailStr, Field, RootModel
+from pydantic import AnyUrl, EmailStr, Field, RootModel
 from transpiler_mate import TranspilerBaseModel
 
 
 class Concept(TranspilerBaseModel):
-    id: str = Field(..., description='An identifier for the concept.')
+    id: str = Field(..., description="An identifier for the concept.")
     title: Optional[str] = Field(
-        None, description='A human readable title for the concept.'
+        None, description="A human readable title for the concept."
     )
     description: Optional[str] = Field(
-        None, description='A human readable description for the concept.'
+        None, description="A human readable description for the concept."
     )
     url: Optional[AnyUrl] = Field(
-        None, description='A URI providing further description of the concept.'
+        None, description="A URI providing further description of the concept."
     )
 
 
 class Theme(TranspilerBaseModel):
     concepts: List[Concept] = Field(
         ...,
-        description='One or more entity/concept identifiers from this knowledge system. it is recommended that a resolvable URI be used for each entity/concept identifier.',
+        description="One or more entity/concept identifiers from this knowledge system. it is recommended that a resolvable URI be used for each entity/concept identifier.",
         min_length=1,
     )
     scheme: str = Field(
@@ -42,10 +42,10 @@ class Dir(Enum):
     The direction for text in this language. The default, `ltr` (left-to-right), represents the most common situation. However, care should be taken to set the value of `dir` appropriately if the language direction is not `ltr`. Other values supported are `rtl` (right-to-left), `ttb` (top-to-bottom), and `btt` (bottom-to-top).
     """
 
-    LTR = 'ltr'
-    RTL = 'rtl'
-    TTB = 'ttb'
-    BTT = 'btt'
+    LTR = "ltr"
+    RTL = "rtl"
+    TTB = "ttb"
+    BTT = "btt"
 
 
 class Language(TranspilerBaseModel):
@@ -53,28 +53,28 @@ class Language(TranspilerBaseModel):
     The language used for textual values in this record.
     """
 
-    code: str = Field(..., description='The language tag as per RFC-5646.')
+    code: str = Field(..., description="The language tag as per RFC-5646.")
     name: Optional[str] = Field(
-        None, description='The untranslated name of the language.', min_length=1
+        None, description="The untranslated name of the language.", min_length=1
     )
     alternate: Optional[str] = Field(
         None,
-        description='The name of the language in another well-understood language, usually English.',
+        description="The name of the language in another well-understood language, usually English.",
     )
     dir: Optional[Dir] = Field(
-        'ltr',
-        description='The direction for text in this language. The default, `ltr` (left-to-right), represents the most common situation. However, care should be taken to set the value of `dir` appropriately if the language direction is not `ltr`. Other values supported are `rtl` (right-to-left), `ttb` (top-to-bottom), and `btt` (bottom-to-top).',
+        "ltr",
+        description="The direction for text in this language. The default, `ltr` (left-to-right), represents the most common situation. However, care should be taken to set the value of `dir` appropriately if the language direction is not `ltr`. Other values supported are `rtl` (right-to-left), `ttb` (top-to-bottom), and `btt` (bottom-to-top).",
     )
 
 
 class Format1(TranspilerBaseModel):
     name: str
-    media_type: Optional[str] = Field(None, alias='mediaType')
+    media_type: Optional[str] = Field(None, alias="mediaType")
 
 
 class Format2(TranspilerBaseModel):
     name: Optional[str] = None
-    media_type: str = Field(..., alias='mediaType')
+    media_type: str = Field(..., alias="mediaType")
 
 
 class Roles(RootModel[List[str]]):
@@ -84,34 +84,34 @@ class Roles(RootModel[List[str]]):
 
     root: List[str] = Field(
         ...,
-        description='The list of duties, job functions or permissions assigned by the system and associated with the context of this member.',
+        description="The list of duties, job functions or permissions assigned by the system and associated with the context of this member.",
         min_length=1,
     )
 
 
 class LinkBase(TranspilerBaseModel):
     rel: Optional[str] = Field(
-        None, description='The type or semantics of the relation.'
+        None, description="The type or semantics of the relation."
     )
     type: Optional[str] = Field(
         None,
-        description='A hint indicating what the media type of the result of dereferencing the link should be.',
+        description="A hint indicating what the media type of the result of dereferencing the link should be.",
     )
     hreflang: Optional[str] = Field(
         None,
-        description='A hint indicating what the language of the result of dereferencing the link should be.',
+        description="A hint indicating what the language of the result of dereferencing the link should be.",
     )
     title: Optional[str] = Field(
         None,
-        description='Used to label the destination of a link such that it can be used as a human-readable identifier.',
+        description="Used to label the destination of a link such that it can be used as a human-readable identifier.",
     )
     length: Optional[int] = None
     created: Optional[datetime] = Field(
-        None, description='Date of creation of the resource pointed to by the link.'
+        None, description="Date of creation of the resource pointed to by the link."
     )
     updated: Optional[datetime] = Field(
         None,
-        description='Most recent date on which the resource pointed to by the link was changed.',
+        description="Most recent date on which the resource pointed to by the link was changed.",
     )
 
 
@@ -122,22 +122,22 @@ class Link(LinkBase):
 class LinkTemplate(LinkBase):
     uri_template: str = Field(
         ...,
-        alias='uriTemplate',
-        description='Supplies a resolvable URI to a remote resource (or resource fragment).',
+        alias="uriTemplate",
+        description="Supplies a resolvable URI to a remote resource (or resource fragment).",
     )
     var_base: Optional[AnyUrl] = Field(
         None,
-        alias='varBase',
-        description='The base URI to which the variable name can be appended to retrieve the definition of the variable as a JSON Schema fragment.',
+        alias="varBase",
+        description="The base URI to which the variable name can be appended to retrieve the definition of the variable as a JSON Schema fragment.",
     )
     variables: Optional[Dict[str, Any]] = Field(
         None,
-        description='This object contains one key per substitution variable in the templated URL.  Each key defines the schema of one substitution variable using a JSON Schema fragment and can thus include things like the data type of the variable, enumerations, minimum values, maximum values, etc.',
+        description="This object contains one key per substitution variable in the templated URL.  Each key defines the schema of one substitution variable using a JSON Schema fragment and can thus include things like the data type of the variable, enumerations, minimum values, maximum values, etc.",
     )
 
 
 class Rel(Enum):
-    ICON = 'icon'
+    ICON = "icon"
 
 
 class Logo(Link):
@@ -151,44 +151,44 @@ class Logo(Link):
 class Phone(TranspilerBaseModel):
     value: str = Field(
         ...,
-        description='The value is the phone number itself.',
-        pattern='^\\+[1-9]{1}[0-9]{3,14}$',
+        description="The value is the phone number itself.",
+        pattern="^\\+[1-9]{1}[0-9]{3,14}$",
     )
     roles: Optional[List[str]] = Field(
         None,
-        description='The list of duties, job functions or permissions assigned by the system and associated with the context of this member.',
+        description="The list of duties, job functions or permissions assigned by the system and associated with the context of this member.",
         min_length=1,
     )
 
 
 class Email(TranspilerBaseModel):
-    value: EmailStr = Field(..., description='The value is the email number itself.')
+    value: EmailStr = Field(..., description="The value is the email number itself.")
     roles: Optional[List[str]] = Field(
         None,
-        description='The list of duties, job functions or permissions assigned by the system and associated with the context of this member.',
+        description="The list of duties, job functions or permissions assigned by the system and associated with the context of this member.",
         min_length=1,
     )
 
 
 class Address(TranspilerBaseModel):
     delivery_point: Optional[List[str]] = Field(
-        None, alias='deliveryPoint', description='Address lines for the location.'
+        None, alias="deliveryPoint", description="Address lines for the location."
     )
-    city: Optional[str] = Field(None, description='City for the location.')
+    city: Optional[str] = Field(None, description="City for the location.")
     administrative_area: Optional[str] = Field(
         None,
-        alias='administrativeArea',
-        description='State or province of the location.',
+        alias="administrativeArea",
+        description="State or province of the location.",
     )
     postal_code: Optional[str] = Field(
-        None, alias='postalCode', description='ZIP or other postal code.'
+        None, alias="postalCode", description="ZIP or other postal code."
     )
     country: Optional[str] = Field(
-        None, description='Country of the physical address.  ISO 3166-1 is recommended.'
+        None, description="Country of the physical address.  ISO 3166-1 is recommended."
     )
     roles: Optional[List[str]] = Field(
         None,
-        description='The list of duties, job functions or permissions assigned by the system and associated with the context of this member.',
+        description="The list of duties, job functions or permissions assigned by the system and associated with the context of this member.",
         min_length=1,
     )
 
@@ -200,48 +200,48 @@ class Contact1(TranspilerBaseModel):
     """
 
     identifier: Optional[str] = Field(
-        None, description='A value uniquely identifying a contact.'
+        None, description="A value uniquely identifying a contact."
     )
-    name: str = Field(..., description='The name of the responsible person.')
+    name: str = Field(..., description="The name of the responsible person.")
     position: Optional[str] = Field(
         None,
         description="The name of the role or position of the responsible person taken from the organization's formal organizational hierarchy or chart.",
     )
     organization: Optional[str] = Field(
-        None, description='Organization/affiliation of the contact.'
+        None, description="Organization/affiliation of the contact."
     )
     logo: Optional[Logo] = Field(
         None,
-        description='Graphic identifying a contact. The link relation should be `icon` and the media type should be an image media type.',
+        description="Graphic identifying a contact. The link relation should be `icon` and the media type should be an image media type.",
     )
     phones: Optional[List[Phone]] = Field(
         None,
-        description='Telephone numbers at which contact can be made.  The type of\nphone number is indicated using the roles property.',
+        description="Telephone numbers at which contact can be made.  The type of\nphone number is indicated using the roles property.",
     )
     emails: Optional[List[Email]] = Field(
         None,
-        description='Email addresses at which contact can be made.  The type of \nemail address is indicated using the roles property.',
+        description="Email addresses at which contact can be made.  The type of \nemail address is indicated using the roles property.",
     )
     addresses: Optional[List[Address]] = Field(
         None,
-        description='Physical location at which contact can be made.  The type of\naddress is indicated using the roles property.',
+        description="Physical location at which contact can be made.  The type of\naddress is indicated using the roles property.",
     )
     links: Optional[List[Link]] = Field(
-        None, description='On-line information about the contact.'
+        None, description="On-line information about the contact."
     )
     hours_of_service: Optional[str] = Field(
         None,
-        alias='hoursOfService',
-        description='Time period when the contact can be contacted.',
+        alias="hoursOfService",
+        description="Time period when the contact can be contacted.",
     )
     contact_instructions: Optional[str] = Field(
         None,
-        alias='contactInstructions',
-        description='Supplemental instructions on how or when to contact the\nresponsible party. The roles property is used to associate\na set of named duties, job functions and/or permissions\nassociated with this contact. (e.g. developer,\nadministrator, etc.).',
+        alias="contactInstructions",
+        description="Supplemental instructions on how or when to contact the\nresponsible party. The roles property is used to associate\na set of named duties, job functions and/or permissions\nassociated with this contact. (e.g. developer,\nadministrator, etc.).",
     )
     roles: Optional[List[str]] = Field(
         None,
-        description='The list of duties, job functions or permissions assigned by the system and associated with the context of this member.',
+        description="The list of duties, job functions or permissions assigned by the system and associated with the context of this member.",
         min_length=1,
     )
 
@@ -261,48 +261,48 @@ class Contact2(TranspilerBaseModel):
     """
 
     identifier: Optional[str] = Field(
-        None, description='A value uniquely identifying a contact.'
+        None, description="A value uniquely identifying a contact."
     )
-    name: Optional[str] = Field(None, description='The name of the responsible person.')
+    name: Optional[str] = Field(None, description="The name of the responsible person.")
     position: Optional[str] = Field(
         None,
         description="The name of the role or position of the responsible person taken from the organization's formal organizational hierarchy or chart.",
     )
     organization: str = Field(
-        ..., description='Organization/affiliation of the contact.'
+        ..., description="Organization/affiliation of the contact."
     )
     logo: Optional[Logo1] = Field(
         None,
-        description='Graphic identifying a contact. The link relation should be `icon` and the media type should be an image media type.',
+        description="Graphic identifying a contact. The link relation should be `icon` and the media type should be an image media type.",
     )
     phones: Optional[List[Phone]] = Field(
         None,
-        description='Telephone numbers at which contact can be made.  The type of\nphone number is indicated using the roles property.',
+        description="Telephone numbers at which contact can be made.  The type of\nphone number is indicated using the roles property.",
     )
     emails: Optional[List[Email]] = Field(
         None,
-        description='Email addresses at which contact can be made.  The type of \nemail address is indicated using the roles property.',
+        description="Email addresses at which contact can be made.  The type of \nemail address is indicated using the roles property.",
     )
     addresses: Optional[List[Address]] = Field(
         None,
-        description='Physical location at which contact can be made.  The type of\naddress is indicated using the roles property.',
+        description="Physical location at which contact can be made.  The type of\naddress is indicated using the roles property.",
     )
     links: Optional[List[Link]] = Field(
-        None, description='On-line information about the contact.'
+        None, description="On-line information about the contact."
     )
     hours_of_service: Optional[str] = Field(
         None,
-        alias='hoursOfService',
-        description='Time period when the contact can be contacted.',
+        alias="hoursOfService",
+        description="Time period when the contact can be contacted.",
     )
     contact_instructions: Optional[str] = Field(
         None,
-        alias='contactInstructions',
-        description='Supplemental instructions on how or when to contact the\nresponsible party. The roles property is used to associate\na set of named duties, job functions and/or permissions\nassociated with this contact. (e.g. developer,\nadministrator, etc.).',
+        alias="contactInstructions",
+        description="Supplemental instructions on how or when to contact the\nresponsible party. The roles property is used to associate\na set of named duties, job functions and/or permissions\nassociated with this contact. (e.g. developer,\nadministrator, etc.).",
     )
     roles: Optional[List[str]] = Field(
         None,
-        description='The list of duties, job functions or permissions assigned by the system and associated with the context of this member.',
+        description="The list of duties, job functions or permissions assigned by the system and associated with the context of this member.",
         min_length=1,
     )
 
@@ -310,101 +310,101 @@ class Contact2(TranspilerBaseModel):
 class ExternalId(TranspilerBaseModel):
     scheme: Optional[str] = Field(
         None,
-        description='A reference to an authority or identifier for a knowledge organization system from which the external identifier was obtained. It is recommended that the identifier be a resolvable URI.',
+        description="A reference to an authority or identifier for a knowledge organization system from which the external identifier was obtained. It is recommended that the identifier be a resolvable URI.",
     )
-    value: str = Field(..., description='The value of the identifier.')
+    value: str = Field(..., description="The value of the identifier.")
 
 
 class RecordCommonProperties(TranspilerBaseModel):
     created: Optional[datetime] = Field(
-        None, description='The date this record was created in the server.'
+        None, description="The date this record was created in the server."
     )
     updated: Optional[datetime] = Field(
-        None, description='The most recent date on which the record was changed.'
+        None, description="The most recent date on which the record was changed."
     )
     type: Optional[str] = Field(
         None,
         description="The nature or genre of the resource. The value should be a code, convenient for filtering records. Where available, a link to the canonical URI of the record type resource will be added to the 'links' property.",
     )
     title: Optional[str] = Field(
-        None, description='A human-readable name given to the resource.'
+        None, description="A human-readable name given to the resource."
     )
     description: Optional[str] = Field(
-        None, description='A free-text account of the resource.'
+        None, description="A free-text account of the resource."
     )
     keywords: Optional[List[str]] = Field(
         None,
-        description='The topic or topics of the resource. Typically represented using free-form keywords, tags, key phrases, or classification codes.',
+        description="The topic or topics of the resource. Typically represented using free-form keywords, tags, key phrases, or classification codes.",
     )
     themes: Optional[List[Theme]] = Field(
         None,
-        description='A knowledge organization system used to classify the resource.',
+        description="A knowledge organization system used to classify the resource.",
         min_length=1,
     )
     language: Optional[Language] = Field(
         None,
-        description='The language used for textual values in this record representation.',
+        description="The language used for textual values in this record representation.",
     )
     languages: Optional[List[Language]] = Field(
-        None, description='This list of languages in which this record is available.'
+        None, description="This list of languages in which this record is available."
     )
     resource_languages: Optional[List[Language]] = Field(
         None,
-        alias='resourceLanguages',
-        description='The list of languages in which the resource described by this record is available.',
+        alias="resourceLanguages",
+        description="The list of languages in which the resource described by this record is available.",
     )
     external_ids: Optional[List[ExternalId]] = Field(
         None,
-        alias='externalIds',
-        description='An identifier for the resource assigned by an external (to the catalog) entity.',
+        alias="externalIds",
+        description="An identifier for the resource assigned by an external (to the catalog) entity.",
     )
     formats: Optional[List[Union[Format1, Format2]]] = Field(
-        None, description='A list of available distributions of the resource.'
+        None, description="A list of available distributions of the resource."
     )
     contacts: Optional[List[Union[Contact1, Contact2]]] = Field(
         None,
-        description='A list of contacts qualified by their role(s) in association to the record or the resource described by the record.',
+        description="A list of contacts qualified by their role(s) in association to the record or the resource described by the record.",
     )
     license: Optional[str] = Field(
         None,
-        description='A legal document under which the resource is made available. If the resource is being made available under a common license then use an SPDX license id (https://spdx.org/licenses/). If the resource is being made available under multiple common licenses then use an SPDX license expression v2.3 string (https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/) If the resource is being made available under one or more licenses that haven\'t been assigned an SPDX identifier or one or more custom licenses then use a string value of \'other\' and include one or more links (rel="license") in the `link` section of the record to the file(s) that contains the text of the license(s). There is also the case of a resource that is private or unpublished and is thus unlicensed; in this case do not register such a resource in the catalog in the first place since there is no point in making such a resource discoverable.',
+        description="A legal document under which the resource is made available. If the resource is being made available under a common license then use an SPDX license id (https://spdx.org/licenses/). If the resource is being made available under multiple common licenses then use an SPDX license expression v2.3 string (https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/) If the resource is being made available under one or more licenses that haven't been assigned an SPDX identifier or one or more custom licenses then use a string value of 'other' and include one or more links (rel=\"license\") in the `link` section of the record to the file(s) that contains the text of the license(s). There is also the case of a resource that is private or unpublished and is thus unlicensed; in this case do not register such a resource in the catalog in the first place since there is no point in making such a resource discoverable.",
     )
     rights: Optional[str] = Field(
         None,
-        description='A statement that concerns all rights not addressed by the license such as a copyright statement.',
+        description="A statement that concerns all rights not addressed by the license such as a copyright statement.",
     )
 
 
 class Interval(RootModel[str]):
-    root: str = Field(..., pattern='^\\d{4}-\\d{2}-\\d{2}$')
+    root: str = Field(..., pattern="^\\d{4}-\\d{2}-\\d{2}$")
 
 
 class Interval1(RootModel[str]):
     root: str = Field(
-        ..., pattern='^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$'
+        ..., pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$"
     )
 
 
 class Interval2(Enum):
-    FIELD__ = '..'
+    FIELD__ = ".."
 
 
 class Time(TranspilerBaseModel):
-    date: Optional[str] = Field(None, pattern='^\\d{4}-\\d{2}-\\d{2}$')
+    date: Optional[str] = Field(None, pattern="^\\d{4}-\\d{2}-\\d{2}$")
     timestamp: Optional[str] = Field(
-        None, pattern='^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$'
+        None, pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$"
     )
     interval: Optional[List[Union[Interval, Interval1, Interval2]]] = Field(
         None, max_length=2, min_length=2
     )
     resolution: Optional[str] = Field(
         None,
-        description='Minimum time period resolvable in the dataset, as an ISO 8601 duration.',
+        description="Minimum time period resolvable in the dataset, as an ISO 8601 duration.",
     )
 
 
 class Type(Enum):
-    POINT = 'Point'
+    POINT = "Point"
 
 
 class PointGeoJSON(TranspilerBaseModel):
@@ -413,7 +413,7 @@ class PointGeoJSON(TranspilerBaseModel):
 
 
 class Type1(Enum):
-    MULTI_POINT = 'MultiPoint'
+    MULTI_POINT = "MultiPoint"
 
 
 class Coordinate(RootModel[List[float]]):
@@ -426,7 +426,7 @@ class MultipointGeoJSON(TranspilerBaseModel):
 
 
 class Type2(Enum):
-    LINE_STRING = 'LineString'
+    LINE_STRING = "LineString"
 
 
 class LinestringGeoJSON(TranspilerBaseModel):
@@ -435,7 +435,7 @@ class LinestringGeoJSON(TranspilerBaseModel):
 
 
 class Type3(Enum):
-    MULTI_LINE_STRING = 'MultiLineString'
+    MULTI_LINE_STRING = "MultiLineString"
 
 
 class Coordinate2Item(RootModel[List[float]]):
@@ -452,7 +452,7 @@ class MultilinestringGeoJSON(TranspilerBaseModel):
 
 
 class Type4(Enum):
-    POLYGON = 'Polygon'
+    POLYGON = "Polygon"
 
 
 class Coordinate3Item(RootModel[List[float]]):
@@ -469,7 +469,7 @@ class PolygonGeoJSON(TranspilerBaseModel):
 
 
 class Type5(Enum):
-    MULTI_POINT = 'MultiPoint'
+    MULTI_POINT = "MultiPoint"
 
 
 class Coordinate4(RootModel[List[float]]):
@@ -482,11 +482,11 @@ class MultipolygonGeoJSON(TranspilerBaseModel):
 
 
 class Type6(Enum):
-    GEOMETRY_COLLECTION = 'GeometryCollection'
+    GEOMETRY_COLLECTION = "GeometryCollection"
 
 
 class Type7(Enum):
-    FEATURE = 'Feature'
+    FEATURE = "Feature"
 
 
 class Time1(Enum):
@@ -513,7 +513,7 @@ class GeometrycollectionGeoJSON(TranspilerBaseModel):
 
 
 class RecordGeoJSON(TranspilerBaseModel):
-    id: str = Field(..., description='A unique identifier of the catalog record.')
+    id: str = Field(..., description="A unique identifier of the catalog record.")
     type: Type7
     time: Optional[Union[Time1, Time]] = None
     geometry: Optional[
@@ -532,12 +532,12 @@ class RecordGeoJSON(TranspilerBaseModel):
     ] = None
     conforms_to: Optional[List[str]] = Field(
         None,
-        alias='conformsTo',
-        description='The extensions/conformance classes used in this record.',
+        alias="conformsTo",
+        description="The extensions/conformance classes used in this record.",
     )
     properties: RecordCommonProperties
     links: Optional[List[Link]] = None
-    link_templates: Optional[List[LinkTemplate]] = Field(None, alias='linkTemplates')
+    link_templates: Optional[List[LinkTemplate]] = Field(None, alias="linkTemplates")
 
 
 class Model(RootModel[RecordGeoJSON]):
