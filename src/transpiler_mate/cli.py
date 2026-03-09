@@ -157,7 +157,7 @@ def oras_annotations(source: Path, workflow_id: str, output: Path):
     logger.info(f"Reading metadata from {source}...")
     metadata_manager: MetadataManager = MetadataManager(source)
 
-    logger.success(f"Metadata successfully read!")
+    logger.success("Metadata successfully read!")
     logger.info("Transpiling metadata...")
 
     from .oras import OrasAnnotationsTranspiler
@@ -176,7 +176,7 @@ def oras_annotations(source: Path, workflow_id: str, output: Path):
         metadata_manager.metadata
     )
 
-    logger.success(f"Metadata successfully transpiled!")
+    logger.success("Metadata successfully transpiled!")
     logger.info("Serializing metadata...")
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("w") as output_stream:

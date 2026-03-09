@@ -17,7 +17,6 @@ from ..metadata import Transpiler
 from ..metadata.software_application_models import CreativeWork, SoftwareApplication
 from cwl_utils.parser import Process
 from pydantic import AnyUrl
-from ruamel.yaml.comments import CommentedMap
 from typing import Any, Mapping
 
 
