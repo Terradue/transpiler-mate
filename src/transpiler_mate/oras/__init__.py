@@ -14,17 +14,11 @@
 
 from .oras_annotations_models import OrasAnnotations
 from ..metadata import Transpiler
-from ..metadata.software_application_models import (
-    CreativeWork,
-    SoftwareApplication
-)
+from ..metadata.software_application_models import CreativeWork, SoftwareApplication
 from cwl_utils.parser import Process
 from pydantic import AnyUrl
 from ruamel.yaml.comments import CommentedMap
-from typing import (
-    Any,
-    Mapping
-)
+from typing import Any, Mapping
 
 
 def _to_license_spdx(license: CreativeWork | AnyUrl) -> str:
@@ -32,28 +26,32 @@ def _to_license_spdx(license: CreativeWork | AnyUrl) -> str:
         return str(license.identifier)
     return str(license).split("/")[-1]
 
-class OrasAnnotationsTranspiler(Transpiler):
 
-    def __init__(
-        self,
-        process: Process
-    ):
+class OrasAnnotationsTranspiler(Transpiler):
+    def __init__(self, process: Process):
         self.process: Process = process
 
-    def transpile(
-        self,
-        metadata_source: SoftwareApplication
-    ) -> Mapping[str, Any]:
+    def transpile(self, metadata_source: SoftwareApplication) -> Mapping[str, Any]:
         oras_annotations: OrasAnnotations = OrasAnnotations()
 
         # org.opencontainers.image.* properties
         oras_annotations.org_opencontainers_image_title = metadata_source.name
-        oras_annotations.org_opencontainers_image_description = metadata_source.description
-        oras_annotations.org_opencontainers_image_version = metadata_source.software_version
+        oras_annotations.org_opencontainers_image_description = (
+            metadata_source.description
+        )
+        oras_annotations.org_opencontainers_image_version = (
+            metadata_source.software_version
+        )
         # oras_annotations.org_opencontainers_image_source = ?
         # oras_annotations.org_opencontainers_image_revision = ?
         oras_annotations.org_opencontainers_image_created = metadata_source.date_created
-        oras_annotations.org_opencontainers_image_licenses = " OR ".join([_to_license_spdx(license) for license in metadata_source.license]) if isinstance(metadata_source.license, list) else _to_license_spdx(metadata_source.license)
+        oras_annotations.org_opencontainers_image_licenses = (
+            " OR ".join(
+                [_to_license_spdx(license) for license in metadata_source.license]
+            )
+            if isinstance(metadata_source.license, list)
+            else _to_license_spdx(metadata_source.license)
+        )
 
         # org.cwl.* properties
         oras_annotations.org_cwl_entrypoint = self.process.id
