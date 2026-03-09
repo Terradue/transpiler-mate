@@ -108,6 +108,7 @@ class TranspilerBaseModel(BaseModel):
     # Default dumps to JSON-friendly types (URLs -> str, datetimes -> ISO, etc.)
     def model_dump(self, *args, **kwargs):
         kwargs.setdefault("mode", "json")
+        kwargs.setdefault("exclude_none", True)
         return super().model_dump(*args, **kwargs)
 
     def model_dump_json(self, *args, **kwargs):

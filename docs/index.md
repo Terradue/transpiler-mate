@@ -33,4 +33,5 @@ Commands:
   datacite         Transpiles the input CWL to DataCite Metadata.
   invenio-publish  Publishes the input CWL to an Invenio instance.
   ogcrecord        Transpiles the input CWL to OGC API Record.
+  oras-annotations  Transpiles the input CWL to Oras annotations.
 ```
