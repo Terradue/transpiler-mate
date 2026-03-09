@@ -27,29 +27,29 @@ from transpiler_mate import TranspilerBaseModel
 
 class OciAnnotations(TranspilerBaseModel):
     org_opencontainers_image_title: Optional[str] = Field(
-        None, alias='org.opencontainers.image.title'
+        None, alias="org.opencontainers.image.title"
     )
     org_opencontainers_image_description: Optional[str] = Field(
-        None, alias='org.opencontainers.image.description'
+        None, alias="org.opencontainers.image.description"
     )
     org_opencontainers_image_version: Optional[str] = Field(
-        None, alias='org.opencontainers.image.version'
+        None, alias="org.opencontainers.image.version"
     )
     org_opencontainers_image_source: Optional[str] = Field(
-        None, alias='org.opencontainers.image.source'
+        None, alias="org.opencontainers.image.source"
     )
     org_opencontainers_image_revision: Optional[str] = Field(
-        None, alias='org.opencontainers.image.revision'
+        None, alias="org.opencontainers.image.revision"
     )
     org_opencontainers_image_created: Optional[Union[date, datetime]] = Field(
-        None, alias='org.opencontainers.image.created'
+        None, alias="org.opencontainers.image.created"
     )
     org_opencontainers_image_licenses: Optional[str] = Field(
-        None, alias='org.opencontainers.image.licenses'
+        None, alias="org.opencontainers.image.licenses"
     )
-    org_cwl_entrypoint: Optional[str] = Field(None, alias='org.cwl.entrypoint')
-    org_cwl_spec: Optional[str] = Field(None, alias='org.cwl.spec')
-    org_cwl_type: Optional[str] = Field(None, alias='org.cwl.type')
+    org_cwl_entrypoint: Optional[str] = Field(None, alias="org.cwl.entrypoint")
+    org_cwl_spec: Optional[str] = Field(None, alias="org.cwl.spec")
+    org_cwl_type: Optional[str] = Field(None, alias="org.cwl.type")
 
 
 class Model(RootModel[OciAnnotations]):

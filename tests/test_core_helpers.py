@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from datetime import date
 from httpx import Response
 from pydantic import AnyUrl
+from types import SimpleNamespace
 
 from transpiler_mate import TranspilerBaseModel, _decode, _log_response
 from transpiler_mate.invenio import (
@@ -11,9 +13,11 @@ from transpiler_mate.invenio import (
 )
 from transpiler_mate.metadata.software_application_models import (
     AuthorRole,
+    CreativeWork,
     Organization,
     Person,
 )
+from transpiler_mate.oci import OrasAnnotationsTranspiler, _to_license_spdx
 from invenio_rest_api_client.models.role_id import RoleId
 
 
@@ -92,3 +96,45 @@ def test_to_creator_from_author_role_maps_datacite_role() -> None:
     creator = _to_creator(role)
 
     assert creator.role.id == RoleId.DATACURATOR
+
+
+def test_to_license_spdx_supports_creative_work_and_url() -> None:
+    assert _to_license_spdx(CreativeWork(identifier="Apache-2.0")) == "Apache-2.0"
+    assert _to_license_spdx("https://spdx.org/licenses/MIT.html") == "MIT.html"
+
+
+def test_oras_annotations_transpiler_generates_oci_annotations() -> None:
+    metadata = SimpleNamespace(
+        name="Example Tool",
+        description="Example workflow metadata",
+        software_version="1.2.3",
+        date_created=date(2026, 3, 9),
+        license=[
+            CreativeWork(identifier="Apache-2.0"),
+            "https://spdx.org/licenses/MIT.html",
+        ],
+    )
+    process = SimpleNamespace(id="#main", cwlVersion="v1.2", class_="Workflow")
+
+    annotations = OrasAnnotationsTranspiler(
+        process=process,
+        image_source="https://github.com/acme/example-tool",
+        image_revision="abc123def",
+    ).transpile(metadata)
+
+    assert annotations["org_opencontainers_image_title"] == "Example Tool"
+    assert (
+        annotations["org_opencontainers_image_description"]
+        == "Example workflow metadata"
+    )
+    assert annotations["org_opencontainers_image_version"] == "1.2.3"
+    assert (
+        annotations["org_opencontainers_image_source"]
+        == "https://github.com/acme/example-tool"
+    )
+    assert annotations["org_opencontainers_image_revision"] == "abc123def"
+    assert annotations["org_opencontainers_image_created"] == "2026-03-09"
+    assert annotations["org_opencontainers_image_licenses"] == "Apache-2.0 OR MIT.html"
+    assert annotations["org_cwl_entrypoint"] == "#main"
+    assert annotations["org_cwl_spec"] == "v1.2"
+    assert annotations["org_cwl_type"] == "Workflow"

@@ -144,10 +144,18 @@ def _transpile(source: Path, transpiler: Transpiler, output: Path):
     "--workflow-id", required=True, type=click.STRING, help="ID of the main Workflow"
 )
 @click.option(
-    "--image-source", required=False, default=None, type=click.STRING, help="URL to get source code for building the image"
+    "--image-source",
+    required=False,
+    default=None,
+    type=click.STRING,
+    help="URL to get source code for building the image",
 )
 @click.option(
-    "--image-revision", required=False, default=None, type=click.STRING, help="Source control revision identifier for the packaged software"
+    "--image-revision",
+    required=False,
+    default=None,
+    type=click.STRING,
+    help="Source control revision identifier for the packaged software",
 )
 @click.option(
     "--output",
@@ -156,7 +164,13 @@ def _transpile(source: Path, transpiler: Transpiler, output: Path):
     default="annotations.json",
     help="The output file path",
 )
-def oci_annotations(source: Path, workflow_id: str, image_source: str | None, image_revision: str | None, output: Path):
+def oci_annotations(
+    source: Path,
+    workflow_id: str,
+    image_source: str | None,
+    image_revision: str | None,
+    output: Path,
+):
     """
     Transpiles the input CWL to OCI annotations.
     """
@@ -178,9 +192,9 @@ def oci_annotations(source: Path, workflow_id: str, image_source: str | None, im
             f"Process {workflow_id} does not exist in input CWL document, only {list(map(lambda p: p.id, resolved_process)) if isinstance(resolved_process, list) else ['']} available."
         )
 
-    data = OrasAnnotationsTranspiler(resolved_process, image_source, image_revision).transpile(
-        metadata_manager.metadata
-    )
+    data = OrasAnnotationsTranspiler(
+        resolved_process, image_source, image_revision
+    ).transpile(metadata_manager.metadata)
 
     logger.success("Metadata successfully transpiled!")
     logger.info("Serializing metadata...")
