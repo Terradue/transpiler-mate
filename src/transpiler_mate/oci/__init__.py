@@ -27,8 +27,10 @@ def _to_license_spdx(license: CreativeWork | AnyUrl) -> str:
 
 
 class OrasAnnotationsTranspiler(Transpiler):
-    def __init__(self, process: Process):
+    def __init__(self, process: Process, image_source: str | None, image_revision: str | None, ):
         self.process: Process = process
+        self.image_source = image_source
+        self.image_revision = image_revision
 
     def transpile(self, metadata_source: SoftwareApplication) -> Mapping[str, Any]:
         oci_annotations: OciAnnotations = OciAnnotations()
@@ -41,8 +43,8 @@ class OrasAnnotationsTranspiler(Transpiler):
         oci_annotations.org_opencontainers_image_version = (
             metadata_source.software_version
         )
-        # oras_annotations.org_opencontainers_image_source = ?
-        # oras_annotations.org_opencontainers_image_revision = ?
+        oci_annotations.org_opencontainers_image_source = self.image_source
+        oci_annotations.org_opencontainers_image_revision = self.image_revision
         oci_annotations.org_opencontainers_image_created = metadata_source.date_created
         oci_annotations.org_opencontainers_image_licenses = (
             " OR ".join(
