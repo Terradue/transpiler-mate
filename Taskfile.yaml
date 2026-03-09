@@ -67,6 +67,14 @@ tasks:
         USE_CUSTOM_TEMPLATES: 'false'
         TARGET_DIR: 'ogcapi_records'
 
+  process_oras_annotations:
+    cmds:
+    - task: datamodel_codegen
+      vars:
+        SCHEMA: 'oras_annotations'
+        USE_CUSTOM_TEMPLATES: 'false'
+        TARGET_DIR: 'oras'
+
   download_licenses_index:
     cmds:
     - |
@@ -176,5 +184,6 @@ tasks:
     - task: generate_jsonschema_doc
     - task: process_datacite
     - task: process_schemaorg
+    - task: process_oras_annotations
     - task: download_licenses_index
     - task: download_science_keywords_index

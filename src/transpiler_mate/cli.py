@@ -162,6 +162,68 @@ def _transpile(
     required=True
 )
 @click.option(
+    '--workflow-id',
+    required=True,
+    type=click.STRING,
+    help="ID of the main Workflow"
+)
+@click.option(
+    '--output',
+    type=click.Path(path_type=Path),
+    required=False,
+    default='annotations.json',
+    help="The output file path"
+)
+def oras_annotations(
+    source: Path,
+    workflow_id: str,
+    output: Path
+):
+    """
+    Transpiles the input CWL to Oras annotations.
+    """
+    logger.info(f"Reading metadata from {source}...")
+    metadata_manager: MetadataManager = MetadataManager(source)
+
+    logger.success(f"Metadata successfully read!")
+    logger.info('Transpiling metadata...')
+
+    from .oras import OrasAnnotationsTranspiler
+    from cwl_loader import load_cwl_from_yaml
+    from cwl_loader.utils import search_process
+    workflow = load_cwl_from_yaml(metadata_manager.raw_document)
+
+    resolved_process = search_process(workflow_id, workflow)
+    if not resolved_process:
+        raise ValueError(f"Process {workflow_id} does not exist in input CWL document, only {list(map(lambda p: p.id, resolved_process)) if isinstance(resolved_process, list) else [""]} available.")
+
+    data = OrasAnnotationsTranspiler(resolved_process).transpile(metadata_manager.metadata)
+
+    logger.success(f"Metadata successfully transpiled!")
+    logger.info('Serializing metadata...')
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open('w') as output_stream:
+        json.dump(
+            data,
+            output_stream,
+            indent=2
+        )
+
+    logger.success(f"Metadata successfully serialized to {output}.")
+    
+
+@main.command(context_settings={'show_default': True})
+@click.argument(
+    'source',
+    type=click.Path(
+        path_type=Path,
+        exists=True,
+        readable=True,
+        resolve_path=True
+    ),
+    required=True
+)
+@click.option(
     '--code-repository',
     required=False,
     help="The (SVN, GitHub, CodePlex, ...) code repository URL"
@@ -384,5 +446,5 @@ def bump_version(
 
     metadata_manager.update()
 
-for command in [bump_version, codemeta, datacite, invenio_publish, ogcrecord, ]:
+for command in [bump_version, codemeta, datacite, invenio_publish, ogcrecord, oras_annotations ]:
     command.callback = _track(command.callback)
