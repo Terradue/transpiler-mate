@@ -235,8 +235,13 @@ def markdown_transpile(
 
     process = search_process(workflow_id, cwl_document)
     if not process:
+        available = (
+            list(map(lambda p: getattr(p, "id", str(p)), cwl_document))
+            if isinstance(cwl_document, list)
+            else [getattr(cwl_document, "id", str(cwl_document))]
+        )
         raise ValueError(
-            f"Workflow {workflow_id} does not exist in input CWL document, only {list(map(lambda p: p.id, process)) if isinstance(process, list) else [process.id]} available."
+            f"Workflow {workflow_id} does not exist in input CWL document, only {available} available."
         )
 
     logger.success("Workflow model successfully read!")

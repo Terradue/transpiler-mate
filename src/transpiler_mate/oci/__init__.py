@@ -27,7 +27,12 @@ def _to_license_spdx(license: CreativeWork | AnyUrl) -> str:
 
 
 class OrasAnnotationsTranspiler(Transpiler):
-    def __init__(self, process: Process, image_source: str | None, image_revision: str | None, ):
+    def __init__(
+        self,
+        process: Process,
+        image_source: str | None,
+        image_revision: str | None,
+    ):
         self.process: Process = process
         self.image_source = image_source
         self.image_revision = image_revision
