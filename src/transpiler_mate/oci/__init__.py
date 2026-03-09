@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .oras_annotations_models import OrasAnnotations
+from .oci_annotations_models import OciAnnotations
 from ..metadata import Transpiler
 from ..metadata.software_application_models import CreativeWork, SoftwareApplication
 from cwl_utils.parser import Process
@@ -31,20 +31,20 @@ class OrasAnnotationsTranspiler(Transpiler):
         self.process: Process = process
 
     def transpile(self, metadata_source: SoftwareApplication) -> Mapping[str, Any]:
-        oras_annotations: OrasAnnotations = OrasAnnotations()
+        oci_annotations: OciAnnotations = OciAnnotations()
 
         # org.opencontainers.image.* properties
-        oras_annotations.org_opencontainers_image_title = metadata_source.name
-        oras_annotations.org_opencontainers_image_description = (
+        oci_annotations.org_opencontainers_image_title = metadata_source.name
+        oci_annotations.org_opencontainers_image_description = (
             metadata_source.description
         )
-        oras_annotations.org_opencontainers_image_version = (
+        oci_annotations.org_opencontainers_image_version = (
             metadata_source.software_version
         )
         # oras_annotations.org_opencontainers_image_source = ?
         # oras_annotations.org_opencontainers_image_revision = ?
-        oras_annotations.org_opencontainers_image_created = metadata_source.date_created
-        oras_annotations.org_opencontainers_image_licenses = (
+        oci_annotations.org_opencontainers_image_created = metadata_source.date_created
+        oci_annotations.org_opencontainers_image_licenses = (
             " OR ".join(
                 [_to_license_spdx(license) for license in metadata_source.license]
             )
@@ -53,8 +53,8 @@ class OrasAnnotationsTranspiler(Transpiler):
         )
 
         # org.cwl.* properties
-        oras_annotations.org_cwl_entrypoint = self.process.id
-        oras_annotations.org_cwl_spec = self.process.cwlVersion
-        oras_annotations.org_cwl_type = self.process.class_
+        oci_annotations.org_cwl_entrypoint = self.process.id
+        oci_annotations.org_cwl_spec = self.process.cwlVersion
+        oci_annotations.org_cwl_type = self.process.class_
 
-        return oras_annotations.model_dump()
+        return oci_annotations.model_dump()

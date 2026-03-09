@@ -14,11 +14,11 @@
 
 $schema: https://json-schema.org/draft/2020-12/schema
 $id: https://oras.land/docs/how_to_guides/manifest_annotations/
-$ref: '#/$defs/OrasAnnotations'
+$ref: '#/$defs/OciAnnotations'
 
 $defs:
 
-  OrasAnnotations:
+  OciAnnotations:
     type: object
     properties:
       org.opencontainers.image.title:

@@ -150,9 +150,9 @@ def _transpile(source: Path, transpiler: Transpiler, output: Path):
     default="annotations.json",
     help="The output file path",
 )
-def oras_annotations(source: Path, workflow_id: str, output: Path):
+def oci_annotations(source: Path, workflow_id: str, output: Path):
     """
-    Transpiles the input CWL to Oras annotations.
+    Transpiles the input CWL to OCI annotations.
     """
     logger.info(f"Reading metadata from {source}...")
     metadata_manager: MetadataManager = MetadataManager(source)
@@ -160,7 +160,7 @@ def oras_annotations(source: Path, workflow_id: str, output: Path):
     logger.success("Metadata successfully read!")
     logger.info("Transpiling metadata...")
 
-    from .oras import OrasAnnotationsTranspiler
+    from .oci import OrasAnnotationsTranspiler
     from cwl_loader import load_cwl_from_yaml
     from cwl_loader.utils import search_process
 
@@ -376,6 +376,6 @@ for command in [
     datacite,
     invenio_publish,
     ogcrecord,
-    oras_annotations,
+    oci_annotations,
 ]:
     command.callback = _track(command.callback)
