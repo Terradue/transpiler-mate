@@ -50,7 +50,6 @@ class OrasAnnotationsTranspiler(Transpiler):
         )
         oci_annotations.org_opencontainers_image_source = self.image_source
         oci_annotations.org_opencontainers_image_revision = self.image_revision
-        oci_annotations.org_opencontainers_image_created = metadata_source.date_created
         oci_annotations.org_opencontainers_image_licenses = (
             " OR ".join(
                 [_to_license_spdx(license) for license in metadata_source.license]
@@ -64,4 +63,6 @@ class OrasAnnotationsTranspiler(Transpiler):
         oci_annotations.org_cwl_spec = self.process.cwlVersion
         oci_annotations.org_cwl_type = self.process.class_
 
-        return oci_annotations.model_dump()
+        return {
+            "$manifest": oci_annotations.model_dump(by_alias=True, exclude_none=True)
+        }

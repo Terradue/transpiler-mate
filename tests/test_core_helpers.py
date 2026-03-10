@@ -120,21 +120,20 @@ def test_oras_annotations_transpiler_generates_oci_annotations() -> None:
         process=process,
         image_source="https://github.com/acme/example-tool",
         image_revision="abc123def",
-    ).transpile(metadata)
+    ).transpile(metadata)["$manifest"]
 
-    assert annotations["org_opencontainers_image_title"] == "Example Tool"
+    assert annotations["org.opencontainers.image.title"] == "Example Tool"
     assert (
-        annotations["org_opencontainers_image_description"]
+        annotations["org.opencontainers.image.description"]
         == "Example workflow metadata"
     )
-    assert annotations["org_opencontainers_image_version"] == "1.2.3"
+    assert annotations["org.opencontainers.image.version"] == "1.2.3"
     assert (
-        annotations["org_opencontainers_image_source"]
+        annotations["org.opencontainers.image.source"]
         == "https://github.com/acme/example-tool"
     )
-    assert annotations["org_opencontainers_image_revision"] == "abc123def"
-    assert annotations["org_opencontainers_image_created"] == "2026-03-09"
-    assert annotations["org_opencontainers_image_licenses"] == "Apache-2.0 OR MIT.html"
-    assert annotations["org_cwl_entrypoint"] == "#main"
-    assert annotations["org_cwl_spec"] == "v1.2"
-    assert annotations["org_cwl_type"] == "Workflow"
+    assert annotations["org.opencontainers.image.revision"] == "abc123def"
+    assert annotations["org.opencontainers.image.licenses"] == "Apache-2.0 OR MIT.html"
+    assert annotations["org.cwl.entrypoint"] == "#main"
+    assert annotations["org.cwl.spec"] == "v1.2"
+    assert annotations["org.cwl.type"] == "Workflow"
