@@ -25,7 +25,7 @@
 The are no contributors for this project.
 {% endif %}
 
-{% if software_application.softwareHelp %}# {{software_application.softwareHelp.name}}
+{% if software_application.softwareHelp %}## {{software_application.softwareHelp.name}}
 
 {{software_application.softwareHelp.name}} can be found on [{{software_application.softwareHelp.url}}]({{software_application.softwareHelp.url}}).
 {% endif %}
@@ -41,7 +41,7 @@ The are no contributors for this project.
 {% for softwareRequirement in software_application.softwareRequirements %}- [{{softwareRequirement}}]({{softwareRequirement}})
 {% endfor %}
 
-{% if software_source_code %}# Software Source code
+{% if software_source_code %}## Software Source code
 
 - Browsable version of the [source repository]({{software_source_code.codeRepository}});
 - [Continuous integration]({{software_source_code.continuousIntegration}}) system used by the project;
