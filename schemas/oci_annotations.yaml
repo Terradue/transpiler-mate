@@ -31,12 +31,6 @@ $defs:
         type: string
       org.opencontainers.image.revision:
         type: string
-      org.opencontainers.image.created:
-        oneOf:
-        - type: string
-          format: date
-        - type: string
-          format: date-time
       org.opencontainers.image.licenses:
         type: string
       org.cwl.entrypoint:
