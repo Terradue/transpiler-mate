@@ -10,6 +10,7 @@ Given an input CWL metadata source, Transpiler Mate can:
 - Generate **DataCite** metadata payloads.
 - Generate **OGC API - Records** payloads.
 - Generate **Markdown** documentation for workflows.
+- Generate **OCI Annotations**.
 - Publish records to **InvenioRDM**.
 - Bump semantic versions in metadata files.
 
@@ -20,6 +21,7 @@ Documentation: <https://terradue.github.io/transpiler-mate/>
 - CodeMeta: <https://codemeta.github.io/>
 - DataCite Metadata: <https://inveniordm.docs.cern.ch/reference/metadata/#metadata>
 - OGC API - Records: <https://ogcapi.ogc.org/records/>
+- OCI Annotations: <https://oras.land/docs/how_to_guides/manifest_annotations/>
 - InvenioRDM: <https://inveniosoftware.org/products/rdm/>
 
 ## Requirements
@@ -56,6 +58,7 @@ Main commands:
 - `transpiler-mate datacite <source> [--output datacite.json]`
 - `transpiler-mate ogcrecord <source> [--output record.json]`
 - `transpiler-mate markdown <source> --workflow-id <id> [--output DIR] [--code-repository URL]`
+- `transpiler-mate oci-annotations <source> --workflow-id <id> [--image-source URL] [--image-revision ] [--output annotations.json]`
 - `transpiler-mate invenio-publish <source> --base-url URL --auth-token TOKEN [--attach FILE ...]`
 - `transpiler-mate bump-version <source> [--version-part major|minor|patch|build|pre-release]`
 

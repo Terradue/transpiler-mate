@@ -6,16 +6,16 @@
 >
 > {{software_application.dateCreated}} - {{timestamp}} Copyright [{{software_application.publisher.name}}](mailto:{{software_application.publisher.email}}) - {% if software_application.publisher.identifier %}> [{{software_application.publisher.identifier}}]({{software_application.publisher.identifier}}){% endif %}
 
-# Project Team
+## Project Team
 
-## Authors
+### Authors
 
 | Name | Email | Organization | Role | Identifier |
 |------|-------|--------------|------|------------|
 {% for role in software_application.author | normalize_author %}| {{role.author.familyName}}, {{role.author.givenName}} | [{{role.author.email}}](mailto:{{role.author.email}}) | [{{role.author.affiliation.name}}]({{role.author.affiliation.identifier}}) | [{{role.roleName}}]({{role.additionalType}}) | [{{role.author.identifier}}]({{role.author.identifier}}) |
 {% endfor %}
 
-## Contributors
+### Contributors
 {% if software_application.contributor %}
 | Name | Email | Organization | Role | Identifier |
 |------|-------|--------------|------|------------|
@@ -30,13 +30,13 @@ The are no contributors for this project.
 {{software_application.softwareHelp.name}} can be found on [{{software_application.softwareHelp.url}}]({{software_application.softwareHelp.url}}).
 {% endif %}
 
-# Runtime environment
+## Runtime environment
 
-## Supported Operating Systems
+### Supported Operating Systems
 
 {% for operatingSystem in software_application.operatingSystem %}- {{operatingSystem}}
 {% endfor %}
-## Requirements
+### Requirements
 
 {% for softwareRequirement in software_application.softwareRequirements %}- [{{softwareRequirement}}]({{softwareRequirement}})
 {% endfor %}
