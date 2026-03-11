@@ -2,9 +2,7 @@
 
 ### CWL Class
 
-```
-{{clt.class_}}
-```
+[{{clt.class_}}](https://www.commonwl.org/{{clt.cwlVersion}}/{% if "ExpressionTool" == clt.class_ %}Workflow{% else %}{{clt.class_}}{% endif %}.html#{{clt.class_}})
 
 ### Inputs
 
@@ -12,19 +10,23 @@
 |----|------|-------|
 {% for input in clt.inputs %}| `{{input.id}}` | `{% if input.inputBinding.prefix %}{{input.inputBinding.prefix}}{% else %}--{{input.id}}{% endif %}` | `{{ input.type_ | type_to_string }}` |
 {% endfor %}
-### Execution usage example:
+{% if "CommandLineTool" == clt.class_ %}### Execution usage example:
 
 ```
 {{clt | get_exection_command}} \
 {% for input in clt.inputs %}{% if input.type_ is nullable %}({% endif %}{% if input.inputBinding.prefix %}{{input.inputBinding.prefix}}{% else %}--{{input.id}}{% endif %} <{{input.id.upper()}}>{% if input.type_ is nullable %}){% endif %}{% if not loop.last %} \{% endif %}
-{% endfor %}```
+{% endfor %}```{% endif %}
 {%- endmacro %}
 
 {% macro serialize_workflow(workflow) -%}## {{workflow.id}}
 
 ### CWL Class
 
-`{{workflow.class_}}`
+[{{workflow.class_}}](https://www.commonwl.org/{{workflow.cwlVersion}}/{{workflow.class_}}.html#{{workflow.class_}})
+
+{% if workflow.requirements %}### Requirements
+{% for requirement in workflow.requirements %}
+* [{{requirement.class_}}](https://www.commonwl.org/{{workflow.cwlVersion}}/{{workflow.class_}}.html#{{requirement.class_}}){% endfor %}{% endif %}
 
 ### Inputs
 
