@@ -57,7 +57,9 @@
 ![{{workflow.id}} flow diagram](./{{workflow.id}}/{{diagram}}.svg "{{workflow.id}} {{diagram}} diagram")
 {% endfor %}
 
-{% for step in workflow.steps %}
+{% for step in workflow.steps %}### Run in step
+
+`{{step.id}}`
 
 {% set resolved_step = index.get(step.run[1:]) %}
 {% if "Workflow" == resolved_step.class_ %}
@@ -65,10 +67,6 @@
 {% else %}
 {{serialize_clt(resolved_step)}}
 {% endif %}
-
-### Run in step
-
-`{{step.id}}`
 {% endfor %}
 
 {%- endmacro %}
