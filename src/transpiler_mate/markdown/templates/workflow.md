@@ -50,11 +50,13 @@
 {% endfor %}
 
 ### UML Diagrams
-{% set diagrams=['activity', 'component', 'class', 'sequence', 'state'] %}
+{% set diagrams=['Activity', 'Component', 'Class', 'Sequence', 'State'] %}
 {% for diagram in diagrams %}
-#### UML `{{diagram}}` diagram
+#### {{diagram}} diagram
 
-![{{workflow.id}} flow diagram](./{{workflow.id}}/{{diagram}}.svg "{{workflow.id}} {{diagram}} diagram")
+Learn more about the [{{diagram}} diagram](https://en.wikipedia.org/wiki/{{diagram}}_diagram) below.
+
+![{{workflow.id}} flow diagram](./{{workflow.id}}/{{diagram | lower}}.svg "{{workflow.id}} {{diagram}} diagram")
 {% endfor %}
 
 {% for step in workflow.steps %}### Run in step
