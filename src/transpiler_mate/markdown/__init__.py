@@ -17,6 +17,7 @@ from __future__ import annotations
 from cwl_loader import load_cwl_from_yaml
 from cwl_loader.utils import to_index
 from cwl_loader.utils import search_process
+from cwl_utils.parser import Process, cwl_v1_0, cwl_v1_1, cwl_v1_2
 from datetime import datetime
 from importlib.metadata import version, PackageNotFoundError
 from jinja2 import Environment, PackageLoader
@@ -47,6 +48,16 @@ PERSON_TYPE = "https://schema.org/Person"
 ROLE_TYPE = "https://schema.org/Role"
 
 RoleKind = Literal["author", "contributor"]
+
+InputRecordSchema = Union[
+    cwl_v1_0.InputRecordSchema, cwl_v1_1.InputRecordSchema, cwl_v1_2.InputRecordSchema
+]
+
+SchemaDefRequirement = Union[
+    cwl_v1_0.SchemaDefRequirement,
+    cwl_v1_1.SchemaDefRequirement,
+    cwl_v1_2.SchemaDefRequirement,
+]
 
 
 def _normalize_role_people(value: Any, *, person_key: RoleKind) -> list[dict]:
@@ -119,7 +130,7 @@ def normalize_contributor(value: Any) -> list[dict]:
     return _normalize_role_people(value, person_key="contributor")
 
 
-def type_to_string(typ: Any) -> str:
+def type_to_string(typ: Any, parent: Process) -> str:
     """
     Serializes a CWL type to a human-readable string.
 
@@ -130,15 +141,25 @@ def type_to_string(typ: Any) -> str:
         `str`: The human-readable string representing the input CWL type.
     """
     if get_origin(typ) is Union:
-        return f"One of:<ul>{''.join(f'<li>{type_to_string(inner_type)}</li>' for inner_type in get_args(typ))}</ul>"
+        return f"One of:<ul>{''.join(f'<li>{type_to_string(inner_type, parent)}</li>' for inner_type in get_args(typ))}</ul>"
 
     if isinstance(typ, list):
-        return (
-            f"One of:<ul>{''.join(f'<li>{type_to_string(t)}</li>' for t in typ)}</ul>"
-        )
+        return f"One of:<ul>{''.join(f'<li>{type_to_string(t, parent)}</li>' for t in typ)}</ul>"
 
     if hasattr(typ, "items"):
-        return f"{type_to_string(typ.items)}`[]`"
+        return f"`array` of {type_to_string(typ.items, parent)}"
+
+    if isinstance(typ, InputRecordSchema):
+        fields = (
+            "".join(
+                f"<li>`{field.name.split('/')[-1]}`: {type_to_string(field.type_, parent)}</li>"
+                for field in typ.fields
+            )
+            if typ.fields
+            else ""
+        )
+
+        return f"[{typ.name.split('#')[-1]}]({typ.name}):<ul>{fields}</ul>"
 
     if isinstance(typ, str):
         type_str = typ
@@ -148,9 +169,17 @@ def type_to_string(typ: Any) -> str:
         type_str = typ.type_
     else:
         # last hope to follow back
-        type_str = str(type)
+        type_str = str(typ)
 
     if "#" in type_str:  # we can assume it is an URL
+        if parent.requirements:
+            for requirement in parent.requirements:
+                if isinstance(requirement, SchemaDefRequirement):
+                    for inner_type in requirement.types:
+                        if type_str == inner_type.name:
+                            return type_to_string(inner_type, parent)
+
+        # follow up on plain link if not found
         return f"[{type_str.split('#')[-1]}]({type_str})"
 
     for special_type in ["Any", "Directory", "File"]:
@@ -164,7 +193,7 @@ def type_to_string(typ: Any) -> str:
             f"<li>`{symbol.split('/')[-1]}`</li>"
             for symbol in typ.symbols  # type: ignore
         )
-        return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#{typ.__class__.__name__}):<ul>{symbols}</ul>"
+        return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#{type(typ).__name__}):<ul>{symbols}</ul>"
 
     return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#CWLType)"
 
@@ -219,13 +248,13 @@ def get_exection_command(clt: Any) -> str:
 _jinja_environment = Environment(
     loader=PackageLoader(package_name="transpiler_mate.markdown")
 )
+_jinja_environment.globals["type_to_string"] = type_to_string
 _jinja_environment.filters.update(
     _to_mapping(
         [
             get_exection_command,
             normalize_author,
             normalize_contributor,
-            type_to_string,
         ]
     )
 )

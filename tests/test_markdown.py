@@ -1,5 +1,20 @@
+# Copyright 2026 Terradue
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 from __future__ import annotations
 
+from cwl_utils.parser.cwl_v1_2 import Workflow
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Union
@@ -75,13 +90,14 @@ def test_normalize_author_rejects_invalid_shapes() -> None:
 
 
 def test_type_to_string_and_nullable_helpers() -> None:
+    parent = Workflow(inputs=[], outputs=[], steps=[])
     assert (
-        md.type_to_string(Union[str, int])
+        md.type_to_string(Union[str, int], parent)
         == "One of:<ul><li>[str](https://www.commonwl.org/v1.2/Workflow.html#CWLType)</li><li>[int](https://www.commonwl.org/v1.2/Workflow.html#CWLType)</li></ul>"
     )
     assert (
-        md.type_to_string(_ArrayType())
-        == "[string](https://www.commonwl.org/v1.2/Workflow.html#CWLType)`[]`"
+        md.type_to_string(_ArrayType(), parent)
+        == "`array` of [string](https://www.commonwl.org/v1.2/Workflow.html#CWLType)"
     )
     assert md.nullable(["null", "string"]) is True
 
