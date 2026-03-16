@@ -160,7 +160,11 @@ def type_to_string(typ: Any) -> str:
             )
 
     if "enum" == type_str:
-        return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#{typ.__class__.__name__}):<ul>{''.join(f'<li>`{symbol.split('/')[-1]}`</li>' for symbol in typ.symbols)}</ul>"  # type: ignore
+        symbols = "".join(
+            f"<li>`{symbol.split('/')[-1]}`</li>"
+            for symbol in typ.symbols  # type: ignore
+        )
+        return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#{typ.__class__.__name__}):<ul>{symbols}</ul>"
 
     return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#CWLType)"
 
