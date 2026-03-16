@@ -130,25 +130,43 @@ def type_to_string(typ: Any) -> str:
         `str`: The human-readable string representing the input CWL type.
     """
     if get_origin(typ) is Union:
-        return " or ".join([type_to_string(inner_type) for inner_type in get_args(typ)])
+        return f"One of:<ul>{''.join(f'<li>{type_to_string(inner_type)}</li>' for inner_type in get_args(typ))}</ul>"
 
     if isinstance(typ, list):
-        return f"[ {', '.join([type_to_string(t) for t in typ])} ]"
+        return (
+            f"One of:<ul>{''.join(f'<li>{type_to_string(t)}</li>' for t in typ)}</ul>"
+        )
 
     if hasattr(typ, "items"):
-        return f"{type_to_string(typ.items)}[]"
+        return f"{type_to_string(typ.items)}`[]`"
 
     if isinstance(typ, str):
-        return typ
+        type_str = typ
+    elif hasattr(typ, "__name__"):
+        type_str = typ.__name__
+    elif hasattr(typ, "type_"):
+        type_str = typ.type_
+    else:
+        # last hope to follow back
+        type_str = str(type)
 
-    if hasattr(typ, "__name__"):
-        return typ.__name__
+    if "#" in type_str:  # we can assume it is an URL
+        return f"[{type_str.split('#')[-1]}]({type_str})"
 
-    if hasattr(typ, "type_"):
-        return typ.type_
+    for special_type in ["Any", "Directory", "File"]:
+        if special_type == type_str:
+            return (
+                f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#{type_str})"
+            )
 
-    # last hope to follow back
-    return str(type)
+    if "enum" == type_str:
+        symbols = "".join(
+            f"<li>`{symbol.split('/')[-1]}`</li>"
+            for symbol in typ.symbols  # type: ignore
+        )
+        return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#{typ.__class__.__name__}):<ul>{symbols}</ul>"
+
+    return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#CWLType)"
 
 
 def _get_version() -> str:

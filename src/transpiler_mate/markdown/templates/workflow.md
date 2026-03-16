@@ -8,7 +8,7 @@
 
 | Id | Option | Type |
 |----|------|-------|
-{% for input in clt.inputs %}| `{{input.id}}` | `{% if input.inputBinding.prefix %}{{input.inputBinding.prefix}}{% else %}--{{input.id}}{% endif %}` | `{{ input.type_ | type_to_string }}` |
+{% for input in clt.inputs %}| `{{input.id}}` | `{% if input.inputBinding.prefix %}{{input.inputBinding.prefix}}{% else %}--{{input.id}}{% endif %}` | {{ input.type_ | type_to_string }} |
 {% endfor %}
 {% if "CommandLineTool" == clt.class_ %}### Execution usage example:
 
@@ -32,7 +32,7 @@
 
 | Id | Type | Label | Doc |
 |----|------|-------|-----|
-{% for input in workflow.inputs %}| `{{input.id}}` | `{{ input.type_ | type_to_string }}` | {{input.label}} | {{input.doc}} |
+{% for input in workflow.inputs %}| `{{input.id}}` | {{ input.type_ | type_to_string }} | {{input.label}} | {{input.doc}} |
 {% endfor %}
 
 ### Steps
@@ -46,7 +46,7 @@
 
 | Id | Type | Label | Doc |
 |----|------|-------|-----|
-{% for output in workflow.outputs %}| `{{output.id}}` | `{{ output.type_ | type_to_string }}` | {{output.label}} | {{output.doc}} |
+{% for output in workflow.outputs %}| `{{output.id}}` | {{ output.type_ | type_to_string }} | {{output.label}} | {{output.doc}} |
 {% endfor %}
 
 ### UML Diagrams
