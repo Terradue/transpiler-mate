@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from cwl_utils.parser.cwl_v1_2 import Workflow
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Union
@@ -75,13 +76,14 @@ def test_normalize_author_rejects_invalid_shapes() -> None:
 
 
 def test_type_to_string_and_nullable_helpers() -> None:
+    parent = Workflow(inputs=[], outputs=[], steps=[])
     assert (
-        md.type_to_string(Union[str, int])
+        md.type_to_string(Union[str, int], parent)
         == "One of:<ul><li>[str](https://www.commonwl.org/v1.2/Workflow.html#CWLType)</li><li>[int](https://www.commonwl.org/v1.2/Workflow.html#CWLType)</li></ul>"
     )
     assert (
-        md.type_to_string(_ArrayType())
-        == "[string](https://www.commonwl.org/v1.2/Workflow.html#CWLType)`[]`"
+        md.type_to_string(_ArrayType(), parent)
+        == "`array` of [string](https://www.commonwl.org/v1.2/Workflow.html#CWLType)"
     )
     assert md.nullable(["null", "string"]) is True
 
