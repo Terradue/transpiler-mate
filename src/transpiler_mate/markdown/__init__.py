@@ -133,7 +133,9 @@ def type_to_string(typ: Any) -> str:
         return f"One of:<ul>{''.join(f'<li>{type_to_string(inner_type)}</li>' for inner_type in get_args(typ))}</ul>"
 
     if isinstance(typ, list):
-        return f"One of:<ul>{''.join(f'<li>{type_to_string(t)}</li>' for t in typ)}</ul>"
+        return (
+            f"One of:<ul>{''.join(f'<li>{type_to_string(t)}</li>' for t in typ)}</ul>"
+        )
 
     if hasattr(typ, "items"):
         return f"{type_to_string(typ.items)}`[]`"
@@ -148,15 +150,17 @@ def type_to_string(typ: Any) -> str:
         # last hope to follow back
         type_str = str(type)
 
-    if "#" in type_str: # we can assume it is an URL
-        return f"[{type_str.split("#")[-1]}]({type_str})"
+    if "#" in type_str:  # we can assume it is an URL
+        return f"[{type_str.split('#')[-1]}]({type_str})"
 
     for special_type in ["Any", "Directory", "File"]:
         if special_type == type_str:
-            return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#{type_str})"
+            return (
+                f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#{type_str})"
+            )
 
     if "enum" == type_str:
-        return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#CWLType):<ul>{''.join(f'<li>`{symbol.split('/')[-1]}`</li>' for symbol in typ.symbols)}</ul>" # type: ignore
+        return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#CWLType):<ul>{''.join(f'<li>`{symbol.split('/')[-1]}`</li>' for symbol in typ.symbols)}</ul>"  # type: ignore
 
     return f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#CWLType)"
 
