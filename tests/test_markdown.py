@@ -75,8 +75,14 @@ def test_normalize_author_rejects_invalid_shapes() -> None:
 
 
 def test_type_to_string_and_nullable_helpers() -> None:
-    assert md.type_to_string(Union[str, int]) == "One of:<ul><li>[str](https://www.commonwl.org/v1.2/Workflow.html#CWLType)</li><li>[int](https://www.commonwl.org/v1.2/Workflow.html#CWLType)</li></ul>"
-    assert md.type_to_string(_ArrayType()) == "[string](https://www.commonwl.org/v1.2/Workflow.html#CWLType)`[]`"
+    assert (
+        md.type_to_string(Union[str, int])
+        == "One of:<ul><li>[str](https://www.commonwl.org/v1.2/Workflow.html#CWLType)</li><li>[int](https://www.commonwl.org/v1.2/Workflow.html#CWLType)</li></ul>"
+    )
+    assert (
+        md.type_to_string(_ArrayType())
+        == "[string](https://www.commonwl.org/v1.2/Workflow.html#CWLType)`[]`"
+    )
     assert md.nullable(["null", "string"]) is True
 
 
