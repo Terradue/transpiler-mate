@@ -116,7 +116,7 @@ class LinkBase(TranspilerBaseModel):
 
 
 class Link(LinkBase):
-    href: AnyUrl
+    href: str
 
 
 class LinkTemplate(LinkBase):

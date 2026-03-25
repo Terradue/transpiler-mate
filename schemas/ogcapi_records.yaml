@@ -131,7 +131,6 @@ $defs:
         properties:
           href:
             type: string
-            format: uri
 
   linkTemplate:
     allOf:
