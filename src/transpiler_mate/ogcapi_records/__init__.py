@@ -137,7 +137,7 @@ class OgcRecordsTranspiler(Transpiler):
             links=list(
                 map(
                     lambda creative_work: Link(
-                        href=creative_work.url,
+                        href=str(creative_work.url),
                         hreflang="en",
                         title=creative_work.name,
                         rel="help",
