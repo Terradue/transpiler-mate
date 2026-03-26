@@ -92,7 +92,7 @@ def test_ogc_records_transpile_maps_keywords_themes_and_contacts(monkeypatch) ->
     assert result["properties"]["themes"][0]["concepts"][0]["id"] == "EARTH SCIENCE"
     assert result["properties"]["contacts"][0]["position"] == "Principal Investigator"
     assert (
-        result["properties"]["license_"]
+        result["properties"]["license"]
         == "https://spdx.org/licenses/Apache-2.0.html: https://spdx.org/licenses/MIT.html"
     )
     assert result["links"][0]["href"] == "https://example.org/help"
