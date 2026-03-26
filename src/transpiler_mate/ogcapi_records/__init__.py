@@ -169,7 +169,7 @@ class OgcRecordsTranspiler(Transpiler):
                         else [metadata_source.author],
                     )
                 ),
-                license_=": ".join(
+                license=": ".join(
                     list(
                         map(
                             lambda license: (

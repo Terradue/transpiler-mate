@@ -274,6 +274,9 @@ $defs:
   recordCommonProperties:
     type: object
     properties:
+      version:
+        type: string
+        default: '1'
       created:
         type: string
         description: The date this record was created in the server.
@@ -539,6 +542,8 @@ $defs:
         description: The extensions/conformance classes used in this record.
         items:
           type: string
+        default:
+          - http://www.opengis.net/spec/ogcapi-records-1/1.0/req/record-core 
       properties:
         allOf:
           - $ref: '#/$defs/recordCommonProperties'
