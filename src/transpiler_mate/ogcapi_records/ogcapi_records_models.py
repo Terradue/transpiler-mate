@@ -22,7 +22,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import AliasChoices, AnyUrl, EmailStr, Field, RootModel
+from pydantic import AnyUrl, EmailStr, Field, RootModel
 from transpiler_mate import TranspilerBaseModel
 
 
