@@ -22,7 +22,6 @@ from .ogcapi_records_models import (
     RecordCommonProperties,
     RecordGeoJSON,
     Theme,
-    Type7,
 )
 from .sciencekeywords import KEYWORDS_INDEX, ScienceKeywordRecord
 from ..metadata.software_application_models import (
@@ -133,7 +132,6 @@ class OgcRecordsTranspiler(Transpiler):
 
         record_geojson: RecordGeoJSON = RecordGeoJSON(
             id=f"urn:uuid:{uuid.uuid4()}",
-            type=Type7.FEATURE,
             links=list(
                 map(
                     lambda creative_work: Link(

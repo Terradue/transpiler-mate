@@ -383,8 +383,7 @@ $defs:
     properties:
       type:
         type: string
-        enum:
-          - Point
+        default: 'Point'
       coordinates:
         type: array
         minItems: 2
@@ -399,8 +398,7 @@ $defs:
     properties:
       type:
         type: string
-        enum:
-          - MultiPoint
+        default: 'MultiPoint'
       coordinates:
         type: array
         items:
@@ -417,8 +415,7 @@ $defs:
     properties:
       type:
         type: string
-        enum:
-          - LineString
+        default: 'LineString'
       coordinates:
         type: array
         minItems: 2
@@ -436,8 +433,7 @@ $defs:
     properties:
       type:
         type: string
-        enum:
-          - MultiLineString
+        default: 'MultiLineString'
       coordinates:
         type: array
         items:
@@ -457,8 +453,7 @@ $defs:
     properties:
       type:
         type: string
-        enum:
-          - Polygon
+        default: 'Polygon'
       coordinates:
         type: array
         items:
@@ -478,8 +473,7 @@ $defs:
     properties:
       type:
         type: string
-        enum:
-          - MultiPoint
+        default: 'MultiPoint'
       coordinates:
         type: array
         items:
@@ -506,8 +500,7 @@ $defs:
     properties:
       type:
         type: string
-        enum:
-          - GeometryCollection
+        default: 'GeometryCollection'
       geometries:
         type: array
         items:
@@ -525,8 +518,7 @@ $defs:
         description: A unique identifier of the catalog record.
       type:
         type: string
-        enum:
-          - Feature
+        default: 'Feature'
       time:
         oneOf:
           - enum:
