@@ -52,13 +52,9 @@ def _software_application() -> SoftwareApplication:
         dateCreated=date(2026, 3, 9),
         license=[
             CreativeWork(
-                identifier="Apache-2.0",
-                url="https://spdx.org/licenses/Apache-2.0.html"
+                identifier="Apache-2.0", url="https://spdx.org/licenses/Apache-2.0.html"
             ),
-            CreativeWork(
-                identifier="MIT",
-                url="https://spdx.org/licenses/MIT.html"
-            ),
+            CreativeWork(identifier="MIT", url="https://spdx.org/licenses/MIT.html"),
         ],
         softwareVersion="1.2.3",
         softwareHelp=CreativeWork(name="Help", url="https://example.org/help"),
@@ -97,10 +93,7 @@ def test_ogc_records_transpile_maps_keywords_themes_and_contacts(monkeypatch) ->
     assert result["properties"]["themes"][0]["scheme"] == str(SCIENCE_KEYWORDS_TERM_SET)
     assert result["properties"]["themes"][0]["concepts"][0]["id"] == "EARTH SCIENCE"
     assert result["properties"]["contacts"][0]["position"] == "Principal Investigator"
-    assert (
-        result["properties"]["license"]
-        == "Apache-2.0: MIT"
-    )
+    assert result["properties"]["license"] == "Apache-2.0: MIT"
     assert result["links"][0]["href"] == "https://example.org/help"
 
 

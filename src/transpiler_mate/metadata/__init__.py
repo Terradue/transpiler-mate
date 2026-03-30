@@ -66,11 +66,23 @@ class MetadataManager:
 
         logger.info("Resolving License details from SPDX License List...")
 
-        def resolve_license(license: AnyUrl | CreativeWork | str) -> CreativeWork | AnyUrl:
+        def resolve_license(
+            license: AnyUrl | CreativeWork | str,
+        ) -> CreativeWork | AnyUrl:
             if isinstance(license, CreativeWork):
-                return resolve_license(license.identifier) if license.identifier and license.identifier in LICENSES_INDEX else resolve_license(license.url) if license.url and str(license.url) in LICENSES_INDEX else license
+                return (
+                    resolve_license(license.identifier)
+                    if license.identifier and license.identifier in LICENSES_INDEX
+                    else resolve_license(license.url)
+                    if license.url and str(license.url) in LICENSES_INDEX
+                    else license
+                )
             elif isinstance(license, AnyUrl):
-                return resolve_license(str(license)) if str(license) in LICENSES_INDEX else license 
+                return (
+                    resolve_license(str(license))
+                    if str(license) in LICENSES_INDEX
+                    else license
+                )
 
             resolved_license = LICENSES_INDEX[str(license)]
             return resolved_license
