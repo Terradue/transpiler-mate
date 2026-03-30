@@ -17,6 +17,7 @@ from .licenses import LICENSES_INDEX
 from abc import abstractmethod
 from loguru import logger
 from pathlib import Path
+from pydantic import AnyUrl
 from pyld import jsonld
 from ruamel.yaml import YAML
 from ruamel.yaml.comments import CommentedMap
@@ -65,18 +66,32 @@ class MetadataManager:
 
         logger.info("Resolving License details from SPDX License List...")
 
-        def resolve_license(license: CreativeWork) -> CreativeWork:
-            if license.identifier and license.identifier in LICENSES_INDEX:
-                logger.info(f"Detected {license.identifier} indexed in SPDX Licenses")
-                return LICENSES_INDEX[str(license.identifier)]
-            logger.info("License is not indexed in SPDX Licenses")
-            return license
+        def resolve_license(
+            license: AnyUrl | CreativeWork | str,
+        ) -> CreativeWork | AnyUrl:
+            if isinstance(license, CreativeWork):
+                return (
+                    resolve_license(license.identifier)
+                    if license.identifier and license.identifier in LICENSES_INDEX
+                    else resolve_license(license.url)
+                    if license.url and str(license.url) in LICENSES_INDEX
+                    else license
+                )
+            elif isinstance(license, AnyUrl):
+                return (
+                    resolve_license(str(license))
+                    if str(license) in LICENSES_INDEX
+                    else license
+                )
+
+            resolved_license = LICENSES_INDEX[str(license)]
+            return resolved_license
 
         if isinstance(self.metadata.license, list):
             for i, license in enumerate(self.metadata.license):
                 if isinstance(license, CreativeWork):
                     self.metadata.license[i] = resolve_license(license)
-        elif isinstance(self.metadata.license, CreativeWork):
+        else:
             self.metadata.license = resolve_license(self.metadata.license)
 
     def update(self):

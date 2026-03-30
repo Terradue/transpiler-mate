@@ -49,6 +49,17 @@
 {% for output in workflow.outputs %}| `{{output.id}}` | {{ type_to_string(output.type_, clt) }} | {{output.label}} | {{output.doc}} |
 {% endfor %}
 
+### OGC API - Processes
+
+When `{{ workflow.id }}` [{{workflow.class_}}](https://www.commonwl.org/{{workflow.cwlVersion}}/{{workflow.class_}}.html#{{workflow.class_}}) is exposed through [OGC API - Processes - Part 1: Core](https://docs.ogc.org/is/18-062r2/18-062r2.html), `inputs` and `outputs` fields below represent the interface of the [getProcessDescription](https://developer.ogc.org/api/processes/index.html#tag/ProcessDescription/operation/getProcessDescription) API. 
+
+{% set ogc_processes_kinds=['Inputs', 'Outputs'] %}
+{% for ogc_processes_kind in ogc_processes_kinds %}
+#### {{ogc_processes_kind}}
+
+![{{workflow.id}} OGC API Processes JSON {{ogc_processes_kind}} schema](./{{workflow.id}}/ogc_processes_{{ogc_processes_kind | lower}}.svg "{{workflow.id}} {{diagram}} diagram")
+{% endfor %}
+
 ### UML Diagrams
 {% set diagrams=['Activity', 'Component', 'Class', 'Sequence', 'State'] %}
 {% for diagram in diagrams %}
