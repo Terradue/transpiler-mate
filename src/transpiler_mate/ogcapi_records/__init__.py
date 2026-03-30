@@ -108,7 +108,7 @@ class OgcRecordsTranspiler(Transpiler):
                                 concepts.append(
                                     Concept(
                                         id=keyword,
-                                        title=None,
+                                        title=keyword,
                                         description=" > ".join(
                                             science_keyword_record.hierarchy_list[
                                                 0 : i + 1
