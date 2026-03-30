@@ -173,7 +173,7 @@ class OgcRecordsTranspiler(Transpiler):
                     list(
                         map(
                             lambda license: (
-                                str(license.url)
+                                str(license.identifier)
                                 if isinstance(license, CreativeWork)
                                 else str(license)
                             ),
