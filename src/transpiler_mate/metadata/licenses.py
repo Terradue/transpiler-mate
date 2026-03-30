@@ -435,11 +435,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="Affero General Public License v1.0 only",
         url=AnyUrl("http://www.affero.org/oagpl.html"),
     ),  # type: ignore
-    "http://www.affero.org/oagpl.html": CreativeWork(
-        identifier="AGPL-1.0-only",
-        name="Affero General Public License v1.0 only",
-        url=AnyUrl("http://www.affero.org/oagpl.html"),
-    ),  # type: ignore
     "AGPL-1.0-or-later": CreativeWork(
         identifier="AGPL-1.0-or-later",
         name="Affero General Public License v1.0 or later",
@@ -451,11 +446,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("http://www.affero.org/oagpl.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/AGPL-1.0-or-later.html": CreativeWork(
-        identifier="AGPL-1.0-or-later",
-        name="Affero General Public License v1.0 or later",
-        url=AnyUrl("http://www.affero.org/oagpl.html"),
-    ),  # type: ignore
-    "http://www.affero.org/oagpl.html": CreativeWork(
         identifier="AGPL-1.0-or-later",
         name="Affero General Public License v1.0 or later",
         url=AnyUrl("http://www.affero.org/oagpl.html"),
@@ -495,11 +485,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Affero General Public License v3.0 only",
         url=AnyUrl("https://www.gnu.org/licenses/agpl.txt"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/agpl.txt": CreativeWork(
-        identifier="AGPL-3.0-only",
-        name="GNU Affero General Public License v3.0 only",
-        url=AnyUrl("https://www.gnu.org/licenses/agpl.txt"),
-    ),  # type: ignore
     "AGPL-3.0-or-later": CreativeWork(
         identifier="AGPL-3.0-or-later",
         name="GNU Affero General Public License v3.0 or later",
@@ -511,11 +496,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/agpl.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/AGPL-3.0-or-later.html": CreativeWork(
-        identifier="AGPL-3.0-or-later",
-        name="GNU Affero General Public License v3.0 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/agpl.txt"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/agpl.txt": CreativeWork(
         identifier="AGPL-3.0-or-later",
         name="GNU Affero General Public License v3.0 or later",
         url=AnyUrl("https://www.gnu.org/licenses/agpl.txt"),
@@ -546,11 +526,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://spdx.org/licenses/ALGLIB-Documentation.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/ALGLIB-Documentation": CreativeWork(
-        identifier="ALGLIB-Documentation",
-        name="ALGLIB Documentation License",
-        url=AnyUrl("https://spdx.org/licenses/ALGLIB-Documentation.html"),
-    ),  # type: ignore
-    "https://spdx.org/licenses/ALGLIB-Documentation.html": CreativeWork(
         identifier="ALGLIB-Documentation",
         name="ALGLIB Documentation License",
         url=AnyUrl("https://spdx.org/licenses/ALGLIB-Documentation.html"),
@@ -707,11 +682,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("http://www.antlr2.org/license.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/ANTLR-PD-fallback.html": CreativeWork(
-        identifier="ANTLR-PD-fallback",
-        name="ANTLR Software Rights Notice with license fallback",
-        url=AnyUrl("http://www.antlr2.org/license.html"),
-    ),  # type: ignore
-    "http://www.antlr2.org/license.html": CreativeWork(
         identifier="ANTLR-PD-fallback",
         name="ANTLR Software Rights Notice with license fallback",
         url=AnyUrl("http://www.antlr2.org/license.html"),
@@ -1031,11 +1001,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://opensource.org/licenses/Artistic-1.0"),
     ),  # type: ignore
     "https://spdx.org/licenses/Artistic-1.0-cl8.html": CreativeWork(
-        identifier="Artistic-1.0-cl8",
-        name="Artistic License 1.0 w/clause 8",
-        url=AnyUrl("https://opensource.org/licenses/Artistic-1.0"),
-    ),  # type: ignore
-    "https://opensource.org/licenses/Artistic-1.0": CreativeWork(
         identifier="Artistic-1.0-cl8",
         name="Artistic License 1.0 w/clause 8",
         url=AnyUrl("https://opensource.org/licenses/Artistic-1.0"),
@@ -1787,11 +1752,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="BSD 2-Clause with views sentence",
         url=AnyUrl("http://www.freebsd.org/copyright/freebsd-license.html"),
     ),  # type: ignore
-    "http://www.freebsd.org/copyright/freebsd-license.html": CreativeWork(
-        identifier="BSD-2-Clause-Views",
-        name="BSD 2-Clause with views sentence",
-        url=AnyUrl("http://www.freebsd.org/copyright/freebsd-license.html"),
-    ),  # type: ignore
     "BSD-3-Clause": CreativeWork(
         identifier="BSD-3-Clause",
         name='BSD 3-Clause "New" or "Revised" License',
@@ -2321,13 +2281,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
             "https://ftp.gnu.org/gnu/aspell/dict/en/aspell6-en-2020.12.07-0.tar.bz2"
         ),
     ),  # type: ignore
-    "https://ftp.gnu.org/gnu/aspell/dict/en/aspell6-en-2020.12.07-0.tar.bz2": CreativeWork(
-        identifier="BSD-Mark-Modifications",
-        name="BSD Mark Modifications License",
-        url=AnyUrl(
-            "https://ftp.gnu.org/gnu/aspell/dict/en/aspell6-en-2020.12.07-0.tar.bz2"
-        ),
-    ),  # type: ignore
     "BSD-Protection": CreativeWork(
         identifier="BSD-Protection",
         name="BSD Protection License",
@@ -2619,11 +2572,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("http://cryptographicautonomylicense.com/license-text.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/CAL-1.0-Combined-Work-Exception.html": CreativeWork(
-        identifier="CAL-1.0-Combined-Work-Exception",
-        name="Cryptographic Autonomy License 1.0 (Combined Work Exception)",
-        url=AnyUrl("http://cryptographicautonomylicense.com/license-text.html"),
-    ),  # type: ignore
-    "http://cryptographicautonomylicense.com/license-text.html": CreativeWork(
         identifier="CAL-1.0-Combined-Work-Exception",
         name="Cryptographic Autonomy License 1.0 (Combined Work Exception)",
         url=AnyUrl("http://cryptographicautonomylicense.com/license-text.html"),
@@ -4165,13 +4113,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
             "https://www.ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2"
         ),
     ),  # type: ignore
-    "https://www.ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2": CreativeWork(
-        identifier="CERN-OHL-S-2.0",
-        name="CERN Open Hardware Licence Version 2 - Strongly Reciprocal",
-        url=AnyUrl(
-            "https://www.ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2"
-        ),
-    ),  # type: ignore
     "CERN-OHL-W-2.0": CreativeWork(
         identifier="CERN-OHL-W-2.0",
         name="CERN Open Hardware Licence Version 2 - Weakly Reciprocal",
@@ -4187,13 +4128,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         ),
     ),  # type: ignore
     "https://spdx.org/licenses/CERN-OHL-W-2.0.html": CreativeWork(
-        identifier="CERN-OHL-W-2.0",
-        name="CERN Open Hardware Licence Version 2 - Weakly Reciprocal",
-        url=AnyUrl(
-            "https://www.ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2"
-        ),
-    ),  # type: ignore
-    "https://www.ohwr.org/project/cernohl/wikis/Documents/CERN-OHL-version-2": CreativeWork(
         identifier="CERN-OHL-W-2.0",
         name="CERN Open Hardware Licence Version 2 - Weakly Reciprocal",
         url=AnyUrl(
@@ -6211,11 +6145,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Free Documentation License v1.1 only - invariants",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt": CreativeWork(
-        identifier="GFDL-1.1-invariants-only",
-        name="GNU Free Documentation License v1.1 only - invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
-    ),  # type: ignore
     "GFDL-1.1-invariants-or-later": CreativeWork(
         identifier="GFDL-1.1-invariants-or-later",
         name="GNU Free Documentation License v1.1 or later - invariants",
@@ -6227,11 +6156,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/GFDL-1.1-invariants-or-later.html": CreativeWork(
-        identifier="GFDL-1.1-invariants-or-later",
-        name="GNU Free Documentation License v1.1 or later - invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt": CreativeWork(
         identifier="GFDL-1.1-invariants-or-later",
         name="GNU Free Documentation License v1.1 or later - invariants",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
@@ -6251,11 +6175,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Free Documentation License v1.1 only - no invariants",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt": CreativeWork(
-        identifier="GFDL-1.1-no-invariants-only",
-        name="GNU Free Documentation License v1.1 only - no invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
-    ),  # type: ignore
     "GFDL-1.1-no-invariants-or-later": CreativeWork(
         identifier="GFDL-1.1-no-invariants-or-later",
         name="GNU Free Documentation License v1.1 or later - no invariants",
@@ -6267,11 +6186,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/GFDL-1.1-no-invariants-or-later.html": CreativeWork(
-        identifier="GFDL-1.1-no-invariants-or-later",
-        name="GNU Free Documentation License v1.1 or later - no invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt": CreativeWork(
         identifier="GFDL-1.1-no-invariants-or-later",
         name="GNU Free Documentation License v1.1 or later - no invariants",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
@@ -6291,11 +6205,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Free Documentation License v1.1 only",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt": CreativeWork(
-        identifier="GFDL-1.1-only",
-        name="GNU Free Documentation License v1.1 only",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
-    ),  # type: ignore
     "GFDL-1.1-or-later": CreativeWork(
         identifier="GFDL-1.1-or-later",
         name="GNU Free Documentation License v1.1 or later",
@@ -6307,11 +6216,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/GFDL-1.1-or-later.html": CreativeWork(
-        identifier="GFDL-1.1-or-later",
-        name="GNU Free Documentation License v1.1 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt": CreativeWork(
         identifier="GFDL-1.1-or-later",
         name="GNU Free Documentation License v1.1 or later",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.1.txt"),
@@ -6351,11 +6255,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Free Documentation License v1.2 only - invariants",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt": CreativeWork(
-        identifier="GFDL-1.2-invariants-only",
-        name="GNU Free Documentation License v1.2 only - invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
-    ),  # type: ignore
     "GFDL-1.2-invariants-or-later": CreativeWork(
         identifier="GFDL-1.2-invariants-or-later",
         name="GNU Free Documentation License v1.2 or later - invariants",
@@ -6367,11 +6266,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/GFDL-1.2-invariants-or-later.html": CreativeWork(
-        identifier="GFDL-1.2-invariants-or-later",
-        name="GNU Free Documentation License v1.2 or later - invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt": CreativeWork(
         identifier="GFDL-1.2-invariants-or-later",
         name="GNU Free Documentation License v1.2 or later - invariants",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
@@ -6391,11 +6285,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Free Documentation License v1.2 only - no invariants",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt": CreativeWork(
-        identifier="GFDL-1.2-no-invariants-only",
-        name="GNU Free Documentation License v1.2 only - no invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
-    ),  # type: ignore
     "GFDL-1.2-no-invariants-or-later": CreativeWork(
         identifier="GFDL-1.2-no-invariants-or-later",
         name="GNU Free Documentation License v1.2 or later - no invariants",
@@ -6407,11 +6296,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/GFDL-1.2-no-invariants-or-later.html": CreativeWork(
-        identifier="GFDL-1.2-no-invariants-or-later",
-        name="GNU Free Documentation License v1.2 or later - no invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt": CreativeWork(
         identifier="GFDL-1.2-no-invariants-or-later",
         name="GNU Free Documentation License v1.2 or later - no invariants",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
@@ -6431,11 +6315,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Free Documentation License v1.2 only",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt": CreativeWork(
-        identifier="GFDL-1.2-only",
-        name="GNU Free Documentation License v1.2 only",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
-    ),  # type: ignore
     "GFDL-1.2-or-later": CreativeWork(
         identifier="GFDL-1.2-or-later",
         name="GNU Free Documentation License v1.2 or later",
@@ -6447,11 +6326,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/GFDL-1.2-or-later.html": CreativeWork(
-        identifier="GFDL-1.2-or-later",
-        name="GNU Free Documentation License v1.2 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt": CreativeWork(
         identifier="GFDL-1.2-or-later",
         name="GNU Free Documentation License v1.2 or later",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/fdl-1.2.txt"),
@@ -6491,11 +6365,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Free Documentation License v1.3 only - invariants",
         url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/fdl-1.3.txt": CreativeWork(
-        identifier="GFDL-1.3-invariants-only",
-        name="GNU Free Documentation License v1.3 only - invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
-    ),  # type: ignore
     "GFDL-1.3-invariants-or-later": CreativeWork(
         identifier="GFDL-1.3-invariants-or-later",
         name="GNU Free Documentation License v1.3 or later - invariants",
@@ -6507,11 +6376,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/GFDL-1.3-invariants-or-later.html": CreativeWork(
-        identifier="GFDL-1.3-invariants-or-later",
-        name="GNU Free Documentation License v1.3 or later - invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/fdl-1.3.txt": CreativeWork(
         identifier="GFDL-1.3-invariants-or-later",
         name="GNU Free Documentation License v1.3 or later - invariants",
         url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
@@ -6531,11 +6395,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Free Documentation License v1.3 only - no invariants",
         url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/fdl-1.3.txt": CreativeWork(
-        identifier="GFDL-1.3-no-invariants-only",
-        name="GNU Free Documentation License v1.3 only - no invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
-    ),  # type: ignore
     "GFDL-1.3-no-invariants-or-later": CreativeWork(
         identifier="GFDL-1.3-no-invariants-or-later",
         name="GNU Free Documentation License v1.3 or later - no invariants",
@@ -6547,11 +6406,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/GFDL-1.3-no-invariants-or-later.html": CreativeWork(
-        identifier="GFDL-1.3-no-invariants-or-later",
-        name="GNU Free Documentation License v1.3 or later - no invariants",
-        url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/fdl-1.3.txt": CreativeWork(
         identifier="GFDL-1.3-no-invariants-or-later",
         name="GNU Free Documentation License v1.3 or later - no invariants",
         url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
@@ -6571,11 +6425,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Free Documentation License v1.3 only",
         url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/fdl-1.3.txt": CreativeWork(
-        identifier="GFDL-1.3-only",
-        name="GNU Free Documentation License v1.3 only",
-        url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
-    ),  # type: ignore
     "GFDL-1.3-or-later": CreativeWork(
         identifier="GFDL-1.3-or-later",
         name="GNU Free Documentation License v1.3 or later",
@@ -6587,11 +6436,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/GFDL-1.3-or-later.html": CreativeWork(
-        identifier="GFDL-1.3-or-later",
-        name="GNU Free Documentation License v1.3 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/fdl-1.3.txt": CreativeWork(
         identifier="GFDL-1.3-or-later",
         name="GNU Free Documentation License v1.3 or later",
         url=AnyUrl("https://www.gnu.org/licenses/fdl-1.3.txt"),
@@ -6759,11 +6603,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU General Public License v1.0 or later",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html": CreativeWork(
-        identifier="GPL-1.0+",
-        name="GNU General Public License v1.0 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"),
-    ),  # type: ignore
     "GPL-1.0-only": CreativeWork(
         identifier="GPL-1.0-only",
         name="GNU General Public License v1.0 only",
@@ -6779,11 +6618,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU General Public License v1.0 only",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html": CreativeWork(
-        identifier="GPL-1.0-only",
-        name="GNU General Public License v1.0 only",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"),
-    ),  # type: ignore
     "GPL-1.0-or-later": CreativeWork(
         identifier="GPL-1.0-or-later",
         name="GNU General Public License v1.0 or later",
@@ -6795,11 +6629,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/GPL-1.0-or-later.html": CreativeWork(
-        identifier="GPL-1.0-or-later",
-        name="GNU General Public License v1.0 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html": CreativeWork(
         identifier="GPL-1.0-or-later",
         name="GNU General Public License v1.0 or later",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-1.0-standalone.html"),
@@ -6839,11 +6668,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU General Public License v2.0 or later",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html": CreativeWork(
-        identifier="GPL-2.0+",
-        name="GNU General Public License v2.0 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html"),
-    ),  # type: ignore
     "GPL-2.0-only": CreativeWork(
         identifier="GPL-2.0-only",
         name="GNU General Public License v2.0 only",
@@ -6859,11 +6683,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU General Public License v2.0 only",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html": CreativeWork(
-        identifier="GPL-2.0-only",
-        name="GNU General Public License v2.0 only",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html"),
-    ),  # type: ignore
     "GPL-2.0-or-later": CreativeWork(
         identifier="GPL-2.0-or-later",
         name="GNU General Public License v2.0 or later",
@@ -6875,11 +6694,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/GPL-2.0-or-later.html": CreativeWork(
-        identifier="GPL-2.0-or-later",
-        name="GNU General Public License v2.0 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html": CreativeWork(
         identifier="GPL-2.0-or-later",
         name="GNU General Public License v2.0 or later",
         url=AnyUrl("https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html"),
@@ -7035,11 +6849,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU General Public License v3.0 or later",
         url=AnyUrl("https://www.gnu.org/licenses/gpl-3.0-standalone.html"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/gpl-3.0-standalone.html": CreativeWork(
-        identifier="GPL-3.0+",
-        name="GNU General Public License v3.0 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/gpl-3.0-standalone.html"),
-    ),  # type: ignore
     "GPL-3.0-only": CreativeWork(
         identifier="GPL-3.0-only",
         name="GNU General Public License v3.0 only",
@@ -7055,11 +6864,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU General Public License v3.0 only",
         url=AnyUrl("https://www.gnu.org/licenses/gpl-3.0-standalone.html"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/gpl-3.0-standalone.html": CreativeWork(
-        identifier="GPL-3.0-only",
-        name="GNU General Public License v3.0 only",
-        url=AnyUrl("https://www.gnu.org/licenses/gpl-3.0-standalone.html"),
-    ),  # type: ignore
     "GPL-3.0-or-later": CreativeWork(
         identifier="GPL-3.0-or-later",
         name="GNU General Public License v3.0 or later",
@@ -7071,11 +6875,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/gpl-3.0-standalone.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/GPL-3.0-or-later.html": CreativeWork(
-        identifier="GPL-3.0-or-later",
-        name="GNU General Public License v3.0 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/gpl-3.0-standalone.html"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/gpl-3.0-standalone.html": CreativeWork(
         identifier="GPL-3.0-or-later",
         name="GNU General Public License v3.0 or later",
         url=AnyUrl("https://www.gnu.org/licenses/gpl-3.0-standalone.html"),
@@ -7766,11 +7565,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://spdx.org/licenses/HPND-Netrek.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/HPND-Netrek": CreativeWork(
-        identifier="HPND-Netrek",
-        name="Historical Permission Notice and Disclaimer - Netrek variant",
-        url=AnyUrl("https://spdx.org/licenses/HPND-Netrek.html"),
-    ),  # type: ignore
-    "https://spdx.org/licenses/HPND-Netrek.html": CreativeWork(
         identifier="HPND-Netrek",
         name="Historical Permission Notice and Disclaimer - Netrek variant",
         url=AnyUrl("https://spdx.org/licenses/HPND-Netrek.html"),
@@ -8865,13 +8659,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
             "https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html"
         ),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html": CreativeWork(
-        identifier="LGPL-2.0+",
-        name="GNU Library General Public License v2 or later",
-        url=AnyUrl(
-            "https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html"
-        ),
-    ),  # type: ignore
     "LGPL-2.0-only": CreativeWork(
         identifier="LGPL-2.0-only",
         name="GNU Library General Public License v2 only",
@@ -8893,13 +8680,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
             "https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html"
         ),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html": CreativeWork(
-        identifier="LGPL-2.0-only",
-        name="GNU Library General Public License v2 only",
-        url=AnyUrl(
-            "https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html"
-        ),
-    ),  # type: ignore
     "LGPL-2.0-or-later": CreativeWork(
         identifier="LGPL-2.0-or-later",
         name="GNU Library General Public License v2 or later",
@@ -8915,13 +8695,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         ),
     ),  # type: ignore
     "https://spdx.org/licenses/LGPL-2.0-or-later.html": CreativeWork(
-        identifier="LGPL-2.0-or-later",
-        name="GNU Library General Public License v2 or later",
-        url=AnyUrl(
-            "https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html"
-        ),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/lgpl-2.0-standalone.html": CreativeWork(
         identifier="LGPL-2.0-or-later",
         name="GNU Library General Public License v2 or later",
         url=AnyUrl(
@@ -8977,13 +8750,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
             "https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html"
         ),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html": CreativeWork(
-        identifier="LGPL-2.1+",
-        name="GNU Lesser General Public License v2.1 or later",
-        url=AnyUrl(
-            "https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html"
-        ),
-    ),  # type: ignore
     "LGPL-2.1-only": CreativeWork(
         identifier="LGPL-2.1-only",
         name="GNU Lesser General Public License v2.1 only",
@@ -9005,13 +8771,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
             "https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html"
         ),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html": CreativeWork(
-        identifier="LGPL-2.1-only",
-        name="GNU Lesser General Public License v2.1 only",
-        url=AnyUrl(
-            "https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html"
-        ),
-    ),  # type: ignore
     "LGPL-2.1-or-later": CreativeWork(
         identifier="LGPL-2.1-or-later",
         name="GNU Lesser General Public License v2.1 or later",
@@ -9027,13 +8786,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         ),
     ),  # type: ignore
     "https://spdx.org/licenses/LGPL-2.1-or-later.html": CreativeWork(
-        identifier="LGPL-2.1-or-later",
-        name="GNU Lesser General Public License v2.1 or later",
-        url=AnyUrl(
-            "https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html"
-        ),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/old-licenses/lgpl-2.1-standalone.html": CreativeWork(
         identifier="LGPL-2.1-or-later",
         name="GNU Lesser General Public License v2.1 or later",
         url=AnyUrl(
@@ -9075,11 +8827,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Lesser General Public License v3.0 or later",
         url=AnyUrl("https://www.gnu.org/licenses/lgpl-3.0-standalone.html"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/lgpl-3.0-standalone.html": CreativeWork(
-        identifier="LGPL-3.0+",
-        name="GNU Lesser General Public License v3.0 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/lgpl-3.0-standalone.html"),
-    ),  # type: ignore
     "LGPL-3.0-only": CreativeWork(
         identifier="LGPL-3.0-only",
         name="GNU Lesser General Public License v3.0 only",
@@ -9095,11 +8842,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="GNU Lesser General Public License v3.0 only",
         url=AnyUrl("https://www.gnu.org/licenses/lgpl-3.0-standalone.html"),
     ),  # type: ignore
-    "https://www.gnu.org/licenses/lgpl-3.0-standalone.html": CreativeWork(
-        identifier="LGPL-3.0-only",
-        name="GNU Lesser General Public License v3.0 only",
-        url=AnyUrl("https://www.gnu.org/licenses/lgpl-3.0-standalone.html"),
-    ),  # type: ignore
     "LGPL-3.0-or-later": CreativeWork(
         identifier="LGPL-3.0-or-later",
         name="GNU Lesser General Public License v3.0 or later",
@@ -9111,11 +8853,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.gnu.org/licenses/lgpl-3.0-standalone.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/LGPL-3.0-or-later.html": CreativeWork(
-        identifier="LGPL-3.0-or-later",
-        name="GNU Lesser General Public License v3.0 or later",
-        url=AnyUrl("https://www.gnu.org/licenses/lgpl-3.0-standalone.html"),
-    ),  # type: ignore
-    "https://www.gnu.org/licenses/lgpl-3.0-standalone.html": CreativeWork(
         identifier="LGPL-3.0-or-later",
         name="GNU Lesser General Public License v3.0 or later",
         url=AnyUrl("https://www.gnu.org/licenses/lgpl-3.0-standalone.html"),
@@ -9175,11 +8912,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="PNG Reference Library License v1 (for libpng 0.5 through 1.6.35)",
         url=AnyUrl("http://www.libpng.org/pub/png/src/libpng-LICENSE.txt"),
     ),  # type: ignore
-    "http://www.libpng.org/pub/png/src/libpng-LICENSE.txt": CreativeWork(
-        identifier="libpng-1.6.35",
-        name="PNG Reference Library License v1 (for libpng 0.5 through 1.6.35)",
-        url=AnyUrl("http://www.libpng.org/pub/png/src/libpng-LICENSE.txt"),
-    ),  # type: ignore
     "libpng-2.0": CreativeWork(
         identifier="libpng-2.0",
         name="PNG Reference Library version 2",
@@ -9191,11 +8923,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("http://www.libpng.org/pub/png/src/libpng-LICENSE.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/libpng-2.0.html": CreativeWork(
-        identifier="libpng-2.0",
-        name="PNG Reference Library version 2",
-        url=AnyUrl("http://www.libpng.org/pub/png/src/libpng-LICENSE.txt"),
-    ),  # type: ignore
-    "http://www.libpng.org/pub/png/src/libpng-LICENSE.txt": CreativeWork(
         identifier="libpng-2.0",
         name="PNG Reference Library version 2",
         url=AnyUrl("http://www.libpng.org/pub/png/src/libpng-LICENSE.txt"),
@@ -9743,11 +9470,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.7-zip.org/sdk.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/LZMA-SDK-9.22.html": CreativeWork(
-        identifier="LZMA-SDK-9.22",
-        name="LZMA SDK License (versions 9.22 and beyond)",
-        url=AnyUrl("https://www.7-zip.org/sdk.html"),
-    ),  # type: ignore
-    "https://www.7-zip.org/sdk.html": CreativeWork(
         identifier="LZMA-SDK-9.22",
         name="LZMA SDK License (versions 9.22 and beyond)",
         url=AnyUrl("https://www.7-zip.org/sdk.html"),
@@ -10591,11 +10313,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="Mozilla Public License 2.0 (no copyleft exception)",
         url=AnyUrl("https://www.mozilla.org/MPL/2.0/"),
     ),  # type: ignore
-    "https://www.mozilla.org/MPL/2.0/": CreativeWork(
-        identifier="MPL-2.0-no-copyleft-exception",
-        name="Mozilla Public License 2.0 (no copyleft exception)",
-        url=AnyUrl("https://www.mozilla.org/MPL/2.0/"),
-    ),  # type: ignore
     "mplus": CreativeWork(
         identifier="mplus",
         name="mplus Font License",
@@ -10667,11 +10384,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("http://www.microsoft.com/opensource/licenses.mspx"),
     ),  # type: ignore
     "https://spdx.org/licenses/MS-RL.html": CreativeWork(
-        identifier="MS-RL",
-        name="Microsoft Reciprocal License",
-        url=AnyUrl("http://www.microsoft.com/opensource/licenses.mspx"),
-    ),  # type: ignore
-    "http://www.microsoft.com/opensource/licenses.mspx": CreativeWork(
         identifier="MS-RL",
         name="Microsoft Reciprocal License",
         url=AnyUrl("http://www.microsoft.com/opensource/licenses.mspx"),
@@ -11711,11 +11423,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="SIL Open Font License 1.0 with no Reserved Font Name",
         url=AnyUrl("http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web"),
     ),  # type: ignore
-    "http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web": CreativeWork(
-        identifier="OFL-1.0-no-RFN",
-        name="SIL Open Font License 1.0 with no Reserved Font Name",
-        url=AnyUrl("http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web"),
-    ),  # type: ignore
     "OFL-1.0-RFN": CreativeWork(
         identifier="OFL-1.0-RFN",
         name="SIL Open Font License 1.0 with Reserved Font Name",
@@ -11727,11 +11434,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web"),
     ),  # type: ignore
     "https://spdx.org/licenses/OFL-1.0-RFN.html": CreativeWork(
-        identifier="OFL-1.0-RFN",
-        name="SIL Open Font License 1.0 with Reserved Font Name",
-        url=AnyUrl("http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web"),
-    ),  # type: ignore
-    "http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web": CreativeWork(
         identifier="OFL-1.0-RFN",
         name="SIL Open Font License 1.0 with Reserved Font Name",
         url=AnyUrl("http://scripts.sil.org/cms/scripts/page.php?item_id=OFL10_web"),
@@ -11771,11 +11473,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="SIL Open Font License 1.1 with no Reserved Font Name",
         url=AnyUrl("http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web"),
     ),  # type: ignore
-    "http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web": CreativeWork(
-        identifier="OFL-1.1-no-RFN",
-        name="SIL Open Font License 1.1 with no Reserved Font Name",
-        url=AnyUrl("http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web"),
-    ),  # type: ignore
     "OFL-1.1-RFN": CreativeWork(
         identifier="OFL-1.1-RFN",
         name="SIL Open Font License 1.1 with Reserved Font Name",
@@ -11787,11 +11484,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web"),
     ),  # type: ignore
     "https://spdx.org/licenses/OFL-1.1-RFN.html": CreativeWork(
-        identifier="OFL-1.1-RFN",
-        name="SIL Open Font License 1.1 with Reserved Font Name",
-        url=AnyUrl("http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web"),
-    ),  # type: ignore
-    "http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web": CreativeWork(
         identifier="OFL-1.1-RFN",
         name="SIL Open Font License 1.1 with Reserved Font Name",
         url=AnyUrl("http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web"),
@@ -13231,11 +12923,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="Python License 2.0",
         url=AnyUrl("https://opensource.org/licenses/Python-2.0"),
     ),  # type: ignore
-    "https://opensource.org/licenses/Python-2.0": CreativeWork(
-        identifier="Python-2.0",
-        name="Python License 2.0",
-        url=AnyUrl("https://opensource.org/licenses/Python-2.0"),
-    ),  # type: ignore
     "Python-2.0.1": CreativeWork(
         identifier="Python-2.0.1",
         name="Python License 2.0.1",
@@ -13587,11 +13274,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         name="Sax Public Domain Notice 2.0",
         url=AnyUrl("http://www.saxproject.org/copying.html"),
     ),  # type: ignore
-    "http://www.saxproject.org/copying.html": CreativeWork(
-        identifier="SAX-PD-2.0",
-        name="Sax Public Domain Notice 2.0",
-        url=AnyUrl("http://www.saxproject.org/copying.html"),
-    ),  # type: ignore
     "Saxpath": CreativeWork(
         identifier="Saxpath",
         name="Saxpath License",
@@ -13638,11 +13320,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://spdx.org/licenses/SchemeReport.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/SchemeReport": CreativeWork(
-        identifier="SchemeReport",
-        name="Scheme Language Report License",
-        url=AnyUrl("https://spdx.org/licenses/SchemeReport.html"),
-    ),  # type: ignore
-    "https://spdx.org/licenses/SchemeReport.html": CreativeWork(
         identifier="SchemeReport",
         name="Scheme Language Report License",
         url=AnyUrl("https://spdx.org/licenses/SchemeReport.html"),
@@ -14245,13 +13922,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
             "https://fedoraproject.org/wiki/Licensing/Henry_Spencer_Reg-Ex_Library_License"
         ),
     ),  # type: ignore
-    "https://fedoraproject.org/wiki/Licensing/Henry_Spencer_Reg-Ex_Library_License": CreativeWork(
-        identifier="Spencer-94",
-        name="Spencer License 94",
-        url=AnyUrl(
-            "https://fedoraproject.org/wiki/Licensing/Henry_Spencer_Reg-Ex_Library_License"
-        ),
-    ),  # type: ignore
     "Spencer-99": CreativeWork(
         identifier="Spencer-99",
         name="Spencer License 99",
@@ -14443,11 +14113,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.smlnj.org/license.html"),
     ),  # type: ignore
     "https://spdx.org/licenses/StandardML-NJ.html": CreativeWork(
-        identifier="StandardML-NJ",
-        name="Standard ML of New Jersey License",
-        url=AnyUrl("https://www.smlnj.org/license.html"),
-    ),  # type: ignore
-    "https://www.smlnj.org/license.html": CreativeWork(
         identifier="StandardML-NJ",
         name="Standard ML of New Jersey License",
         url=AnyUrl("https://www.smlnj.org/license.html"),
@@ -15211,11 +14876,6 @@ LICENSES_INDEX: Mapping[str, CreativeWork] = {
         url=AnyUrl("https://www.unicode.org/license.txt"),
     ),  # type: ignore
     "https://spdx.org/licenses/Unicode-DFS-2016.html": CreativeWork(
-        identifier="Unicode-DFS-2016",
-        name="Unicode License Agreement - Data Files and Software (2016)",
-        url=AnyUrl("https://www.unicode.org/license.txt"),
-    ),  # type: ignore
-    "https://www.unicode.org/license.txt": CreativeWork(
         identifier="Unicode-DFS-2016",
         name="Unicode License Agreement - Data Files and Software (2016)",
         url=AnyUrl("https://www.unicode.org/license.txt"),
