@@ -138,7 +138,7 @@ class OgcRecordsTranspiler(Transpiler):
                         href=str(creative_work.url),
                         hreflang="en",
                         title=creative_work.name,
-                        rel="help",
+                        rel="via",
                         created=_to_datetime(metadata_source.date_created),
                         updated=_to_datetime(datetime.fromtimestamp(time.time())),
                     ),
