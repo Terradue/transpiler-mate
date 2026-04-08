@@ -172,7 +172,7 @@ def type_to_string(typ: Any, parent: Process) -> str:
         type_str = str(typ)
 
     if "#" in type_str:  # we can assume it is an URL
-        if parent.requirements:
+        if parent and parent.requirements:
             for requirement in parent.requirements:
                 if isinstance(requirement, SchemaDefRequirement):
                     for inner_type in requirement.types:
