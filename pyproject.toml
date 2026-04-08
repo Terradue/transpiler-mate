@@ -29,7 +29,7 @@ classifiers = [
 dependencies = [
   "pydantic==2.12.5",
   "email-validator==2.3.0",
-  "ruamel.yaml<0.19", # cwl-utils 0.40 depends on ruamel.yaml<0.19 and >=0.17.6
+  "ruamel.yaml<0.20", # cwl-utils 0.41 depends on ruamel.yaml<0.19 and >=0.17.6
   "yaml-ld==1.1.17",
   "click==8.3.2",
   "loguru==0.7.3",
@@ -37,7 +37,7 @@ dependencies = [
   "giturlparse==0.14.0",
   "semver==3.0.4",
   "Jinja2==3.1.6",
-  "cwl-loader==0.15.0"
+  "cwl-loader==0.16.0"
 ]
 
 [tool.hatch.metadata]
