@@ -1,7 +1,10 @@
 .codex
+.task
 .venv
+
 annotations.json
 codemeta.json
 datacite.json
 __pycache__
 record.json
+uv.lock

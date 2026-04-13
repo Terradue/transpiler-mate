@@ -14,67 +14,55 @@
 
 version: '3'
 
-tasks:
+includes:
+  json: https://raw.githubusercontent.com/Terradue/taskfile-utils/refs/heads/main/json.yaml
+  quality: https://raw.githubusercontent.com/Terradue/taskfile-utils/refs/heads/main/quality.yaml
 
-  install_prerequisites:
-    internal: true
-    cmds:
-    - pip install datamodel-code-generator json-schema-for-humans csvkit
+tasks:
 
   generate_jsonschema_doc:
     cmds:
-    - generate-schema-doc --config template_name=md ./schemas ./docs/schemas
-
-  datamodel_codegen:
-    internal: true
-    cmds:
-    - |
-      datamodel-codegen --input ./schemas/{{.SCHEMA}}.yaml \
-                        --input-file-type jsonschema \
-                        --output-model-type pydantic_v2.BaseModel \
-                        --base-class transpiler_mate.TranspilerBaseModel \
-                        --additional-imports "pydantic.AliasChoices,typing.Any,transpiler_mate.TranspilerBaseModel" \
-                        --field-constraints \
-                        --use-schema-description \
-                        --collapse-root-models \
-                        --capitalise-enum-members \
-                        --use-one-literal-as-default \
-                        --snake-case-field \
-                        --use-default \
-                        {{if eq .USE_CUSTOM_TEMPLATES "true"}}--custom-template-dir ./templates{{end}}\
-                        --output ./src/transpiler_mate/{{.TARGET_DIR}}/{{.SCHEMA}}_models.py
+    - task: json:generate_schema_doc
+      vars:
+        SOURCE: './schemas'
+        TARGET: './docs/schemas'
 
   process_datacite:
     cmds:
-    - task: datamodel_codegen
+    - task: json:create_models
       vars:
-        SCHEMA: 'datacite_4_6'
-        USE_CUSTOM_TEMPLATES: 'false'
-        TARGET_DIR: 'datacite'
+        SCHEMA: './schemas/datacite_4_6.yaml'
+        BASE_CLASS: 'transpiler_mate.TranspilerBaseModel'
+        ADDITIONAL_IMPORTS: 'pydantic.AliasChoices,typing.Any,transpiler_mate.TranspilerBaseModel'
+        OUTPUT: './src/transpiler_mate/datacite/datacite_4_6_models.py'
 
   process_schemaorg:
     cmds:
-    - task: datamodel_codegen
+    - task: json:create_models
       vars:
-        SCHEMA: 'software_application'
-        USE_CUSTOM_TEMPLATES: 'true'
-        TARGET_DIR: 'metadata'
+        SCHEMA: './schemas/software_application.yaml'
+        BASE_CLASS: 'transpiler_mate.TranspilerBaseModel'
+        ADDITIONAL_IMPORTS: 'pydantic.AliasChoices,typing.Any,transpiler_mate.TranspilerBaseModel'
+        CUSTOM_TEMPLATE_DIR: './templates'
+        OUTPUT: './src/transpiler_mate/metadata/software_application_models.py'
 
   process_ogcrecord:
     cmds:
-    - task: datamodel_codegen
+    - task: json:create_models
       vars:
-        SCHEMA: 'ogcapi_records'
-        USE_CUSTOM_TEMPLATES: 'false'
-        TARGET_DIR: 'ogcapi_records'
+        SCHEMA: './schemas/ogcapi_records.yaml'
+        BASE_CLASS: 'transpiler_mate.TranspilerBaseModel'
+        ADDITIONAL_IMPORTS: 'pydantic.AliasChoices,typing.Any,transpiler_mate.TranspilerBaseModel'
+        OUTPUT: './src/transpiler_mate/ogcapi_records/ogcapi_records_models.py'
 
   process_oci_annotations:
     cmds:
-    - task: datamodel_codegen
+    - task: json:create_models
       vars:
-        SCHEMA: 'oci_annotations'
-        USE_CUSTOM_TEMPLATES: 'false'
-        TARGET_DIR: 'oci'
+        SCHEMA: './schemas/oci_annotations.yaml'
+        BASE_CLASS: 'transpiler_mate.TranspilerBaseModel'
+        ADDITIONAL_IMPORTS: 'pydantic.AliasChoices,typing.Any,transpiler_mate.TranspilerBaseModel'
+        OUTPUT: './src/transpiler_mate/oci/oci_annotations_models.py'
 
   download_licenses_index:
     cmds:
@@ -128,6 +116,8 @@ tasks:
     - echo "}" >> ./src/transpiler_mate/metadata/licenses.py
 
   download_science_keywords_index:
+    vars:
+      TARGET: './src/transpiler_mate/ogc_record/sciencekeywords.py'
     cmds:
     - |
       echo "# Transpiler Mate (c) 2025
@@ -184,7 +174,7 @@ tasks:
 
             return hierarchy
 
-      KEYWORDS_INDEX: Mapping[str, ScienceKeywordRecord] = {" > ./src/transpiler_mate/ogc_record/sciencekeywords.py
+      KEYWORDS_INDEX: Mapping[str, ScienceKeywordRecord] = {" > {{.TARGET}}
     - |
       curl -s --location "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords?format=csv" \
       | tail -n +2 \
@@ -199,31 +189,14 @@ tasks:
           variable_level_3=\($sq)\(.Variable_Level_3)\($sq),
           detailed_variable=\($sq)\(.Detailed_Variable)\($sq),
           identifier=\($sq)\(.UUID)\($sq)
-        ),"' >> ./src/transpiler_mate/ogc_record/sciencekeywords.py
-    - echo "}" >> ./src/transpiler_mate/ogc_record/sciencekeywords.py
+        ),"' >> {{.TARGET}}
+    - echo "}" >> {{.TARGET}}
 
   default:
-    deps:
-    - install_prerequisites
     cmds:
-    - task: generate_jsonschema_doc
+    - task: json:generate_jsonschema_doc
     - task: process_datacite
     - task: process_schemaorg
     - task: process_oci_annotations
     - task: download_licenses_index
     - task: download_science_keywords_index
-
-  test:
-    desc: Run tests
-    cmds:
-    - hatch run test:test-show-setup
-
-  check:
-    desc: Run code quality checks
-    cmds:
-    - hatch run dev:check
-
-  lint:
-    desc: Run linters
-    cmds:
-    - hatch run dev:lint
