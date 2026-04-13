@@ -81,6 +81,7 @@ nav:
     - DataCite 4.6: ./schemas/datacite_4_6.md
     - OGC API - Records: ./schemas/ogcapi_records.md
     - Schema.org/SoftwareApplication: ./schemas/software_application.md
+    - OCI Annotations: ./schemas/oci_annotations.md
   - CrossWalks:
     - ./xwalks/codemeta.md
     - ./xwalks/datacite.md
