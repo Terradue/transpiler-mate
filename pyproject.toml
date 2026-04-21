@@ -27,7 +27,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "pydantic==2.12.5",
+  "pydantic==2.13.3",
   "email-validator==2.3.0",
   "ruamel.yaml<0.20", # cwl-utils 0.41 depends on ruamel.yaml<0.19 and >=0.17.6
   "yaml-ld==1.1.17",
