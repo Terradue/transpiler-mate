@@ -31,7 +31,7 @@ dependencies = [
   "email-validator==2.3.0",
   "ruamel.yaml<0.20", # cwl-utils 0.41 depends on ruamel.yaml<0.19 and >=0.17.6
   "yaml-ld==1.1.17",
-  "click==8.3.2",
+  "click==8.3.3",
   "loguru==0.7.3",
   "invenio-rest-api-client==12.0.2",
   "giturlparse==0.14.0",
