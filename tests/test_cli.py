@@ -322,9 +322,7 @@ def test_markdown_and_invenio_publish_commands(monkeypatch, tmp_path: Path) -> N
         sys.modules,
         "transpiler_mate.invenio",
         SimpleNamespace(
-            InvenioMetadataTranspiler=lambda metadata_manager,
-            invenio_base_url,
-            auth_token: (
+            InvenioMetadataTranspiler=lambda metadata_manager, invenio_base_url, auth_token: (
                 SimpleNamespace(
                     create_or_update_process=lambda source, attach: (
                         created.update({"source": source, "attach": attach})
