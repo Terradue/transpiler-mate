@@ -90,6 +90,7 @@ nav:
   - CLI Commands:
     - ./cli/codemeta.md
     - ./cli/datacite.md
+    - ./cli/ogc_processes.md
     - ./cli/ogc_record.md
     - ./cli/invenio.md
     - ./cli/bump-version.md
