@@ -31,13 +31,14 @@ dependencies = [
   "email-validator==2.3.0",
   "ruamel.yaml<0.20", # cwl-utils 0.41 depends on ruamel.yaml<0.19 and >=0.17.6
   "yaml-ld==1.1.17",
-  "click==8.3.2",
+  "click==8.3.3",
   "loguru==0.7.3",
   "invenio-rest-api-client==12.0.2",
   "giturlparse==0.14.0",
   "semver==3.0.4",
   "Jinja2==3.1.6",
-  "cwl-loader==0.16.0"
+  "cwl-loader==0.18.0",
+  "cwl2ogc==0.18.0"
 ]
 
 [tool.hatch.metadata]
@@ -49,7 +50,7 @@ Issues = "https://github.com/Terradue/transpiler-mate/issues"
 Source = "https://github.com/Terradue/transpiler-mate"
 
 [project.scripts]
-transpiler-mate = "transpiler_mate.cli:main"
+transpiler-mate = "transpiler_mate.cli.cli:main"
 
 [tool.hatch.version]
 path = "src/transpiler_mate/__about__.py"

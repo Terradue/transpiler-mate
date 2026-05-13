@@ -24,19 +24,18 @@ from .ogcapi_records_models import (
     Theme,
 )
 from .sciencekeywords import KEYWORDS_INDEX, ScienceKeywordRecord
-from ..metadata.software_application_models import (
+from datetime import date, datetime, timezone
+from loguru import logger
+from pydantic import AnyUrl
+from typing import Any, Mapping, List
+from transpiler_mate.metadata.software_application_models import (
     AuthorRole,
     CreativeWork,
     DefinedTerm,
     Person,
     SoftwareApplication,
 )
-from ..metadata import Transpiler
-from datetime import date, datetime, timezone
-from loguru import logger
-
-from pydantic import AnyUrl
-from typing import Any, Mapping, List
+from transpiler_mate.metadata import Transpiler
 
 import time
 import uuid

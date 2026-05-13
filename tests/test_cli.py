@@ -19,7 +19,9 @@ import sys
 from pathlib import Path
 from types import SimpleNamespace
 
-from transpiler_mate import cli
+from click.testing import CliRunner
+
+from transpiler_mate.cli import cli
 
 
 class DummyTranspiler:
@@ -164,7 +166,7 @@ def test_datacite_and_ogcrecord_commands_delegate_to_transpile(
     )
     monkeypatch.setitem(
         sys.modules,
-        "transpiler_mate.ogcapi_records",
+        "transpiler_mate.ogcapi.records",
         SimpleNamespace(OgcRecordsTranspiler=lambda: "ogc-transpiler"),
     )
     monkeypatch.setattr(
@@ -178,6 +180,36 @@ def test_datacite_and_ogcrecord_commands_delegate_to_transpile(
 
     assert calls[0][1] == "datacite-transpiler"
     assert calls[1][1] == "ogc-transpiler"
+
+
+def test_ogcrecord_click_command_uses_default_output(
+    monkeypatch, tmp_path: Path
+) -> None:
+    source = tmp_path / "workflow.cwl"
+    source.write_text("cwlVersion: v1.2\n", encoding="utf-8")
+
+    captured = {}
+    monkeypatch.setitem(
+        sys.modules,
+        "transpiler_mate.ogcapi.records",
+        SimpleNamespace(OgcRecordsTranspiler=lambda: "ogc-transpiler"),
+    )
+    monkeypatch.setattr(
+        cli,
+        "_transpile",
+        lambda source, transpiler, output: captured.update(
+            {"source": source, "transpiler": transpiler, "output": output}
+        ),
+    )
+
+    result = CliRunner().invoke(cli.main, ["ogcrecord", str(source)])
+
+    assert result.exit_code == 0
+    assert captured == {
+        "source": source.resolve(),
+        "transpiler": "ogc-transpiler",
+        "output": Path("record.json"),
+    }
 
 
 def test_oci_annotations_command_writes_output(monkeypatch, tmp_path: Path) -> None:
