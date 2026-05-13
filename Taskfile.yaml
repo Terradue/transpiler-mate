@@ -53,7 +53,7 @@ tasks:
         SCHEMA: './schemas/ogcapi_records.yaml'
         BASE_CLASS: 'transpiler_mate.TranspilerBaseModel'
         ADDITIONAL_IMPORTS: 'pydantic.AliasChoices,typing.Any,transpiler_mate.TranspilerBaseModel'
-        OUTPUT: './src/transpiler_mate/ogcapi_records/ogcapi_records_models.py'
+        OUTPUT: './src/transpiler_mate/ogcapi/records/ogcapi_records_models.py'
 
   process_oci_annotations:
     cmds:

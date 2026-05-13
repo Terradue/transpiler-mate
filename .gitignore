@@ -6,5 +6,6 @@ annotations.json
 codemeta.json
 datacite.json
 __pycache__
+processes.json
 record.json
 uv.lock

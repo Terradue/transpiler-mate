@@ -12,4 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-__version__ = "0.44.0"
+from __future__ import annotations
+
+from collections.abc import Callable
+from pathlib import Path
+
+from transpiler_mate.cli.common import transpile as default_transpile
+from transpiler_mate.metadata import Transpiler
+
+
+def run(
+    source: Path,
+    code_repository: str | None,
+    output: Path,
+    transpile: Callable[[Path, Transpiler, Path], None] = default_transpile,
+) -> None:
+    from transpiler_mate.codemeta import CodeMetaTranspiler
+
+    transpiler = CodeMetaTranspiler(code_repository)
+
+    transpile(source=source, transpiler=transpiler, output=output)

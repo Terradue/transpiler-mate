@@ -24,11 +24,11 @@ from transpiler_mate.metadata.software_application_models import (
     Person,
     SoftwareApplication,
 )
-from transpiler_mate.ogcapi_records import (
+from transpiler_mate.ogcapi.records import (
     OgcRecordsTranspiler,
     SCIENCE_KEYWORDS_TERM_SET,
 )
-from transpiler_mate.ogcapi_records.sciencekeywords import ScienceKeywordRecord
+from transpiler_mate.ogcapi.records.sciencekeywords import ScienceKeywordRecord
 
 
 def _software_application() -> SoftwareApplication:
@@ -73,7 +73,7 @@ def _software_application() -> SoftwareApplication:
 
 def test_ogc_records_transpile_maps_keywords_themes_and_contacts(monkeypatch) -> None:
     monkeypatch.setattr(
-        "transpiler_mate.ogcapi_records.KEYWORDS_INDEX",
+        "transpiler_mate.ogcapi.records.KEYWORDS_INDEX",
         {
             "kw-1": ScienceKeywordRecord(
                 category="EARTH SCIENCE",
@@ -83,7 +83,7 @@ def test_ogc_records_transpile_maps_keywords_themes_and_contacts(monkeypatch) ->
             )
         },
     )
-    monkeypatch.setattr("transpiler_mate.ogcapi_records.uuid.uuid4", lambda: "abc123")
+    monkeypatch.setattr("transpiler_mate.ogcapi.records.uuid.uuid4", lambda: "abc123")
 
     result = OgcRecordsTranspiler().transpile(_software_application())
 
@@ -100,7 +100,7 @@ def test_ogc_records_transpile_maps_keywords_themes_and_contacts(monkeypatch) ->
 def test_ogc_records_transpile_skips_unsupported_keywords(monkeypatch) -> None:
     app = _software_application()
     app.keywords = [DefinedTerm(termCode="x"), 42]
-    monkeypatch.setattr("transpiler_mate.ogcapi_records.uuid.uuid4", lambda: "abc123")
+    monkeypatch.setattr("transpiler_mate.ogcapi.records.uuid.uuid4", lambda: "abc123")
 
     result = OgcRecordsTranspiler().transpile(app)
 
