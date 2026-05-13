@@ -32,7 +32,7 @@ from transpiler_mate.cli.datacite import run as run_datacite
 from transpiler_mate.cli.invenio_publish import run as run_invenio_publish
 from transpiler_mate.cli.markdown import run as run_markdown
 from transpiler_mate.cli.oci_annotations import run as run_oci_annotations
-from transpiler_mate.cli.ogcprocess import run as run_ogcprocess
+from transpiler_mate.cli.ogcprocesses import run as run_ogcprocesses
 from transpiler_mate.cli.ogcrecord import run as run_ogcrecord
 
 
@@ -199,11 +199,11 @@ def ogcrecord(source: Path, output: Path):
     default="processes.json",
     help="The output file path",
 )
-def ogcprocess(source: Path, output: Path):
+def ogcprocesses(source: Path, output: Path):
     """
     Transpiles the input CWL to OGC API Record.
     """
-    return run_ogcprocess(
+    return run_ogcprocesses(
         source=source,
         output=output,
         metadata_manager_factory=MetadataManager,
@@ -298,6 +298,7 @@ for command in [
     datacite,
     invenio_publish,
     ogcrecord,
+    ogcprocesses,
     oci_annotations,
 ]:
     if command.callback is not None:
