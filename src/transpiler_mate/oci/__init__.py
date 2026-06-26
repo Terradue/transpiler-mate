@@ -43,7 +43,7 @@ class OrasAnnotationsTranspiler(Transpiler):
         # org.opencontainers.image.* properties
         oci_annotations.org_opencontainers_image_title = metadata_source.name
         oci_annotations.org_opencontainers_image_description = (
-            metadata_source.description
+            metadata_source.description.replace("\n", " ").replace("\r", "")
         )
         oci_annotations.org_opencontainers_image_version = (
             metadata_source.software_version
