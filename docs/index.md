@@ -5,6 +5,8 @@ _Transpiler Mate_ is small and light yet powerful Python API + CLI to extract [S
 * transpile it to the [CodeMeta](https://codemeta.github.io/index.html) format;
 * transpile it to the [DataCite Metadata](https://inveniordm.docs.cern.ch/reference/metadata/#metadata) properties;
 * transpile it to [OGC API - Records](https://ogcapi.ogc.org/records/);
+* transpile it to OGC API - Processes descriptors;
+* transpile it to OCI annotations for container manifests;
 * transpile & publish a Record on [Invenio RDM](https://inveniosoftware.org/products/rdm/);
 * bumping the CWL Software version according to the [Semantic Versioning Specification 2.0.0](https://semver.org/).
 
@@ -32,6 +34,7 @@ Commands:
   codemeta         Transpiles the input CWL to CodeMeta representation.
   datacite         Transpiles the input CWL to DataCite Metadata.
   invenio-publish  Publishes the input CWL to an Invenio instance.
+  oci-annotations  Transpiles the input CWL to OCI annotations.
+  ogcprocesses     Transpiles the input CWL to OGC API Processes.
   ogcrecord        Transpiles the input CWL to OGC API Record.
-  oras-annotations  Transpiles the input CWL to Oras annotations.
 ```

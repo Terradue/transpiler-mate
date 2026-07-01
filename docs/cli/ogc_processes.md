@@ -8,7 +8,7 @@ Since version `0.44.0`, `transpiler-mate` includes a simple CLI to generate a st
 $ transpiler-mate ogcprocesses --help
 Usage: transpiler-mate ogcprocesses [OPTIONS] SOURCE
 
-  Transpiles the input CWL to OGC API Record.
+  Transpiles the input CWL to OGC API Processes.
 
 Options:
   --output PATH  The output file path  [default: processes.json]

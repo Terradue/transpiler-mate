@@ -85,6 +85,8 @@ nav:
   - CrossWalks:
     - ./xwalks/codemeta.md
     - ./xwalks/datacite.md
+    - ./xwalks/oci_annotations.md
+    - ./xwalks/ogc_processes.md
     - ./xwalks/ogc_record.md
     - ./xwalks/invenio.md
   - CLI Commands:

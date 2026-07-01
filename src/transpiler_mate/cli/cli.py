@@ -201,7 +201,7 @@ def ogcrecord(source: Path, output: Path):
 )
 def ogcprocesses(source: Path, output: Path):
     """
-    Transpiles the input CWL to OGC API Record.
+    Transpiles the input CWL to OGC API Processes.
     """
     return run_ogcprocesses(
         source=source,
