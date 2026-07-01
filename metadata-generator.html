@@ -1,0 +1,1565 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>transpiler-mate Metadata Generator</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-muted: #eef4f8;
+      --text: #17212b;
+      --muted: #5c6a77;
+      --line: #d7e0e8;
+      --accent: #176b87;
+      --accent-strong: #0f5268;
+      --accent-soft: #dff1f6;
+      --success: #226a43;
+      --warning: #9b5b10;
+      --danger: #a83a32;
+      --focus: #ffbf47;
+      --code: #101820;
+      --code-text: #e7f1f4;
+      --shadow: 0 16px 42px rgba(23, 33, 43, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      min-height: 2.25rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 650;
+      padding: 0.46rem 0.72rem;
+    }
+
+    button:hover {
+      border-color: var(--accent);
+      color: var(--accent-strong);
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    button.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    button.primary:hover {
+      background: var(--accent-strong);
+      color: #ffffff;
+    }
+
+    button.danger {
+      color: var(--danger);
+    }
+
+    button.ghost {
+      background: transparent;
+    }
+
+    .app-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem clamp(1rem, 4vw, 2rem);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.96);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      display: grid;
+      gap: 0.1rem;
+    }
+
+    .brand .eyebrow {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 0;
+      font-size: clamp(1.25rem, 2vw, 1.55rem);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 0.8rem;
+      font-size: 1.04rem;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 0;
+      font-size: 0.92rem;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .top-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.7rem;
+      font-size: 0.92rem;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.9fr);
+      gap: 1rem;
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 1rem clamp(1rem, 4vw, 2rem) 2rem;
+    }
+
+    .form-pane,
+    .output-pane {
+      display: grid;
+      align-content: start;
+      gap: 1rem;
+    }
+
+    .output-pane {
+      position: sticky;
+      top: 5.25rem;
+      max-height: calc(100vh - 6rem);
+      overflow: auto;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 1px 1px rgba(23, 33, 43, 0.03);
+      padding: 1rem;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .panel-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      justify-content: flex-end;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .field-grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .field {
+      display: grid;
+      gap: 0.32rem;
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label,
+    .field-label {
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .required-mark {
+      color: var(--danger);
+      font-weight: 800;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--text);
+      padding: 0.56rem 0.62rem;
+    }
+
+    textarea {
+      min-height: 6.1rem;
+      resize: vertical;
+    }
+
+    .compact-textarea {
+      min-height: 4.3rem;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 0.81rem;
+    }
+
+    .check-field {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 2.25rem;
+    }
+
+    .check-field input {
+      width: auto;
+      accent-color: var(--accent);
+    }
+
+    .repeat-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .repeat-entry {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfdfe;
+      padding: 0.85rem;
+    }
+
+    .repeat-entry-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.8rem;
+      border-radius: 999px;
+      padding: 0.25rem 0.66rem;
+      font-size: 0.84rem;
+      font-weight: 800;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .status-pill.ok {
+      background: #dff3e8;
+      color: var(--success);
+    }
+
+    .status-pill.warn {
+      background: #fff2da;
+      color: var(--warning);
+    }
+
+    .mode-switch {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.4rem;
+      background: var(--surface-muted);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.25rem;
+    }
+
+    .mode-switch label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      min-height: 2.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    .mode-switch input {
+      width: auto;
+      accent-color: var(--accent);
+    }
+
+    .mode-switch label:has(input:checked) {
+      background: #ffffff;
+      box-shadow: 0 1px 2px rgba(23, 33, 43, 0.12);
+    }
+
+    .output-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .output-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      justify-content: flex-end;
+    }
+
+    .code-output,
+    pre {
+      width: 100%;
+      border: 1px solid #263542;
+      border-radius: 8px;
+      background: var(--code);
+      color: var(--code-text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.86rem;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    .code-output {
+      min-height: 24rem;
+      padding: 0.85rem;
+      resize: vertical;
+    }
+
+    pre {
+      min-height: 7rem;
+      overflow: auto;
+      margin: 0;
+      padding: 0.85rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .validation-list {
+      margin: 0.65rem 0 0;
+      padding-left: 1.2rem;
+      color: var(--warning);
+    }
+
+    .validation-list:empty {
+      display: none;
+    }
+
+    .validation-list li {
+      margin-bottom: 0.28rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1080px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .output-pane {
+        position: static;
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .app-bar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .top-links {
+        justify-content: flex-start;
+      }
+
+      .field-grid,
+      .field-grid.three {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-header,
+      .output-header,
+      .repeat-entry-header {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .panel-actions,
+      .output-actions {
+        justify-content: flex-start;
+      }
+
+      .mode-switch {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-bar">
+    <div class="brand">
+      <p class="eyebrow">CWL Schema.org</p>
+      <h1>transpiler-mate metadata generator</h1>
+    </div>
+    <nav class="top-links" aria-label="Documentation links">
+      <a href="conventions/">Conventions</a>
+      <a href="schemas/software_application/">Schema</a>
+      <a href="xwalks/codemeta/">CodeMeta crosswalk</a>
+    </nav>
+  </header>
+
+  <main class="workspace">
+    <form id="metadata-form" class="form-pane">
+      <section class="panel" aria-labelledby="software-heading">
+        <div class="panel-header">
+          <h2 id="software-heading">Software</h2>
+          <div class="panel-actions">
+            <button type="button" data-action="load-example">Load example</button>
+            <button type="button" class="ghost" data-action="clear-form">Clear</button>
+          </div>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="name">Name <span class="required-mark">*</span></label>
+            <input id="name" autocomplete="off" required>
+          </div>
+          <div class="field">
+            <label for="date-created">Creation date <span class="required-mark">*</span></label>
+            <input id="date-created" type="date" required>
+          </div>
+          <div class="field full">
+            <label for="description">Description <span class="required-mark">*</span></label>
+            <textarea id="description" required></textarea>
+          </div>
+          <div class="field">
+            <label for="identifier">Unique identifier</label>
+            <input id="identifier" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="software-version">Software version <span class="required-mark">*</span></label>
+            <input id="software-version" autocomplete="off" required>
+          </div>
+          <div class="field full">
+            <label for="same-as">Alternative identifier URLs</label>
+            <textarea id="same-as" class="compact-textarea"></textarea>
+            <span class="hint">One URL per line.</span>
+          </div>
+          <div class="field">
+            <label for="operating-system">Operating systems</label>
+            <textarea id="operating-system" class="compact-textarea"></textarea>
+            <span class="hint">One value per line.</span>
+          </div>
+          <div class="field">
+            <label for="software-requirements">Software requirements</label>
+            <textarea id="software-requirements" class="compact-textarea"></textarea>
+            <span class="hint">One runtime, dependency, or URL per line.</span>
+          </div>
+          <div class="field full">
+            <label for="code-repository">Code repository</label>
+            <input id="code-repository" type="url" autocomplete="url">
+            <span class="hint">Used only in the generated CodeMeta CLI command.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="licenses-heading">
+        <div class="panel-header">
+          <h2 id="licenses-heading">Licenses</h2>
+          <button type="button" data-add="licenses">Add license</button>
+        </div>
+        <div id="licenses" class="repeat-list"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="help-heading">
+        <div class="panel-header">
+          <h2 id="help-heading">Software help</h2>
+          <button type="button" data-add="help">Add help link</button>
+        </div>
+        <div id="help" class="repeat-list"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="publisher-heading">
+        <h2 id="publisher-heading">Publisher</h2>
+        <div class="field-grid three">
+          <div class="field">
+            <label for="publisher-name">Name <span class="required-mark">*</span></label>
+            <input id="publisher-name" required>
+          </div>
+          <div class="field">
+            <label for="publisher-email">Email</label>
+            <input id="publisher-email" type="email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="publisher-identifier">Identifier</label>
+            <input id="publisher-identifier" autocomplete="off">
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="authors-heading">
+        <div class="panel-header">
+          <h2 id="authors-heading">Authors</h2>
+          <button type="button" data-add="authors">Add author</button>
+        </div>
+        <div id="authors" class="repeat-list"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="contributors-heading">
+        <div class="panel-header">
+          <h2 id="contributors-heading">Contributors</h2>
+          <button type="button" data-add="contributors">Add contributor</button>
+        </div>
+        <div id="contributors" class="repeat-list"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="keywords-heading">
+        <div class="panel-header">
+          <h2 id="keywords-heading">Keywords</h2>
+          <button type="button" data-add="terms">Add defined term</button>
+        </div>
+        <div class="field">
+          <label for="keywords">Text keywords</label>
+          <textarea id="keywords" class="compact-textarea"></textarea>
+          <span class="hint">Comma-separated or one per line.</span>
+        </div>
+        <div id="terms" class="repeat-list" style="margin-top: 0.75rem;"></div>
+      </section>
+    </form>
+
+    <aside class="output-pane" aria-label="Generated metadata">
+      <section class="panel">
+        <div class="output-header">
+          <div>
+            <h2>Generated YAML</h2>
+            <div class="status-row" aria-live="polite">
+              <span id="status-pill" class="status-pill warn">Needs input</span>
+              <span id="status-count" class="hint">0 checks</span>
+            </div>
+          </div>
+          <div class="output-actions">
+            <button type="button" class="primary" data-action="copy-yaml">Copy YAML</button>
+            <button type="button" data-action="download-yaml">Download CWL</button>
+          </div>
+        </div>
+        <div class="mode-switch" role="group" aria-label="YAML output mode">
+          <label>
+            <input type="radio" name="output-mode" value="snippet" checked>
+            Metadata snippet
+          </label>
+          <label>
+            <input type="radio" name="output-mode" value="cwl">
+            Minimal CWL file
+          </label>
+        </div>
+        <label class="sr-only" for="yaml-output">Generated YAML</label>
+        <textarea id="yaml-output" class="code-output" spellcheck="false" readonly></textarea>
+        <ul id="validation-list" class="validation-list"></ul>
+      </section>
+
+      <section class="panel">
+        <div class="output-header">
+          <h2>Schema object</h2>
+          <div class="output-actions">
+            <button type="button" data-action="copy-json">Copy JSON</button>
+            <button type="button" data-action="download-json">Download JSON</button>
+          </div>
+        </div>
+        <pre id="json-output" aria-label="Generated JSON"></pre>
+      </section>
+
+      <section class="panel">
+        <div class="output-header">
+          <h2>CodeMeta command</h2>
+          <button type="button" data-action="copy-command">Copy command</button>
+        </div>
+        <pre id="command-output" aria-label="Generated command"></pre>
+      </section>
+    </aside>
+  </main>
+
+  <template id="license-template">
+    <div class="repeat-entry" data-entry="licenses">
+      <div class="repeat-entry-header">
+        <h3 data-entry-title>License</h3>
+        <button type="button" class="danger" data-remove>Remove</button>
+      </div>
+      <div class="field-grid three">
+        <div class="field">
+          <label>SPDX identifier <span class="required-mark">*</span></label>
+          <input data-field="identifier" list="spdx-options" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Name</label>
+          <input data-field="name" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>URL</label>
+          <input data-field="url" type="url" autocomplete="url">
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="help-template">
+    <div class="repeat-entry" data-entry="help">
+      <div class="repeat-entry-header">
+        <h3 data-entry-title>Help link</h3>
+        <button type="button" class="danger" data-remove>Remove</button>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label>Name <span class="required-mark">*</span></label>
+          <input data-field="name" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>URL <span class="required-mark">*</span></label>
+          <input data-field="url" type="url" autocomplete="url">
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="person-template">
+    <div class="repeat-entry" data-entry>
+      <div class="repeat-entry-header">
+        <h3 data-entry-title>Person</h3>
+        <div class="panel-actions">
+          <button type="button" data-fill-affiliation>Use publisher affiliation</button>
+          <button type="button" class="danger" data-remove>Remove</button>
+        </div>
+      </div>
+      <div class="field-grid">
+        <div class="field full">
+          <label class="check-field">
+            <input type="checkbox" data-field="role.enabled">
+            Wrap this relationship in a Schema.org Role
+          </label>
+          <span class="hint">When enabled, the generated metadata nests this person under s:author or s:contributor inside an s:Role object.</span>
+        </div>
+        <div class="field">
+          <label>Role name</label>
+          <input data-field="role.roleName" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Additional role type</label>
+          <input data-field="role.additionalType" type="url" autocomplete="url">
+        </div>
+        <div class="field">
+          <label>Role start date</label>
+          <input data-field="role.startDate" type="date">
+        </div>
+        <div class="field">
+          <label>Role end date</label>
+          <input data-field="role.endDate" type="date">
+        </div>
+        <div class="field">
+          <label>Given name <span class="required-mark">*</span></label>
+          <input data-field="givenName" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label>Family name <span class="required-mark">*</span></label>
+          <input data-field="familyName" autocomplete="family-name">
+        </div>
+        <div class="field">
+          <label>Email <span class="required-mark">*</span></label>
+          <input data-field="email" type="email" autocomplete="email">
+        </div>
+        <div class="field">
+          <label>Identifier</label>
+          <input data-field="identifier" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Affiliation name <span class="required-mark">*</span></label>
+          <input data-field="affiliation.name" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label>Affiliation email</label>
+          <input data-field="affiliation.email" type="email" autocomplete="email">
+        </div>
+        <div class="field full">
+          <label>Affiliation identifier</label>
+          <input data-field="affiliation.identifier" autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="term-template">
+    <div class="repeat-entry" data-entry="terms">
+      <div class="repeat-entry-header">
+        <h3 data-entry-title>Defined term</h3>
+        <button type="button" class="danger" data-remove>Remove</button>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label>Name</label>
+          <input data-field="name" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <input data-field="description" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Term code</label>
+          <input data-field="termCode" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Defined term set</label>
+          <input data-field="inDefinedTermSet" type="url" autocomplete="url">
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <datalist id="spdx-options">
+    <option value="Apache-2.0"></option>
+    <option value="MIT"></option>
+    <option value="BSD-3-Clause"></option>
+    <option value="GPL-3.0-only"></option>
+    <option value="LGPL-3.0-only"></option>
+    <option value="MPL-2.0"></option>
+    <option value="CC-BY-4.0"></option>
+    <option value="CC0-1.0"></option>
+  </datalist>
+
+  <script>
+    (function () {
+      var repeaters = {
+        licenses: {
+          container: document.getElementById("licenses"),
+          template: document.getElementById("license-template"),
+          label: "License",
+          min: 1
+        },
+        help: {
+          container: document.getElementById("help"),
+          template: document.getElementById("help-template"),
+          label: "Help link",
+          min: 1
+        },
+        authors: {
+          container: document.getElementById("authors"),
+          template: document.getElementById("person-template"),
+          label: "Author",
+          min: 1
+        },
+        contributors: {
+          container: document.getElementById("contributors"),
+          template: document.getElementById("person-template"),
+          label: "Contributor",
+          min: 0
+        },
+        terms: {
+          container: document.getElementById("terms"),
+          template: document.getElementById("term-template"),
+          label: "Defined term",
+          min: 0
+        }
+      };
+
+      var example = {
+        name: "My shiny workflow",
+        description: "There is no workflow on earth like this one that solves NP-complete problems.",
+        dateCreated: "2025-01-01",
+        identifier: "10.5072/zenodo.393958",
+        sameAs: "https://handle.test.datacite.org/10.5072/zenodo.393958",
+        operatingSystem: "Linux\nmacOS",
+        softwareRequirements: "https://cwltool.readthedocs.io/en/latest/\nhttps://www.python.org/",
+        softwareVersion: "3.0.0",
+        codeRepository: "https://github.com/Terradue/transpiler-mate.git",
+        publisher: {
+          name: "Make Earth Observation Great Again",
+          email: "info@meoga.com",
+          identifier: "https://ror.org/9999cx000"
+        },
+        licenses: [
+          {
+            identifier: "CC-BY-4.0",
+            name: "Creative Commons Attribution 4.0 International",
+            url: "https://spdx.org/licenses/CC-BY-4.0.html"
+          }
+        ],
+        help: [
+          {
+            name: "User Manual",
+            url: "https://meoga-shiny-workflow.readthedocs.io/en/latest/"
+          },
+          {
+            name: "Admin Manual",
+            url: "https://meoga.io/meoga/shiny-workflow/admin"
+          }
+        ],
+        authors: [
+          {
+            givenName: "Lex",
+            familyName: "Luthor",
+            email: "lex.luthor@luthorcorp.com",
+            identifier: "https://orcid.org/0000-9999-0000-9999",
+            role: {
+              enabled: true,
+              roleName: "Principal investigator",
+              startDate: "2025-01-01",
+              additionalType: "https://credit.niso.org/contributor-roles/conceptualization/"
+            },
+            affiliation: {
+              name: "Luthor Corp",
+              identifier: "https://ror.org/0000cx000"
+            }
+          }
+        ],
+        contributors: [
+          {
+            givenName: "Clark",
+            familyName: "Kent",
+            email: "clark.kent@dailyplanet.com",
+            identifier: "https://orcid.org/0000-9999-0000-9999",
+            role: {
+              enabled: true,
+              roleName: "Documentation"
+            },
+            affiliation: {
+              name: "Daily Planet",
+              identifier: "https://ror.org/0000cx000"
+            }
+          }
+        ],
+        keywords: "CWL\nWorkflow\nEarth Observation",
+        terms: [
+          {
+            name: "application-type",
+            description: "delineation"
+          },
+          {
+            name: "domain",
+            description: "hydrology"
+          },
+          {
+            termCode: "959f1861-a776-41b1-ba6b-d23c71d4d1eb",
+            inDefinedTermSet: "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords"
+          }
+        ]
+      };
+
+      var form = document.getElementById("metadata-form");
+      var yamlOutput = document.getElementById("yaml-output");
+      var jsonOutput = document.getElementById("json-output");
+      var commandOutput = document.getElementById("command-output");
+      var validationList = document.getElementById("validation-list");
+      var statusPill = document.getElementById("status-pill");
+      var statusCount = document.getElementById("status-count");
+
+      function byId(id) {
+        return document.getElementById(id);
+      }
+
+      function valueOf(id) {
+        return byId(id).value.trim();
+      }
+
+      function setValue(id, value) {
+        byId(id).value = value || "";
+      }
+
+      function splitLines(value) {
+        return value
+          .split(/\n/)
+          .map(function (item) {
+            return item.trim();
+          })
+          .filter(Boolean);
+      }
+
+      function splitKeywords(value) {
+        return value
+          .split(/[\n,]/)
+          .map(function (item) {
+            return item.trim();
+          })
+          .filter(Boolean);
+      }
+
+      function compactObject(object) {
+        var result = {};
+        Object.keys(object).forEach(function (key) {
+          var value = object[key];
+          if (value === undefined || value === null || value === "") {
+            return;
+          }
+          if (Array.isArray(value) && value.length === 0) {
+            return;
+          }
+          result[key] = value;
+        });
+        return result;
+      }
+
+      function hasMeaningfulValue(object, ignoredKeys) {
+        ignoredKeys = ignoredKeys || [];
+        return Object.keys(object).some(function (key) {
+          if (ignoredKeys.indexOf(key) >= 0) {
+            return false;
+          }
+          var value = object[key];
+          if (value === undefined || value === null || value === "") {
+            return false;
+          }
+          if (Array.isArray(value)) {
+            return value.length > 0;
+          }
+          if (typeof value === "object") {
+            return hasMeaningfulValue(value, ignoredKeys);
+          }
+          return true;
+        });
+      }
+
+      function addEntry(type, data) {
+        var config = repeaters[type];
+        var fragment = config.template.content.cloneNode(true);
+        var entry = fragment.querySelector("[data-entry]");
+        entry.dataset.entry = type;
+
+        entry.querySelectorAll("[data-field]").forEach(function (field) {
+          var path = field.dataset.field;
+          var value = getPath(data || {}, path);
+          if (field.type === "checkbox") {
+            field.checked = Boolean(value);
+          } else {
+            field.value = value || "";
+          }
+        });
+
+        config.container.appendChild(fragment);
+        refreshRepeater(type);
+      }
+
+      function getPath(data, path) {
+        return path.split(".").reduce(function (current, key) {
+          return current && current[key] !== undefined ? current[key] : "";
+        }, data);
+      }
+
+      function setPath(data, path, value) {
+        var parts = path.split(".");
+        var cursor = data;
+        parts.forEach(function (part, index) {
+          if (index === parts.length - 1) {
+            cursor[part] = value;
+            return;
+          }
+          cursor[part] = cursor[part] || {};
+          cursor = cursor[part];
+        });
+      }
+
+      function refreshRepeater(type) {
+        var config = repeaters[type];
+        var entries = Array.from(config.container.querySelectorAll("[data-entry='" + type + "']"));
+        entries.forEach(function (entry, index) {
+          var title = entry.querySelector("[data-entry-title]");
+          var remove = entry.querySelector("[data-remove]");
+          if (title) {
+            title.textContent = config.label + " " + (index + 1);
+          }
+          if (remove) {
+            remove.disabled = entries.length <= config.min;
+          }
+        });
+      }
+
+      function clearRepeater(type) {
+        repeaters[type].container.innerHTML = "";
+      }
+
+      function setRepeater(type, values) {
+        clearRepeater(type);
+        (values || []).forEach(function (item) {
+          addEntry(type, item);
+        });
+        while (repeaters[type].container.children.length < repeaters[type].min) {
+          addEntry(type, {});
+        }
+        refreshRepeater(type);
+      }
+
+      function collectRepeater(type) {
+        return Array.from(repeaters[type].container.querySelectorAll("[data-entry='" + type + "']")).map(function (entry) {
+          var row = {};
+          entry.querySelectorAll("[data-field]").forEach(function (field) {
+            var value = field.type === "checkbox" ? field.checked : field.value.trim();
+            setPath(row, field.dataset.field, value);
+          });
+          return row;
+        });
+      }
+
+      function creativeWork(data) {
+        return compactObject({
+          "@type": "s:CreativeWork",
+          "s:identifier": data.identifier,
+          "s:name": data.name,
+          "s:url": data.url
+        });
+      }
+
+      function organization(data) {
+        return compactObject({
+          "@type": "s:Organization",
+          "s:name": data.name,
+          "s:email": data.email,
+          "s:identifier": data.identifier
+        });
+      }
+
+      function person(data) {
+        var affiliation = organization(data.affiliation || {});
+        var personObject = compactObject({
+          "@type": "s:Person",
+          "s:givenName": data.givenName,
+          "s:familyName": data.familyName,
+          "s:email": data.email,
+          "s:identifier": data.identifier
+        });
+        if (hasMeaningfulValue(affiliation, ["@type"])) {
+          personObject["s:affiliation"] = affiliation;
+        }
+        return personObject;
+      }
+
+      function hasRoleDetails(data) {
+        var role = data.role || {};
+        return Boolean(role.roleName || role.startDate || role.endDate || role.additionalType);
+      }
+
+      function shouldWrapInRole(data) {
+        var role = data.role || {};
+        return Boolean(role.enabled || hasRoleDetails(data));
+      }
+
+      function roleWrappedPerson(data, nestedProperty) {
+        var personObject = person(data);
+        if (!hasMeaningfulValue(personObject, ["@type"])) {
+          return null;
+        }
+        if (!shouldWrapInRole(data)) {
+          return personObject;
+        }
+
+        var role = data.role || {};
+        var roleObject = compactObject({
+          "@type": "s:Role",
+          "s:roleName": role.roleName,
+          "s:startDate": role.startDate,
+          "s:endDate": role.endDate,
+          "s:additionalType": role.additionalType
+        });
+        roleObject["s:" + nestedProperty] = personObject;
+        return roleObject;
+      }
+
+      function definedTerm(data) {
+        return compactObject({
+          "@type": "s:DefinedTerm",
+          "s:name": data.name,
+          "s:description": data.description,
+          "s:termCode": data.termCode,
+          "s:inDefinedTermSet": data.inDefinedTermSet
+        });
+      }
+
+      function listOrSingle(values) {
+        if (values.length === 1) {
+          return values[0];
+        }
+        return values;
+      }
+
+      function buildMetadata() {
+        var metadata = {
+          "$namespaces": {
+            "s": "https://schema.org/"
+          },
+          "@type": "s:SoftwareApplication"
+        };
+
+        var name = valueOf("name");
+        var description = valueOf("description");
+        var dateCreated = valueOf("date-created");
+        var identifier = valueOf("identifier");
+        var sameAs = splitLines(valueOf("same-as"));
+        var operatingSystem = splitLines(valueOf("operating-system"));
+        var softwareRequirements = splitLines(valueOf("software-requirements"));
+        var softwareVersion = valueOf("software-version");
+        var publisher = organization({
+          name: valueOf("publisher-name"),
+          email: valueOf("publisher-email"),
+          identifier: valueOf("publisher-identifier")
+        });
+
+        if (name) {
+          metadata["s:name"] = name;
+        }
+        if (description) {
+          metadata["s:description"] = description;
+        }
+        if (dateCreated) {
+          metadata["s:dateCreated"] = dateCreated;
+        }
+
+        var licenses = collectRepeater("licenses")
+          .map(creativeWork)
+          .filter(function (item) {
+            return hasMeaningfulValue(item, ["@type"]);
+          });
+        if (licenses.length > 0) {
+          metadata["s:license"] = listOrSingle(licenses);
+        }
+
+        if (identifier) {
+          metadata["s:identifier"] = identifier;
+        }
+        if (sameAs.length > 0) {
+          metadata["s:sameAs"] = listOrSingle(sameAs);
+        }
+
+        var keywords = splitKeywords(valueOf("keywords"));
+        var definedTerms = collectRepeater("terms")
+          .map(definedTerm)
+          .filter(function (item) {
+            return hasMeaningfulValue(item, ["@type"]);
+          });
+        var allKeywords = keywords.concat(definedTerms);
+        if (allKeywords.length > 0) {
+          metadata["s:keywords"] = allKeywords;
+        }
+
+        if (operatingSystem.length > 0) {
+          metadata["s:operatingSystem"] = operatingSystem;
+        }
+        if (softwareRequirements.length > 0) {
+          metadata["s:softwareRequirements"] = softwareRequirements;
+        }
+        if (softwareVersion) {
+          metadata["s:softwareVersion"] = softwareVersion;
+        }
+
+        var help = collectRepeater("help")
+          .map(creativeWork)
+          .filter(function (item) {
+            return hasMeaningfulValue(item, ["@type"]);
+          });
+        if (help.length > 0) {
+          metadata["s:softwareHelp"] = help;
+        }
+
+        if (hasMeaningfulValue(publisher, ["@type"])) {
+          metadata["s:publisher"] = publisher;
+        }
+
+        var authors = collectRepeater("authors")
+          .map(function (item) {
+            return roleWrappedPerson(item, "author");
+          })
+          .filter(function (item) {
+            return item && hasMeaningfulValue(item, ["@type"]);
+          });
+        if (authors.length > 0) {
+          metadata["s:author"] = authors;
+        }
+
+        var contributors = collectRepeater("contributors")
+          .map(function (item) {
+            return roleWrappedPerson(item, "contributor");
+          })
+          .filter(function (item) {
+            return item && hasMeaningfulValue(item, ["@type"]);
+          });
+        if (contributors.length > 0) {
+          metadata["s:contributor"] = contributors;
+        }
+
+        return metadata;
+      }
+
+      function buildCwlDocument(metadata) {
+        var document = {
+          "cwlVersion": "v1.2",
+          "class": "CommandLineTool",
+          "baseCommand": "echo",
+          "inputs": {},
+          "outputs": {}
+        };
+        Object.keys(metadata).forEach(function (key) {
+          document[key] = metadata[key];
+        });
+        return document;
+      }
+
+      function isScalar(value) {
+        return value === null || typeof value !== "object";
+      }
+
+      function yamlKey(key) {
+        if (key === "@type") {
+          return "'@type'";
+        }
+        return key;
+      }
+
+      function yamlScalar(value, blockIndent) {
+        var text = String(value);
+        if (text.indexOf("\n") >= 0) {
+          return "|-\n" + text.split("\n").map(function (line) {
+            return " ".repeat(blockIndent) + line;
+          }).join("\n");
+        }
+        if (/^\d{4}-\d{2}-\d{2}$/.test(text)) {
+          return "'" + text + "'";
+        }
+        if (/^[A-Za-z0-9_./:+-]+$/.test(text) && text.charAt(0) !== "@" && text !== "true" && text !== "false" && text !== "null") {
+          return text;
+        }
+        return "'" + text.replace(/'/g, "''") + "'";
+      }
+
+      function toYaml(value, indent) {
+        indent = indent || 0;
+        var pad = " ".repeat(indent);
+
+        if (Array.isArray(value)) {
+          return value.map(function (item) {
+            if (isScalar(item)) {
+              return pad + "- " + yamlScalar(item, indent + 2);
+            }
+            var rendered = toYaml(item, indent + 2).split("\n");
+            return pad + "- " + rendered[0].slice(indent + 2) + (rendered.length > 1 ? "\n" + rendered.slice(1).join("\n") : "");
+          }).join("\n");
+        }
+
+        if (!isScalar(value)) {
+          return Object.keys(value).map(function (key) {
+            var item = value[key];
+            if (Array.isArray(item) && item.length === 0) {
+              return "";
+            }
+            if (isScalar(item)) {
+              return pad + yamlKey(key) + ": " + yamlScalar(item, indent + 2);
+            }
+            var nested = toYaml(item, indent + 2);
+            if (!nested) {
+              return pad + yamlKey(key) + ": {}";
+            }
+            return pad + yamlKey(key) + ":\n" + nested;
+          }).filter(Boolean).join("\n");
+        }
+
+        return pad + yamlScalar(value, indent);
+      }
+
+      function validate(metadata) {
+        var issues = [];
+        var licenses = collectRepeater("licenses");
+        var help = collectRepeater("help");
+        var authors = collectRepeater("authors");
+
+        if (!metadata["s:name"]) {
+          issues.push("Software name is required.");
+        }
+        if (!metadata["s:description"]) {
+          issues.push("Description is required.");
+        }
+        if (!metadata["s:dateCreated"]) {
+          issues.push("Creation date is required.");
+        }
+        if (!metadata["s:identifier"]) {
+          issues.push("Unique identifier is required by the conventions.");
+        }
+        if (!metadata["s:sameAs"]) {
+          issues.push("At least one alternative identifier URL is required by the conventions.");
+        }
+        if (!metadata["s:softwareVersion"]) {
+          issues.push("Software version is required.");
+        }
+        if (!metadata["s:publisher"] || !metadata["s:publisher"]["s:name"]) {
+          issues.push("Publisher name is required.");
+        }
+        if (!licenses.some(function (item) { return item.identifier || item.url; })) {
+          issues.push("At least one license identifier or URL is required.");
+        }
+        if (!help.some(function (item) { return item.name && item.url; })) {
+          issues.push("At least one software help entry with name and URL is required.");
+        }
+        if (!authors.some(function (item) {
+          return item.givenName && item.familyName && item.email && item.affiliation && item.affiliation.name;
+        })) {
+          issues.push("At least one author with email and affiliation is required.");
+        }
+        authors.forEach(function (item, index) {
+          if (shouldWrapInRole(item) && !item.role.roleName) {
+            issues.push("Author " + (index + 1) + " role name is required when role wrapping is enabled.");
+          }
+        });
+        collectRepeater("contributors").forEach(function (item, index) {
+          if (shouldWrapInRole(item) && !item.role.roleName) {
+            issues.push("Contributor " + (index + 1) + " role name is required when role wrapping is enabled.");
+          }
+        });
+        return issues;
+      }
+
+      function buildCommand() {
+        var repository = valueOf("code-repository");
+        var parts = ["transpiler-mate", "codemeta", "generated-metadata.cwl"];
+        if (repository) {
+          parts.push("--code-repository", shellQuote(repository));
+        }
+        parts.push("--output", "codemeta.json");
+        return parts.join(" ");
+      }
+
+      function shellQuote(value) {
+        if (/^[A-Za-z0-9_./:+@%=-]+$/.test(value)) {
+          return value;
+        }
+        return "'" + value.replace(/'/g, "'\\''") + "'";
+      }
+
+      function render() {
+        var metadata = buildMetadata();
+        var outputMode = document.querySelector("input[name='output-mode']:checked").value;
+        var yamlDocument = outputMode === "cwl" ? buildCwlDocument(metadata) : metadata;
+        var issues = validate(metadata);
+
+        yamlOutput.value = toYaml(yamlDocument, 0) + "\n";
+        jsonOutput.textContent = JSON.stringify(metadata, null, 2);
+        commandOutput.textContent = buildCommand();
+
+        validationList.innerHTML = "";
+        issues.forEach(function (issue) {
+          var item = document.createElement("li");
+          item.textContent = issue;
+          validationList.appendChild(item);
+        });
+
+        statusPill.textContent = issues.length === 0 ? "Ready" : "Needs input";
+        statusPill.classList.toggle("ok", issues.length === 0);
+        statusPill.classList.toggle("warn", issues.length > 0);
+        statusCount.textContent = issues.length === 0 ? "All required fields present" : issues.length + " checks";
+      }
+
+      function copyText(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          return navigator.clipboard.writeText(text);
+        }
+        var scratch = document.createElement("textarea");
+        scratch.value = text;
+        scratch.setAttribute("readonly", "");
+        scratch.style.position = "fixed";
+        scratch.style.opacity = "0";
+        document.body.appendChild(scratch);
+        scratch.select();
+        document.execCommand("copy");
+        document.body.removeChild(scratch);
+        return Promise.resolve();
+      }
+
+      function download(filename, content, type) {
+        var blob = new Blob([content], { type: type });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+
+      function loadExample() {
+        setValue("name", example.name);
+        setValue("description", example.description);
+        setValue("date-created", example.dateCreated);
+        setValue("identifier", example.identifier);
+        setValue("same-as", example.sameAs);
+        setValue("operating-system", example.operatingSystem);
+        setValue("software-requirements", example.softwareRequirements);
+        setValue("software-version", example.softwareVersion);
+        setValue("code-repository", example.codeRepository);
+        setValue("publisher-name", example.publisher.name);
+        setValue("publisher-email", example.publisher.email);
+        setValue("publisher-identifier", example.publisher.identifier);
+        setValue("keywords", example.keywords);
+        setRepeater("licenses", example.licenses);
+        setRepeater("help", example.help);
+        setRepeater("authors", example.authors);
+        setRepeater("contributors", example.contributors);
+        setRepeater("terms", example.terms);
+        render();
+      }
+
+      function clearForm() {
+        ["name", "description", "date-created", "identifier", "same-as", "operating-system", "software-requirements", "software-version", "code-repository", "publisher-name", "publisher-email", "publisher-identifier", "keywords"].forEach(function (id) {
+          setValue(id, "");
+        });
+        setRepeater("licenses", [{}]);
+        setRepeater("help", [{}]);
+        setRepeater("authors", [{}]);
+        setRepeater("contributors", []);
+        setRepeater("terms", []);
+        render();
+      }
+
+      function fillAffiliation(entry) {
+        var values = {
+          "affiliation.name": valueOf("publisher-name"),
+          "affiliation.email": valueOf("publisher-email"),
+          "affiliation.identifier": valueOf("publisher-identifier")
+        };
+        Object.keys(values).forEach(function (path) {
+          var field = entry.querySelector("[data-field='" + path + "']");
+          if (field) {
+            field.value = values[path];
+          }
+        });
+      }
+
+      form.addEventListener("input", render);
+      form.addEventListener("change", render);
+      document.addEventListener("change", function (event) {
+        if (event.target.name === "output-mode") {
+          render();
+        }
+      });
+
+      document.addEventListener("click", function (event) {
+        var add = event.target.closest("[data-add]");
+        var remove = event.target.closest("[data-remove]");
+        var action = event.target.closest("[data-action]");
+        var fill = event.target.closest("[data-fill-affiliation]");
+
+        if (add) {
+          addEntry(add.dataset.add, {});
+          render();
+          return;
+        }
+
+        if (remove) {
+          var entry = remove.closest("[data-entry]");
+          var type = entry.dataset.entry;
+          entry.remove();
+          refreshRepeater(type);
+          render();
+          return;
+        }
+
+        if (fill) {
+          fillAffiliation(fill.closest("[data-entry]"));
+          render();
+          return;
+        }
+
+        if (!action) {
+          return;
+        }
+
+        var actionName = action.dataset.action;
+        if (actionName === "load-example") {
+          loadExample();
+        } else if (actionName === "clear-form") {
+          clearForm();
+        } else if (actionName === "copy-yaml") {
+          copyText(yamlOutput.value);
+        } else if (actionName === "copy-json") {
+          copyText(jsonOutput.textContent);
+        } else if (actionName === "copy-command") {
+          copyText(commandOutput.textContent);
+        } else if (actionName === "download-yaml") {
+          download("generated-metadata.cwl", yamlOutput.value, "text/yaml;charset=utf-8");
+        } else if (actionName === "download-json") {
+          download("generated-metadata.json", jsonOutput.textContent + "\n", "application/json;charset=utf-8");
+        }
+      });
+
+      Object.keys(repeaters).forEach(function (type) {
+        setRepeater(type, []);
+      });
+      loadExample();
+    })();
+  </script>
+</body>
+</html>
