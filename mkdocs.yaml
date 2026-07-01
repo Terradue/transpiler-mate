@@ -77,6 +77,7 @@ extra_javascript:
 nav:
   - index.md
   - conventions.md
+  - Metadata generator: metadata-generator.html
   - JSON Schemas:
     - DataCite 4.6: ./schemas/datacite_4_6.md
     - OGC API - Records: ./schemas/ogcapi_records.md
