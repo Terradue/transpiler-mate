@@ -264,6 +264,18 @@
       font-size: 0.81rem;
     }
 
+    .check-field {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 2.25rem;
+    }
+
+    .check-field input {
+      width: auto;
+      accent-color: var(--accent);
+    }
+
     .repeat-list {
       display: grid;
       gap: 0.75rem;
@@ -692,6 +704,29 @@
         </div>
       </div>
       <div class="field-grid">
+        <div class="field full">
+          <label class="check-field">
+            <input type="checkbox" data-field="role.enabled">
+            Wrap this relationship in a Schema.org Role
+          </label>
+          <span class="hint">When enabled, the generated metadata nests this person under s:author or s:contributor inside an s:Role object.</span>
+        </div>
+        <div class="field">
+          <label>Role name</label>
+          <input data-field="role.roleName" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Additional role type</label>
+          <input data-field="role.additionalType" type="url" autocomplete="url">
+        </div>
+        <div class="field">
+          <label>Role start date</label>
+          <input data-field="role.startDate" type="date">
+        </div>
+        <div class="field">
+          <label>Role end date</label>
+          <input data-field="role.endDate" type="date">
+        </div>
         <div class="field">
           <label>Given name <span class="required-mark">*</span></label>
           <input data-field="givenName" autocomplete="given-name">
@@ -835,6 +870,12 @@
             familyName: "Luthor",
             email: "lex.luthor@luthorcorp.com",
             identifier: "https://orcid.org/0000-9999-0000-9999",
+            role: {
+              enabled: true,
+              roleName: "Principal investigator",
+              startDate: "2025-01-01",
+              additionalType: "https://credit.niso.org/contributor-roles/conceptualization/"
+            },
             affiliation: {
               name: "Luthor Corp",
               identifier: "https://ror.org/0000cx000"
@@ -847,6 +888,10 @@
             familyName: "Kent",
             email: "clark.kent@dailyplanet.com",
             identifier: "https://orcid.org/0000-9999-0000-9999",
+            role: {
+              enabled: true,
+              roleName: "Documentation"
+            },
             affiliation: {
               name: "Daily Planet",
               identifier: "https://ror.org/0000cx000"
@@ -952,7 +997,11 @@
         entry.querySelectorAll("[data-field]").forEach(function (field) {
           var path = field.dataset.field;
           var value = getPath(data || {}, path);
-          field.value = value || "";
+          if (field.type === "checkbox") {
+            field.checked = Boolean(value);
+          } else {
+            field.value = value || "";
+          }
         });
 
         config.container.appendChild(fragment);
@@ -1012,7 +1061,8 @@
         return Array.from(repeaters[type].container.querySelectorAll("[data-entry='" + type + "']")).map(function (entry) {
           var row = {};
           entry.querySelectorAll("[data-field]").forEach(function (field) {
-            setPath(row, field.dataset.field, field.value.trim());
+            var value = field.type === "checkbox" ? field.checked : field.value.trim();
+            setPath(row, field.dataset.field, value);
           });
           return row;
         });
@@ -1049,6 +1099,37 @@
           personObject["s:affiliation"] = affiliation;
         }
         return personObject;
+      }
+
+      function hasRoleDetails(data) {
+        var role = data.role || {};
+        return Boolean(role.roleName || role.startDate || role.endDate || role.additionalType);
+      }
+
+      function shouldWrapInRole(data) {
+        var role = data.role || {};
+        return Boolean(role.enabled || hasRoleDetails(data));
+      }
+
+      function roleWrappedPerson(data, nestedProperty) {
+        var personObject = person(data);
+        if (!hasMeaningfulValue(personObject, ["@type"])) {
+          return null;
+        }
+        if (!shouldWrapInRole(data)) {
+          return personObject;
+        }
+
+        var role = data.role || {};
+        var roleObject = compactObject({
+          "@type": "s:Role",
+          "s:roleName": role.roleName,
+          "s:startDate": role.startDate,
+          "s:endDate": role.endDate,
+          "s:additionalType": role.additionalType
+        });
+        roleObject["s:" + nestedProperty] = personObject;
+        return roleObject;
       }
 
       function definedTerm(data) {
@@ -1151,18 +1232,22 @@
         }
 
         var authors = collectRepeater("authors")
-          .map(person)
+          .map(function (item) {
+            return roleWrappedPerson(item, "author");
+          })
           .filter(function (item) {
-            return hasMeaningfulValue(item, ["@type"]);
+            return item && hasMeaningfulValue(item, ["@type"]);
           });
         if (authors.length > 0) {
           metadata["s:author"] = authors;
         }
 
         var contributors = collectRepeater("contributors")
-          .map(person)
+          .map(function (item) {
+            return roleWrappedPerson(item, "contributor");
+          })
           .filter(function (item) {
-            return hasMeaningfulValue(item, ["@type"]);
+            return item && hasMeaningfulValue(item, ["@type"]);
           });
         if (contributors.length > 0) {
           metadata["s:contributor"] = contributors;
@@ -1284,6 +1369,16 @@
         })) {
           issues.push("At least one author with email and affiliation is required.");
         }
+        authors.forEach(function (item, index) {
+          if (shouldWrapInRole(item) && !item.role.roleName) {
+            issues.push("Author " + (index + 1) + " role name is required when role wrapping is enabled.");
+          }
+        });
+        collectRepeater("contributors").forEach(function (item, index) {
+          if (shouldWrapInRole(item) && !item.role.roleName) {
+            issues.push("Contributor " + (index + 1) + " role name is required when role wrapping is enabled.");
+          }
+        });
         return issues;
       }
 
