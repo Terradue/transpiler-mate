@@ -256,6 +256,8 @@
     }
 
     input:disabled {
+      background: var(--surface-muted);
+      color: var(--muted);
       cursor: not-allowed;
     }
 
@@ -776,11 +778,11 @@
         </div>
         <div class="field">
           <label>Role name</label>
-          <input data-field="role.roleName" autocomplete="off">
+          <select data-field="role.roleName" data-credit-role-name></select>
         </div>
         <div class="field">
           <label>Additional role type</label>
-          <input data-field="role.additionalType" type="url" autocomplete="url">
+          <input data-field="role.additionalType" type="url" autocomplete="url" disabled>
         </div>
         <div class="field">
           <label>Role start date</label>
@@ -6708,6 +6710,70 @@
 }
   </script>
 
+  <script type="application/json" id="credit-role-data">
+{
+  "source": "https://credit.niso.org/",
+  "roles": [
+    {
+      "name": "Conceptualization",
+      "url": "https://credit.niso.org/contributor-roles/conceptualization/"
+    },
+    {
+      "name": "Data curation",
+      "url": "https://credit.niso.org/contributor-roles/data-curation/"
+    },
+    {
+      "name": "Formal analysis",
+      "url": "https://credit.niso.org/contributor-roles/formal-analysis/"
+    },
+    {
+      "name": "Funding acquisition",
+      "url": "https://credit.niso.org/contributor-roles/funding-acquisition/"
+    },
+    {
+      "name": "Investigation",
+      "url": "https://credit.niso.org/contributor-roles/investigation/"
+    },
+    {
+      "name": "Methodology",
+      "url": "https://credit.niso.org/contributor-roles/methodology/"
+    },
+    {
+      "name": "Project administration",
+      "url": "https://credit.niso.org/contributor-roles/project-administration/"
+    },
+    {
+      "name": "Resources",
+      "url": "https://credit.niso.org/contributor-roles/resources/"
+    },
+    {
+      "name": "Software",
+      "url": "https://credit.niso.org/contributor-roles/software/"
+    },
+    {
+      "name": "Supervision",
+      "url": "https://credit.niso.org/contributor-roles/supervision/"
+    },
+    {
+      "name": "Validation",
+      "url": "https://credit.niso.org/contributor-roles/validation/"
+    },
+    {
+      "name": "Visualization",
+      "url": "https://credit.niso.org/contributor-roles/visualization/"
+    },
+    {
+      "name": "Writing \u2013 original draft",
+      "url": "https://credit.niso.org/contributor-roles/writing-original-draft/"
+    },
+    {
+      "name": "Writing \u2013 review & editing",
+      "url": "https://credit.niso.org/contributor-roles/writing-review-editing/"
+    }
+  ]
+}
+  </script>
+
   <script>
     (function () {
       var spdxPayload = JSON.parse(document.getElementById("spdx-license-data").textContent);
@@ -6721,6 +6787,12 @@
       var operatingSystemSelect = document.getElementById("operating-system-select");
       var operatingSystemList = document.getElementById("operating-system-list");
       var addOperatingSystemButton = document.querySelector("[data-action='add-operating-system']");
+      var creditRolePayload = JSON.parse(document.getElementById("credit-role-data").textContent);
+      var creditRoles = creditRolePayload.roles || [];
+      var creditRoleByName = {};
+      creditRoles.forEach(function (role) {
+        creditRoleByName[role.name] = role;
+      });
 
       var repeaters = {
         licenses: {
@@ -6794,9 +6866,8 @@
             identifier: "https://orcid.org/0000-9999-0000-9999",
             role: {
               enabled: true,
-              roleName: "Principal investigator",
-              startDate: "2025-01-01",
-              additionalType: "https://credit.niso.org/contributor-roles/conceptualization/"
+              roleName: "Conceptualization",
+              startDate: "2025-01-01"
             },
             affiliation: {
               name: "Luthor Corp",
@@ -6812,7 +6883,7 @@
             identifier: "https://orcid.org/0000-9999-0000-9999",
             role: {
               enabled: true,
-              roleName: "Documentation"
+              roleName: "Writing \u2013 review & editing"
             },
             affiliation: {
               name: "Daily Planet",
@@ -6923,6 +6994,9 @@
         if (type === "licenses") {
           populateLicenseSelect(entry.querySelector("[data-license-identifier]"), getPath(data || {}, "identifier"));
         }
+        if (type === "authors" || type === "contributors") {
+          populateCreditRoleSelect(entry.querySelector("[data-credit-role-name]"), getPath(data || {}, "role.roleName"));
+        }
 
         entry.querySelectorAll("[data-field]").forEach(function (field) {
           var path = field.dataset.field;
@@ -6937,6 +7011,9 @@
         config.container.appendChild(fragment);
         if (type === "licenses") {
           syncLicenseEntry(entry);
+        }
+        if (type === "authors" || type === "contributors") {
+          syncCreditRoleEntry(entry);
         }
         refreshRepeater(type);
       }
@@ -6972,6 +7049,39 @@
         urlField.value = license ? license.url : "";
         fsfField.checked = Boolean(license && license.fsf);
         osiField.checked = Boolean(license && license.osi);
+      }
+
+      function populateCreditRoleSelect(select, selectedValue) {
+        var fragment = document.createDocumentFragment();
+        var emptyOption = document.createElement("option");
+        emptyOption.value = "";
+        emptyOption.textContent = "Select CRediT role";
+        fragment.appendChild(emptyOption);
+
+        creditRoles.forEach(function (role) {
+          var option = document.createElement("option");
+          option.value = role.name;
+          option.textContent = role.name;
+          fragment.appendChild(option);
+        });
+
+        select.innerHTML = "";
+        select.appendChild(fragment);
+        select.value = selectedValue || "";
+      }
+
+      function syncCreditRoleEntry(entry) {
+        var select = entry.querySelector("[data-credit-role-name]");
+        var additionalTypeField = entry.querySelector("[data-field='role.additionalType']");
+        var enabledField = entry.querySelector("[data-field='role.enabled']");
+        var role = creditRoleByName[select.value];
+
+        additionalTypeField.value = role ? role.url : "";
+        if (role) {
+          enabledField.checked = true;
+        } else if (!entry.querySelector("[data-field='role.startDate']").value && !entry.querySelector("[data-field='role.endDate']").value) {
+          enabledField.checked = false;
+        }
       }
 
       function getPath(data, path) {
@@ -7560,6 +7670,10 @@
         var licenseSelect = event.target.closest("[data-license-identifier]");
         if (licenseSelect) {
           syncLicenseEntry(licenseSelect.closest("[data-entry='licenses']"));
+        }
+        var creditRoleSelect = event.target.closest("[data-credit-role-name]");
+        if (creditRoleSelect) {
+          syncCreditRoleEntry(creditRoleSelect.closest("[data-entry]"));
         }
         if (event.target === operatingSystemSelect) {
           refreshOperatingSystemPicker();
