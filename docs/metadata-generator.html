@@ -285,6 +285,40 @@
       accent-color: var(--accent);
     }
 
+    .picker-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.5rem;
+      align-items: end;
+    }
+
+    .selected-list {
+      display: grid;
+      gap: 0.4rem;
+      margin: 0.45rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .selected-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+      min-height: 2.35rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fbfdfe;
+      padding: 0.35rem 0.45rem 0.35rem 0.65rem;
+    }
+
+    .selected-list .empty {
+      justify-content: flex-start;
+      color: var(--muted);
+      background: transparent;
+      border-style: dashed;
+    }
+
     .repeat-list {
       display: grid;
       gap: 0.75rem;
@@ -476,6 +510,10 @@
       .mode-switch {
         grid-template-columns: 1fr;
       }
+
+      .picker-row {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -529,9 +567,13 @@
             <span class="hint">One URL per line.</span>
           </div>
           <div class="field">
-            <label for="operating-system">Operating systems</label>
-            <textarea id="operating-system" class="compact-textarea"></textarea>
-            <span class="hint">One value per line.</span>
+            <label for="operating-system-select">Operating systems</label>
+            <div class="picker-row">
+              <select id="operating-system-select"></select>
+              <button type="button" data-action="add-operating-system">Add</button>
+            </div>
+            <input id="operating-system" type="hidden">
+            <ul id="operating-system-list" class="selected-list" aria-live="polite"></ul>
           </div>
           <div class="field">
             <label for="software-requirements">Software requirements</label>
@@ -5904,6 +5946,768 @@
 }
   </script>
 
+  <script type="application/json" id="operating-system-data">
+{
+  "source": "https://en.wikipedia.org/wiki/List_of_operating_systems",
+  "retrieved": "2026-07-02",
+  "operatingSystems": [
+    "1410",
+    "539kernel",
+    "7040/7044 Operating System (16/32K)",
+    "86-DOS",
+    "9front",
+    "A/ROSE",
+    "A/UX",
+    "A2",
+    "Accent",
+    "Access Linux Platform",
+    "ACP",
+    "Aegis",
+    "AIX",
+    "AIX/370",
+    "AIX/ESA",
+    "Altair DOS",
+    "Amiga Unix",
+    "AmigaOS",
+    "AmigaOS 1.0-3.9",
+    "AmigaOS 4",
+    "Amoeba",
+    "AMSDOS",
+    "ANDOS",
+    "Android",
+    "Android-x86",
+    "AnimOS",
+    "AOS",
+    "Apache Mynewt",
+    "Apple DOS",
+    "Apple II",
+    "Apple III",
+    "Apple Lisa",
+    "Apple MessagePad",
+    "Apple Network Server",
+    "Apple Pascal",
+    "Apple SOS",
+    "Apple TV",
+    "Apple Vision Pro",
+    "Apple Watch",
+    "ArcaOS",
+    "AROS",
+    "AROS Research Operating System",
+    "Arthur",
+    "ARX",
+    "Atari DOS",
+    "Atari MultiTOS",
+    "Atari TOS",
+    "AtheOS",
+    "Aurora OS",
+    "Azure Sphere",
+    "Bada",
+    "Banyan VINES",
+    "BareMetal",
+    "Barrelfish",
+    "Batch-11/DOS-11",
+    "BeIA",
+    "BeOS",
+    "BeOS r5.1d0",
+    "Berkeley Software Distribution",
+    "Berkeley Timesharing System",
+    "BESYS",
+    "Bitrig",
+    "BlackBerry 10",
+    "BlackBerry OS",
+    "BLIS/COBOL",
+    "BOS/360",
+    "brickOS",
+    "bridgeOS",
+    "BS1000",
+    "BS2000",
+    "BS3000",
+    "Burroughs MCP",
+    "Business Operating System",
+    "Caldera DR-DOS 7.02 and higher",
+    "Caldera DR-DOS 7.02-7.03 (BDOS 7.3)",
+    "Caldera OpenDOS 7.01",
+    "Caldera OpenDOS 7.01 (BDOS 7.2)",
+    "CalyxOS",
+    "Cambridge CAP computer",
+    "Cambridge Ring",
+    "CatOS",
+    "CB Unix",
+    "CBL-Mariner",
+    "CCI Multiuser DOS",
+    "Cesium RTOS",
+    "ChibiOS/RT",
+    "Chippewa Operating System",
+    "ChorusOS",
+    "ChromeOS",
+    "ChromiumOS",
+    "Cisco IOS",
+    "Cisco NX-OS",
+    "Classic Mac OS",
+    "Coherent",
+    "Color BASIC",
+    "ColorOS",
+    "Compatible Time-Sharing System",
+    "Concurrent CP/M",
+    "Concurrent CP/M 8-16",
+    "Concurrent CP/M-68K",
+    "Concurrent CP/M-86",
+    "Concurrent DOS",
+    "Concurrent DOS 286",
+    "Concurrent DOS 386",
+    "Concurrent DOS 386/MGE",
+    "Concurrent DOS 68K",
+    "Concurrent DOS 8-16",
+    "Concurrent DOS XM",
+    "Concurrent PC DOS",
+    "Container-Optimized OS",
+    "Contiki",
+    "Convergent Technologies Operating System",
+    "Copland",
+    "CoRTOS",
+    "COS",
+    "Cosmos",
+    "CP-40",
+    "CP-6",
+    "CP-67",
+    "CP/CMS",
+    "CP/M",
+    "CP/M 2.2",
+    "CP/M Plus",
+    "CP/M-68K",
+    "CP/M-8000",
+    "CP/M-86",
+    "CP/M-86 Plus",
+    "CPF",
+    "CPS",
+    "Cromemco DOS",
+    "Cromix",
+    "Croquet",
+    "CSI-DOS",
+    "CTOS",
+    "CTOS Cassette Tape Operating System for the Datapoint 2200",
+    "CX/UX",
+    "Darwin",
+    "Data ONTAP",
+    "Datapac Multiuser DOS",
+    "Datapac System Manager",
+    "DC/OSx",
+    "DD-WRT",
+    "DEC MICA",
+    "Dell Real Mode Kernel (DRMK)",
+    "Deos",
+    "DeskMate",
+    "DESQview",
+    "DESQView/X (X-windowing GUI",
+    "DG/UX",
+    "Digital UNIX",
+    "DIP DOS",
+    "Distributed Processing Programming Executive/370",
+    "DivestOS",
+    "DMS",
+    "DMS (Disk Management System)",
+    "DNIX",
+    "DNOS",
+    "Domain/OS",
+    "DOS",
+    "DOS Disk Operating System for the Datapoint 2200, 5500, and 1100",
+    "DOS Plus",
+    "DOS/360",
+    "DOS/360 and successors",
+    "DOS/360/RJE (DOS/360 with a control program extension that provided for the monitoring of remote job entry hardware (card reader & printer) connected by dedicated phone lines)",
+    "DOS/V",
+    "DOS/VS",
+    "DOS/VSE",
+    "DPCX",
+    "DPPX",
+    "DR-DOS",
+    "DR-DOS \"WinBolt\"",
+    "DragonFly BSD",
+    "Drum SCOPE",
+    "DSPnano RTOS",
+    "DSPnano RTOS (POSIX nanokernel, DSP Optimized, Open Source)",
+    "Dynix",
+    "eComStation",
+    "eCos",
+    "Edinburgh Multiple Access System",
+    "Edos",
+    "EDX",
+    "Embedded Linux",
+    "EMBOS",
+    "EMUI",
+    "EmuTOS",
+    "Enhanced DR-DOS 7.01.0x (BDOS 7.2)",
+    "EOS",
+    "EPOC",
+    "ERIKA Enterprise",
+    "EROS",
+    "ES",
+    "EulerOS",
+    "EXEC 8",
+    "EXEC I",
+    "EXEC II",
+    "Executive",
+    "ExtremeWare",
+    "ExtremeXOS",
+    "Fabric OS",
+    "Familiar Linux",
+    "Fire OS",
+    "Firefox OS",
+    "Flex machine",
+    "FLEX9",
+    "FlexOS",
+    "FlexOS 186",
+    "FlexOS 286",
+    "FlexOS 386",
+    "FlexOS 68K",
+    "Flyme OS",
+    "FORTRAN Monitor System (FMS)",
+    "FreeBSD",
+    "FreeDOS",
+    "freeRTOS, openRTOS, safeRTOS",
+    "FTOS",
+    "Fuchsia",
+    "FuguIta, a live OpenBSD fork by a Japanese developer",
+    "Gargoyle",
+    "GCOS",
+    "Genode",
+    "GEORGE",
+    "GEOS",
+    "GhostBSD",
+    "gLinux",
+    "GM OS & GM-NAA I/O",
+    "GNO/ME",
+    "GNU",
+    "Google Fuchsia",
+    "GORDO from UCLA",
+    "GrapheneOS",
+    "Graphics Environment Manager",
+    "GS/OS",
+    "Haiku",
+    "Harmony",
+    "HarmonyOS",
+    "HarmonyOS NEXT",
+    "HDOS",
+    "HeartOS",
+    "HelenOS",
+    "HeliOS",
+    "HP Multi-Programming Executive",
+    "HP-UX",
+    "HT-11",
+    "Huawei VRP (Versatile Routing Platform) that many Huawei devices operate on",
+    "HYDRA",
+    "HyperOS",
+    "IBM 1130",
+    "IBM 1800",
+    "IBM 4680 OS",
+    "IBM 4690 OS",
+    "IBM 8100",
+    "IBM AIX",
+    "IBM AS/400",
+    "IBM DOS 4.x, 5.0 (developed jointly with Microsoft)",
+    "IBM i",
+    "IBM Series/1",
+    "IBM System/3",
+    "IBM System/34",
+    "IBM System/38",
+    "IBM System/88",
+    "IBSYS",
+    "ICL VME",
+    "IJMON",
+    "ILIOS",
+    "illumos",
+    "iMAX 432",
+    "IMOS",
+    "IMS Multiuser DOS",
+    "IMS REAL/32 7.50, 7.51, 7.52, 7.53, 7.54, 7.60, 7.61, 7.62, 7.63, 7.70, 7.71, 7.72, 7.73, 7.74, 7.80, 7.81, 7.82, 7.83, 7.90, 7.91, 7.92, 7.93, 7.94, 7.95 (BDOS 6.8 and higher) (derivative of Multiuser DOS)",
+    "IMS REAL/32, a derivative of Multiuser DOS",
+    "IMS REAL/NG (successor of REAL/32)",
+    "IMS REAL/NG, the successor of REAL/32",
+    "Incompatible Timesharing System",
+    "Inferno",
+    "INTEGRITY",
+    "INTEGRITY-178B",
+    "Interactive Unix",
+    "iOS",
+    "IOS-XR",
+    "iPad",
+    "iPadOS",
+    "IPFire",
+    "iPhone",
+    "iPod software",
+    "iPodLinux",
+    "iriver clix",
+    "IRIX",
+    "iRMX",
+    "ISIS",
+    "IX/370",
+    "J",
+    "JavaOS",
+    "JNode",
+    "JunOS",
+    "JX",
+    "K42",
+    "KaiOS",
+    "Kali NetHunter",
+    "KERNAL",
+    "KeyKOS",
+    "KIN OS",
+    "KolibriOS",
+    "Kronos",
+    "L4",
+    "LAN Manager",
+    "LCOS",
+    "LEDE",
+    "leJOS",
+    "LibreCMC",
+    "LineageOS",
+    "Linux",
+    "Linux on IBM Z",
+    "Lisp Machines, Inc",
+    "LiteOS",
+    "LSE/OS",
+    "LynxOS",
+    "m0n0wall",
+    "M65MP (MVT with support for a multiprocessor 360/65)",
+    "Mac",
+    "MACE (Mansfield and Cahlander Executive)",
+    "Mach",
+    "macOS",
+    "macOS Server",
+    "MagiC",
+    "Magic Cap",
+    "magnussoft ZETA",
+    "MAI Basic Four",
+    "MASIX from MASI laboratory (a multiserver operating system based on Mach microkernel)",
+    "MeeGo",
+    "MeikOS",
+    "MenuetOS",
+    "MERLIN for the Corvus Concept",
+    "MFT",
+    "MFT II",
+    "Michigan Terminal System",
+    "Micrium OS",
+    "MidnightBSD",
+    "Midori",
+    "MINI-UNIX",
+    "MINIX",
+    "MIUI",
+    "MK-DOS",
+    "MkLinux",
+    "MMURTL (Message based MUltitasking Real-Time kerneL, pronounced 'Myrtle')",
+    "Mobilinux",
+    "MontaVista Mobilinux",
+    "MorphOS",
+    "MOS",
+    "MotoMagx",
+    "MP/M",
+    "MP/M 8-16",
+    "MP/M II",
+    "MP/M-86",
+    "MPX",
+    "MS-DOS",
+    "MS-DOS 4.0 (multitasking)",
+    "MS-DOS 7",
+    "MS-Net",
+    "MSP",
+    "MSP-EX",
+    "MSX-DOS",
+    "MTS",
+    "Multi-tasking user interfaces and environments for MS-DOS compatible operating systems",
+    "Multics",
+    "Multiuser DOS",
+    "MUSIC/SP",
+    "MVS/370 refers to OS/VS2 MVS, MVS/SE and MVS/SP Version 1",
+    "MVS/ESA",
+    "MVS/ESA SP V4 (a Unix environment was available for MVS/ESA SP V4R3)",
+    "MVS/ESA SP V5 (the UNIX environment was bundled in this and all subsequent versions)",
+    "MVS/SE (MVS System Extensions)",
+    "MVS/SP (MVS System Product) V1",
+    "MVS/SP V3",
+    "MVS/XA",
+    "MVT",
+    "M\u00e6mo",
+    "NCOS",
+    "Nemesis",
+    "NestOS",
+    "NetBSD",
+    "NetWare",
+    "Network operating system",
+    "NewDos/80",
+    "Newton OS",
+    "Nexenta OS",
+    "NeXTSTEP",
+    "Nintendo 3DS system software",
+    "Nintendo DSi system software",
+    "Nintendo Switch system software",
+    "NomadBSD",
+    "NonStop OS",
+    "NOS",
+    "NOS/BE NOS Batch Environment",
+    "NOS/VE",
+    "Novell \"Corsair\"",
+    "Novell \"Expos\u00e9\"",
+    "Novell \"Star Trek\"",
+    "Novell \"SuperNOS\"",
+    "Novell DOS",
+    "Novell DOS 7 updates 1-10 (BDOS 7.2)",
+    "Novell DOS 7 updates 11\u201315.2 (BDOS 7.2)",
+    "Novell DR DOS \"StarTrek\"",
+    "Novell Open Enterprise Server",
+    "Novell PalmDOS 1 (BDOS 7.0)",
+    "Novell PalmDOS 1.0",
+    "Nucleus RTOS",
+    "NuttX",
+    "Oberon (operating system)",
+    "OEM DR-DOS 7.04-7.05 (BDOS 7.3)",
+    "OEM DR-DOS 7.06 (PQDOS)",
+    "OEM DR-DOS 7.07 (BDOS 7.4/7.7)",
+    "OIS",
+    "One UI",
+    "Open Enterprise Server",
+    "OpenBSD",
+    "OpenEmbedded",
+    "openEuler",
+    "OpenHarmony",
+    "OpenIndiana",
+    "Openmoko Linux",
+    "OpenSolaris",
+    "OpenSolaris for System z",
+    "OPENSTEP",
+    "OpenWrt",
+    "OpenZaurus",
+    "Operating system for \u042d\u043b\u044c\u0431\u0440\u0443\u0441-1 (Elbrus-1) and \u042d\u043b\u044c\u0431\u0440\u0443\u0441-2",
+    "OPhone",
+    "OPNsense",
+    "Orsay",
+    "ORVYL and WYLBUR",
+    "OS",
+    "OS ES",
+    "OS-9",
+    "OS-9000",
+    "OS-IV",
+    "OS/2",
+    "OS/2 1.x (developed jointly with Microsoft)",
+    "OS/2 2.x",
+    "OS/2 Warp",
+    "OS/360",
+    "OS/360 and successors",
+    "OS/390",
+    "OS/4",
+    "OS/8",
+    "OS/IV",
+    "OS/VS",
+    "OS/VS1",
+    "OS/VS1 Basic Programming Extensions (BPE) adds device support and VM handshaking",
+    "OS/VS2 (Operating System/Virtual Storage 2, Virtual-memory version of OS/360 MVT)",
+    "OS/VS2 R1 (Called Single Virtual Storage (SVS), Virtual-memory version of OS/360 MVT but without multiprocessing support)",
+    "OS/VS2 R2 through R3.8 (called Multiple Virtual Storage, MVS, eliminated most need for VS1)",
+    "OS4000",
+    "OS9/68K Unix-like RTOS . (OS from Microware for Motorola 680x0 based microcomputers; based on OS-9)",
+    "osakaOS",
+    "OSD/XC",
+    "OSE",
+    "OSF/1",
+    "osFree",
+    "OSv",
+    "Others",
+    "Others on IBM S/360, S/370, and successor mainframes:",
+    "Palm OS",
+    "PC DOS",
+    "PC DOS 1.x, 2.x, 3.x (developed jointly with Microsoft)",
+    "PC DOS 6.1, 6.3, 7, 2000, 7.10",
+    "PC-MOS/386",
+    "PCP (Primary Control Program, a kernel and a ground breaking automatic space allocating file system)",
+    "PEN/GEOS",
+    "PenPoint OS",
+    "PERQ",
+    "Personal CP/M",
+    "Personal CP/M-86",
+    "pfsense",
+    "Phantom OS",
+    "Phoenix/MVS",
+    "Pick",
+    "PikeOS",
+    "Pilot",
+    "Pink",
+    "Plan 9",
+    "Plan 9 from Bell Labs",
+    "PlayStation 3 system software",
+    "PlayStation 4 system software",
+    "PlayStation 5 system software",
+    "PlayStation Vita system software",
+    "Plurix",
+    "PNX, a port of UNIX v7 and System III to the PERQ computer",
+    "Pocket PC",
+    "PonyOS",
+    "postmarketOS",
+    "PRIMOS",
+    "ProDOS",
+    "Prolog-Dispatcher",
+    "pSOS",
+    "PTS-DOS",
+    "Puffin OS",
+    "PVOS",
+    "PWB/UNIX",
+    "PX5 RTOS",
+    "QNX",
+    "Qt Extended",
+    "Quantix",
+    "RDOS",
+    "ReactOS",
+    "Real-Time Multiprogramming Operating System",
+    "Redox",
+    "Remix OS",
+    "Replicant",
+    "Research Unix",
+    "REX OS",
+    "Rhapsody",
+    "RIOT",
+    "RISC iX",
+    "RISC OS",
+    "RISC/os",
+    "RMX",
+    "RockBox",
+    "ROM-DOS",
+    "RPS",
+    "RSTS/E",
+    "RSX-11",
+    "RT-11",
+    "RT-Thread",
+    "RTEMS",
+    "RTOS/360 (IBM's Real Time Operating System, ran on 5 NASA custom System/360-75s)",
+    "RTXC Quadros",
+    "Sailfish OS",
+    "SCO Open Desktop",
+    "SCO OpenServer",
+    "SCO Unix",
+    "SCOPE",
+    "SerenityOS",
+    "SerIX",
+    "SerpaeOS",
+    "SHARE Operating System",
+    "SharpOS",
+    "Siemens S5-DOS/MT",
+    "Sinclair BASIC",
+    "Sinclair QDOS",
+    "Singularity",
+    "SINIX",
+    "SINTRAN III",
+    "SIPROS (Simultaneous Processing Operating System)",
+    "Siris 8",
+    "SkyOS",
+    "SmartOS",
+    "SODA",
+    "Solaris",
+    "SONiC",
+    "Spring",
+    "Sprite",
+    "SSB-DOS",
+    "SSP",
+    "SteamOS 1.0 & 2.0",
+    "SteamOS 3.0",
+    "Stratus VOS",
+    "SunOS",
+    "SUPER-UX",
+    "SuperTinyKernel RTOS",
+    "Syllable Desktop",
+    "Symbian OS",
+    "Symbian platform",
+    "Symbolics",
+    "SymbOS",
+    "Symobi",
+    "System V",
+    "System V/AT, 386",
+    "T-Kernel",
+    "TempleOS",
+    "TENEX",
+    "Texas Instruments",
+    "THE multiprogramming system",
+    "THEOS",
+    "Thoth",
+    "ThreadX",
+    "TI-RTOS Kernel",
+    "Time Sharing Operating System",
+    "TinyOS",
+    "Tizen",
+    "TME",
+    "TMX",
+    "ToaruOS",
+    "Tock",
+    "TOPS-10",
+    "TOPS-20",
+    "TOS/360",
+    "Toshiba 4690 OS",
+    "Towns OS",
+    "TPF",
+    "TPF Line (Transaction Processing Facility) on IBM S/360, S/370, and successor mainframes (largely used by airlines)",
+    "TripOS",
+    "TRON",
+    "TRSDOS",
+    "TrueOS",
+    "Trusted Solaris",
+    "TSS/360",
+    "TSS/370",
+    "TSX",
+    "TSX-32",
+    "TUNIS",
+    "TurboDOS",
+    "tvOS",
+    "TX990/TXDS, DX10 and DNOS",
+    "Ubuntu Touch",
+    "UCSD p-System",
+    "Ultrix",
+    "Unicos",
+    "UniFLEX",
+    "Uniproton",
+    "Universal Time-Sharing System",
+    "University of Michigan Executive System",
+    "Unix",
+    "Unix System III",
+    "Unix System IV",
+    "Unix System V",
+    "Unix System V Releases 2.0, 3.0, 3.2, 4.0, and 4.2",
+    "UNIX Time-Sharing System v1",
+    "UNIX Time-Sharing System v10",
+    "UNIX Time-Sharing System v2",
+    "UNIX Time-Sharing System v3",
+    "UNIX Time-Sharing System v4",
+    "UNIX Time-Sharing System v5",
+    "UNIX Time-Sharing System v6",
+    "UNIX Time-Sharing System v7",
+    "UNIX Time-Sharing System v8",
+    "UNIX Time-Sharing System v9",
+    "Unix-like",
+    "UnixWare",
+    "Unnamed NetBSD variant for Airport Extreme and Time Capsule",
+    "USG",
+    "UTS",
+    "UTX-32 (Developed by Gould CSD (Computer System Division), a Unix-based OS that included both BSD and System V characteristics. It was one of the first Unix based systems to receive NSA's C2 security level certification.)",
+    "V",
+    "VapourOS",
+    "VERSAdos",
+    "Verve",
+    "Virtual Machine Facility/370",
+    "Virtual Machine/Enterprise Systems Architecture (VM/ESA), supports S/370, ESA/370 and ESA/390 (a Unix environment was available starting with Version 2.)",
+    "Virtual Machine/Extended Architecture (VM/XA) refers to three versions of VM that support System/370 Extended Architecture (S/370-XA) with 31-bit virtual addresses",
+    "Virtual Machine/Extended architecture Migration Aid (VM/XA MA)",
+    "Virtual Machine/Extended Architecture System Product (VM/XA SP)",
+    "Virtual Machine/Extended Architecture Systems Facility (VM/XA SF)",
+    "Virtual Machine/System Product (VM/SP) replaces VM/370, VM/BSE and VM/SE",
+    "Visi On",
+    "visionOS",
+    "Visopsys",
+    "VM/370 Basic System Extensions Program Product (VM/BSE, AKA BSEPP) is an enhancement to VM/370",
+    "VM/370 System Extensions Program Product (VM/SE, AKA SEPP) is an enhancement to VM/370 that includes the facilities of VM/BSE",
+    "VM/IX",
+    "VM2000",
+    "VME/K",
+    "VMS",
+    "VOS",
+    "VOS3 by Hitachi for its IBM-compatible mainframes, based on IBM's MVS",
+    "VPS/VM",
+    "VRX",
+    "VS/9",
+    "VSE/Advanced Functions (VSE/AF)",
+    "VSE/ESA, replaces VSE/SP, supports ESA/370 and ESA/390 with 31-bit addresses",
+    "VSE/SP",
+    "VSTa",
+    "Vulcan O/S",
+    "VxWorks",
+    "WAITS",
+    "watchOS",
+    "Wear OS",
+    "webOS",
+    "Wii system software",
+    "Wii U system software",
+    "Wind River VxWorks RTOS",
+    "Windows",
+    "Windows 1.0",
+    "Windows 10",
+    "Windows 10 Mobile",
+    "Windows 11",
+    "Windows 2.0",
+    "Windows 2.1",
+    "Windows 2000",
+    "Windows 3.0",
+    "Windows 3.1x",
+    "Windows 3.2",
+    "Windows 7",
+    "Windows 8",
+    "Windows 8.1",
+    "Windows 95",
+    "Windows 98",
+    "Windows Azure",
+    "Windows CE",
+    "Windows CE 3.0",
+    "Windows CE 5.0",
+    "Windows Embedded CE 6.0",
+    "Windows Embedded Compact 2013",
+    "Windows Embedded Compact 7",
+    "Windows for Workgroups 3.1",
+    "Windows for Workgroups 3.11",
+    "Windows Fundamentals for Legacy PCs",
+    "Windows Home Server",
+    "Windows Home Server 2011",
+    "Windows IoT",
+    "Windows IoT Core",
+    "Windows IoT Enterprise",
+    "Windows Millennium Edition",
+    "Windows Mobile",
+    "Windows NT",
+    "Windows NT 3.1",
+    "Windows NT 3.5",
+    "Windows NT 3.51",
+    "Windows NT 4.0",
+    "Windows Phone",
+    "Windows Phone 7",
+    "Windows Phone 8",
+    "Windows Phone 8.1",
+    "Windows RT",
+    "Windows Server 2003",
+    "Windows Server 2008",
+    "Windows Server 2008 R2",
+    "Windows Server 2012",
+    "Windows Server 2012 R2",
+    "Windows Server 2016",
+    "Windows Server 2019",
+    "Windows Server 2022",
+    "Windows Server 2025",
+    "Windows Vista",
+    "Windows XP",
+    "Wombat",
+    "Workplace OS",
+    "WPS",
+    "Xbox (first generation) system software",
+    "Xbox 360 system software",
+    "Xbox One system software",
+    "Xbox Series X/S system software",
+    "Xbox system software",
+    "Xenix",
+    "Xerox",
+    "Xerox Operating System",
+    "Xinu",
+    "XSP",
+    "XTS-400",
+    "Xv6",
+    "Z-DOS",
+    "z/OS",
+    "z/TPF",
+    "z/VM",
+    "z/VSE",
+    "Z80-RIO",
+    "Zenix",
+    "Zephyr",
+    "Zeroshell",
+    "\u00c5ngstr\u00f6m distribution",
+    "\u00c9sope (operating system)",
+    "\u03bc-velOSity",
+    "\u03bcC/OS-II",
+    "\u03bcC/OS-III"
+  ]
+}
+  </script>
+
   <script>
     (function () {
       var spdxPayload = JSON.parse(document.getElementById("spdx-license-data").textContent);
@@ -5912,6 +6716,11 @@
       spdxLicenses.forEach(function (license) {
         spdxById[license.id] = license;
       });
+      var operatingSystemPayload = JSON.parse(document.getElementById("operating-system-data").textContent);
+      var operatingSystemOptions = operatingSystemPayload.operatingSystems || [];
+      var operatingSystemSelect = document.getElementById("operating-system-select");
+      var operatingSystemList = document.getElementById("operating-system-list");
+      var addOperatingSystemButton = document.querySelector("[data-action='add-operating-system']");
 
       var repeaters = {
         licenses: {
@@ -5952,7 +6761,6 @@
         dateCreated: "2025-01-01",
         identifier: "10.5072/zenodo.393958",
         sameAs: "https://handle.test.datacite.org/10.5072/zenodo.393958",
-        operatingSystem: "Linux\nmacOS",
         softwareRequirements: "https://cwltool.readthedocs.io/en/latest/\nhttps://www.python.org/",
         softwareVersion: "3.0.0",
         codeRepository: "https://github.com/Terradue/transpiler-mate.git",
@@ -6047,6 +6855,10 @@
 
       function setValue(id, value) {
         byId(id).value = value || "";
+      }
+
+      function normalizeListValue(value) {
+        return value.trim().toLocaleLowerCase();
       }
 
       function splitLines(value) {
@@ -6179,6 +6991,102 @@
           cursor[part] = cursor[part] || {};
           cursor = cursor[part];
         });
+      }
+
+      function populateOperatingSystemSelect() {
+        var fragment = document.createDocumentFragment();
+        var emptyOption = document.createElement("option");
+        emptyOption.value = "";
+        emptyOption.textContent = "Select operating system";
+        fragment.appendChild(emptyOption);
+
+        operatingSystemOptions.forEach(function (name) {
+          var option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          fragment.appendChild(option);
+        });
+
+        operatingSystemSelect.innerHTML = "";
+        operatingSystemSelect.appendChild(fragment);
+        refreshOperatingSystemPicker();
+      }
+
+      function getOperatingSystems() {
+        return splitLines(valueOf("operating-system"));
+      }
+
+      function setOperatingSystems(values) {
+        var list = Array.isArray(values) ? values : splitLines(values || "");
+        var seen = {};
+        var unique = [];
+        list.forEach(function (value) {
+          var trimmed = String(value).trim();
+          var key = normalizeListValue(trimmed);
+          if (trimmed && !seen[key]) {
+            seen[key] = true;
+            unique.push(trimmed);
+          }
+        });
+        setValue("operating-system", unique.join("\n"));
+        renderOperatingSystemList(unique);
+        refreshOperatingSystemPicker();
+      }
+
+      function renderOperatingSystemList(values) {
+        operatingSystemList.innerHTML = "";
+        if (values.length === 0) {
+          var empty = document.createElement("li");
+          empty.className = "empty";
+          empty.textContent = "No operating systems selected";
+          operatingSystemList.appendChild(empty);
+          return;
+        }
+
+        values.forEach(function (value, index) {
+          var item = document.createElement("li");
+          var label = document.createElement("span");
+          var remove = document.createElement("button");
+          label.textContent = value;
+          remove.type = "button";
+          remove.className = "danger";
+          remove.dataset.osRemove = String(index);
+          remove.textContent = "Remove";
+          remove.title = "Remove " + value;
+          item.appendChild(label);
+          item.appendChild(remove);
+          operatingSystemList.appendChild(item);
+        });
+      }
+
+      function refreshOperatingSystemPicker() {
+        var selected = {};
+        getOperatingSystems().forEach(function (value) {
+          selected[normalizeListValue(value)] = true;
+        });
+        Array.from(operatingSystemSelect.options).forEach(function (option) {
+          option.disabled = option.value ? Boolean(selected[normalizeListValue(option.value)]) : false;
+        });
+        if (operatingSystemSelect.value && selected[normalizeListValue(operatingSystemSelect.value)]) {
+          operatingSystemSelect.value = "";
+        }
+        addOperatingSystemButton.disabled = !operatingSystemSelect.value;
+      }
+
+      function addOperatingSystem() {
+        var value = operatingSystemSelect.value;
+        if (!value) {
+          return;
+        }
+        setOperatingSystems(getOperatingSystems().concat(value));
+        operatingSystemSelect.value = "";
+        refreshOperatingSystemPicker();
+      }
+
+      function removeOperatingSystem(index) {
+        var values = getOperatingSystems();
+        values.splice(index, 1);
+        setOperatingSystems(values);
       }
 
       function refreshRepeater(type) {
@@ -6610,7 +7518,7 @@
         setValue("date-created", example.dateCreated);
         setValue("identifier", example.identifier);
         setValue("same-as", example.sameAs);
-        setValue("operating-system", example.operatingSystem);
+        setOperatingSystems([]);
         setValue("software-requirements", example.softwareRequirements);
         setValue("software-version", example.softwareVersion);
         setValue("code-repository", example.codeRepository);
@@ -6627,9 +7535,10 @@
       }
 
       function clearForm() {
-        ["name", "description", "date-created", "identifier", "same-as", "operating-system", "software-requirements", "software-version", "code-repository", "publisher-name", "publisher-email", "publisher-identifier", "keywords"].forEach(function (id) {
+        ["name", "description", "date-created", "identifier", "same-as", "software-requirements", "software-version", "code-repository", "publisher-name", "publisher-email", "publisher-identifier", "keywords"].forEach(function (id) {
           setValue(id, "");
         });
+        setOperatingSystems([]);
         setRepeater("licenses", [{}]);
         setRepeater("help", [{}]);
         setRepeater("authors", [{}]);
@@ -6658,7 +7567,17 @@
         if (licenseSelect) {
           syncLicenseEntry(licenseSelect.closest("[data-entry='licenses']"));
         }
+        if (event.target === operatingSystemSelect) {
+          refreshOperatingSystemPicker();
+        }
         render();
+      });
+      operatingSystemSelect.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          addOperatingSystem();
+          render();
+        }
       });
       document.addEventListener("change", function (event) {
         if (event.target.name === "output-mode") {
@@ -6671,6 +7590,13 @@
         var remove = event.target.closest("[data-remove]");
         var action = event.target.closest("[data-action]");
         var fill = event.target.closest("[data-fill-affiliation]");
+        var osRemove = event.target.closest("[data-os-remove]");
+
+        if (osRemove) {
+          removeOperatingSystem(Number(osRemove.dataset.osRemove));
+          render();
+          return;
+        }
 
         if (add) {
           addEntry(add.dataset.add, {});
@@ -6702,6 +7628,9 @@
           loadExample();
         } else if (actionName === "clear-form") {
           clearForm();
+        } else if (actionName === "add-operating-system") {
+          addOperatingSystem();
+          render();
         } else if (actionName === "copy-yaml") {
           copyText(yamlOutput.value);
         } else if (actionName === "copy-json") {
@@ -6718,6 +7647,7 @@
       Object.keys(repeaters).forEach(function (type) {
         setRepeater(type, []);
       });
+      populateOperatingSystemSelect();
       loadExample();
     })();
   </script>
