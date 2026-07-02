@@ -1,40 +1,32 @@
 # Transpiler Mate
 
-_Transpiler Mate_ is small and light yet powerful Python API + CLI to extract [Schema.org/SoftwareApplication](https://schema.org/SoftwareApplication) Metadata from an annotated [CWL](https://www.commonwl.org/) document and:
+Transpiler Mate is a Python library and CLI that extracts [Schema.org/SoftwareApplication](https://schema.org/SoftwareApplication) metadata from annotated [CWL](https://www.commonwl.org/) documents and converts it into publication-ready formats.
 
-* transpile it to the [CodeMeta](https://codemeta.github.io/index.html) format;
-* transpile it to the [DataCite Metadata](https://inveniordm.docs.cern.ch/reference/metadata/#metadata) properties;
-* transpile it to [OGC API - Records](https://ogcapi.ogc.org/records/);
-* transpile it to [OGC API - Processes](https://ogcapi.ogc.org/processes/) descriptors;
-* transpile it to [OCI annotations](https://specs.opencontainers.org/image-spec/annotations/) for container manifests;
-* transpile & publish a Record on [Invenio RDM](https://inveniosoftware.org/products/rdm/);
-* bumping the CWL Software version according to the [Semantic Versioning Specification 2.0.0](https://semver.org/).
+It can generate CodeMeta, DataCite, OGC API - Records, OGC API - Processes, Markdown workflow documentation, and OCI annotations. It can also publish records to InvenioRDM and bump CWL software versions according to Semantic Versioning.
 
-## Pre-requisites
+## Documentation map
 
-To publish a Record on Invenio, users must obtain an authentication Token, see how to create a [new Token](https://inveniordm.docs.cern.ch/reference/rest_api_index/).
+This documentation is organized with the [Diataxis](https://diataxis.fr/) framework:
+
+- [Tutorials](tutorials/index.md) are for learning a workflow from start to finish.
+- [How-to guides](how-to-guides/index.md) are for completing a concrete task.
+- [Reference](reference/index.md) is for looking up commands, schemas, crosswalks, and generated API details.
+- [Explanation](explanation/index.md) is for understanding the metadata model and conventions behind the tool.
 
 ## Installation
 
-```
+```bash
 pip install transpiler-mate
 ```
 
-## CLI Usage
+## Common commands
 
+```bash
+transpiler-mate codemeta ./metadata.cwl --output ./dist/codemeta.json
+transpiler-mate datacite ./metadata.cwl --output ./dist/datacite.json
+transpiler-mate ogcrecord ./metadata.cwl --output ./dist/record.json
+transpiler-mate markdown ./workflow.cwl --workflow-id main --output ./docs
+transpiler-mate oci-annotations ./workflow.cwl --workflow-id main --output annotations.json
 ```
-$ transpiler-mate --help
-Usage: transpiler-mate [OPTIONS] COMMAND [ARGS]...
 
-Options:
-  --help  Show this message and exit.
-
-Commands:
-  bump-version     Bumps the CWL SW version via SemVer Spec 2.0.0.
-  codemeta         Transpiles the input CWL to CodeMeta representation.
-  datacite         Transpiles the input CWL to DataCite Metadata.
-  invenio-publish  Publishes the input CWL to an Invenio instance.
-  oci-annotations  Transpiles the input CWL to OCI annotations.
-  ogcprocesses     Transpiles the input CWL to OGC API Processes.
-  ogcrecord        Transpiles the input CWL to OGC API Record.
-```
+Use the [how-to guides](how-to-guides/index.md) for task-specific options and examples.

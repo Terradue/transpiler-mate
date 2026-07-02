@@ -25,7 +25,7 @@ tasks:
     - task: json:generate_schema_doc
       vars:
         SOURCE: './schemas'
-        TARGET: './docs/schemas'
+        TARGET: './docs/reference/schemas'
 
   process_datacite:
     cmds:

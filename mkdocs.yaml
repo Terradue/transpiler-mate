@@ -75,30 +75,39 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
-  - index.md
-  - conventions.md
-  - Metadata generator: metadata-generator.html
-  - JSON Schemas:
-    - DataCite 4.6: ./schemas/datacite_4_6.md
-    - OGC API - Records: ./schemas/ogcapi_records.md
-    - Schema.org/SoftwareApplication: ./schemas/software_application.md
-    - OCI Annotations: ./schemas/oci_annotations.md
-  - CrossWalks:
-    - ./xwalks/codemeta.md
-    - ./xwalks/datacite.md
-    - ./xwalks/oci_annotations.md
-    - ./xwalks/ogc_processes.md
-    - ./xwalks/ogc_record.md
-    - ./xwalks/invenio.md
-  - CLI Commands:
-    - ./cli/codemeta.md
-    - ./cli/datacite.md
-    - ./cli/ogc_processes.md
-    - ./cli/ogc_record.md
-    - ./cli/invenio.md
-    - ./cli/bump-version.md
-    - ./cli/markdown.md
-    - ./cli/oci_annotations.md
-  - API doc: ./api/latest/transpiler_mate/index.md
+  - Home: index.md
+  - Tutorials:
+    - Overview: tutorials/index.md
+  - How-to guides:
+    - Overview: how-to-guides/index.md
+    - Create CWL metadata with the generator: how-to-guides/metadata-generator.html
+    - Generate CodeMeta: how-to-guides/generate-codemeta.md
+    - Generate DataCite metadata: how-to-guides/generate-datacite.md
+    - Generate an OGC API - Record: how-to-guides/generate-ogc-record.md
+    - Generate an OGC API - Processes descriptor: how-to-guides/generate-ogc-processes.md
+    - Generate OCI annotations: how-to-guides/generate-oci-annotations.md
+    - Generate Markdown workflow documentation: how-to-guides/generate-markdown.md
+    - Publish to InvenioRDM: how-to-guides/publish-to-invenio.md
+    - Bump a CWL software version: how-to-guides/bump-version.md
+  - Reference:
+    - Overview: reference/index.md
+    - JSON Schemas:
+      - Overview: reference/schemas/index.md
+      - DataCite 4.6: reference/schemas/datacite_4_6.md
+      - OGC API - Records: reference/schemas/ogcapi_records.md
+      - Schema.org/SoftwareApplication: reference/schemas/software_application.md
+      - OCI Annotations: reference/schemas/oci_annotations.md
+    - Crosswalks:
+      - Overview: reference/crosswalks/index.md
+      - CodeMeta: reference/crosswalks/codemeta.md
+      - DataCite: reference/crosswalks/datacite.md
+      - OCI annotations: reference/crosswalks/oci-annotations.md
+      - OGC API - Processes: reference/crosswalks/ogc-processes.md
+      - OGC API - Records: reference/crosswalks/ogc-record.md
+      - InvenioRDM: reference/crosswalks/invenio.md
+    - Python API: reference/api.md
+  - Explanation:
+    - Overview: explanation/index.md
+    - CWL metadata code conventions: explanation/cwl-metadata-conventions.md
 
 copyright: <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a>
