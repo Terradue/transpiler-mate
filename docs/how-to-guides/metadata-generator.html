@@ -822,6 +822,7 @@
         <div class="field full">
           <label>Affiliation identifier</label>
           <input data-field="affiliation.identifier" autocomplete="off">
+          <span class="hint" data-affiliation-ror-status aria-live="polite"></span>
         </div>
       </div>
     </div>
@@ -7085,6 +7086,134 @@
         }, 450);
       }
 
+      var affiliationRorState = new WeakMap();
+
+      function getAffiliationEntry(field) {
+        return field ? field.closest("[data-entry]") : null;
+      }
+
+      function getAffiliationNameInput(entry) {
+        return entry ? entry.querySelector("[data-field='affiliation.name']") : null;
+      }
+
+      function getAffiliationIdentifierInput(entry) {
+        return entry ? entry.querySelector("[data-field='affiliation.identifier']") : null;
+      }
+
+      function getAffiliationRorStatus(entry) {
+        return entry ? entry.querySelector("[data-affiliation-ror-status]") : null;
+      }
+
+      function getAffiliationRorState(entry) {
+        var state = affiliationRorState.get(entry);
+        if (!state) {
+          state = {
+            timer: null,
+            abortController: null,
+            lastAutoIdentifier: ""
+          };
+          affiliationRorState.set(entry, state);
+        }
+        return state;
+      }
+
+      function setAffiliationRorStatus(entry, message) {
+        var status = getAffiliationRorStatus(entry);
+        if (status) {
+          status.textContent = message || "";
+        }
+      }
+
+      function abortAffiliationRorLookup(entry, state) {
+        if (state.timer) {
+          window.clearTimeout(state.timer);
+          state.timer = null;
+        }
+        if (state.abortController) {
+          state.abortController.abort();
+          state.abortController = null;
+        }
+      }
+
+      function maybeClearAutoAffiliationIdentifier(entry, state) {
+        var identifierInput = getAffiliationIdentifierInput(entry);
+        if (identifierInput && state.lastAutoIdentifier && identifierInput.value === state.lastAutoIdentifier) {
+          identifierInput.value = "";
+          state.lastAutoIdentifier = "";
+          render();
+        }
+      }
+
+      function populateAffiliationIdentifierFromRor(entry, state, record) {
+        var identifierInput = getAffiliationIdentifierInput(entry);
+        if (!identifierInput) {
+          return;
+        }
+        if (!record || !record.id) {
+          maybeClearAutoAffiliationIdentifier(entry, state);
+          return;
+        }
+
+        identifierInput.value = record.id;
+        state.lastAutoIdentifier = record.id;
+        setAffiliationRorStatus(entry, "Matched ROR: " + getRorPrimaryName(record));
+        render();
+      }
+
+      function scheduleAffiliationRorLookup(nameInput) {
+        var entry = getAffiliationEntry(nameInput);
+        var identifierInput = getAffiliationIdentifierInput(entry);
+        if (!entry || !identifierInput) {
+          return;
+        }
+
+        var state = getAffiliationRorState(entry);
+        var query = nameInput.value.trim();
+
+        abortAffiliationRorLookup(entry, state);
+
+        if (query.length < 3) {
+          setAffiliationRorStatus(entry, "");
+          maybeClearAutoAffiliationIdentifier(entry, state);
+          return;
+        }
+
+        setAffiliationRorStatus(entry, "Searching ROR...");
+        state.timer = window.setTimeout(function () {
+          state.abortController = new AbortController();
+          searchRorOrganizations(query, state.abortController.signal)
+            .then(function (data) {
+              var match = findBestRorMatch(query, data.items || []);
+              if (match) {
+                populateAffiliationIdentifierFromRor(entry, state, match);
+              } else {
+                maybeClearAutoAffiliationIdentifier(entry, state);
+                setAffiliationRorStatus(entry, "No ROR match found.");
+              }
+            })
+            .catch(function (error) {
+              if (error.name === "AbortError") {
+                return;
+              }
+              setAffiliationRorStatus(entry, "ROR lookup failed. Identifier can be entered manually.");
+            })
+            .finally(function () {
+              state.abortController = null;
+            });
+        }, 450);
+      }
+
+      function handleAffiliationIdentifierInput(identifierInput) {
+        var entry = getAffiliationEntry(identifierInput);
+        if (!entry) {
+          return;
+        }
+        var state = getAffiliationRorState(entry);
+        if (identifierInput.value !== state.lastAutoIdentifier) {
+          state.lastAutoIdentifier = "";
+        }
+      }
+
       function normalizeListValue(value) {
         return value.trim().toLocaleLowerCase();
       }
@@ -7831,6 +7960,18 @@
       publisherIdentifierInput.addEventListener("input", function () {
         if (publisherIdentifierInput.value !== lastAutoPublisherIdentifier) {
           lastAutoPublisherIdentifier = "";
+        }
+      });
+      form.addEventListener("input", function (event) {
+        var affiliationNameInput = event.target.closest("[data-field='affiliation.name']");
+        if (affiliationNameInput) {
+          scheduleAffiliationRorLookup(affiliationNameInput);
+          return;
+        }
+
+        var affiliationIdentifierInput = event.target.closest("[data-field='affiliation.identifier']");
+        if (affiliationIdentifierInput) {
+          handleAffiliationIdentifierInput(affiliationIdentifierInput);
         }
       });
       form.addEventListener("change", function (event) {
