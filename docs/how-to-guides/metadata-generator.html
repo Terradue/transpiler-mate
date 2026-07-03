@@ -584,7 +584,7 @@
           </div>
           <div class="field full">
             <label for="code-repository">Code repository</label>
-            <input id="code-repository" type="url" autocomplete="url">
+            <input id="code-repository" type="url" autocomplete="url" disabled>
             <span class="hint">Used only in the generated CodeMeta CLI command.</span>
           </div>
         </div>
@@ -7911,7 +7911,6 @@
         setOperatingSystems([]);
         setValue("software-requirements", example.softwareRequirements);
         setValue("software-version", example.softwareVersion);
-        setValue("code-repository", example.codeRepository);
         setValue("publisher-name", example.publisher.name);
         setValue("publisher-email", example.publisher.email);
         setValue("publisher-identifier", example.publisher.identifier);
@@ -8064,7 +8063,6 @@
         setRepeater(type, []);
       });
       populateOperatingSystemSelect();
-      loadExample();
     })();
   </script>
 </body>
