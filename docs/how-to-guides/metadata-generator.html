@@ -657,6 +657,15 @@
           <textarea id="keywords" class="compact-textarea"></textarea>
           <span class="hint">Comma-separated or one per line.</span>
         </div>
+        <div class="field" style="margin-top: 0.75rem;">
+          <label for="eo-keyword-select">Earth Observation keywords</label>
+          <div class="picker-row">
+            <select id="eo-keyword-select"></select>
+            <button type="button" data-action="add-eo-keyword">Add</button>
+          </div>
+          <input id="eo-keywords" type="hidden">
+          <ul id="eo-keyword-list" class="selected-list" aria-live="polite"></ul>
+        </div>
         <div id="terms" class="repeat-list" style="margin-top: 0.75rem;"></div>
       </section>
     </form>
@@ -6719,6 +6728,310 @@
 }
   </script>
 
+  <script type="application/json" id="earth-observation-keyword-data">
+{
+  "source": "https://www.esa.int/Applications/Observing_the_Earth/Earth_observation_glossary",
+  "retrieved": "2026-07-03",
+  "keywords": [
+    "Above ground biomass",
+    "Aeolus",
+    "Aerosol",
+    "Air pollution",
+    "Albedo",
+    "Algae",
+    "Algal blooms",
+    "Altimeter",
+    "Altius",
+    "Anomaly",
+    "Anthropogenic",
+    "Arctic Circle",
+    "Arctic Weather Satellite",
+    "Artificial intelligence (AI)",
+    "Artificial Intelligence for Earth Observation (AI4EO)",
+    "Atmosphere",
+    "Atoll",
+    "Backscatter",
+    "Barometer",
+    "Biodiversity",
+    "Biomass",
+    "Biomass (mission)",
+    "Biosphere",
+    "Boreal",
+    "Cal/Val",
+    "Calibration",
+    "CAMS",
+    "Carbon cycle",
+    "Carbon dioxide",
+    "Carbon sequestration",
+    "Celsius",
+    "CHIME",
+    "Chlorofluorocarbon (CFC)",
+    "Chlorophyll",
+    "CIMR",
+    "Climate",
+    "Climate change",
+    "Climate Change Initiative (CCI)",
+    "Climate model",
+    "Climate system",
+    "Climate tipping points",
+    "Climatology",
+    "Clouds",
+    "CO2M",
+    "Condensation",
+    "Contrails",
+    "Convection",
+    "COP",
+    "Copernicus",
+    "Copernicus Contributing Missions",
+    "Copernicus Data Space Ecosystem",
+    "Copernicus Sentinels",
+    "Copernicus Sentinel Expansion Missions",
+    "CRISTAL",
+    "CryoSat",
+    "Cryosphere",
+    "Data",
+    "Data cube",
+    "Data set",
+    "Deforestation",
+    "Degradation",
+    "Delta",
+    "Desertification",
+    "Destination Earth",
+    "Digital elevation model",
+    "Digital twin",
+    "DLR",
+    "Dobson Unit",
+    "Doppler effect",
+    "Doppler radar",
+    "Downwelling",
+    "Drought",
+    "EarthCARE",
+    "Earth Explorers",
+    "Earth observation",
+    "Earth system",
+    "Earth system science",
+    "Ecology",
+    "Ecosystem",
+    "ECMWF",
+    "ECSAT",
+    "El Ni\u00f1o",
+    "Electromagnetic radiation",
+    "Electromagnetic spectrum",
+    "Electromagnetic wave",
+    "Elliptical orbit",
+    "El Ni\u00f1o-Southern Oscillation (ENSO)",
+    "Environment",
+    "Envisat",
+    "ERS",
+    "ESA",
+    "ESOC",
+    "ESRIN",
+    "Essential climate change variables (ECVs)",
+    "ESTEC",
+    "Estuary",
+    "Eumetsat",
+    "Eutrophication",
+    "Evaporation",
+    "False-colour",
+    "Feedback mechanisms",
+    "FLEX",
+    "Fluorocarbons",
+    "FORUM",
+    "Fossil",
+    "Fossil fuel",
+    "Fraction of Absorbed Photosynthetically Active Radiation (FAPAR)",
+    "FutureEO",
+    "Geoid",
+    "Geostationary",
+    "Glacier",
+    "Global carbon budget",
+    "Global warming",
+    "GOCE",
+    "Gravity",
+    "Greenhouse effect",
+    "Greenhouse gas",
+    "Guano",
+    "Habitat",
+    "Harmony",
+    "Heat island effect",
+    "Hemisphere",
+    "Hydrocarbon",
+    "Hydrochlorofluorocarbon",
+    "HydroGNSS",
+    "Hydrologic cycle",
+    "Hydrosphere",
+    "Hyperspectral",
+    "Ice core",
+    "Ice sheet",
+    "Ice shelf",
+    "InCubed",
+    "Imager",
+    "In situ",
+    "Infrared radiation",
+    "Interferogram",
+    "Interferometry",
+    "International Charter Space and Major Disasters",
+    "IPCC",
+    "Isothermal",
+    "JAXA",
+    "Jet stream",
+    "Kelvin",
+    "Kyoto Protocol",
+    "La Ni\u00f1a",
+    "Lahar",
+    "Lake",
+    "Land cover",
+    "Land surface temperature",
+    "Latitude",
+    "Leaf area index",
+    "LEO",
+    "LEOP",
+    "Lidar",
+    "Lightning",
+    "Lithosphere",
+    "Longitude",
+    "Low pressure system",
+    "LSTM",
+    "Magnetometer",
+    "Magnetosphere",
+    "Mass balance",
+    "Mean sea level",
+    "Medicane",
+    "Mesosphere",
+    "Meteorology",
+    "Meteosat",
+    "Meteosat Third Generation (MTG)",
+    "Methane",
+    "MetOp",
+    "Montreal Protocol",
+    "Multi-temporal",
+    "NanoMagSat",
+    "NASA",
+    "Near infrared",
+    "Negative feedback",
+    "Net primary production",
+    "Net zero",
+    "New Space",
+    "Nitrogen dioxide",
+    "Nitrogen oxides",
+    "Nitrous oxide",
+    "NOAA",
+    "Normalised Difference Vegetation Index",
+    "North Atlantic Oscillation",
+    "Ocean",
+    "Ocean colour",
+    "Orbit",
+    "Ozone",
+    "Ozone hole",
+    "Ozone layer",
+    "Ozone mini hole",
+    "Paleoclimate",
+    "Paris Agreement",
+    "Particulates",
+    "Parts per billion",
+    "Payload",
+    "Permafrost",
+    "Phi (\u0278)",
+    "Phi-lab (\u0278-lab)",
+    "Phi-Sat-1 (\u0278-sat-1)",
+    "Phi-Sat-2 ( \u0278 sat-2)",
+    "Photosynthesis",
+    "Phytoplankton",
+    "Pixel",
+    "Polarimetry",
+    "Polar orbit",
+    "Polar vortex",
+    "Pollutant",
+    "Positive feedback",
+    "PPM",
+    "Proba-1",
+    "Proba-V",
+    "Primary productivity",
+    "Quantum computing",
+    "Quantum Computing for Earth Observation (QI4EO)",
+    "R&D",
+    "Radar interferometry",
+    "Radiation",
+    "Radiation budget",
+    "Rainforest",
+    "Real time",
+    "Reflection",
+    "Remote sensing",
+    "ROSE-L",
+    "Runoff",
+    "Salinity",
+    "Scattering",
+    "Scatterometer",
+    "Science for Society",
+    "Scouts",
+    "Sea-ice thickness",
+    "Sea level",
+    "Sea-surface temperature (SST)",
+    "Sensor",
+    "Sentinel-1",
+    "Sentinel-2",
+    "Sentinel-3",
+    "Sentinel-4",
+    "Sentinel-5",
+    "Sentinel-5P",
+    "Sentinel-6",
+    "Seosat-Ingenio",
+    "SMOS",
+    "Soil moisture",
+    "Soil sealing",
+    "Solar flare",
+    "Solar maximum",
+    "Solar minimum",
+    "Solar radiation",
+    "Sounder",
+    "Southern oscillation",
+    "Space for a Green Future Accelerator",
+    "Spatial",
+    "Spatial resolution",
+    "Spectral band",
+    "Stratosphere",
+    "Subduction",
+    "Subsidence",
+    "Sulphur dioxide",
+    "Sun-synchronous",
+    "Sunglint",
+    "Sunspot",
+    "Sustainable Development Goals (SDGs)",
+    "SWARM",
+    "Swath",
+    "Synoptic view",
+    "Synthetic aperture radar (SAR)",
+    "Tango",
+    "Telemetry",
+    "Temperature",
+    "Temporal",
+    "Terminus (glacier)",
+    "Thermal",
+    "Thermosphere",
+    "Third Party Missions",
+    "Thunder",
+    "Topography",
+    "Trace gas",
+    "Transpiration",
+    "Tropical",
+    "Tropomi",
+    "Troposphere",
+    "Tropospheric ozone",
+    "TRUTHS",
+    "Tundra",
+    "Ultraviolet radiation",
+    "UNFCCC",
+    "Upwelling",
+    "Validation",
+    "Water cycle",
+    "Water vapour",
+    "Wavelength",
+    "Weather",
+    "WMO"
+  ]
+}
+  </script>
+
   <script type="application/json" id="credit-role-data">
 {
   "source": "https://credit.niso.org/",
@@ -6796,6 +7109,11 @@
       var operatingSystemSelect = document.getElementById("operating-system-select");
       var operatingSystemList = document.getElementById("operating-system-list");
       var addOperatingSystemButton = document.querySelector("[data-action='add-operating-system']");
+      var earthObservationKeywordPayload = JSON.parse(document.getElementById("earth-observation-keyword-data").textContent);
+      var earthObservationKeywordOptions = earthObservationKeywordPayload.keywords || [];
+      var earthObservationKeywordSelect = document.getElementById("eo-keyword-select");
+      var earthObservationKeywordList = document.getElementById("eo-keyword-list");
+      var addEarthObservationKeywordButton = document.querySelector("[data-action='add-eo-keyword']");
       var creditRolePayload = JSON.parse(document.getElementById("credit-role-data").textContent);
       var creditRoles = creditRolePayload.roles || [];
       var creditRoleByName = {};
@@ -7492,6 +7810,103 @@
         setOperatingSystems(values);
       }
 
+      function populateEarthObservationKeywordSelect() {
+        var fragment = document.createDocumentFragment();
+        var emptyOption = document.createElement("option");
+        emptyOption.value = "";
+        emptyOption.textContent = "Select Earth Observation keyword";
+        fragment.appendChild(emptyOption);
+
+        earthObservationKeywordOptions.forEach(function (name) {
+          var option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          fragment.appendChild(option);
+        });
+
+        earthObservationKeywordSelect.innerHTML = "";
+        earthObservationKeywordSelect.appendChild(fragment);
+        renderEarthObservationKeywordList(getEarthObservationKeywords());
+        refreshEarthObservationKeywordPicker();
+      }
+
+      function getEarthObservationKeywords() {
+        return splitLines(valueOf("eo-keywords"));
+      }
+
+      function setEarthObservationKeywords(values) {
+        var list = Array.isArray(values) ? values : splitLines(values || "");
+        var seen = {};
+        var unique = [];
+        list.forEach(function (value) {
+          var trimmed = String(value).trim();
+          var key = normalizeListValue(trimmed);
+          if (trimmed && !seen[key]) {
+            seen[key] = true;
+            unique.push(trimmed);
+          }
+        });
+        setValue("eo-keywords", unique.join("\n"));
+        renderEarthObservationKeywordList(unique);
+        refreshEarthObservationKeywordPicker();
+      }
+
+      function renderEarthObservationKeywordList(values) {
+        earthObservationKeywordList.innerHTML = "";
+        if (values.length === 0) {
+          var empty = document.createElement("li");
+          empty.className = "empty";
+          empty.textContent = "No Earth Observation keywords selected";
+          earthObservationKeywordList.appendChild(empty);
+          return;
+        }
+
+        values.forEach(function (value, index) {
+          var item = document.createElement("li");
+          var label = document.createElement("span");
+          var remove = document.createElement("button");
+          label.textContent = value;
+          remove.type = "button";
+          remove.className = "danger";
+          remove.dataset.eoKeywordRemove = String(index);
+          remove.textContent = "Remove";
+          remove.title = "Remove " + value;
+          item.appendChild(label);
+          item.appendChild(remove);
+          earthObservationKeywordList.appendChild(item);
+        });
+      }
+
+      function refreshEarthObservationKeywordPicker() {
+        var selected = {};
+        getEarthObservationKeywords().forEach(function (value) {
+          selected[normalizeListValue(value)] = true;
+        });
+        Array.from(earthObservationKeywordSelect.options).forEach(function (option) {
+          option.disabled = option.value ? Boolean(selected[normalizeListValue(option.value)]) : false;
+        });
+        if (earthObservationKeywordSelect.value && selected[normalizeListValue(earthObservationKeywordSelect.value)]) {
+          earthObservationKeywordSelect.value = "";
+        }
+        addEarthObservationKeywordButton.disabled = !earthObservationKeywordSelect.value;
+      }
+
+      function addEarthObservationKeyword() {
+        var value = earthObservationKeywordSelect.value;
+        if (!value) {
+          return;
+        }
+        setEarthObservationKeywords(getEarthObservationKeywords().concat(value));
+        earthObservationKeywordSelect.value = "";
+        refreshEarthObservationKeywordPicker();
+      }
+
+      function removeEarthObservationKeyword(index) {
+        var values = getEarthObservationKeywords();
+        values.splice(index, 1);
+        setEarthObservationKeywords(values);
+      }
+
       function refreshRepeater(type) {
         var config = repeaters[type];
         var entries = Array.from(config.container.querySelectorAll("[data-entry='" + type + "']"));
@@ -7662,7 +8077,15 @@
           metadata["s:sameAs"] = listOrSingle(sameAs);
         }
 
-        var keywords = splitKeywords(valueOf("keywords"));
+        var keywordSeen = {};
+        var keywords = [];
+        splitKeywords(valueOf("keywords")).concat(getEarthObservationKeywords()).forEach(function (keyword) {
+          var key = normalizeListValue(keyword);
+          if (!keywordSeen[key]) {
+            keywordSeen[key] = true;
+            keywords.push(keyword);
+          }
+        });
         var definedTerms = collectRepeater("terms")
           .map(definedTerm)
           .filter(function (item) {
@@ -7926,6 +8349,7 @@
         lastAutoPublisherIdentifier = "";
         setPublisherRorStatus("");
         setValue("keywords", example.keywords);
+        setEarthObservationKeywords([]);
         setRepeater("licenses", example.licenses);
         setRepeater("help", example.help);
         setRepeater("authors", example.authors);
@@ -7939,6 +8363,7 @@
           setValue(id, "");
         });
         setOperatingSystems([]);
+        setEarthObservationKeywords([]);
         setRepeater("licenses", [{}]);
         setRepeater("help", [{}]);
         setRepeater("authors", [{}]);
@@ -7994,12 +8419,22 @@
         if (event.target === operatingSystemSelect) {
           refreshOperatingSystemPicker();
         }
+        if (event.target === earthObservationKeywordSelect) {
+          refreshEarthObservationKeywordPicker();
+        }
         render();
       });
       operatingSystemSelect.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
           event.preventDefault();
           addOperatingSystem();
+          render();
+        }
+      });
+      earthObservationKeywordSelect.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          addEarthObservationKeyword();
           render();
         }
       });
@@ -8015,9 +8450,16 @@
         var action = event.target.closest("[data-action]");
         var fill = event.target.closest("[data-fill-affiliation]");
         var osRemove = event.target.closest("[data-os-remove]");
+        var eoKeywordRemove = event.target.closest("[data-eo-keyword-remove]");
 
         if (osRemove) {
           removeOperatingSystem(Number(osRemove.dataset.osRemove));
+          render();
+          return;
+        }
+
+        if (eoKeywordRemove) {
+          removeEarthObservationKeyword(Number(eoKeywordRemove.dataset.eoKeywordRemove));
           render();
           return;
         }
@@ -8055,6 +8497,9 @@
         } else if (actionName === "add-operating-system") {
           addOperatingSystem();
           render();
+        } else if (actionName === "add-eo-keyword") {
+          addEarthObservationKeyword();
+          render();
         } else if (actionName === "copy-yaml") {
           copyText(yamlOutput.value);
         } else if (actionName === "copy-json") {
@@ -8072,6 +8517,7 @@
         setRepeater(type, []);
       });
       populateOperatingSystemSelect();
+      populateEarthObservationKeywordSelect();
     })();
   </script>
 </body>
