@@ -561,7 +561,12 @@
           </div>
           <div class="field">
             <label for="software-version">Software version <span class="required-mark">*</span></label>
-            <input id="software-version" autocomplete="off" required>
+            <input
+              id="software-version"
+              autocomplete="off"
+              pattern="(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[A-Za-z\-][0-9A-Za-z\-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z\-][0-9A-Za-z\-]*))*))?(?:\+([0-9A-Za-z\-]+(?:\.[0-9A-Za-z\-]+)*))?"
+              title="Use Semantic Versioning 2.0.0, such as 1.2.3, 1.2.3-alpha.1, or 1.2.3+build.1."
+              required>
           </div>
           <div class="field full">
             <label for="same-as">Alternative identifier URLs</label>
@@ -6925,6 +6930,8 @@
       var publisherRorTimer = null;
       var publisherRorAbortController = null;
       var lastAutoPublisherIdentifier = "";
+      var semverPattern = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)(?:\.(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$/;
+      var semverMessage = "Software version must follow SemVer 2.0.0, such as 1.2.3, 1.2.3-alpha.1, or 1.2.3+build.1.";
 
       function byId(id) {
         return document.getElementById(id);
@@ -7806,6 +7813,8 @@
         }
         if (!metadata["s:softwareVersion"]) {
           issues.push("Software version is required.");
+        } else if (!semverPattern.test(metadata["s:softwareVersion"])) {
+          issues.push(semverMessage);
         }
         if (!metadata["s:publisher"] || !metadata["s:publisher"]["s:name"]) {
           issues.push("Publisher name is required.");
