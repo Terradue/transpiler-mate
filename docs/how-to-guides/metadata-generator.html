@@ -608,18 +608,20 @@
 
       <section class="panel" aria-labelledby="publisher-heading">
         <h2 id="publisher-heading">Publisher</h2>
+        <span class="hint">Publisher is a <a href="https://ror.org/">Research Organization Registry (ROR).</a> entity</span>
         <div class="field-grid three">
           <div class="field">
             <label for="publisher-name">Name <span class="required-mark">*</span></label>
             <input id="publisher-name" required>
           </div>
           <div class="field">
-            <label for="publisher-email">Email</label>
-            <input id="publisher-email" type="email" autocomplete="email">
-          </div>
-          <div class="field">
             <label for="publisher-identifier">Identifier</label>
             <input id="publisher-identifier" autocomplete="off">
+            <span id="publisher-ror-status" class="hint" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="publisher-email">Email</label>
+            <input id="publisher-email" type="email" autocomplete="email">
           </div>
         </div>
       </section>
@@ -771,10 +773,11 @@
       <div class="field-grid">
         <div class="field full">
           <label class="check-field">
-            <input type="checkbox" data-field="role.enabled">
+            <input type="checkbox" data-field="role.enabled" disabled>
             Wrap this relationship in a Schema.org Role
           </label>
-          <span class="hint">When enabled, the generated metadata nests this person under s:author or s:contributor inside an s:Role object.</span>
+          <span class="hint">The generated metadata nests this person under s:author or s:contributor inside an s:Role object.</span>
+          <span class="hint">Role name is defined according to the NISO ANSI standard <a href="https://www.niso.org/publications/z39104-2022-credit">CRediT (Contributor Roles Taxonomy).</a></span>
         </div>
         <div class="field">
           <label>Role name</label>
@@ -6915,6 +6918,12 @@
       var validationList = document.getElementById("validation-list");
       var statusPill = document.getElementById("status-pill");
       var statusCount = document.getElementById("status-count");
+      var publisherNameInput = document.getElementById("publisher-name");
+      var publisherIdentifierInput = document.getElementById("publisher-identifier");
+      var publisherRorStatus = document.getElementById("publisher-ror-status");
+      var publisherRorTimer = null;
+      var publisherRorAbortController = null;
+      var lastAutoPublisherIdentifier = "";
 
       function byId(id) {
         return document.getElementById(id);
@@ -6926,6 +6935,154 @@
 
       function setValue(id, value) {
         byId(id).value = value || "";
+      }
+
+      function normalizeOrganizationName(value) {
+        return (value || "")
+          .trim()
+          .toLocaleLowerCase()
+          .replace(/[^\p{L}\p{N}]+/gu, " ")
+          .replace(/\s+/g, " ");
+      }
+
+      function getRorNameValues(record) {
+        if (!record) {
+          return [];
+        }
+        if (typeof record.name === "string") {
+          return [record.name];
+        }
+        if (!Array.isArray(record.names)) {
+          return [];
+        }
+        return record.names
+          .map(function (item) {
+            if (typeof item === "string") {
+              return item;
+            }
+            return item && item.value ? item.value : "";
+          })
+          .filter(Boolean);
+      }
+
+      function getRorPrimaryName(record) {
+        if (!record) {
+          return "";
+        }
+        if (typeof record.name === "string") {
+          return record.name;
+        }
+        if (Array.isArray(record.names)) {
+          var rorDisplayName = record.names.find(function (item) {
+            return item && Array.isArray(item.types) && item.types.indexOf("ror_display") >= 0;
+          });
+          if (rorDisplayName && rorDisplayName.value) {
+            return rorDisplayName.value;
+          }
+          var labelName = record.names.find(function (item) {
+            return item && Array.isArray(item.types) && item.types.indexOf("label") >= 0;
+          });
+          if (labelName && labelName.value) {
+            return labelName.value;
+          }
+        }
+        return getRorNameValues(record)[0] || "";
+      }
+
+      function searchRorOrganizations(query, signal) {
+        var url = new URL("https://api.ror.org/v2/organizations");
+        url.searchParams.set("query", query);
+
+        return fetch(url.toString(), { signal: signal })
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("ROR API error: " + response.status);
+            }
+            return response.json();
+          });
+      }
+
+      function findBestRorMatch(query, items) {
+        var normalizedQuery = normalizeOrganizationName(query);
+        if (!normalizedQuery || !Array.isArray(items) || items.length === 0) {
+          return null;
+        }
+
+        var exactMatch = items.find(function (item) {
+          return getRorNameValues(item).some(function (name) {
+            return normalizeOrganizationName(name) === normalizedQuery;
+          });
+        });
+
+        return exactMatch || items[0];
+      }
+
+      function setPublisherRorStatus(message) {
+        if (publisherRorStatus) {
+          publisherRorStatus.textContent = message || "";
+        }
+      }
+
+      function maybeClearAutoPublisherIdentifier() {
+        if (lastAutoPublisherIdentifier && publisherIdentifierInput.value === lastAutoPublisherIdentifier) {
+          publisherIdentifierInput.value = "";
+          lastAutoPublisherIdentifier = "";
+          render();
+        }
+      }
+
+      function populatePublisherIdentifierFromRor(record) {
+        if (!record || !record.id) {
+          maybeClearAutoPublisherIdentifier();
+          return;
+        }
+
+        publisherIdentifierInput.value = record.id;
+        lastAutoPublisherIdentifier = record.id;
+        setPublisherRorStatus("Matched ROR: " + getRorPrimaryName(record));
+        render();
+      }
+
+      function schedulePublisherRorLookup() {
+        var query = valueOf("publisher-name");
+
+        if (publisherRorTimer) {
+          window.clearTimeout(publisherRorTimer);
+        }
+        if (publisherRorAbortController) {
+          publisherRorAbortController.abort();
+          publisherRorAbortController = null;
+        }
+
+        if (query.length < 3) {
+          setPublisherRorStatus("");
+          maybeClearAutoPublisherIdentifier();
+          return;
+        }
+
+        setPublisherRorStatus("Searching ROR...");
+        publisherRorTimer = window.setTimeout(function () {
+          publisherRorAbortController = new AbortController();
+          searchRorOrganizations(query, publisherRorAbortController.signal)
+            .then(function (data) {
+              var match = findBestRorMatch(query, data.items || []);
+              if (match) {
+                populatePublisherIdentifierFromRor(match);
+              } else {
+                maybeClearAutoPublisherIdentifier();
+                setPublisherRorStatus("No ROR match found.");
+              }
+            })
+            .catch(function (error) {
+              if (error.name === "AbortError") {
+                return;
+              }
+              setPublisherRorStatus("ROR lookup failed. Identifier can be entered manually.");
+            })
+            .finally(function () {
+              publisherRorAbortController = null;
+            });
+        }, 450);
       }
 
       function normalizeListValue(value) {
@@ -7629,6 +7786,8 @@
         setValue("publisher-name", example.publisher.name);
         setValue("publisher-email", example.publisher.email);
         setValue("publisher-identifier", example.publisher.identifier);
+        lastAutoPublisherIdentifier = "";
+        setPublisherRorStatus("");
         setValue("keywords", example.keywords);
         setRepeater("licenses", example.licenses);
         setRepeater("help", example.help);
@@ -7648,6 +7807,8 @@
         setRepeater("authors", [{}]);
         setRepeater("contributors", []);
         setRepeater("terms", []);
+        lastAutoPublisherIdentifier = "";
+        setPublisherRorStatus("");
         render();
       }
 
@@ -7666,6 +7827,12 @@
       }
 
       form.addEventListener("input", render);
+      publisherNameInput.addEventListener("input", schedulePublisherRorLookup);
+      publisherIdentifierInput.addEventListener("input", function () {
+        if (publisherIdentifierInput.value !== lastAutoPublisherIdentifier) {
+          lastAutoPublisherIdentifier = "";
+        }
+      });
       form.addEventListener("change", function (event) {
         var licenseSelect = event.target.closest("[data-license-identifier]");
         if (licenseSelect) {
