@@ -417,8 +417,7 @@
       justify-content: flex-end;
     }
 
-    .code-output,
-    pre {
+    .code-output {
       width: 100%;
       border: 1px solid #263542;
       border-radius: 8px;
@@ -434,15 +433,6 @@
       min-height: 24rem;
       padding: 0.85rem;
       resize: vertical;
-    }
-
-    pre {
-      min-height: 7rem;
-      overflow: auto;
-      margin: 0;
-      padding: 0.85rem;
-      white-space: pre-wrap;
-      word-break: break-word;
     }
 
     .validation-list {
@@ -587,11 +577,6 @@
             <textarea id="software-requirements" class="compact-textarea"></textarea>
             <span class="hint">One runtime, dependency, or URL per line.</span>
           </div>
-          <div class="field full">
-            <label for="code-repository">Code repository</label>
-            <input id="code-repository" type="url" autocomplete="url" disabled>
-            <span class="hint">Used only in the generated CodeMeta CLI command.</span>
-          </div>
         </div>
       </section>
 
@@ -700,24 +685,6 @@
         <ul id="validation-list" class="validation-list"></ul>
       </section>
 
-      <section class="panel">
-        <div class="output-header">
-          <h2>Schema object</h2>
-          <div class="output-actions">
-            <button type="button" data-action="copy-json">Copy JSON</button>
-            <button type="button" data-action="download-json">Download JSON</button>
-          </div>
-        </div>
-        <pre id="json-output" aria-label="Generated JSON"></pre>
-      </section>
-
-      <section class="panel">
-        <div class="output-header">
-          <h2>CodeMeta command</h2>
-          <button type="button" data-action="copy-command">Copy command</button>
-        </div>
-        <pre id="command-output" aria-label="Generated command"></pre>
-      </section>
     </aside>
   </main>
 
@@ -23047,7 +23014,6 @@
         sameAs: "https://handle.test.datacite.org/10.5072/zenodo.393958",
         softwareRequirements: "https://cwltool.readthedocs.io/en/latest/\nhttps://www.python.org/",
         softwareVersion: "3.0.0",
-        codeRepository: "https://github.com/Terradue/transpiler-mate.git",
         publisher: {
           name: "Make Earth Observation Great Again",
           email: "info@meoga.com",
@@ -23122,8 +23088,7 @@
 
       var form = document.getElementById("metadata-form");
       var yamlOutput = document.getElementById("yaml-output");
-      var jsonOutput = document.getElementById("json-output");
-      var commandOutput = document.getElementById("command-output");
+      var licensesSection = document.querySelector("[aria-labelledby='licenses-heading']");
       var validationList = document.getElementById("validation-list");
       var statusPill = document.getElementById("status-pill");
       var statusCount = document.getElementById("status-count");
@@ -24157,8 +24122,7 @@
       function buildCwlDocument(metadata) {
         var document = {
           "cwlVersion": "v1.2",
-          "class": "CommandLineTool",
-          "baseCommand": "echo",
+          "class": "Workflow",
           "inputs": {},
           "outputs": {}
         };
@@ -24276,23 +24240,6 @@
         return issues;
       }
 
-      function buildCommand() {
-        var repository = valueOf("code-repository");
-        var parts = ["transpiler-mate", "codemeta", "generated-metadata.cwl"];
-        if (repository) {
-          parts.push("--code-repository", shellQuote(repository));
-        }
-        parts.push("--output", "codemeta.json");
-        return parts.join(" ");
-      }
-
-      function shellQuote(value) {
-        if (/^[A-Za-z0-9_./:+@%=-]+$/.test(value)) {
-          return value;
-        }
-        return "'" + value.replace(/'/g, "'\\''") + "'";
-      }
-
       function render() {
         var metadata = buildMetadata();
         var outputMode = document.querySelector("input[name='output-mode']:checked").value;
@@ -24300,8 +24247,6 @@
         var issues = validate(metadata);
 
         yamlOutput.value = toYaml(yamlDocument, 0) + "\n";
-        jsonOutput.textContent = JSON.stringify(metadata, null, 2);
-        commandOutput.textContent = buildCommand();
 
         validationList.innerHTML = "";
         issues.forEach(function (issue) {
@@ -24314,6 +24259,40 @@
         statusPill.classList.toggle("ok", issues.length === 0);
         statusPill.classList.toggle("warn", issues.length > 0);
         statusCount.textContent = issues.length === 0 ? "All required fields present" : issues.length + " checks";
+        scheduleYamlOutputHeight();
+      }
+
+      function elementTop(element) {
+        var top = 0;
+        var cursor = element;
+        while (cursor) {
+          top += cursor.offsetTop;
+          cursor = cursor.offsetParent;
+        }
+        return top;
+      }
+
+      function adjustYamlOutputHeight() {
+        if (!licensesSection || !yamlOutput) {
+          return;
+        }
+        if (window.matchMedia("(max-width: 1080px)").matches) {
+          yamlOutput.style.height = "";
+          return;
+        }
+
+        yamlOutput.style.height = "";
+        var panel = yamlOutput.closest(".panel");
+        var targetBottom = elementTop(licensesSection) + licensesSection.offsetHeight;
+        var outputTop = elementTop(yamlOutput);
+        var panelBottomSpace = elementTop(panel) + panel.offsetHeight - (outputTop + yamlOutput.offsetHeight);
+        var minHeight = parseFloat(window.getComputedStyle(yamlOutput).minHeight) || 384;
+        var desiredHeight = Math.floor(targetBottom - outputTop - panelBottomSpace);
+        yamlOutput.style.height = Math.max(minHeight, desiredHeight) + "px";
+      }
+
+      function scheduleYamlOutputHeight() {
+        window.requestAnimationFrame(adjustYamlOutputHeight);
       }
 
       function copyText(text) {
@@ -24369,7 +24348,7 @@
       }
 
       function clearForm() {
-        ["name", "description", "date-created", "identifier", "same-as", "software-requirements", "software-version", "code-repository", "publisher-name", "publisher-email", "publisher-identifier", "keywords"].forEach(function (id) {
+        ["name", "description", "date-created", "identifier", "same-as", "software-requirements", "software-version", "publisher-name", "publisher-email", "publisher-identifier", "keywords"].forEach(function (id) {
           setValue(id, "");
         });
         setOperatingSystems([]);
@@ -24399,6 +24378,7 @@
       }
 
       form.addEventListener("input", render);
+      window.addEventListener("resize", scheduleYamlOutputHeight);
       publisherNameInput.addEventListener("input", schedulePublisherRorLookup);
       publisherIdentifierInput.addEventListener("input", function () {
         if (publisherIdentifierInput.value !== lastAutoPublisherIdentifier) {
@@ -24516,14 +24496,8 @@
           render();
         } else if (actionName === "copy-yaml") {
           copyText(yamlOutput.value);
-        } else if (actionName === "copy-json") {
-          copyText(jsonOutput.textContent);
-        } else if (actionName === "copy-command") {
-          copyText(commandOutput.textContent);
         } else if (actionName === "download-yaml") {
           download("generated-metadata.cwl", yamlOutput.value, "text/yaml;charset=utf-8");
-        } else if (actionName === "download-json") {
-          download("generated-metadata.json", jsonOutput.textContent + "\n", "application/json;charset=utf-8");
         }
       });
 
@@ -24532,6 +24506,7 @@
       });
       populateOperatingSystemSelect();
       populateEarthObservationKeywordSelect();
+      scheduleYamlOutputHeight();
     })();
   </script>
 </body>
