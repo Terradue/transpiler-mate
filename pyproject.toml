@@ -37,8 +37,9 @@ dependencies = [
   "giturlparse==0.14.0",
   "semver==3.0.4",
   "Jinja2==3.1.6",
-  "cwl-loader==0.20.0",
-  "cwl2ogc==0.18.0"
+  "cwl-loader==0.21.0",
+  "cwl2ogc==0.18.0",
+  "session-adapters==0.4.0"
 ]
 
 [tool.hatch.metadata]

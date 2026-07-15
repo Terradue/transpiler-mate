@@ -7,9 +7,11 @@ Usage: transpiler-mate oci-annotations [OPTIONS] SOURCE
   Transpiles the input CWL to OCI annotations.
 
 Options:
-  --workflow-id TEXT  ID of the main Workflow  [required]
-  --output PATH       The output file path  [default: codemeta.json]
-  --help              Show this message and exit.
+  --workflow-id TEXT      ID of the main Workflow  [required]
+  --image-source TEXT     URL to get source code for building the image
+  --image-revision TEXT   Source control revision identifier for the packaged software
+  --output PATH           The output file path  [default: annotations.json]
+  --help                  Show this message and exit.
 ```
 
 i.e.

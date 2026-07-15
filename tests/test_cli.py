@@ -212,6 +212,56 @@ def test_ogcrecord_click_command_uses_default_output(
     }
 
 
+def test_bundle_click_command_forwards_options(monkeypatch, tmp_path: Path) -> None:
+    source = tmp_path / "workflow.cwl"
+    source.write_text("cwlVersion: v1.2\n", encoding="utf-8")
+    output = tmp_path / "resolved.cwl"
+    captured = {}
+    monkeypatch.setattr(cli, "run_bundle", lambda **kwargs: captured.update(kwargs))
+
+    result = CliRunner().invoke(
+        cli.main,
+        [
+            "bundle",
+            str(source),
+            "--output",
+            str(output),
+            "--oci-hostname",
+            "registry.example.org",
+            "--oci-username",
+            "user",
+            "--oci-password",
+            "secret",
+            "--oauth2-bearer",
+            "token",
+        ],
+    )
+
+    assert result.exit_code == 0
+    assert captured == {
+        "source": source.resolve(),
+        "output": output,
+        "oci_hostname": "registry.example.org",
+        "oci_username": "user",
+        "oci_password": "secret",
+        "oauth2_bearer": "token",
+    }
+
+
+def test_bundle_click_command_has_valid_default_output(
+    monkeypatch, tmp_path: Path
+) -> None:
+    source = tmp_path / "workflow.cwl"
+    source.write_text("cwlVersion: v1.2\n", encoding="utf-8")
+    captured = {}
+    monkeypatch.setattr(cli, "run_bundle", lambda **kwargs: captured.update(kwargs))
+
+    result = CliRunner().invoke(cli.main, ["bundle", str(source)])
+
+    assert result.exit_code == 0
+    assert captured["output"] == Path("bundle.cwl")
+
+
 def test_oci_annotations_command_writes_output(monkeypatch, tmp_path: Path) -> None:
     source = tmp_path / "workflow.cwl"
     source.write_text("cwlVersion: v1.2\n", encoding="utf-8")
