@@ -11,6 +11,7 @@ Given an input CWL metadata source, Transpiler Mate can:
 - Generate **OGC API - Records** payloads.
 - Generate **Markdown** documentation for workflows.
 - Generate **OCI Annotations**.
+- Bundle CWL documents into self-contained files with external references resolved.
 - Publish records to **InvenioRDM**.
 - Bump semantic versions in metadata files.
 
@@ -61,6 +62,7 @@ Main commands:
 - `transpiler-mate oci-annotations <source> --workflow-id <id> [--image-source URL] [--image-revision ] [--output annotations.json]`
 - `transpiler-mate invenio-publish <source> --base-url URL --auth-token TOKEN [--attach FILE ...]`
 - `transpiler-mate bump-version <source> [--version-part major|minor|patch|build|pre-release]`
+- `transpiler-mate bundle <source> [--output bundle.cwl] [--oci-hostname HOST] [--oci-username USER] [--oci-password PASSWORD] [--oauth2-bearer TOKEN]`
 
 ### Examples
 
@@ -87,6 +89,14 @@ Generate Markdown documentation:
 ```bash
 transpiler-mate markdown ./workflow.cwl --workflow-id main --output ./docs
 ```
+
+Bundle a CWL document and resolve its external references:
+
+```bash
+transpiler-mate bundle ./workflow.cwl --output ./dist/bundle.cwl
+```
+
+The `bundle` command was migrated from the [CWL Loader CLI](https://terradue.github.io/cwl-loader/).
 
 Publish to InvenioRDM:
 

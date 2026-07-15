@@ -25,6 +25,7 @@ from transpiler_mate.metadata import MetadataManager, Transpiler
 __path__ = [str(Path(__file__).with_suffix(""))]
 
 from transpiler_mate.cli.bump_version import VersionPart, run as run_bump_version
+from transpiler_mate.cli.bundle_cwl import run as run_bundle
 from transpiler_mate.cli.codemeta import run as run_codemeta
 from transpiler_mate.cli.common import track as _track
 from transpiler_mate.cli.common import transpile as run_transpile
@@ -292,8 +293,47 @@ def bump_version(source: Path, version_part: VersionPart):
     )
 
 
+@main.command(context_settings={"show_default": True})
+@click.argument(
+    "source",
+    type=click.Path(path_type=Path, exists=True, readable=True, resolve_path=True),
+    required=True,
+)
+@click.option(
+    "--output",
+    type=click.Path(path_type=Path),
+    required=False,
+    default="bundle.cwl",
+    help="The output file path",
+)
+@click.option("--oci-hostname", envvar="OCI_HOSTNAME", show_envvar=True)
+@click.option("--oci-username", envvar="OCI_USERNAME", show_envvar=True)
+@click.option("--oci-password", envvar="OCI_PASSWORD", show_envvar=True)
+@click.option("--oauth2-bearer", envvar="OAUTH2_BEARER", show_envvar=True)
+def bundle(
+    source: Path,
+    output: Path,
+    oci_hostname: str | None,
+    oci_username: str | None,
+    oci_password: str | None,
+    oauth2_bearer: str | None,
+):
+    """
+    Creates a self-contained CWL document with all references resolved.
+    """
+    return run_bundle(
+        source=source,
+        output=output,
+        oci_hostname=oci_hostname,
+        oci_username=oci_username,
+        oci_password=oci_password,
+        oauth2_bearer=oauth2_bearer,
+    )
+
+
 for command in [
     bump_version,
+    bundle,
     codemeta,
     datacite,
     invenio_publish,

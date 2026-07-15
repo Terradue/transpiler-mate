@@ -87,6 +87,7 @@ nav:
     - Generate an OGC API - Processes descriptor: how-to-guides/generate-ogc-processes.md
     - Generate OCI annotations: how-to-guides/generate-oci-annotations.md
     - Generate Markdown workflow documentation: how-to-guides/generate-markdown.md
+    - Bundle a CWL document: how-to-guides/bundle-cwl.md
     - Publish to InvenioRDM: how-to-guides/publish-to-invenio.md
     - Bump a CWL software version: how-to-guides/bump-version.md
   - Reference:

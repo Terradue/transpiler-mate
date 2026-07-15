@@ -9,5 +9,6 @@ Use these guides when you already know what you want to do and need the command 
 - [Generate an OGC API - Processes descriptor](generate-ogc-processes.md)
 - [Generate OCI annotations](generate-oci-annotations.md)
 - [Generate Markdown workflow documentation](generate-markdown.md)
+- [Bundle a CWL document](bundle-cwl.md)
 - [Publish to InvenioRDM](publish-to-invenio.md)
 - [Bump a CWL software version](bump-version.md)

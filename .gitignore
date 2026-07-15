@@ -1,7 +1,7 @@
 .codex
 .task
 .venv
-
+.vscode
 annotations.json
 codemeta.json
 datacite.json

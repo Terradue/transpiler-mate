@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.47.0] - 2026-07-15
+
+### Added
+
+- Added the `bundle` CLI command, migrated from the [CWL Loader CLI](https://terradue.github.io/cwl-loader/), to create self-contained CWL documents with external references resolved.
+- Added unit and CLI integration tests for CWL bundling, session adapters, authentication options, serialization, and default output handling.
+
+### Changed
+
+- Bumped `cwl-loader` from `0.20.0` to `0.21.0` and added `session-adapters` for HTTP(S), local file, S3, and OCI reference resolution.
+
 ## [0.46.0] - 2026-06-26
 
 ### Fixed
@@ -203,7 +226,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed generated model defaults and declaration order from `datamodel-codegen`.
 - Fixed README, documentation, lint, and release metadata issues.
 
-[unreleased]: https://github.com/Terradue/transpiler-mate/compare/v0.46.0...HEAD
+[unreleased]: https://github.com/Terradue/transpiler-mate/compare/v0.47.0...HEAD
+[0.47.0]: https://github.com/Terradue/transpiler-mate/compare/v0.46.0...v0.47.0
 [0.46.0]: https://github.com/Terradue/transpiler-mate/compare/v0.45.0...v0.46.0
 [0.45.0]: https://github.com/Terradue/transpiler-mate/compare/v0.44.0...v0.45.0
 [0.44.0]: https://github.com/Terradue/transpiler-mate/compare/v0.43.0...v0.44.0
