@@ -46,7 +46,7 @@ dependencies = [
 allow-direct-references = true
 
 [project.urls]
-Documentation = "https://github.com/Terradue/transpiler-mate#readme"
+Documentation = "https://terradue.github.io/transpiler-mate/"
 Issues = "https://github.com/Terradue/transpiler-mate/issues"
 Source = "https://github.com/Terradue/transpiler-mate"
 
