@@ -34,7 +34,7 @@ dependencies = [
   "click==8.4.1",
   "loguru==0.7.3",
   "invenio-rest-api-client==12.0.2",
-  "giturlparse==0.14.0",
+  "giturlparse==0.15.0",
   "semver==3.0.4",
   "Jinja2==3.1.6",
   "cwl-loader==0.21.0",
