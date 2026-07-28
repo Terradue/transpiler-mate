@@ -14,15 +14,17 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable
 from enum import Enum, auto
-from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from loguru import logger
 from semver import Version
 
 from transpiler_mate.metadata import MetadataManager
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+    from pathlib import Path
 
 
 class VersionPart(Enum):
@@ -42,11 +44,6 @@ def run(
     metadata_manager: Any = metadata_manager_factory(source)
 
     version = Version.parse(metadata_manager.metadata.software_version)
-
-    if not version.is_valid:
-        raise ValueError(
-            f"Version {metadata_manager.metadata.software_version} is not compliant to the Semantic Versioning Specification 2.0.0, see https://semver.org/"
-        )
 
     bumped_version = None
 

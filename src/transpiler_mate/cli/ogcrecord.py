@@ -14,11 +14,15 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 from transpiler_mate.cli.common import transpile as default_transpile
-from transpiler_mate.metadata import Transpiler
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+    from pathlib import Path
+
+    from transpiler_mate.metadata import Transpiler
 
 
 def run(
@@ -30,4 +34,4 @@ def run(
 
     transpiler = OgcRecordsTranspiler()
 
-    transpile(source=source, transpiler=transpiler, output=output)
+    transpile(source, transpiler, output)

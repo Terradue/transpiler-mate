@@ -12,31 +12,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from collections.abc import Mapping, Sequence
+
 from pydantic import AnyUrl, BaseModel, computed_field
-from typing import Mapping, Optional, Sequence
 
 
 class ScienceKeywordRecord(BaseModel):
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def scheme(self) -> str:
         return "GCMD Science Keywords"
 
     category: str
-    topic: Optional[str] = None
-    term: Optional[str] = None
-    variable_level_1: Optional[str] = None
-    variable_level_2: Optional[str] = None
-    variable_level_3: Optional[str] = None
-    detailed_variable: Optional[str] = None
+    topic: str | None = None
+    term: str | None = None
+    variable_level_1: str | None = None
+    variable_level_2: str | None = None
+    variable_level_3: str | None = None
+    detailed_variable: str | None = None
     identifier: str
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def uri(self) -> AnyUrl:
         return AnyUrl(f"https://cmr.earthdata.nasa.gov/kms/concept/{self.identifier}")
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def hierarchy_list(self) -> Sequence[str]:
         hierarchy = [self.category]

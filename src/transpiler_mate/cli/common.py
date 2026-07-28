@@ -14,17 +14,19 @@
 
 from __future__ import annotations
 
+import json
+import time
 from collections.abc import Callable
 from datetime import datetime
 from functools import wraps
-import json
-from pathlib import Path
-import time
-from typing import Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from loguru import logger
 
 from transpiler_mate.metadata import MetadataManager, Transpiler
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 F = TypeVar("F", bound=Callable[..., Any])
 

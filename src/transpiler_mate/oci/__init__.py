@@ -12,12 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .oci_annotations_models import OciAnnotations
-from ..metadata import Transpiler
-from ..metadata.software_application_models import CreativeWork, SoftwareApplication
+from collections.abc import Mapping
+from typing import Any
+
 from cwl_utils.parser import Process
 from pydantic import AnyUrl
-from typing import Any, Mapping
+
+from ..metadata import Transpiler
+from ..metadata.software_application_models import CreativeWork, SoftwareApplication
+from .oci_annotations_models import OciAnnotations
 
 
 def _to_license_spdx(license: CreativeWork | AnyUrl) -> str:

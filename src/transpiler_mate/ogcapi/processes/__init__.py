@@ -12,10 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from collections.abc import Mapping, MutableMapping
+from typing import Any
+
 from pydantic import BaseModel
-from typing import Any, Mapping, MutableMapping
-from transpiler_mate.metadata.software_application_models import SoftwareApplication
+
 from transpiler_mate.metadata import Transpiler
+from transpiler_mate.metadata.software_application_models import SoftwareApplication
 
 
 class OgcProcessesTranspiler(Transpiler):

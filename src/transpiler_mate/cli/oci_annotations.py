@@ -14,14 +14,16 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable
-from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from loguru import logger
 
 from transpiler_mate.cli.common import write_json
 from transpiler_mate.metadata import MetadataManager
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+    from pathlib import Path
 
 
 def run(
@@ -40,6 +42,7 @@ def run(
 
     from cwl_loader import load_cwl_from_yaml
     from cwl_loader.utils import search_process
+
     from transpiler_mate.oci import OrasAnnotationsTranspiler
 
     workflow = load_cwl_from_yaml(metadata_manager.raw_document)
@@ -47,7 +50,7 @@ def run(
     resolved_process = search_process(workflow_id, workflow)
     if not resolved_process:
         raise ValueError(
-            f"Process {workflow_id} does not exist in input CWL document, only {list(map(lambda p: p.id, resolved_process)) if isinstance(resolved_process, list) else ['']} available."
+            f"Process {workflow_id} does not exist in input CWL document, only {[p.id for p in resolved_process] if isinstance(resolved_process, list) else ['']} available."
         )
 
     data = OrasAnnotationsTranspiler(

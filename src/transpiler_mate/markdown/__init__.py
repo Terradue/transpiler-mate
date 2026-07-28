@@ -14,29 +14,32 @@
 
 from __future__ import annotations
 
-from cwl_loader import load_cwl_from_yaml
-from cwl_loader.utils import to_index
-from cwl_loader.utils import search_process
-from cwl_utils.parser import Process, cwl_v1_0, cwl_v1_1, cwl_v1_2
+import time
+import types
 from datetime import datetime
-from importlib.metadata import version, PackageNotFoundError
-from jinja2 import Environment, PackageLoader
-from loguru import logger
-from pathlib import Path
-from transpiler_mate.metadata import MetadataManager
-from transpiler_mate.codemeta import CodeMetaTranspiler
+from importlib.metadata import PackageNotFoundError, version
 from typing import (
-    get_args,
-    get_origin,
+    TYPE_CHECKING,
     Any,
-    List,
     Literal,
-    Mapping,
     TextIO,
     Union,
+    get_args,
+    get_origin,
 )
 
-import time
+from cwl_loader import load_cwl_from_yaml
+from cwl_loader.utils import search_process, to_index
+from cwl_utils.parser import Process, cwl_v1_0, cwl_v1_1, cwl_v1_2
+from jinja2 import Environment, PackageLoader, select_autoescape
+from loguru import logger
+
+from transpiler_mate.codemeta import CodeMetaTranspiler
+from transpiler_mate.metadata import MetadataManager
+
+if TYPE_CHECKING:
+    from collections.abc import Mapping
+    from pathlib import Path
 
 # START custom built-in functions to simplify the CWL rendering
 
@@ -49,18 +52,20 @@ ROLE_TYPE = "https://schema.org/Role"
 
 RoleKind = Literal["author", "contributor"]
 
-InputRecordSchema = Union[
-    cwl_v1_0.InputRecordSchema, cwl_v1_1.InputRecordSchema, cwl_v1_2.InputRecordSchema
-]
+InputRecordSchema = (
+    cwl_v1_0.InputRecordSchema | cwl_v1_1.InputRecordSchema | cwl_v1_2.InputRecordSchema
+)
 
-SchemaDefRequirement = Union[
-    cwl_v1_0.SchemaDefRequirement,
-    cwl_v1_1.SchemaDefRequirement,
-    cwl_v1_2.SchemaDefRequirement,
-]
+SchemaDefRequirement = (
+    cwl_v1_0.SchemaDefRequirement
+    | cwl_v1_1.SchemaDefRequirement
+    | cwl_v1_2.SchemaDefRequirement
+)
 
 
-def _normalize_role_people(value: Any, *, person_key: RoleKind) -> list[dict]:
+def _normalize_role_people(  # noqa: C901
+    value: Any, *, person_key: RoleKind
+) -> list[dict]:
     """
     Normalize a JSON-ish field that can be:
       - None
@@ -130,7 +135,7 @@ def normalize_contributor(value: Any) -> list[dict]:
     return _normalize_role_people(value, person_key="contributor")
 
 
-def type_to_string(typ: Any, parent: Process) -> str:
+def type_to_string(typ: Any, parent: Process) -> str:  # noqa: C901
     """
     Serializes a CWL type to a human-readable string.
 
@@ -140,7 +145,7 @@ def type_to_string(typ: Any, parent: Process) -> str:
     Returns:
         `str`: The human-readable string representing the input CWL type.
     """
-    if get_origin(typ) is Union:
+    if get_origin(typ) in (Union, types.UnionType):
         return f"One of:<ul>{''.join(f'<li>{type_to_string(inner_type, parent)}</li>' for inner_type in get_args(typ))}</ul>"
 
     if isinstance(typ, list):
@@ -188,7 +193,7 @@ def type_to_string(typ: Any, parent: Process) -> str:
                 f"[{type_str}](https://www.commonwl.org/v1.2/Workflow.html#{type_str})"
             )
 
-    if "enum" == type_str:
+    if type_str == "enum":
         symbols = "".join(
             f"<li>`{symbol.split('/')[-1]}`</li>"
             for symbol in typ.symbols  # type: ignore
@@ -205,8 +210,8 @@ def _get_version() -> str:
         return "N/A"
 
 
-def _to_mapping(functions: List[Any]) -> Mapping[str, Any]:
-    mapping: Mapping[str, Any] = {}
+def _to_mapping(functions: list[Any]) -> Mapping[str, Any]:
+    mapping: dict[str, Any] = {}
 
     for function in functions:
         mapping[function.__name__] = function
@@ -219,12 +224,12 @@ def nullable(type_: Any) -> bool:
         isinstance(type_, list)
         and "null" in type_
         or hasattr(type_, "items")
-        and nullable(getattr(type_, "items"))
+        and nullable(type_.items)
     )
 
 
 def get_exection_command(clt: Any) -> str:
-    result: List[str] = []
+    result: list[str] = []
 
     def _append_arg(arg: Any):
         if isinstance(arg, list):
@@ -246,7 +251,8 @@ def get_exection_command(clt: Any) -> str:
 
 
 _jinja_environment = Environment(
-    loader=PackageLoader(package_name="transpiler_mate.markdown")
+    loader=PackageLoader(package_name="transpiler_mate.markdown"),
+    autoescape=select_autoescape(),
 )
 _jinja_environment.globals["type_to_string"] = type_to_string
 _jinja_environment.filters.update(
@@ -283,7 +289,7 @@ def markdown_transpile(
     process = search_process(workflow_id, cwl_document)
     if not process:
         available = (
-            list(map(lambda p: getattr(p, "id", str(p)), cwl_document))
+            [getattr(p, "id", str(p)) for p in cwl_document]
             if isinstance(cwl_document, list)
             else [getattr(cwl_document, "id", str(cwl_document))]
         )
@@ -302,10 +308,10 @@ def markdown_transpile(
                 timespec="milliseconds"
             ),
             software_source_code=metadata
-            if "SoftwareSourceCode" == metadata["@type"]
+            if metadata["@type"] == "SoftwareSourceCode"
             else None,
             software_application=metadata["targetProduct"]
-            if "SoftwareSourceCode" == metadata["@type"]
+            if metadata["@type"] == "SoftwareSourceCode"
             else metadata,
             workflow=process,
             index=to_index(cwl_document)

@@ -12,17 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from collections.abc import Mapping, MutableMapping
+from typing import TYPE_CHECKING, Any
+
+from giturlparse import parse as gitparse
+from loguru import logger
+from pyld import jsonld
+
 from transpiler_mate.metadata.software_application_models import (
     SoftwareApplication,
     SoftwareSourceCode,
 )
+
 from .metadata import Transpiler
 
-from giturlparse import parse as gitparse
-from loguru import logger
-from pydantic import BaseModel
-from pyld import jsonld
-from typing import Any, List, Mapping, MutableMapping
+if TYPE_CHECKING:
+    from pydantic import BaseModel
 
 
 class CodeMetaTranspiler(Transpiler):
@@ -37,7 +42,7 @@ class CodeMetaTranspiler(Transpiler):
 
             continuous_integration: str | None = None
             issue_tracker: str | None = None
-            related_link: List[str] | None = None
+            related_link: list[str] | None = None
 
             match parsed_url.platform:
                 case "github":
@@ -69,7 +74,7 @@ class CodeMetaTranspiler(Transpiler):
                 continuous_integration=continuous_integration,
                 issue_tracker=issue_tracker,
                 related_link=related_link,
-            )  # type: ignore @type is a constant
+            )
 
         doc: MutableMapping[str, Any] = model.model_dump(
             exclude_none=True, by_alias=True

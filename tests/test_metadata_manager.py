@@ -15,7 +15,7 @@
 from __future__ import annotations
 
 from datetime import date
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 from transpiler_mate import metadata
 from transpiler_mate.metadata.software_application_models import (
@@ -24,6 +24,9 @@ from transpiler_mate.metadata.software_application_models import (
     Person,
     SoftwareApplication,
 )
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 class FakeYAML:
@@ -63,7 +66,7 @@ def test_metadata_manager_raises_for_missing_file(tmp_path: Path) -> None:
     missing = tmp_path / "missing.cwl"
     try:
         metadata.MetadataManager(missing)
-        assert False, "Expected ValueError"
+        raise AssertionError("Expected ValueError")
     except ValueError as exc:
         assert "non existing file" in str(exc)
 
@@ -71,7 +74,7 @@ def test_metadata_manager_raises_for_missing_file(tmp_path: Path) -> None:
 def test_metadata_manager_raises_for_directory(tmp_path: Path) -> None:
     try:
         metadata.MetadataManager(tmp_path)
-        assert False, "Expected ValueError"
+        raise AssertionError("Expected ValueError")
     except ValueError as exc:
         assert "is not a file" in str(exc)
 

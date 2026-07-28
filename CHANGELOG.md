@@ -19,6 +19,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [0.48.0] - 2026-07-15
+
+### Added
+
+- Stronger code chekers with Ruff+McCabe & Bandit.
+
+### Changed
+
+- Bumped `pydantic` to `2.13.4`.
+- Bumped `click` to `8.4.2`.
+- Bumped `giturlparse` to `0.15.0`.
+- Bumped `cwl-loader` to `0.23.0`.
+- Bumped `cwl2ogc` to `0.19.0`.
+
 ## [0.47.0] - 2026-07-15
 
 ### Added
@@ -226,7 +240,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed generated model defaults and declaration order from `datamodel-codegen`.
 - Fixed README, documentation, lint, and release metadata issues.
 
-[unreleased]: https://github.com/Terradue/transpiler-mate/compare/v0.47.0...HEAD
+[unreleased]: https://github.com/Terradue/transpiler-mate/compare/v0.48.0...HEAD
+[0.48.0]: https://github.com/Terradue/transpiler-mate/compare/v0.47.0...v0.48.0
 [0.47.0]: https://github.com/Terradue/transpiler-mate/compare/v0.46.0...v0.47.0
 [0.46.0]: https://github.com/Terradue/transpiler-mate/compare/v0.45.0...v0.46.0
 [0.45.0]: https://github.com/Terradue/transpiler-mate/compare/v0.44.0...v0.45.0

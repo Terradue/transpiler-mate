@@ -1,5 +1,8 @@
 # Transpiler Mate
 
+[![PyPI - Version](https://img.shields.io/pypi/v/transpiler-mate.svg)](https://pypi.org/project/transpiler-mate)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/transpiler-mate.svg)](https://pypi.org/project/transpiler-mate)
+
 Transpiler Mate is a Python library and CLI that extracts `schema.org/SoftwareApplication` metadata from annotated CWL documents and converts it into publication-ready formats.
 
 ## What It Does
@@ -130,10 +133,25 @@ hatch run test:test-q
 
 `Taskfile.yaml` includes helper tasks for schema/model generation and quality checks:
 
-- `task test`
-- `task check`
-- `task lint`
+- `task quality:test`
+- `task quality:lint`
+- `task quality:check`
+
+### Local quality checks
+
+Install [Hatch](https://hatch.pypa.io/) and [Taskfiles](https://taskfile.dev/docs/guide) then install the Git hook:
+
+```console
+task quality:pre-commit:install
+```
+
+Every commit runs Ruff (including the configured McCabe complexity limit),
+Ruff formatting, strict mypy checks, and the pytest suite.
+Run the complete hook explicitly with:
+
+```console
+task quality:pre-commit:run
 
 ## License
 
-Apache License 2.0. See [LICENSE](LICENSE).
+[![Apache License, Version 2.0](https://img.shields.io/badge/license-Apache%20License%202.0-blue)](https://www.apache.org/licenses/LICENSE-2.0)

@@ -12,83 +12,77 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from . import init_http_logging
-from .metadata import MetadataManager, Transpiler
-from .metadata.software_application_models import (
-    AuthorRole,
-    ContributorRole,
-    Person,
-    Role as SWARole,
-    SoftwareApplication,
-)
+import hashlib
+import time
+from collections.abc import Mapping
 from datetime import date
+from pathlib import Path
+from urllib.parse import urlparse
 
-# required when a DOI is not assigned to an applicatrion package
-from invenio_rest_api_client.client import AuthenticatedClient as InvenioClient
+from invenio_rest_api_client.api.drafts.publish_a_draft_record import (
+    sync as publish_a_draft_record,
+)
 from invenio_rest_api_client.api.drafts.reserve_a_doi import sync as reserve_a_doi
-
-from invenio_rest_api_client.api.records.create_a_draft_record import (
-    sync as create_a_draft_record,
-)
-from invenio_rest_api_client.models.create_a_draft_record_body import (
-    CreateADraftRecordBody,
-)
-from invenio_rest_api_client.models.created import Created
-
-from invenio_rest_api_client.api.drafts_files_upload.step_1_start_draft_file_uploads import (
-    sync as step_1_start_draft_file_uploads,
-)
-from invenio_rest_api_client.models.file_transfer_item import FileTransferItem
-
-from invenio_rest_api_client.api.drafts_files_upload.step_2_upload_a_draft_files_content import (
-    sync as step_2_upload_a_draft_files_content,
-)
-from invenio_rest_api_client.types import File as FileContent
-
-from invenio_rest_api_client.api.drafts_files_upload.step_3_complete_a_draft_file_upload import (
-    sync as step_3_complete_a_draft_file_upload,
-)
-
 from invenio_rest_api_client.api.drafts.update_a_draft_record import (
     sync as update_a_draft_record,
 )
+from invenio_rest_api_client.api.drafts_files_upload.step_1_start_draft_file_uploads import (
+    sync as step_1_start_draft_file_uploads,
+)
+from invenio_rest_api_client.api.drafts_files_upload.step_2_upload_a_draft_files_content import (
+    sync as step_2_upload_a_draft_files_content,
+)
+from invenio_rest_api_client.api.drafts_files_upload.step_3_complete_a_draft_file_upload import (
+    sync as step_3_complete_a_draft_file_upload,
+)
+from invenio_rest_api_client.api.records.create_a_draft_record import (
+    sync as create_a_draft_record,
+)
+from invenio_rest_api_client.api.records_versions.create_a_new_version import (
+    sync as create_a_new_version,
+)
+
+# required when a DOI is not assigned to an applicatrion package
+from invenio_rest_api_client.client import AuthenticatedClient as InvenioClient
 from invenio_rest_api_client.models.access import Access
 from invenio_rest_api_client.models.access_files import AccessFiles
 from invenio_rest_api_client.models.access_record import AccessRecord
 from invenio_rest_api_client.models.affiliation import Affiliation
+from invenio_rest_api_client.models.create_a_draft_record_body import (
+    CreateADraftRecordBody,
+)
+from invenio_rest_api_client.models.created import Created
 from invenio_rest_api_client.models.creator import Creator
+from invenio_rest_api_client.models.file_transfer_item import FileTransferItem
 from invenio_rest_api_client.models.files import Files
 from invenio_rest_api_client.models.identifier import Identifier
+from invenio_rest_api_client.models.metadata import Metadata
+from invenio_rest_api_client.models.person_or_org import PersonOrOrg
 from invenio_rest_api_client.models.person_or_org_identifier_scheme import (
     PersonOrOrgIdentifierScheme,
 )
-from invenio_rest_api_client.models.metadata import Metadata
-from invenio_rest_api_client.models.person_or_org import PersonOrOrg
 from invenio_rest_api_client.models.person_or_org_type import PersonOrOrgType
 from invenio_rest_api_client.models.resource_type import ResourceType
 from invenio_rest_api_client.models.resource_type_id import ResourceTypeId
 from invenio_rest_api_client.models.role import Role
 from invenio_rest_api_client.models.role_id import RoleId
 from invenio_rest_api_client.models.update_draft_record import UpdateDraftRecord
-
-from invenio_rest_api_client.api.drafts.publish_a_draft_record import (
-    sync as publish_a_draft_record,
-)
-
-from invenio_rest_api_client.api.records_versions.create_a_new_version import (
-    sync as create_a_new_version,
-)
-
 from invenio_rest_api_client.types import UNSET
-
+from invenio_rest_api_client.types import File as FileContent
 from loguru import logger
-from pathlib import Path
 from pydantic import AnyUrl
-from typing import List, Mapping, Optional, Tuple
-from urllib.parse import urlparse
 
-import hashlib
-import time
+from . import init_http_logging
+from .metadata import MetadataManager, Transpiler
+from .metadata.software_application_models import (
+    AuthorRole,
+    ContributorRole,
+    Person,
+    SoftwareApplication,
+)
+from .metadata.software_application_models import (
+    Role as SWARole,
+)
 
 __ROLES_MAPPING_: Mapping[AnyUrl, RoleId] = {
     AnyUrl("http://purl.org/spar/datacite/ContactPerson"): RoleId.CONTACTPERSON,
@@ -122,7 +116,8 @@ __ROLES_MAPPING_: Mapping[AnyUrl, RoleId] = {
 
 
 def _md5(file: Path):
-    hash_md5 = hashlib.md5()
+    # Invenio's file API requires an MD5 checksum; it is not used for security.
+    hash_md5 = hashlib.md5(usedforsecurity=False)
     with file.open("rb") as f:
         for chunk in iter(lambda: f.read(4096), b""):
             hash_md5.update(chunk)
@@ -236,7 +231,7 @@ class InvenioMetadataTranspiler(Transpiler):
     def _finalize(
         self,
         draft_id: str,
-        uploading_files: List[Path],
+        uploading_files: list[Path],
         session_client: InvenioClient,
         invenio_metadata: Metadata,
     ) -> str:
@@ -312,7 +307,7 @@ class InvenioMetadataTranspiler(Transpiler):
         return f"{self.invenio_base_url}/records/{draft_id}"
 
     def create_or_update_process(
-        self, source: Path, attach: Optional[Tuple[Path]] = None
+        self, source: Path, attach: tuple[Path, ...] | None = None
     ) -> str:
         metadata: SoftwareApplication = self.metadata_manager.metadata
 
@@ -329,7 +324,7 @@ class InvenioMetadataTranspiler(Transpiler):
                 )
 
                 draft_id = (
-                    draft_record.id
+                    str(draft_record.id)
                     if draft_record and isinstance(draft_record, Created)
                     else draft_record.to_dict()["id"]
                     if draft_record

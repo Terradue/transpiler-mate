@@ -14,14 +14,18 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable
-from pathlib import Path
-from typing import Any, MutableMapping
+from typing import TYPE_CHECKING, Any
 
 from loguru import logger
 
 from transpiler_mate.cli.common import write_json
 from transpiler_mate.metadata import MetadataManager
+
+if TYPE_CHECKING:
+    from collections.abc import Callable, MutableMapping
+    from pathlib import Path
+
+    from cwl_utils.parser import Process
 
 
 def run(
@@ -29,9 +33,9 @@ def run(
     output: Path,
     metadata_manager_factory: Callable[[Path], MetadataManager] = MetadataManager,
 ) -> None:
-    from cwl_loader import load_cwl_from_yaml
-    from cwl_utils.parser import Process
     from cwl2ogc import BaseCWLtypes2OGCConverter
+    from cwl_loader import load_cwl_from_yaml
+
     from transpiler_mate.ogcapi.processes import OgcProcessesTranspiler
 
     transpiler = OgcProcessesTranspiler()
