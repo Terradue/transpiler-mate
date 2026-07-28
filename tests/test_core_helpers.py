@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 from datetime import date
-from httpx import Response
-from pydantic import AnyUrl
 from types import SimpleNamespace
+
+from httpx import Response
+from invenio_rest_api_client.models.role_id import RoleId
+from pydantic import AnyUrl
 
 from transpiler_mate import TranspilerBaseModel, _decode, _log_response
 from transpiler_mate.invenio import (
@@ -18,7 +20,6 @@ from transpiler_mate.metadata.software_application_models import (
     Person,
 )
 from transpiler_mate.oci import OrasAnnotationsTranspiler, _to_license_spdx
-from invenio_rest_api_client.models.role_id import RoleId
 
 
 class SampleModel(TranspilerBaseModel):
@@ -59,7 +60,7 @@ def test_log_response_raises_runtime_error_on_http_errors() -> None:
 
     try:
         wrapped(method="get", url="https://example.org")
-        assert False, "Expected RuntimeError"
+        raise AssertionError("Expected RuntimeError")
     except RuntimeError as exc:
         message = str(exc)
         assert "GET" in message

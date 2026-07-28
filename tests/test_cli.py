@@ -108,7 +108,7 @@ def test_bump_version_raises_for_invalid_semver(monkeypatch, tmp_path: Path) -> 
         cli.bump_version.callback.__wrapped__(
             source=source, version_part=cli.VersionPart.PATCH
         )
-        assert False, "Expected ValueError"
+        raise AssertionError("Expected ValueError")
     except ValueError:
         assert True
 
@@ -340,7 +340,7 @@ def test_oci_annotations_command_raises_when_process_missing(
             image_revision=None,
             output=tmp_path / "annotations.json",
         )
-        assert False, "Expected ValueError"
+        raise AssertionError("Expected ValueError")
     except ValueError as exc:
         assert "Process main does not exist" in str(exc)
 

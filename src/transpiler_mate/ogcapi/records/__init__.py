@@ -12,6 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import time
+import uuid
+from collections.abc import Mapping
+from datetime import date, datetime, timezone
+from typing import Any
+
+from loguru import logger
+from pydantic import AnyUrl
+
+from transpiler_mate.metadata import Transpiler
+from transpiler_mate.metadata.software_application_models import (
+    AuthorRole,
+    CreativeWork,
+    DefinedTerm,
+    Person,
+    SoftwareApplication,
+)
+
 from .ogcapi_records_models import (
     Concept,
     Contact1,
@@ -24,21 +42,6 @@ from .ogcapi_records_models import (
     Theme,
 )
 from .sciencekeywords import KEYWORDS_INDEX, ScienceKeywordRecord
-from datetime import date, datetime, timezone
-from loguru import logger
-from pydantic import AnyUrl
-from typing import Any, Mapping, List
-from transpiler_mate.metadata.software_application_models import (
-    AuthorRole,
-    CreativeWork,
-    DefinedTerm,
-    Person,
-    SoftwareApplication,
-)
-from transpiler_mate.metadata import Transpiler
-
-import time
-import uuid
 
 SCIENCE_KEYWORDS_TERM_SET = AnyUrl(
     "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords"
@@ -62,10 +65,16 @@ def _to_contact(author: Person | AuthorRole) -> Contact1:
         position = author.role_name
         author = author.author
 
+    affiliations = (
+        author.affiliation
+        if isinstance(author.affiliation, list)
+        else [author.affiliation]
+    )
+
     return Contact1(
         identifier=str(author.identifier),
         name=f"{author.family_name}, {author.given_name}",
-        organization=author.affiliation.name,
+        organization=affiliations[0].name,
         position=position,
         emails=[Email(value=author.email)],
     )
@@ -73,8 +82,8 @@ def _to_contact(author: Person | AuthorRole) -> Contact1:
 
 class OgcRecordsTranspiler(Transpiler):
     def transpile(self, metadata_source: SoftwareApplication) -> Mapping[str, Any]:
-        keywords: List[str] = []
-        themes: List[Theme] = []
+        keywords: list[str] = []
+        themes: list[Theme] = []
 
         if metadata_source.keywords:
             for raw_keyword in (
@@ -86,7 +95,7 @@ class OgcRecordsTranspiler(Transpiler):
                     keywords.append(raw_keyword)
                 elif isinstance(raw_keyword, DefinedTerm):
                     if (
-                        SCIENCE_KEYWORDS_TERM_SET == raw_keyword.in_defined_term_set
+                        raw_keyword.in_defined_term_set == SCIENCE_KEYWORDS_TERM_SET
                         and raw_keyword.term_code
                     ):
                         if raw_keyword.term_code not in KEYWORDS_INDEX:
@@ -98,7 +107,7 @@ class OgcRecordsTranspiler(Transpiler):
                                 KEYWORDS_INDEX[str(raw_keyword.term_code)]
                             )
 
-                            concepts: List[Concept] = []
+                            concepts: list[Concept] = []
 
                             for i, keyword in enumerate(
                                 science_keyword_record.hierarchy_list
@@ -131,21 +140,21 @@ class OgcRecordsTranspiler(Transpiler):
 
         record_geojson: RecordGeoJSON = RecordGeoJSON(
             id=f"urn:uuid:{uuid.uuid4()}",
-            links=list(
-                map(
-                    lambda creative_work: Link(
-                        href=str(creative_work.url),
-                        hreflang="en",
-                        title=creative_work.name,
-                        rel="via",
-                        created=_to_datetime(metadata_source.date_created),
-                        updated=_to_datetime(datetime.fromtimestamp(time.time())),
-                    ),
+            links=[
+                Link(
+                    href=str(creative_work.url),
+                    hreflang="en",
+                    title=creative_work.name,
+                    rel="via",
+                    created=_to_datetime(metadata_source.date_created),
+                    updated=_to_datetime(datetime.fromtimestamp(time.time())),
+                )
+                for creative_work in (
                     metadata_source.software_help
                     if isinstance(metadata_source.software_help, list)
-                    else [metadata_source.software_help],
+                    else [metadata_source.software_help]
                 )
-            ),
+            ],
             properties=RecordCommonProperties(
                 created=_to_datetime(metadata_source.date_created),
                 updated=_to_datetime(datetime.fromtimestamp(time.time())),
@@ -167,18 +176,18 @@ class OgcRecordsTranspiler(Transpiler):
                     )
                 ),
                 license=": ".join(
-                    list(
-                        map(
-                            lambda license: (
-                                str(license.identifier)
-                                if isinstance(license, CreativeWork)
-                                else str(license)
-                            ),
+                    [
+                        (
+                            str(license.identifier)
+                            if isinstance(license, CreativeWork)
+                            else str(license)
+                        )
+                        for license in (
                             metadata_source.license
                             if isinstance(metadata_source.license, list)
-                            else [metadata_source.license],
+                            else [metadata_source.license]
                         )
-                    )
+                    ]
                 ),
             ),
         )

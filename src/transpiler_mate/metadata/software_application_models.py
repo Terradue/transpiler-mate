@@ -19,9 +19,10 @@
 from __future__ import annotations
 
 from datetime import date, datetime
-from typing import List, Literal, Optional, Union
+from typing import Literal
 
 from pydantic import AliasChoices, AnyUrl, EmailStr, Field, RootModel
+
 from transpiler_mate import TranspilerBaseModel
 
 
@@ -38,12 +39,12 @@ class Organization(TranspilerBaseModel):
         validation_alias=AliasChoices("name", "https://schema.org/name"),
         serialization_alias="https://schema.org/name",
     )
-    email: Optional[Union[EmailStr, List[EmailStr]]] = Field(
+    email: EmailStr | list[EmailStr] | None = Field(
         default=None,
         validation_alias=AliasChoices("email", "https://schema.org/email"),
         serialization_alias="https://schema.org/email",
     )
-    identifier: Optional[Union[AnyUrl, str]] = Field(
+    identifier: AnyUrl | str | None = Field(
         default=None,
         validation_alias=AliasChoices("identifier", "https://schema.org/identifier"),
         serialization_alias="https://schema.org/identifier",
@@ -68,17 +69,17 @@ class Person(TranspilerBaseModel):
         validation_alias=AliasChoices("familyName", "https://schema.org/familyName"),
         serialization_alias="https://schema.org/familyName",
     )
-    email: Union[EmailStr, List[EmailStr]] = Field(
+    email: EmailStr | list[EmailStr] = Field(
         ...,
         validation_alias=AliasChoices("email", "https://schema.org/email"),
         serialization_alias="https://schema.org/email",
     )
-    identifier: Optional[Union[AnyUrl, str]] = Field(
+    identifier: AnyUrl | str | None = Field(
         default=None,
         validation_alias=AliasChoices("identifier", "https://schema.org/identifier"),
         serialization_alias="https://schema.org/identifier",
     )
-    affiliation: Union[Organization, List[Organization]] = Field(
+    affiliation: Organization | list[Organization] = Field(
         ...,
         validation_alias=AliasChoices("affiliation", "https://schema.org/affiliation"),
         serialization_alias="https://schema.org/affiliation",
@@ -98,17 +99,17 @@ class Role(TranspilerBaseModel):
         validation_alias=AliasChoices("roleName", "https://schema.org/roleName"),
         serialization_alias="https://schema.org/roleName",
     )
-    start_date: Optional[date] = Field(
+    start_date: date | None = Field(
         default=None,
         validation_alias=AliasChoices("startDate", "https://schema.org/startDate"),
         serialization_alias="https://schema.org/startDate",
     )
-    end_date: Optional[date] = Field(
+    end_date: date | None = Field(
         default=None,
         validation_alias=AliasChoices("endDate", "https://schema.org/endDate"),
         serialization_alias="https://schema.org/endDate",
     )
-    additional_type: Optional[AnyUrl] = Field(
+    additional_type: AnyUrl | None = Field(
         default=None,
         validation_alias=AliasChoices(
             "additionalType", "https://schema.org/additionalType"
@@ -141,22 +142,22 @@ class DefinedTerm(TranspilerBaseModel):
     field_type: Literal["https://schema.org/DefinedTerm"] = Field(
         "https://schema.org/DefinedTerm", alias="@type"
     )
-    name: Optional[str] = Field(
+    name: str | None = Field(
         default=None,
         validation_alias=AliasChoices("name", "https://schema.org/name"),
         serialization_alias="https://schema.org/name",
     )
-    description: Optional[str] = Field(
+    description: str | None = Field(
         default=None,
         validation_alias=AliasChoices("description", "https://schema.org/description"),
         serialization_alias="https://schema.org/description",
     )
-    term_code: Optional[str] = Field(
+    term_code: str | None = Field(
         default=None,
         validation_alias=AliasChoices("termCode", "https://schema.org/termCode"),
         serialization_alias="https://schema.org/termCode",
     )
-    in_defined_term_set: Optional[AnyUrl] = Field(
+    in_defined_term_set: AnyUrl | None = Field(
         default=None,
         validation_alias=AliasChoices(
             "inDefinedTermSet", "https://schema.org/inDefinedTermSet"
@@ -173,17 +174,17 @@ class CreativeWork(TranspilerBaseModel):
     field_type: Literal["https://schema.org/CreativeWork"] = Field(
         "https://schema.org/CreativeWork", alias="@type"
     )
-    name: Optional[str] = Field(
+    name: str | None = Field(
         default=None,
         validation_alias=AliasChoices("name", "https://schema.org/name"),
         serialization_alias="https://schema.org/name",
     )
-    url: Optional[AnyUrl] = Field(
+    url: AnyUrl | None = Field(
         default=None,
         validation_alias=AliasChoices("url", "https://schema.org/url"),
         serialization_alias="https://schema.org/url",
     )
-    identifier: Optional[Union[AnyUrl, str]] = Field(
+    identifier: AnyUrl | str | None = Field(
         default=None,
         validation_alias=AliasChoices("identifier", "https://schema.org/identifier"),
         serialization_alias="https://schema.org/identifier",
@@ -198,29 +199,29 @@ class ImageObject(TranspilerBaseModel):
     field_type: Literal["https://schema.org/ImageObject"] = Field(
         "https://schema.org/ImageObject", alias="@type"
     )
-    content_url: Optional[AnyUrl] = Field(
+    content_url: AnyUrl | None = Field(
         default=None,
         validation_alias=AliasChoices("contentUrl", "https://schema.org/contentUrl"),
         serialization_alias="https://schema.org/contentUrl",
     )
-    caption: Optional[str] = Field(
+    caption: str | None = Field(
         default=None,
         validation_alias=AliasChoices("caption", "https://schema.org/caption"),
         serialization_alias="https://schema.org/caption",
     )
-    encoding_format: Optional[str] = Field(
+    encoding_format: str | None = Field(
         default=None,
         validation_alias=AliasChoices(
             "encodingFormat", "https://schema.org/encodingFormat"
         ),
         serialization_alias="https://schema.org/encodingFormat",
     )
-    width: Optional[int] = Field(
+    width: int | None = Field(
         default=None,
         validation_alias=AliasChoices("width", "https://schema.org/width"),
         serialization_alias="https://schema.org/width",
     )
-    height: Optional[int] = Field(
+    height: int | None = Field(
         default=None,
         validation_alias=AliasChoices("height", "https://schema.org/height"),
         serialization_alias="https://schema.org/height",
@@ -245,48 +246,46 @@ class SoftwareApplication(TranspilerBaseModel):
         validation_alias=AliasChoices("description", "https://schema.org/description"),
         serialization_alias="https://schema.org/description",
     )
-    date_created: Union[date, datetime] = Field(
+    date_created: date | datetime = Field(
         ...,
         validation_alias=AliasChoices("dateCreated", "https://schema.org/dateCreated"),
         serialization_alias="https://schema.org/dateCreated",
     )
-    license: Union[CreativeWork, AnyUrl, List[Union[CreativeWork, AnyUrl]]] = Field(
+    license: CreativeWork | AnyUrl | list[CreativeWork | AnyUrl] = Field(
         ...,
         validation_alias=AliasChoices("license", "https://schema.org/license"),
         serialization_alias="https://schema.org/license",
     )
-    identifier: Optional[Union[AnyUrl, str]] = Field(
+    identifier: AnyUrl | str | None = Field(
         default=None,
         validation_alias=AliasChoices("identifier", "https://schema.org/identifier"),
         serialization_alias="https://schema.org/identifier",
     )
-    same_as: Optional[Union[AnyUrl, List[AnyUrl]]] = Field(
+    same_as: AnyUrl | list[AnyUrl] | None = Field(
         default=None,
         validation_alias=AliasChoices("sameAs", "https://schema.org/sameAs"),
         serialization_alias="https://schema.org/sameAs",
     )
-    keywords: Optional[
-        Union[str, AnyUrl, DefinedTerm, List[Union[str, AnyUrl, DefinedTerm]]]
-    ] = Field(
-        default=None,
-        validation_alias=AliasChoices("keywords", "https://schema.org/keywords"),
-        serialization_alias="https://schema.org/keywords",
+    keywords: str | AnyUrl | DefinedTerm | list[str | AnyUrl | DefinedTerm] | None = (
+        Field(
+            default=None,
+            validation_alias=AliasChoices("keywords", "https://schema.org/keywords"),
+            serialization_alias="https://schema.org/keywords",
+        )
     )
-    operating_system: Optional[Union[str, List[str]]] = Field(
+    operating_system: str | list[str] | None = Field(
         default=None,
         validation_alias=AliasChoices(
             "operatingSystem", "https://schema.org/operatingSystem"
         ),
         serialization_alias="https://schema.org/operatingSystem",
     )
-    software_requirements: Optional[Union[str, AnyUrl, List[Union[str, AnyUrl]]]] = (
-        Field(
-            default=None,
-            validation_alias=AliasChoices(
-                "softwareRequirements", "https://schema.org/softwareRequirements"
-            ),
-            serialization_alias="https://schema.org/softwareRequirements",
-        )
+    software_requirements: str | AnyUrl | list[str | AnyUrl] | None = Field(
+        default=None,
+        validation_alias=AliasChoices(
+            "softwareRequirements", "https://schema.org/softwareRequirements"
+        ),
+        serialization_alias="https://schema.org/softwareRequirements",
     )
     software_version: str = Field(
         ...,
@@ -295,7 +294,7 @@ class SoftwareApplication(TranspilerBaseModel):
         ),
         serialization_alias="https://schema.org/softwareVersion",
     )
-    software_help: Union[CreativeWork, List[CreativeWork]] = Field(
+    software_help: CreativeWork | list[CreativeWork] = Field(
         ...,
         validation_alias=AliasChoices(
             "softwareHelp", "https://schema.org/softwareHelp"
@@ -307,19 +306,21 @@ class SoftwareApplication(TranspilerBaseModel):
         validation_alias=AliasChoices("publisher", "https://schema.org/publisher"),
         serialization_alias="https://schema.org/publisher",
     )
-    author: Union[AuthorRole, Person, List[Union[AuthorRole, Person]]] = Field(
+    author: AuthorRole | Person | list[AuthorRole | Person] = Field(
         ...,
         validation_alias=AliasChoices("author", "https://schema.org/author"),
         serialization_alias="https://schema.org/author",
     )
-    contributor: Optional[
-        Union[ContributorRole, Person, List[Union[ContributorRole, Person]]]
-    ] = Field(
-        default=None,
-        validation_alias=AliasChoices("contributor", "https://schema.org/contributor"),
-        serialization_alias="https://schema.org/contributor",
+    contributor: ContributorRole | Person | list[ContributorRole | Person] | None = (
+        Field(
+            default=None,
+            validation_alias=AliasChoices(
+                "contributor", "https://schema.org/contributor"
+            ),
+            serialization_alias="https://schema.org/contributor",
+        )
     )
-    thumbnail: Optional[ImageObject] = Field(
+    thumbnail: ImageObject | None = Field(
         default=None,
         validation_alias=AliasChoices("thumbnail", "https://schema.org/thumbnail"),
         serialization_alias="https://schema.org/thumbnail",
@@ -348,21 +349,21 @@ class SoftwareSourceCode(TranspilerBaseModel):
         ),
         serialization_alias="https://schema.org/targetProduct",
     )
-    continuous_integration: Optional[AnyUrl] = Field(
+    continuous_integration: AnyUrl | None = Field(
         default=None,
         validation_alias=AliasChoices(
             "continuousIntegration", "https://schema.org/continuousIntegration"
         ),
         serialization_alias="https://schema.org/continuousIntegration",
     )
-    issue_tracker: Optional[AnyUrl] = Field(
+    issue_tracker: AnyUrl | None = Field(
         default=None,
         validation_alias=AliasChoices(
             "issueTracker", "https://schema.org/issueTracker"
         ),
         serialization_alias="https://schema.org/issueTracker",
     )
-    related_link: Optional[Union[AnyUrl, List[AnyUrl]]] = Field(
+    related_link: AnyUrl | list[AnyUrl] | None = Field(
         default=None,
         validation_alias=AliasChoices("relatedLink", "https://schema.org/relatedLink"),
         serialization_alias="https://schema.org/relatedLink",

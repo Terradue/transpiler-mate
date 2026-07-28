@@ -12,16 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .software_application_models import CreativeWork, SoftwareApplication
-from .licenses import LICENSES_INDEX
 from abc import abstractmethod
-from loguru import logger
 from pathlib import Path
+from typing import TYPE_CHECKING, Any, Generic, TextIO, TypeVar
+
+from loguru import logger
 from pydantic import AnyUrl
 from pyld import jsonld
 from ruamel.yaml import YAML
-from ruamel.yaml.comments import CommentedMap
-from typing import Any, Generic, MutableMapping, TextIO, TypeVar
+
+from .licenses import LICENSES_INDEX
+from .software_application_models import CreativeWork, SoftwareApplication
+
+if TYPE_CHECKING:
+    from collections.abc import MutableMapping
+
+    from ruamel.yaml.comments import CommentedMap
 
 T = TypeVar("T")
 
@@ -77,15 +83,14 @@ class MetadataManager:
                     if license.url and str(license.url) in LICENSES_INDEX
                     else license
                 )
-            elif isinstance(license, AnyUrl):
+            if isinstance(license, AnyUrl):
                 return (
                     resolve_license(str(license))
                     if str(license) in LICENSES_INDEX
                     else license
                 )
 
-            resolved_license = LICENSES_INDEX[str(license)]
-            return resolved_license
+            return LICENSES_INDEX[str(license)]
 
         if isinstance(self.metadata.license, list):
             for i, license in enumerate(self.metadata.license):

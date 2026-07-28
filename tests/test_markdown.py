@@ -14,12 +14,15 @@
 
 from __future__ import annotations
 
-from cwl_utils.parser.cwl_v1_2 import Workflow
-from pathlib import Path
 from types import SimpleNamespace
-from typing import Union
+from typing import TYPE_CHECKING
+
+from cwl_utils.parser.cwl_v1_2 import Workflow
 
 from transpiler_mate import markdown as md
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 class _ArrayType:
@@ -78,13 +81,13 @@ def test_normalize_contributor_flattens_nested_lists() -> None:
 def test_normalize_author_rejects_invalid_shapes() -> None:
     try:
         md.normalize_author({"unexpected": "shape"})
-        assert False, "Expected ValueError"
+        raise AssertionError("Expected ValueError")
     except ValueError as exc:
         assert "Unrecognized author dict shape" in str(exc)
 
     try:
         md.normalize_author(123)
-        assert False, "Expected TypeError"
+        raise AssertionError("Expected TypeError")
     except TypeError as exc:
         assert "author must be dict/list/None" in str(exc)
 
@@ -92,7 +95,7 @@ def test_normalize_author_rejects_invalid_shapes() -> None:
 def test_type_to_string_and_nullable_helpers() -> None:
     parent = Workflow(inputs=[], outputs=[], steps=[])
     assert (
-        md.type_to_string(Union[str, int], parent)
+        md.type_to_string(str | int, parent)
         == "One of:<ul><li>[str](https://www.commonwl.org/v1.2/Workflow.html#CWLType)</li><li>[int](https://www.commonwl.org/v1.2/Workflow.html#CWLType)</li></ul>"
     )
     assert (
@@ -176,6 +179,6 @@ def test_markdown_transpile_raises_on_missing_workflow(
     try:
         with (tmp_path / "out.md").open("w", encoding="utf-8") as stream:
             md.markdown_transpile(source, "main", stream, None)
-        assert False, "Expected ValueError"
+        raise AssertionError("Expected ValueError")
     except ValueError as exc:
         assert "Workflow main does not exist" in str(exc)

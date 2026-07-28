@@ -14,13 +14,17 @@
 
 from __future__ import annotations
 
+import re
 from functools import wraps
 from http import HTTPStatus
+from typing import TYPE_CHECKING
+
 from httpx import Client, Headers, Request, RequestNotRead, Response
-from pydantic import BaseModel, ConfigDict
 from loguru import logger
-from typing import Mapping
-import re
+from pydantic import BaseModel, ConfigDict
+
+if TYPE_CHECKING:
+    from collections.abc import Mapping
 
 
 def _decode(value):

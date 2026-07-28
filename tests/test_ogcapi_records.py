@@ -25,8 +25,8 @@ from transpiler_mate.metadata.software_application_models import (
     SoftwareApplication,
 )
 from transpiler_mate.ogcapi.records import (
-    OgcRecordsTranspiler,
     SCIENCE_KEYWORDS_TERM_SET,
+    OgcRecordsTranspiler,
 )
 from transpiler_mate.ogcapi.records.sciencekeywords import ScienceKeywordRecord
 

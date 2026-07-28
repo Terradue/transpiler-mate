@@ -12,11 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import time
+import uuid
+from collections.abc import Mapping
+from datetime import date
+from typing import Any
+from urllib.parse import urlparse
+
+from pydantic import AnyUrl
+
+from ..metadata import Transpiler
+from ..metadata.software_application_models import (
+    AuthorRole,
+    ContributorRole,
+    CreativeWork,
+    Organization,
+    Person,
+    SoftwareApplication,
+)
 from .datacite_4_6_models import (
     Affiliation,
-    Creator,
     Contributor,
     ContributorType,
+    Creator,
     DataCiteAttributes,
     Date,
     DateType,
@@ -34,22 +52,6 @@ from .datacite_4_6_models import (
     Right,
     Title,
 )
-from ..metadata import Transpiler
-from ..metadata.software_application_models import (
-    AuthorRole,
-    CreativeWork,
-    Organization,
-    Person,
-    ContributorRole,
-    SoftwareApplication,
-)
-from datetime import date
-from pydantic import AnyUrl
-from typing import Any, Mapping
-from urllib.parse import urlparse
-
-import time
-import uuid
 
 __ROLES_MAPPING_: Mapping[AnyUrl, ContributorType] = {
     AnyUrl(
@@ -185,7 +187,7 @@ class DataCiteTranspiler(Transpiler):
             doi=metadata_source.identifier,
             types=ResourceType(
                 resource_type=metadata_source.name,
-                resourceTypeGeneral=ResourceTypeGeneral.SOFTWARE,
+                resource_type_general=ResourceTypeGeneral.SOFTWARE,
             ),
             identifiers=[
                 Identifier(identifier_type="DOI", identifier=metadata_source.identifier)

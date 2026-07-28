@@ -14,13 +14,15 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable
 from pathlib import Path
-from typing import TextIO
+from typing import TYPE_CHECKING, TextIO
 
 from loguru import logger
 
 from transpiler_mate.markdown import markdown_transpile
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
 
 
 def run(

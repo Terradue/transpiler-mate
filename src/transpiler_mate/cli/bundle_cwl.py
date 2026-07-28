@@ -14,10 +14,9 @@
 
 from __future__ import annotations
 
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 from cwl_loader import dump_cwl, load_cwl_from_location
-from cwl_utils.parser import Process
 from loguru import logger
 from requests import Session
 from requests.adapters import BaseAdapter, HTTPAdapter
@@ -25,6 +24,11 @@ from session_adapters.bearer_auth_http_adapter import BearerAuthHTTPAdapter
 from session_adapters.file_adapter import FileAdapter
 from session_adapters.oci_adapter import OCIAdapter
 from session_adapters.s3_adapter import S3Adapter
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+    from cwl_utils.parser import Process
 
 
 def run(

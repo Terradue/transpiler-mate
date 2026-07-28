@@ -15,10 +15,11 @@
 from __future__ import annotations
 
 from datetime import date
-from pathlib import Path
 from types import SimpleNamespace
+from typing import TYPE_CHECKING
 
 from invenio_rest_api_client.types import UNSET
+
 from transpiler_mate.invenio import InvenioMetadataTranspiler, _md5
 from transpiler_mate.metadata.software_application_models import (
     CreativeWork,
@@ -26,6 +27,9 @@ from transpiler_mate.metadata.software_application_models import (
     Person,
     SoftwareApplication,
 )
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def _software_application(*, with_contributor: bool) -> SoftwareApplication:

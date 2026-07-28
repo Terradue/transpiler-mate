@@ -20,9 +20,9 @@ from __future__ import annotations
 
 from datetime import date as date_aliased
 from enum import Enum
-from typing import List, Optional, Union
 
 from pydantic import AnyUrl, Field, RootModel
+
 from transpiler_mate import TranspilerBaseModel
 
 
@@ -40,7 +40,7 @@ class NameIdentifier(TranspilerBaseModel):
     Uniquely identifies an individual or legal entity, according to various schemes.
     """
 
-    name_identifier: Optional[str] = Field(
+    name_identifier: str | None = Field(
         None,
         alias="nameIdentifier",
         description="Uniquely identifies an individual or legal entity, according to various schemes.",
@@ -50,7 +50,7 @@ class NameIdentifier(TranspilerBaseModel):
         alias="nameIdentifierScheme",
         description="The name of the name identifier scheme.",
     )
-    scheme_uri: Optional[AnyUrl] = Field(
+    scheme_uri: AnyUrl | None = Field(
         None, alias="schemeURI", description="The URI of the name identifier scheme."
     )
 
@@ -60,17 +60,17 @@ class Affiliation(TranspilerBaseModel):
     The organizational or institutional affiliation of the creator.
     """
 
-    affiliation_identifier: Optional[str] = Field(
+    affiliation_identifier: str | None = Field(
         None,
         alias="affiliationIdentifier",
         description="Uniquely identifies the organizational affiliation of the creator.",
     )
-    affiliation_identifier_scheme: Optional[str] = Field(
+    affiliation_identifier_scheme: str | None = Field(
         None,
         alias="affiliationIdentifierScheme",
         description="The name of the affiliation identifier scheme",
     )
-    scheme_uri: Optional[AnyUrl] = Field(
+    scheme_uri: AnyUrl | None = Field(
         None,
         alias="schemeURI",
         description="The URI of the affiliation identifier scheme.",
@@ -92,21 +92,21 @@ class Creator(TranspilerBaseModel):
     """
 
     name: str = Field(..., description="The full name of the creator.")
-    name_type: Optional[NameType] = Field(None, alias="nameType")
-    given_name: Optional[str] = Field(
+    name_type: NameType | None = Field(None, alias="nameType")
+    given_name: str | None = Field(
         None,
         alias="givenName",
         description="The personal or first name of the creator.",
     )
-    family_name: Optional[str] = Field(
+    family_name: str | None = Field(
         None, alias="familyName", description="The surname or last name of the creator."
     )
-    name_identifiers: Optional[List[NameIdentifier]] = Field(
+    name_identifiers: list[NameIdentifier] | None = Field(
         None,
         alias="nameIdentifiers",
         description="Uniquely identifies an individual or legal entity, according to various schemes.",
     )
-    affiliation: Optional[List[Affiliation]] = Field(
+    affiliation: list[Affiliation] | None = Field(
         None,
         description="The organizational or institutional affiliations of the creator.",
     )
@@ -129,8 +129,8 @@ class Title(TranspilerBaseModel):
     """
 
     title: str = Field(..., description="A name or title by which a resource is known")
-    lang: Optional[str] = Field(None, description="The languages of the title.")
-    title_type: Optional[TitleType] = Field(
+    lang: str | None = Field(None, description="The languages of the title.")
+    title_type: TitleType | None = Field(
         None,
         alias="titleType",
         description="The type of Title (other than the Main Title).",
@@ -146,22 +146,22 @@ class Publisher(TranspilerBaseModel):
         ...,
         description="The name of the entity that holds, archives, publishes, prints, distributes, releases, issues, or produces the resource. This property will be used to formulate the citation, so consider the prominence of the role.",
     )
-    publisher_identifier: Optional[str] = Field(
+    publisher_identifier: str | None = Field(
         None,
         alias="publisherIdentifier",
         description="Uniquely identifies the publisher, according to various schemes.",
     )
-    publisher_identifier_scheme: Optional[str] = Field(
+    publisher_identifier_scheme: str | None = Field(
         None,
         alias="publisherIdentifierScheme",
         description="The name of the publisher identifier scheme.",
     )
-    scheme_uri: Optional[AnyUrl] = Field(
+    scheme_uri: AnyUrl | None = Field(
         None,
         alias="schemeURI",
         description="The URI of the publisher identifier scheme.",
     )
-    lang: Optional[str] = Field(None, description="The language used by the Publisher.")
+    lang: str | None = Field(None, description="The language used by the Publisher.")
 
 
 class Subject(TranspilerBaseModel):
@@ -173,23 +173,23 @@ class Subject(TranspilerBaseModel):
         ...,
         description="Subject, keyword, classification code, or key phrase describing the resource.",
     )
-    subject_scheme: Optional[str] = Field(
+    subject_scheme: str | None = Field(
         None,
         alias="subjectScheme",
         description="The name of the subject scheme or classification code or authority if one is used.",
     )
-    scheme_uri: Optional[AnyUrl] = Field(
+    scheme_uri: AnyUrl | None = Field(
         None, alias="schemeURI", description="The URI of the subject identifier scheme."
     )
-    value_uri: Optional[AnyUrl] = Field(
+    value_uri: AnyUrl | None = Field(
         None, alias="valueURI", description="The URI of the subject term."
     )
-    classification_code: Optional[str] = Field(
+    classification_code: str | None = Field(
         None,
         alias="classificationCode",
         description="The classification code used for the subject term in the subject schemes.",
     )
-    lang: Optional[str] = Field(None, description="The language used in the Subject.")
+    lang: str | None = Field(None, description="The language used in the Subject.")
 
 
 class ContributorType(Enum):
@@ -255,7 +255,7 @@ class Date(TranspilerBaseModel):
 
     date: date_aliased = Field(..., description="Date relevant to the work.")
     date_type: DateType = Field(..., alias="dateType", description="The type of date")
-    date_information: Optional[str] = Field(
+    date_information: str | None = Field(
         None,
         alias="dateInformation",
         description="Specific information about the date, if appropriate.",
@@ -317,7 +317,7 @@ class AlternateIdentifier(TranspilerBaseModel):
     An identifier other than the primary Identifier applied to the resource being registered.
     """
 
-    alternate_identifier: Optional[str] = Field(
+    alternate_identifier: str | None = Field(
         None,
         alias="alternateIdentifier",
         description="An identifier other than the primary Identifier applied to the resource being registered",
@@ -405,25 +405,25 @@ class RelatedIdentifier(TranspilerBaseModel):
     Identifier of related resources.
     """
 
-    related_identifier: Optional[str] = Field(
+    related_identifier: str | None = Field(
         None, alias="relatedIdentifier", description="Identifier of related resources."
     )
-    related_identifier_type: Optional[RelatedIdentifierType] = Field(
+    related_identifier_type: RelatedIdentifierType | None = Field(
         None, alias="relatedIdentifierType"
     )
-    relation_type: Optional[RelationType] = Field(None, alias="relationType")
-    related_metadata_scheme: Optional[str] = Field(
+    relation_type: RelationType | None = Field(None, alias="relationType")
+    related_metadata_scheme: str | None = Field(
         None, alias="relatedMetadataScheme", description="The name of the schemes."
     )
-    scheme_uri: Optional[AnyUrl] = Field(
+    scheme_uri: AnyUrl | None = Field(
         None, alias="schemeURI", description="The URI of the name identifier scheme."
     )
-    scheme_type: Optional[str] = Field(
+    scheme_type: str | None = Field(
         None,
         alias="schemeType",
         description="The type of the relatedMetadataScheme, linked with the schemeURI",
     )
-    resource_type_general: Optional[ResourceTypeGeneral] = Field(
+    resource_type_general: ResourceTypeGeneral | None = Field(
         None, alias="resourceTypeGeneral"
     )
 
@@ -434,18 +434,18 @@ class Right(TranspilerBaseModel):
     """
 
     rights: str = Field(..., description="Any right information for this resource.")
-    rights_uri: Optional[AnyUrl] = Field(
+    rights_uri: AnyUrl | None = Field(
         None, alias="rightsURI", description="The URI of the license."
     )
-    rights_identifier: Optional[str] = Field(
+    rights_identifier: str | None = Field(
         None,
         alias="rightsIdentifier",
         description="A short, standardized version of the license name.",
     )
-    rights_identifier_scheme: Optional[str] = Field(
+    rights_identifier_scheme: str | None = Field(
         None, alias="rightsIdentifierScheme", description="The name of the scheme."
     )
-    scheme_uri: Optional[AnyUrl] = Field(
+    scheme_uri: AnyUrl | None = Field(
         None, alias="schemeURI", description="The URI of the rightsIdentifierScheme."
     )
 
@@ -522,8 +522,8 @@ class GeoLocationPolygon(TranspilerBaseModel):
     A drawn polygon area, defined by a set of points and lines connecting the points in a closed chain.
     """
 
-    polygon_point: Optional[GeoLocationPoint] = Field(None, alias="polygonPoint")
-    in_polygon_point: Optional[GeoLocationPoint] = Field(None, alias="inPolygonPoint")
+    polygon_point: GeoLocationPoint | None = Field(None, alias="polygonPoint")
+    in_polygon_point: GeoLocationPoint | None = Field(None, alias="inPolygonPoint")
 
 
 class GeoLocation(TranspilerBaseModel):
@@ -531,16 +531,14 @@ class GeoLocation(TranspilerBaseModel):
     Spatial region or named place where the data was gathered or about which the data is focused.
     """
 
-    geo_location_point: Optional[GeoLocationPoint] = Field(
-        None, alias="geoLocationPoint"
-    )
-    geo_location_box: Optional[GeoLocationBox] = Field(None, alias="geoLocationBox")
-    geo_location_place: Optional[str] = Field(
+    geo_location_point: GeoLocationPoint | None = Field(None, alias="geoLocationPoint")
+    geo_location_box: GeoLocationBox | None = Field(None, alias="geoLocationBox")
+    geo_location_place: str | None = Field(
         None,
         alias="geoLocationPlace",
         description="Description of a geographic location.",
     )
-    geo_location_polygon: Optional[List[GeoLocationPolygon]] = Field(
+    geo_location_polygon: list[GeoLocationPolygon] | None = Field(
         None, alias="geoLocationPolygon", min_length=4
     )
 
@@ -565,7 +563,7 @@ class FundingReference(TranspilerBaseModel):
     funder_name: str = Field(
         ..., alias="funderName", description="Name of the funding provider."
     )
-    funder_identifier: Optional[str] = Field(
+    funder_identifier: str | None = Field(
         None,
         alias="funderIdentifier",
         description="Uniquely identifies a funding entity, according to various types",
@@ -575,20 +573,20 @@ class FundingReference(TranspilerBaseModel):
         alias="funderIdentifierType",
         description="The type of the funderIdentifier.",
     )
-    scheme_uri: Optional[AnyUrl] = Field(
+    scheme_uri: AnyUrl | None = Field(
         None, alias="schemeURI", description="The URI of the funder identifier scheme."
     )
-    award_number: Optional[str] = Field(
+    award_number: str | None = Field(
         None,
         alias="awardNumber",
         description="The code assigned by the funder to a sponsored award (grant).",
     )
-    award_uri: Optional[AnyUrl] = Field(
+    award_uri: AnyUrl | None = Field(
         None,
         alias="awardURI",
         description="The URI leading to a page provided by the funder for more information about the award (grant).",
     )
-    award_title: Optional[str] = Field(
+    award_title: str | None = Field(
         None,
         alias="awardTitle",
         description="The human readable title or name of the award (grant).",
@@ -600,16 +598,16 @@ class RelatedItemIdentifier(TranspilerBaseModel):
     The identifier for the related item.
     """
 
-    related_item_identifier_type: Optional[RelatedIdentifierType] = Field(
+    related_item_identifier_type: RelatedIdentifierType | None = Field(
         None, alias="relatedItemIdentifierType"
     )
-    related_metadata_scheme: Optional[str] = Field(
+    related_metadata_scheme: str | None = Field(
         None, alias="relatedMetadataScheme", description="The name of the schemes."
     )
-    scheme_uri: Optional[AnyUrl] = Field(
+    scheme_uri: AnyUrl | None = Field(
         None, alias="schemeURI", description="The URI of the name identifier scheme."
     )
-    scheme_type: Optional[str] = Field(
+    scheme_type: str | None = Field(
         None,
         alias="schemeType",
         description="The type of the relatedMetadataScheme, linked with the schemeURI",
@@ -622,13 +620,13 @@ class RelatedItemCreator(TranspilerBaseModel):
     """
 
     name: str = Field(..., description="The full name of the related item creator")
-    name_type: Optional[NameType] = Field(None, alias="nameType")
-    given_name: Optional[str] = Field(
+    name_type: NameType | None = Field(None, alias="nameType")
+    given_name: str | None = Field(
         None,
         alias="givenName",
         description="The personal or first name of the creator.",
     )
-    family_name: Optional[str] = Field(
+    family_name: str | None = Field(
         None, alias="familyName", description="The surname or last name of the creator."
     )
 
@@ -639,7 +637,7 @@ class RelatedItemTitle(TranspilerBaseModel):
     """
 
     title: str = Field(..., description="Title of the related item.")
-    title_type: Optional[str] = Field(
+    title_type: str | None = Field(
         None, alias="titleType", description="Type of the related item title."
     )
 
@@ -688,52 +686,52 @@ class RelatedItem(TranspilerBaseModel):
 
     related_item_type: ResourceTypeGeneral = Field(..., alias="relatedItemType")
     relation_type: ResourceTypeGeneral = Field(..., alias="relationType")
-    related_item_identifier: Optional[RelatedItemIdentifier] = Field(
+    related_item_identifier: RelatedItemIdentifier | None = Field(
         None, alias="relatedItemIdentifier"
     )
-    creators: Optional[List[RelatedItemCreator]] = Field(
+    creators: list[RelatedItemCreator] | None = Field(
         None,
         description="The institution or person responsible for creating the related resource.",
     )
-    titles: List[RelatedItemTitle] = Field(
+    titles: list[RelatedItemTitle] = Field(
         ..., description="Title of the related item", min_length=1
     )
-    publication_year: Optional[Union[int, PublicationYear1]] = Field(
+    publication_year: int | PublicationYear1 | None = Field(
         None,
         alias="publicationYear",
         description="The year when the data was or will be made publicly available.",
     )
-    volume: Optional[str] = Field(None, description="Volume of the related item.")
-    issue: Optional[str] = Field(
+    volume: str | None = Field(None, description="Volume of the related item.")
+    issue: str | None = Field(
         None, description="Issue number or name of the related item."
     )
-    number: Optional[str] = Field(
+    number: str | None = Field(
         None,
         description="Number of the resource within the related item, e.g., report number or article number.",
     )
-    number_type: Optional[NumberType] = Field(
+    number_type: NumberType | None = Field(
         None,
         alias="numberType",
         description="Type of the related item’s number, e.g., report number or article number.",
     )
-    first_page: Optional[str] = Field(
+    first_page: str | None = Field(
         None,
         alias="firstPage",
         description="First page of the resource within the related item, e.g., of the chapter, article, or conference paper in proceedings.",
     )
-    last_page: Optional[str] = Field(
+    last_page: str | None = Field(
         None,
         alias="lastPage",
         description="Last page of the resource within the related item, e.g., of the chapter, article, or conference paper in proceedings.",
     )
-    publisher: Optional[str] = Field(
+    publisher: str | None = Field(
         None,
         description="The name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.",
     )
-    edition: Optional[str] = Field(
+    edition: str | None = Field(
         None, description="Edition or version of the related item."
     )
-    contributors: Optional[List[RelatedItemContributor]] = Field(
+    contributors: list[RelatedItemContributor] | None = Field(
         None,
         description="An institution or person identified as contributing to the development of the resource",
     )
@@ -744,79 +742,79 @@ class DataCiteAttributes(TranspilerBaseModel):
     DataCite Metadata Schema
     """
 
-    doi: Optional[str] = Field(None, description="The full DOI (prefix + suffix)")
-    prefix: Optional[str] = Field(None, description="The namespace prefix")
-    suffix: Optional[str] = Field(None, description="The suffix portion of the DOI")
-    event: Optional[Event] = Field(
+    doi: str | None = Field(None, description="The full DOI (prefix + suffix)")
+    prefix: str | None = Field(None, description="The namespace prefix")
+    suffix: str | None = Field(None, description="The suffix portion of the DOI")
+    event: Event | None = Field(
         None, description="Indicates a state-change action for the DOI"
     )
-    identifiers: List[Identifier]
-    creators: List[Creator] = Field(
+    identifiers: list[Identifier]
+    creators: list[Creator] = Field(
         ...,
         description="The main researchers involved in producing the data, or the authors of the publication, in priority order.",
         min_length=1,
     )
-    titles: List[Title] = Field(
+    titles: list[Title] = Field(
         ...,
         description="Names or titles by which a resource is known. May be the title of a dataset or the name of a piece of software or an instrument.",
         min_length=1,
     )
     publisher: Publisher
-    publication_year: Union[int, PublicationYear1] = Field(
+    publication_year: int | PublicationYear1 = Field(
         ...,
         alias="publicationYear",
         description="The year when the data was or will be made publicly available.",
     )
-    subjects: Optional[List[Subject]] = Field(
+    subjects: list[Subject] | None = Field(
         None,
         description="Subjects, keywords, classification codes, or key phrases describing the resource.",
     )
-    contributors: Optional[List[Contributor]] = Field(
+    contributors: list[Contributor] | None = Field(
         None,
         description="The institution or person responsible for collecting, managing, distributing, or otherwise contributing to the development of the resource.",
     )
-    dates: Optional[List[Date]] = Field(
+    dates: list[Date] | None = Field(
         None, description="Different dates relevant to the work."
     )
-    language: Optional[str] = Field(
+    language: str | None = Field(
         None, description="The primary language of the resource"
     )
     types: ResourceType
-    alternate_identifiers: Optional[List[AlternateIdentifier]] = Field(
+    alternate_identifiers: list[AlternateIdentifier] | None = Field(
         None,
         alias="alternateIdentifiers",
         description="An identifier other than the primary Identifier applied to the resource being registered.",
     )
-    related_identifiers: Optional[List[RelatedIdentifier]] = Field(
+    related_identifiers: list[RelatedIdentifier] | None = Field(
         None,
         alias="relatedIdentifiers",
         description="Identifiers of related resources.",
     )
-    sizes: Optional[List[str]] = Field(
+    sizes: list[str] | None = Field(
         None,
         description="Size (e.g., bytes, pages, inches, etc.) or duration (extent), e.g., hours, minutes, days, etc., of a resource.",
     )
-    formats: Optional[List[str]] = Field(
+    formats: list[str] | None = Field(
         None, description="Technical format of the resources."
     )
-    version: Optional[str] = Field(
+    version: str | None = Field(
         None, description="The version number of the resources."
     )
-    rights_list: Optional[List[Right]] = Field(
+    rights_list: list[Right] | None = Field(
         None, alias="rightsList", description="Any rights information for this resource"
     )
-    descriptions: Optional[List[Description]] = None
-    geo_locations: Optional[List[GeoLocation]] = Field(
+    descriptions: list[Description] | None = None
+    geo_locations: list[GeoLocation] | None = Field(
         None,
         alias="geoLocations",
         description="Spatial regions or named places where the data was gathered or about which the data is focused.",
     )
-    funding_references: Optional[List[FundingReference]] = Field(
+    funding_references: list[FundingReference] | None = Field(
         None,
         alias="fundingReferences",
         description="Information about financial support (funding) for the resource being registered.",
     )
-    related_items: Optional[List[RelatedItem]] = Field(
+    related_items: list[RelatedItem] | None = Field(
         None,
         alias="relatedItems",
         description="Informations about a resource related to the one being registered.",
@@ -830,7 +828,7 @@ class Data(TranspilerBaseModel):
 
     id: str
     type: str
-    attributes: Optional[DataCiteAttributes] = None
+    attributes: DataCiteAttributes | None = None
 
 
 class DataCiteMetadata46(TranspilerBaseModel):

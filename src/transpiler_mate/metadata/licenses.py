@@ -15,9 +15,14 @@
 
 from __future__ import annotations
 
-from .software_application_models import CreativeWork
+from typing import TYPE_CHECKING
+
 from pydantic import AnyUrl
-from typing import Mapping
+
+from .software_application_models import CreativeWork
+
+if TYPE_CHECKING:
+    from collections.abc import Mapping
 
 LICENSES_INDEX: Mapping[str, CreativeWork] = {
     "0BSD": CreativeWork(

@@ -18,34 +18,33 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import Field, RootModel
+
 from transpiler_mate import TranspilerBaseModel
 
 
 class OciAnnotations(TranspilerBaseModel):
-    org_opencontainers_image_title: Optional[str] = Field(
+    org_opencontainers_image_title: str | None = Field(
         None, alias="org.opencontainers.image.title"
     )
-    org_opencontainers_image_description: Optional[str] = Field(
+    org_opencontainers_image_description: str | None = Field(
         None, alias="org.opencontainers.image.description"
     )
-    org_opencontainers_image_version: Optional[str] = Field(
+    org_opencontainers_image_version: str | None = Field(
         None, alias="org.opencontainers.image.version"
     )
-    org_opencontainers_image_source: Optional[str] = Field(
+    org_opencontainers_image_source: str | None = Field(
         None, alias="org.opencontainers.image.source"
     )
-    org_opencontainers_image_revision: Optional[str] = Field(
+    org_opencontainers_image_revision: str | None = Field(
         None, alias="org.opencontainers.image.revision"
     )
-    org_opencontainers_image_licenses: Optional[str] = Field(
+    org_opencontainers_image_licenses: str | None = Field(
         None, alias="org.opencontainers.image.licenses"
     )
-    org_cwl_entrypoint: Optional[str] = Field(None, alias="org.cwl.entrypoint")
-    org_cwl_spec: Optional[str] = Field(None, alias="org.cwl.spec")
-    org_cwl_type: Optional[str] = Field(None, alias="org.cwl.type")
+    org_cwl_entrypoint: str | None = Field(None, alias="org.cwl.entrypoint")
+    org_cwl_spec: str | None = Field(None, alias="org.cwl.spec")
+    org_cwl_type: str | None = Field(None, alias="org.cwl.type")
 
 
 class Model(RootModel[OciAnnotations]):

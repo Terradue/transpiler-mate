@@ -15,7 +15,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional
 
 import click
 
@@ -24,7 +23,8 @@ from transpiler_mate.metadata import MetadataManager, Transpiler
 
 __path__ = [str(Path(__file__).with_suffix(""))]
 
-from transpiler_mate.cli.bump_version import VersionPart, run as run_bump_version
+from transpiler_mate.cli.bump_version import VersionPart
+from transpiler_mate.cli.bump_version import run as run_bump_version
 from transpiler_mate.cli.bundle_cwl import run as run_bundle
 from transpiler_mate.cli.codemeta import run as run_codemeta
 from transpiler_mate.cli.common import track as _track
@@ -73,7 +73,7 @@ def main():
     multiple=True,
 )
 def invenio_publish(
-    source: Path, base_url: str, auth_token: str, attach: Optional[tuple[Path, ...]]
+    source: Path, base_url: str, auth_token: str, attach: tuple[Path, ...] | None
 ):
     """
     Publishes the input CWL to an Invenio instance.
