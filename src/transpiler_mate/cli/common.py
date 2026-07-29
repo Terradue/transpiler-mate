@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import json
+import sys
 import time
 from collections.abc import Callable
 from datetime import datetime
@@ -35,6 +36,7 @@ def track(func: F) -> F:
     @wraps(func)
     def wrapper(*args, **kwargs):
         start_time = time.time()
+        exit_code = 0
 
         logger.info(
             f"Started at: {datetime.fromtimestamp(start_time).isoformat(timespec='milliseconds')}"
@@ -51,6 +53,7 @@ def track(func: F) -> F:
                 "------------------------------------------------------------------------"
             )
         except Exception as e:
+            exit_code = 1
             logger.error(
                 "------------------------------------------------------------------------"
             )
@@ -66,6 +69,9 @@ def track(func: F) -> F:
         logger.info(
             f"Finished at: {datetime.fromtimestamp(end_time).isoformat(timespec='milliseconds')}"
         )
+
+        if exit_code:
+            sys.exit(exit_code)
 
     return wrapper  # type: ignore[return-value]
 
