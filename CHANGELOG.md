@@ -19,7 +19,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
-## [0.48.0] - 2026-07-15
+## [0.49.0] - 2026-07-29
+
+### Changed
+
+- Bumped `cwl-loader` to `0.24.0`.
+
+### Added
+
+- Exit with `1` when subcommand fails.
+
+## [0.48.0] - 2026-07-28
 
 ### Added
 
@@ -240,7 +250,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed generated model defaults and declaration order from `datamodel-codegen`.
 - Fixed README, documentation, lint, and release metadata issues.
 
-[unreleased]: https://github.com/Terradue/transpiler-mate/compare/v0.48.0...HEAD
+[unreleased]: https://github.com/Terradue/transpiler-mate/compare/v0.49.0...HEAD
+[0.49.0]: https://github.com/Terradue/transpiler-mate/compare/v0.48.0...v0.49.0
 [0.48.0]: https://github.com/Terradue/transpiler-mate/compare/v0.47.0...v0.48.0
 [0.47.0]: https://github.com/Terradue/transpiler-mate/compare/v0.46.0...v0.47.0
 [0.46.0]: https://github.com/Terradue/transpiler-mate/compare/v0.45.0...v0.46.0

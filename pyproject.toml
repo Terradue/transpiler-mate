@@ -37,7 +37,7 @@ dependencies = [
   "giturlparse==0.15.0",
   "semver==3.0.4",
   "Jinja2==3.1.6",
-  "cwl-loader==0.23.0",
+  "cwl-loader==0.24.0",
   "cwl2ogc==0.19.0",
   "session-adapters==0.4.0"
 ]
@@ -112,6 +112,7 @@ python = ["3.10", "3.11", "3.12", "3.13", "3.14"]
 [tool.hatch.envs.dev]
 skip-install = false
 dependencies = [
+  "pytest>=8.4,<10",
   "mypy>=2.3.0",
   "ruff>=0.16.0",
   "bandit>=1.9.4",

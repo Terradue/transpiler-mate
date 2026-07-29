@@ -19,6 +19,7 @@ import sys
 from pathlib import Path
 from types import SimpleNamespace
 
+import pytest
 from click.testing import CliRunner
 
 from transpiler_mate.cli import cli
@@ -65,7 +66,7 @@ def test_transpile_writes_json_output(monkeypatch, tmp_path: Path) -> None:
     }
 
 
-def test_track_catches_exceptions() -> None:
+def test_track_exits_with_code_one_on_exception() -> None:
     calls = {"count": 0}
 
     @cli._track
@@ -73,10 +74,11 @@ def test_track_catches_exceptions() -> None:
         calls["count"] += 1
         raise RuntimeError("boom")
 
-    # The wrapper should not re-raise.
-    failing()
+    with pytest.raises(SystemExit) as exc_info:
+        failing()
 
     assert calls["count"] == 1
+    assert exc_info.value.code == 1
 
 
 def test_bump_version_updates_metadata(monkeypatch, tmp_path: Path) -> None:
