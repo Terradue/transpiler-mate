@@ -82,33 +82,38 @@ from .metadata.software_application_models import (
 )
 
 __ROLES_MAPPING_: Mapping[AnyUrl, RoleId] = {
-    AnyUrl("http://purl.org/spar/datacite/ContactPerson"): RoleId.CONTACTPERSON,
-    AnyUrl("http://purl.org/spar/datacite/DataCollector"): RoleId.DATACOLLECTOR,
-    AnyUrl("http://purl.org/spar/datacite/DataCurator"): RoleId.DATACURATOR,
-    AnyUrl("http://purl.org/spar/datacite/DataManager"): RoleId.DATAMANAGER,
-    AnyUrl("http://purl.org/spar/datacite/Distributor"): RoleId.DISTRIBUTOR,
-    AnyUrl("http://purl.org/spar/datacite/Editor"): RoleId.EDITOR,
     AnyUrl(
-        "http://purl.org/spar/datacite/HostingInstitution"
-    ): RoleId.HOSTINGINSTITUTION,
-    AnyUrl("http://purl.org/spar/datacite/Other"): RoleId.OTHER,
-    AnyUrl("http://purl.org/spar/datacite/Producer"): RoleId.PRODUCER,
-    AnyUrl("http://purl.org/spar/datacite/ProjectLeader"): RoleId.PROJECTLEADER,
-    AnyUrl("http://purl.org/spar/datacite/ProjectManager"): RoleId.PROJECTMANAGER,
-    AnyUrl("http://purl.org/spar/datacite/ProjectMember"): RoleId.PROJECTMEMBER,
+        "https://credit.niso.org/contributor-roles/conceptualization/"
+    ): RoleId.PROJECTLEADER,
     AnyUrl(
-        "http://purl.org/spar/datacite/RegistrationAgency"
-    ): RoleId.REGISTRATIONAGENCY,
+        "https://credit.niso.org/contributor-roles/data-curation/"
+    ): RoleId.DATACURATOR,
     AnyUrl(
-        "http://purl.org/spar/datacite/RegistrationAuthority"
-    ): RoleId.REGISTRATIONAUTHORITY,
-    AnyUrl("http://purl.org/spar/datacite/RelatedPerson"): RoleId.RELATEDPERSON,
-    AnyUrl("http://purl.org/spar/datacite/Researcher"): RoleId.RESEARCHER,
-    AnyUrl("http://purl.org/spar/datacite/ResearchGroup"): RoleId.RESEARCHGROUP,
-    AnyUrl("http://purl.org/spar/datacite/RightsHolder"): RoleId.RIGHTSHOLDER,
-    AnyUrl("http://purl.org/spar/datacite/Sponsor"): RoleId.SPONSOR,
-    AnyUrl("http://purl.org/spar/datacite/Supervisor"): RoleId.SUPERVISOR,
-    AnyUrl("http://purl.org/spar/datacite/WorkPackageLeader"): RoleId.WORKPACKAGELEADER,
+        "https://credit.niso.org/contributor-roles/formal-analysis/"
+    ): RoleId.RESEARCHER,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/funding-acquisition/"
+    ): RoleId.SPONSOR,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/investigation/"
+    ): RoleId.DATACOLLECTOR,
+    AnyUrl("https://credit.niso.org/contributor-roles/methodology/"): RoleId.RESEARCHER,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/project-administration/"
+    ): RoleId.PROJECTMANAGER,
+    AnyUrl("https://credit.niso.org/contributor-roles/resources/"): RoleId.DATAMANAGER,
+    AnyUrl("https://credit.niso.org/contributor-roles/software/"): RoleId.RESEARCHER,
+    AnyUrl("https://credit.niso.org/contributor-roles/supervision/"): RoleId.SUPERVISOR,
+    AnyUrl("https://credit.niso.org/contributor-roles/validation/"): RoleId.RESEARCHER,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/visualization/"
+    ): RoleId.RESEARCHER,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/writing-original-draft/"
+    ): RoleId.RESEARCHER,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/writing-review-editing/"
+    ): RoleId.EDITOR,
 }
 
 

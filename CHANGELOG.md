@@ -24,11 +24,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Dependencies bump:
-  - `invenio-rest-api-client` to `12.0.3`
+  - `invenio-rest-api-client` to `12.0.3`.
 
 ### Fixed
 
 - Suppressed `Argument missing for parameter "@type"` warning for generated models from `Schema.org`.
+- _InvenioRDM_ roles mapping updated from _purl.org_ URLs to modern _CRediT_.
 
 ## [0.49.0] - 2026-07-29
 

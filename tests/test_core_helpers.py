@@ -3,18 +3,19 @@ from __future__ import annotations
 from datetime import date
 from types import SimpleNamespace
 
+import pytest
 from httpx import Response
 from invenio_rest_api_client.models import RoleId
 from pydantic import AnyUrl
 
 from transpiler_mate import TranspilerBaseModel, _decode, _log_response
 from transpiler_mate.invenio import (
+    __ROLES_MAPPING_,
     _affiliation_identifier,
     _to_creator,
     _to_identifier,
 )
 from transpiler_mate.metadata.software_application_models import (
-    AuthorRole,
     CreativeWork,
     Organization,
     Person,
@@ -87,16 +88,29 @@ def test_to_creator_from_person_builds_identifiers_and_affiliations() -> None:
     assert creator.affiliations[0].name == "Terradue"
 
 
-def test_to_creator_from_author_role_maps_datacite_role() -> None:
-    role = AuthorRole(
-        roleName="Data Curator",
-        additionalType="http://purl.org/spar/datacite/DataCurator",
-        author=_person(),
-    )
+@pytest.mark.parametrize(
+    ("credit_role", "role_id"),
+    [
+        ("conceptualization", RoleId.PROJECTLEADER),
+        ("data-curation", RoleId.DATACURATOR),
+        ("formal-analysis", RoleId.RESEARCHER),
+        ("funding-acquisition", RoleId.SPONSOR),
+        ("investigation", RoleId.DATACOLLECTOR),
+        ("methodology", RoleId.RESEARCHER),
+        ("project-administration", RoleId.PROJECTMANAGER),
+        ("resources", RoleId.DATAMANAGER),
+        ("software", RoleId.RESEARCHER),
+        ("supervision", RoleId.SUPERVISOR),
+        ("validation", RoleId.RESEARCHER),
+        ("visualization", RoleId.RESEARCHER),
+        ("writing-original-draft", RoleId.RESEARCHER),
+        ("writing-review-editing", RoleId.EDITOR),
+    ],
+)
+def test_credit_role_maps_to_invenio_role_id(credit_role: str, role_id: RoleId) -> None:
+    role_url = AnyUrl(f"https://credit.niso.org/contributor-roles/{credit_role}/")
 
-    creator = _to_creator(role)
-
-    assert creator.role.id == RoleId.DATACURATOR
+    assert __ROLES_MAPPING_[role_url] == role_id
 
 
 def test_to_license_spdx_supports_creative_work_and_url() -> None:

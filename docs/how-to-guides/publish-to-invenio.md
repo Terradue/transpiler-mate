@@ -34,7 +34,37 @@ $ transpiler-mate invenio-publish \
   --attach=/path/to/component.png 
   --attach=/path/to/activity.png \
   /path/to/pattern-1.cwl
+```
 
+## Contributor roles
+
+Author and contributor roles in the source metadata use the
+[CRediT taxonomy](https://credit.niso.org/contributor-roles/). Set the
+Schema.org `Role` object's `additionalType` to the canonical CRediT URL:
+
+```yaml
+s:author:
+  - "@type": s:Role
+    s:roleName: Conceptualization
+    s:additionalType: https://credit.niso.org/contributor-roles/conceptualization/
+    s:author:
+      "@type": s:Person
+      s:givenName: Ada
+      s:familyName: Lovelace
+      s:email: ada@example.org
+      s:affiliation:
+        "@type": s:Organization
+        s:name: Example University
+```
+
+InvenioRDM uses the DataCite contributor-role vocabulary, which does not have
+an exact equivalent for every CRediT role. Transpiler Mate converts each
+canonical URL to its nearest InvenioRDM `role.id`. See the
+[complete CRediT-to-InvenioRDM crosswalk](../reference/crosswalks/invenio.md#credit-roles).
+
+Example output:
+
+```text
 2025-10-29 15:42:57.902 | INFO     | transpiler_mate.cli:wrapper:32 - Started at: 2025-10-29T15:42:57.902
 2025-10-29 15:42:57.903 | DEBUG    | transpiler_mate.metadata:__init__:51 - Loading raw document from /path/to/pattern-1.cwl...
 2025-10-29 15:42:58.521 | INFO     | transpiler_mate.cli:invenio_publish:101 - Interacting with Invenio server at https://sandbox.zenodo.org/)
