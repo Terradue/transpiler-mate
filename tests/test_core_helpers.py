@@ -4,7 +4,7 @@ from datetime import date
 from types import SimpleNamespace
 
 from httpx import Response
-from invenio_rest_api_client.models.role_id import RoleId
+from invenio_rest_api_client.models import RoleId
 from pydantic import AnyUrl
 
 from transpiler_mate import TranspilerBaseModel, _decode, _log_response

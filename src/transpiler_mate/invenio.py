@@ -44,30 +44,27 @@ from invenio_rest_api_client.api.records_versions.create_a_new_version import (
 
 # required when a DOI is not assigned to an applicatrion package
 from invenio_rest_api_client.client import AuthenticatedClient as InvenioClient
-from invenio_rest_api_client.models.access import Access
-from invenio_rest_api_client.models.access_files import AccessFiles
-from invenio_rest_api_client.models.access_record import AccessRecord
-from invenio_rest_api_client.models.affiliation import Affiliation
-from invenio_rest_api_client.models.create_a_draft_record_body import (
+from invenio_rest_api_client.models import (
+    Access,
+    AccessFiles,
+    AccessRecord,
+    Affiliation,
     CreateADraftRecordBody,
-)
-from invenio_rest_api_client.models.created import Created
-from invenio_rest_api_client.models.creator import Creator
-from invenio_rest_api_client.models.file_transfer_item import FileTransferItem
-from invenio_rest_api_client.models.files import Files
-from invenio_rest_api_client.models.identifier import Identifier
-from invenio_rest_api_client.models.metadata import Metadata
-from invenio_rest_api_client.models.person_or_org import PersonOrOrg
-from invenio_rest_api_client.models.person_or_org_identifier_scheme import (
+    Created,
+    Creator,
+    Files,
+    FileTransferItem,
+    Identifier,
+    Metadata,
+    PersonOrOrg,
     PersonOrOrgIdentifierScheme,
+    PersonOrOrgType,
+    ResourceType,
+    ResourceTypeId,
+    Role,
+    RoleId,
+    UpdateDraftRecord,
 )
-from invenio_rest_api_client.models.person_or_org_type import PersonOrOrgType
-from invenio_rest_api_client.models.resource_type import ResourceType
-from invenio_rest_api_client.models.resource_type_id import ResourceTypeId
-from invenio_rest_api_client.models.role import Role
-from invenio_rest_api_client.models.role_id import RoleId
-from invenio_rest_api_client.models.update_draft_record import UpdateDraftRecord
-from invenio_rest_api_client.types import UNSET
 from invenio_rest_api_client.types import File as FileContent
 from loguru import logger
 from pydantic import AnyUrl
@@ -151,15 +148,15 @@ def _to_creator(author: Person | SWARole) -> Creator:
 
     creator: Creator = Creator(
         person_or_org=PersonOrOrg(
-            type_=PersonOrOrgType.PERSONAL,
+            type=PersonOrOrgType.PERSONAL,
             name=f"{author.family_name}, {author.given_name}"
             if isinstance(author, Person)
-            else UNSET,
-            given_name=author.given_name if isinstance(author, Person) else UNSET,
-            family_name=author.family_name if isinstance(author, Person) else UNSET,
+            else None,
+            given_name=author.given_name if isinstance(author, Person) else None,
+            family_name=author.family_name if isinstance(author, Person) else None,
             identifiers=[_to_identifier(author.identifier)]
             if isinstance(author, Person) and author.identifier
-            else UNSET,
+            else None,
         ),
         role=Role(id=role_id),
     )
@@ -175,7 +172,7 @@ def _to_creator(author: Person | SWARole) -> Creator:
                 Affiliation(
                     id=_affiliation_identifier(affiliation.identifier)
                     if affiliation.identifier
-                    else UNSET,
+                    else None,
                     name=affiliation.name,
                 )
             )
@@ -206,7 +203,7 @@ class InvenioMetadataTranspiler(Transpiler):
             publisher=metadata_source.publisher.name,
             description=metadata_source.description
             if metadata_source.description
-            else UNSET,
+            else None,
             creators=list(
                 map(
                     _to_creator,
@@ -224,7 +221,7 @@ class InvenioMetadataTranspiler(Transpiler):
                 )
             )
             if metadata_source.contributor
-            else UNSET,
+            else None,
             version=metadata_source.software_version,
         )
 
