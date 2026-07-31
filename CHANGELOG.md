@@ -26,6 +26,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dependencies bump:
   - `invenio-rest-api-client` to `12.0.3`
 
+### Fixed
+
+- Suppressed `Argument missing for parameter "@type"` warning for generated models from `Schema.org`.
+
 ## [0.49.0] - 2026-07-29
 
 ### Changed

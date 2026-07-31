@@ -44,8 +44,8 @@ class FakeYAML:
 def _software_application() -> SoftwareApplication:
     publisher = Organization(name="Terradue")
     author = Person(
-        givenName="Ada",
-        familyName="Lovelace",
+        given_name="Ada",
+        family_name="Lovelace",
         email="ada@example.org",
         affiliation=publisher,
     )
@@ -53,10 +53,10 @@ def _software_application() -> SoftwareApplication:
     return SoftwareApplication(
         name="Example Tool",
         description="Example description",
-        dateCreated=date(2026, 3, 9),
+        date_created=date(2026, 3, 9),
         license=CreativeWork(identifier="Apache-2.0"),
-        softwareVersion="1.2.3",
-        softwareHelp=CreativeWork(name="Help"),
+        software_version="1.2.3",
+        software_help=CreativeWork(name="Help"),
         publisher=publisher,
         author=author,
     )

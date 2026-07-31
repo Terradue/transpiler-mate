@@ -32,7 +32,9 @@ class Organization(TranspilerBaseModel):
     """
 
     field_type: Literal["https://schema.org/Organization"] = Field(
-        "https://schema.org/Organization", alias="@type"
+        default="https://schema.org/Organization",
+        validation_alias="@type",
+        serialization_alias="@type",
     )
     name: str = Field(
         ...,
@@ -57,7 +59,9 @@ class Person(TranspilerBaseModel):
     """
 
     field_type: Literal["https://schema.org/Person"] = Field(
-        "https://schema.org/Person", alias="@type"
+        default="https://schema.org/Person",
+        validation_alias="@type",
+        serialization_alias="@type",
     )
     given_name: str = Field(
         ...,
@@ -92,7 +96,9 @@ class Role(TranspilerBaseModel):
     """
 
     field_type: Literal["https://schema.org/Role"] = Field(
-        "https://schema.org/Role", alias="@type"
+        default="https://schema.org/Role",
+        validation_alias="@type",
+        serialization_alias="@type",
     )
     role_name: str = Field(
         ...,
@@ -140,7 +146,9 @@ class DefinedTerm(TranspilerBaseModel):
     """
 
     field_type: Literal["https://schema.org/DefinedTerm"] = Field(
-        "https://schema.org/DefinedTerm", alias="@type"
+        default="https://schema.org/DefinedTerm",
+        validation_alias="@type",
+        serialization_alias="@type",
     )
     name: str | None = Field(
         default=None,
@@ -172,7 +180,9 @@ class CreativeWork(TranspilerBaseModel):
     """
 
     field_type: Literal["https://schema.org/CreativeWork"] = Field(
-        "https://schema.org/CreativeWork", alias="@type"
+        default="https://schema.org/CreativeWork",
+        validation_alias="@type",
+        serialization_alias="@type",
     )
     name: str | None = Field(
         default=None,
@@ -197,7 +207,9 @@ class ImageObject(TranspilerBaseModel):
     """
 
     field_type: Literal["https://schema.org/ImageObject"] = Field(
-        "https://schema.org/ImageObject", alias="@type"
+        default="https://schema.org/ImageObject",
+        validation_alias="@type",
+        serialization_alias="@type",
     )
     content_url: AnyUrl | None = Field(
         default=None,
@@ -234,7 +246,9 @@ class SoftwareApplication(TranspilerBaseModel):
     """
 
     field_type: Literal["https://schema.org/SoftwareApplication"] = Field(
-        "https://schema.org/SoftwareApplication", alias="@type"
+        default="https://schema.org/SoftwareApplication",
+        validation_alias="@type",
+        serialization_alias="@type",
     )
     name: str = Field(
         ...,
@@ -333,7 +347,9 @@ class SoftwareSourceCode(TranspilerBaseModel):
     """
 
     field_type: Literal["https://schema.org/SoftwareSourceCode"] = Field(
-        "https://schema.org/SoftwareSourceCode", alias="@type"
+        default="https://schema.org/SoftwareSourceCode",
+        validation_alias="@type",
+        serialization_alias="@type",
     )
     code_repository: AnyUrl = Field(
         ...,
