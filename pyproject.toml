@@ -27,19 +27,19 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "pydantic==2.13.4",
-  "email-validator==2.3.0",
-  "ruamel.yaml<0.20", # cwl-utils 0.42 depends on ruamel.yaml<0.19 and >=0.17.6
-  "yaml-ld==1.1.17", # >=1.1.18 requires Python3.11
   "click==8.4.2",
-  "loguru==0.7.3",
-  "invenio-rest-api-client==12.0.2",
-  "giturlparse==0.15.0",
-  "semver==3.0.4",
-  "Jinja2==3.1.6",
-  "cwl-loader==0.24.0",
   "cwl2ogc==0.19.0",
-  "session-adapters==0.4.0"
+  "cwl-loader==0.24.0",
+  "email-validator==2.3.0",
+  "giturlparse==0.15.0",
+  "invenio-rest-api-client==12.0.3",
+  "Jinja2==3.1.6",
+  "loguru==0.7.3",
+  "pydantic==2.13.4",
+  "ruamel.yaml<0.20", # cwl-utils 0.42 depends on ruamel.yaml<0.19 and >=0.17.6
+  "semver==3.0.4",
+  "session-adapters==0.5.0",
+  "yaml-ld==1.1.17" # >=1.1.18 requires Python3.11
 ]
 
 [tool.hatch.metadata]

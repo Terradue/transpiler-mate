@@ -44,30 +44,27 @@ from invenio_rest_api_client.api.records_versions.create_a_new_version import (
 
 # required when a DOI is not assigned to an applicatrion package
 from invenio_rest_api_client.client import AuthenticatedClient as InvenioClient
-from invenio_rest_api_client.models.access import Access
-from invenio_rest_api_client.models.access_files import AccessFiles
-from invenio_rest_api_client.models.access_record import AccessRecord
-from invenio_rest_api_client.models.affiliation import Affiliation
-from invenio_rest_api_client.models.create_a_draft_record_body import (
+from invenio_rest_api_client.models import (
+    Access,
+    AccessFiles,
+    AccessRecord,
+    Affiliation,
     CreateADraftRecordBody,
-)
-from invenio_rest_api_client.models.created import Created
-from invenio_rest_api_client.models.creator import Creator
-from invenio_rest_api_client.models.file_transfer_item import FileTransferItem
-from invenio_rest_api_client.models.files import Files
-from invenio_rest_api_client.models.identifier import Identifier
-from invenio_rest_api_client.models.metadata import Metadata
-from invenio_rest_api_client.models.person_or_org import PersonOrOrg
-from invenio_rest_api_client.models.person_or_org_identifier_scheme import (
+    Created,
+    Creator,
+    Files,
+    FileTransferItem,
+    Identifier,
+    Metadata,
+    PersonOrOrg,
     PersonOrOrgIdentifierScheme,
+    PersonOrOrgType,
+    ResourceType,
+    ResourceTypeId,
+    Role,
+    RoleId,
+    UpdateDraftRecord,
 )
-from invenio_rest_api_client.models.person_or_org_type import PersonOrOrgType
-from invenio_rest_api_client.models.resource_type import ResourceType
-from invenio_rest_api_client.models.resource_type_id import ResourceTypeId
-from invenio_rest_api_client.models.role import Role
-from invenio_rest_api_client.models.role_id import RoleId
-from invenio_rest_api_client.models.update_draft_record import UpdateDraftRecord
-from invenio_rest_api_client.types import UNSET
 from invenio_rest_api_client.types import File as FileContent
 from loguru import logger
 from pydantic import AnyUrl
@@ -85,33 +82,38 @@ from .metadata.software_application_models import (
 )
 
 __ROLES_MAPPING_: Mapping[AnyUrl, RoleId] = {
-    AnyUrl("http://purl.org/spar/datacite/ContactPerson"): RoleId.CONTACTPERSON,
-    AnyUrl("http://purl.org/spar/datacite/DataCollector"): RoleId.DATACOLLECTOR,
-    AnyUrl("http://purl.org/spar/datacite/DataCurator"): RoleId.DATACURATOR,
-    AnyUrl("http://purl.org/spar/datacite/DataManager"): RoleId.DATAMANAGER,
-    AnyUrl("http://purl.org/spar/datacite/Distributor"): RoleId.DISTRIBUTOR,
-    AnyUrl("http://purl.org/spar/datacite/Editor"): RoleId.EDITOR,
     AnyUrl(
-        "http://purl.org/spar/datacite/HostingInstitution"
-    ): RoleId.HOSTINGINSTITUTION,
-    AnyUrl("http://purl.org/spar/datacite/Other"): RoleId.OTHER,
-    AnyUrl("http://purl.org/spar/datacite/Producer"): RoleId.PRODUCER,
-    AnyUrl("http://purl.org/spar/datacite/ProjectLeader"): RoleId.PROJECTLEADER,
-    AnyUrl("http://purl.org/spar/datacite/ProjectManager"): RoleId.PROJECTMANAGER,
-    AnyUrl("http://purl.org/spar/datacite/ProjectMember"): RoleId.PROJECTMEMBER,
+        "https://credit.niso.org/contributor-roles/conceptualization/"
+    ): RoleId.PROJECTLEADER,
     AnyUrl(
-        "http://purl.org/spar/datacite/RegistrationAgency"
-    ): RoleId.REGISTRATIONAGENCY,
+        "https://credit.niso.org/contributor-roles/data-curation/"
+    ): RoleId.DATACURATOR,
     AnyUrl(
-        "http://purl.org/spar/datacite/RegistrationAuthority"
-    ): RoleId.REGISTRATIONAUTHORITY,
-    AnyUrl("http://purl.org/spar/datacite/RelatedPerson"): RoleId.RELATEDPERSON,
-    AnyUrl("http://purl.org/spar/datacite/Researcher"): RoleId.RESEARCHER,
-    AnyUrl("http://purl.org/spar/datacite/ResearchGroup"): RoleId.RESEARCHGROUP,
-    AnyUrl("http://purl.org/spar/datacite/RightsHolder"): RoleId.RIGHTSHOLDER,
-    AnyUrl("http://purl.org/spar/datacite/Sponsor"): RoleId.SPONSOR,
-    AnyUrl("http://purl.org/spar/datacite/Supervisor"): RoleId.SUPERVISOR,
-    AnyUrl("http://purl.org/spar/datacite/WorkPackageLeader"): RoleId.WORKPACKAGELEADER,
+        "https://credit.niso.org/contributor-roles/formal-analysis/"
+    ): RoleId.RESEARCHER,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/funding-acquisition/"
+    ): RoleId.SPONSOR,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/investigation/"
+    ): RoleId.DATACOLLECTOR,
+    AnyUrl("https://credit.niso.org/contributor-roles/methodology/"): RoleId.RESEARCHER,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/project-administration/"
+    ): RoleId.PROJECTMANAGER,
+    AnyUrl("https://credit.niso.org/contributor-roles/resources/"): RoleId.DATAMANAGER,
+    AnyUrl("https://credit.niso.org/contributor-roles/software/"): RoleId.RESEARCHER,
+    AnyUrl("https://credit.niso.org/contributor-roles/supervision/"): RoleId.SUPERVISOR,
+    AnyUrl("https://credit.niso.org/contributor-roles/validation/"): RoleId.RESEARCHER,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/visualization/"
+    ): RoleId.RESEARCHER,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/writing-original-draft/"
+    ): RoleId.RESEARCHER,
+    AnyUrl(
+        "https://credit.niso.org/contributor-roles/writing-review-editing/"
+    ): RoleId.EDITOR,
 }
 
 
@@ -151,15 +153,15 @@ def _to_creator(author: Person | SWARole) -> Creator:
 
     creator: Creator = Creator(
         person_or_org=PersonOrOrg(
-            type_=PersonOrOrgType.PERSONAL,
+            type=PersonOrOrgType.PERSONAL,
             name=f"{author.family_name}, {author.given_name}"
             if isinstance(author, Person)
-            else UNSET,
-            given_name=author.given_name if isinstance(author, Person) else UNSET,
-            family_name=author.family_name if isinstance(author, Person) else UNSET,
+            else None,
+            given_name=author.given_name if isinstance(author, Person) else None,
+            family_name=author.family_name if isinstance(author, Person) else None,
             identifiers=[_to_identifier(author.identifier)]
             if isinstance(author, Person) and author.identifier
-            else UNSET,
+            else None,
         ),
         role=Role(id=role_id),
     )
@@ -175,7 +177,7 @@ def _to_creator(author: Person | SWARole) -> Creator:
                 Affiliation(
                     id=_affiliation_identifier(affiliation.identifier)
                     if affiliation.identifier
-                    else UNSET,
+                    else None,
                     name=affiliation.name,
                 )
             )
@@ -206,7 +208,7 @@ class InvenioMetadataTranspiler(Transpiler):
             publisher=metadata_source.publisher.name,
             description=metadata_source.description
             if metadata_source.description
-            else UNSET,
+            else None,
             creators=list(
                 map(
                     _to_creator,
@@ -224,7 +226,7 @@ class InvenioMetadataTranspiler(Transpiler):
                 )
             )
             if metadata_source.contributor
-            else UNSET,
+            else None,
             version=metadata_source.software_version,
         )
 

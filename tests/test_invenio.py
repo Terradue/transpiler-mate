@@ -18,8 +18,6 @@ from datetime import date
 from types import SimpleNamespace
 from typing import TYPE_CHECKING
 
-from invenio_rest_api_client.types import UNSET
-
 from transpiler_mate.invenio import InvenioMetadataTranspiler, _md5
 from transpiler_mate.metadata.software_application_models import (
     CreativeWork,
@@ -86,7 +84,7 @@ def test_invenio_transpile_sets_contributors_to_unset_when_missing() -> None:
 
     metadata = transpiler.transpile(_software_application(with_contributor=False))
 
-    assert metadata.contributors == UNSET
+    assert not metadata.contributors
 
 
 def test_create_or_update_process_reserves_doi_when_identifier_missing(
@@ -242,7 +240,9 @@ def test_finalize_uploads_files_and_publishes(monkeypatch, tmp_path: Path) -> No
         draft_id="12",
         uploading_files=[source, attach],
         session_client="session",
-        invenio_metadata={"title": "Example"},
+        invenio_metadata=transpiler.transpile(
+            _software_application(with_contributor=False)
+        ),
     )
 
     assert record_url == "https://invenio.example.org/records/12"
