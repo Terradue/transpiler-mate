@@ -38,8 +38,8 @@ dependencies = [
   "pydantic==2.13.4",
   "ruamel.yaml<0.20", # cwl-utils 0.42 depends on ruamel.yaml<0.19 and >=0.17.6
   "semver==3.0.4",
-  "session-adapters==0.5.0"
-  "yaml-ld==1.1.17", # >=1.1.18 requires Python3.11
+  "session-adapters==0.5.0",
+  "yaml-ld==1.1.17" # >=1.1.18 requires Python3.11
 ]
 
 [tool.hatch.metadata]
