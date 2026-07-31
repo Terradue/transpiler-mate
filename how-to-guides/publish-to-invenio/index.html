@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Fabrice Brito, Simone Tripodi" /><link rel="canonical" href="https://terradue.github.io/transpiler-mate/how-to-guides/publish-to-invenio/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Publish to InvenioRDM - transpiler-mate</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../styles/css/app.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Publish to InvenioRDM";
+        var mkdocs_page_input_path = "how-to-guides/publish-to-invenio.md";
+        var mkdocs_page_url = "/transpiler-mate/how-to-guides/publish-to-invenio/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../imgs/icon-eoap.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-generator.html">Create CWL metadata with the generator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-codemeta/">Generate CodeMeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-datacite/">Generate DataCite metadata</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-ogc-record/">Generate an OGC API - Record</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-ogc-processes/">Generate an OGC API - Processes descriptor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-oci-annotations/">Generate OCI annotations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-markdown/">Generate Markdown workflow documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bundle-cwl/">Bundle a CWL document</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Publish to InvenioRDM</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#contributor-roles">Contributor roles</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bump-version/">Bump a CWL software version</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >JSON Schemas</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/datacite_4_6/">DataCite 4.6</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/ogcapi_records/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/software_application/">Schema.org/SoftwareApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/oci_annotations/">OCI Annotations</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Crosswalks</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/codemeta/">CodeMeta</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/datacite/">DataCite</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/oci-annotations/">OCI annotations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/ogc-processes/">OGC API - Processes</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/ogc-record/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/invenio/">InvenioRDM</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/api/">Python API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/cwl-metadata-conventions/">CWL metadata code conventions</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">transpiler-mate</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">How-to guides</li>
+      <li class="breadcrumb-item active">Publish to InvenioRDM</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Terradue/transpiler-mate/edit/master/docs/how-to-guides/publish-to-invenio.md">Edit on Terradue/transpiler-mate</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="publish-a-cwl-workflow-on-an-invenio-instance">Publish a CWL Workflow on an Invenio instance</h1>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1">$ transpiler-mate invenio-publish --help
+</span><span id="__span-0-2">Usage: transpiler-mate invenio-publish [OPTIONS] SOURCE
+</span><span id="__span-0-3">
+</span><span id="__span-0-4">  Publishes the input CWL to an Invenio instance.
+</span><span id="__span-0-5">
+</span><span id="__span-0-6">Options:
+</span><span id="__span-0-7">  --base-url TEXT    The Invenio server base URL  [required]
+</span><span id="__span-0-8">  --auth-token TEXT  The Invenio Access token  [required]
+</span><span id="__span-0-9">  --attach PATH
+</span><span id="__span-0-10">  --help
+</span></code></pre></div>
+<blockquote>
+<p>[!NOTE]<br />
+The <code>--auth-token</code> option can be omitted if the <code>INVENIO_AUTH_TOKEN</code> environment variable is set, i.e.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1">export INVENIO_AUTH_TOKEN=&lt;INVENIO_AUTH_TOKEN&gt;
+</span></code></pre></div>
+<p>Invocation will look alike:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1">$ transpiler-mate invenio-publish \
+</span><span id="__span-2-2">  --base-url=https://sandbox.zenodo.org/ \
+</span><span id="__span-2-3">  --auth-token=&lt;INVENIO_AUTH_TOKEN&gt; \
+</span><span id="__span-2-4">  --attach=./codemeta.json \
+</span><span id="__span-2-5">  --attach=./record.json \
+</span><span id="__span-2-6">  --attach=/path/to/state.png \
+</span><span id="__span-2-7">  --attach=/path/to/sequence.png \
+</span><span id="__span-2-8">  --attach=/path/to/class.png 
+</span><span id="__span-2-9">  --attach=/path/to/component.png 
+</span><span id="__span-2-10">  --attach=/path/to/activity.png \
+</span><span id="__span-2-11">  /path/to/pattern-1.cwl
+</span></code></pre></div>
+<h2 id="contributor-roles">Contributor roles</h2>
+<p>Author and contributor roles in the source metadata use the
+<a href="https://credit.niso.org/contributor-roles/">CRediT taxonomy</a>. Set the
+Schema.org <code>Role</code> object's <code>additionalType</code> to the canonical CRediT URL:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><span class="nt">s:author</span><span class="p">:</span>
+</span><span id="__span-3-2"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;@type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:Role</span>
+</span><span id="__span-3-3"><span class="w">    </span><span class="nt">s:roleName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Conceptualization</span>
+</span><span id="__span-3-4"><span class="w">    </span><span class="nt">s:additionalType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://credit.niso.org/contributor-roles/conceptualization/</span>
+</span><span id="__span-3-5"><span class="w">    </span><span class="nt">s:author</span><span class="p">:</span>
+</span><span id="__span-3-6"><span class="w">      </span><span class="s">&quot;@type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:Person</span>
+</span><span id="__span-3-7"><span class="w">      </span><span class="nt">s:givenName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ada</span>
+</span><span id="__span-3-8"><span class="w">      </span><span class="nt">s:familyName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lovelace</span>
+</span><span id="__span-3-9"><span class="w">      </span><span class="nt">s:email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ada@example.org</span>
+</span><span id="__span-3-10"><span class="w">      </span><span class="nt">s:affiliation</span><span class="p">:</span>
+</span><span id="__span-3-11"><span class="w">        </span><span class="s">&quot;@type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:Organization</span>
+</span><span id="__span-3-12"><span class="w">        </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Example University</span>
+</span></code></pre></div>
+<p>InvenioRDM uses the DataCite contributor-role vocabulary, which does not have
+an exact equivalent for every CRediT role. Transpiler Mate converts each
+canonical URL to its nearest InvenioRDM <code>role.id</code>. See the
+<a href="../../reference/crosswalks/invenio/#credit-roles">complete CRediT-to-InvenioRDM crosswalk</a>.</p>
+<p>Example output:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1">2025-10-29 15:42:57.902 | INFO     | transpiler_mate.cli:wrapper:32 - Started at: 2025-10-29T15:42:57.902
+</span><span id="__span-4-2">2025-10-29 15:42:57.903 | DEBUG    | transpiler_mate.metadata:__init__:51 - Loading raw document from /path/to/pattern-1.cwl...
+</span><span id="__span-4-3">2025-10-29 15:42:58.521 | INFO     | transpiler_mate.cli:invenio_publish:101 - Interacting with Invenio server at https://sandbox.zenodo.org/)
+</span><span id="__span-4-4">2025-10-29 15:42:58.603 | DEBUG    | transpiler_mate.invenio:__init__:120 - Setting up the HTTP logger...
+</span><span id="__span-4-5">2025-10-29 15:42:58.636 | DEBUG    | transpiler_mate.invenio:__init__:122 - HTTP logger correctly setup
+</span><span id="__span-4-6">2025-10-29 15:42:58.636 | INFO     | transpiler_mate.invenio:create_or_update_process:276 - Identifier 10.5072/zenodo.393402 already assigned to /path/to/pattern-1.cwl
+</span><span id="__span-4-7">2025-10-29 15:42:58.636 | INFO     | transpiler_mate.invenio:create_or_update_process:280 - Creating a new version for already existing Record 393402
+</span><span id="__span-4-8">2025-10-29 15:42:58.636 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393402/versions
+</span><span id="__span-4-9">2025-10-29 15:42:58.636 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-10">2025-10-29 15:42:58.636 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 0
+</span><span id="__span-4-11">2025-10-29 15:42:58.636 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-12">2025-10-29 15:42:58.636 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-13">2025-10-29 15:42:58.636 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-14">2025-10-29 15:42:58.636 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-15">2025-10-29 15:42:58.636 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-16">2025-10-29 15:42:58.636 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-17">2025-10-29 15:42:59.261 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 201 Created
+</span><span id="__span-4-18">2025-10-29 15:42:59.261 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-19">2025-10-29 15:42:59.261 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:42:59 GMT
+</span><span id="__span-4-20">2025-10-29 15:42:59.261 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-21">2025-10-29 15:42:59.261 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 3031
+</span><span id="__span-4-22">2025-10-29 15:42:59.261 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; etag: &quot;5&quot;
+</span><span id="__span-4-23">2025-10-29 15:42:59.261 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-24">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 999
+</span><span id="__span-4-25">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-26">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 60
+</span><span id="__span-4-27">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-28">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-29">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-30">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-31">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-32">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-33">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-34">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; set-cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; Expires=Wed, 05 Nov 2025 14:42:59 GMT; Max-Age=604800; Secure; Path=/; SameSite=Lax, 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83; path=/; HttpOnly; Secure; SameSite=None
+</span><span id="__span-4-35">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-36">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-37">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: 4b2e7823032a853f5017cdc85dc0dc59
+</span><span id="__span-4-38">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-39">2025-10-29 15:42:59.262 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.079123+00:00&quot;, &quot;modified&quot;: &quot;2025-10-29T14:42:59.172467+00:00&quot;, &quot;id&quot;: 393433, &quot;conceptrecid&quot;: &quot;393401&quot;, &quot;conceptdoi&quot;: &quot;10.5072/zenodo.393401&quot;, &quot;metadata&quot;: {&quot;title&quot;: &quot;Water bodies detection based on NDWI and the otsu threshold&quot;, &quot;description&quot;: &quot;Water bodies detection based on NDWI and otsu threshold applied to a single Landsat-8/9 acquisition&quot;, &quot;access_right&quot;: &quot;open&quot;, &quot;creators&quot;: [{&quot;name&quot;: &quot;Brito, Fabrice&quot;, &quot;affiliation&quot;: &quot;Terradue (Italy)&quot;, &quot;orcid&quot;: &quot;0009-0000-1342-9736&quot;}, {&quot;name&quot;: &quot;Re, Alice&quot;, &quot;affiliation&quot;: &quot;Terradue (Italy)&quot;, &quot;orcid&quot;: &quot;0000-0001-7068-5533&quot;}, {&quot;name&quot;: &quot;Tripodi, Simone&quot;, &quot;affiliation&quot;: &quot;Terradue (Italy)&quot;, &quot;orcid&quot;: &quot;0009-0006-2063-618X&quot;}], &quot;resource_type&quot;: {&quot;title&quot;: &quot;Workflow&quot;, &quot;type&quot;: &quot;workflow&quot;}, &quot;relations&quot;: {&quot;version&quot;: [{&quot;index&quot;: 3, &quot;is_last&quot;: false, &quot;parent&quot;: {&quot;pid_type&quot;: &quot;recid&quot;, &quot;pid_value&quot;: &quot;393401&quot;}}]}}, &quot;title&quot;: &quot;Water bodies detection based on NDWI and the otsu threshold&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft&quot;, &quot;self_html&quot;: &quot;https://sandbox.zenodo.org/uploads/393433&quot;, &quot;preview_html&quot;: &quot;https://sandbox.zenodo.org/records/393433?preview=1&quot;, &quot;reserve_doi&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/pids/doi&quot;, &quot;parent_doi&quot;: &quot;https://handle.test.datacite.org/10.5072/zenodo.393401&quot;, &quot;parent_doi_html&quot;: &quot;https://sandbox.zenodo.org/doi/10.5072/zenodo.393401&quot;, &quot;self_iiif_manifest&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/manifest&quot;, &quot;self_iiif_sequence&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/sequence/default&quot;, &quot;files&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files&quot;, &quot;media_files&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/media-files&quot;, &quot;archive&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files-archive&quot;, &quot;archive_media&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/media-files-archive&quot;, &quot;versions&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/versions&quot;, &quot;record&quot;: &quot;https://sandbox.zenodo.org/api/records/393433&quot;, &quot;record_html&quot;: &quot;https://sandbox.zenodo.org/records/393433&quot;, &quot;publish&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/actions/publish&quot;, &quot;review&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/review&quot;, &quot;access_links&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/links&quot;, &quot;access_grants&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/grants&quot;, &quot;access_users&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/users&quot;, &quot;access_request&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/request&quot;, &quot;access&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access&quot;, &quot;communities&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/communities&quot;, &quot;communities-suggestions&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/communities-suggestions&quot;, &quot;requests&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/requests&quot;}, &quot;updated&quot;: &quot;2025-10-29T14:42:59.172467+00:00&quot;, &quot;recid&quot;: &quot;393433&quot;, &quot;revision&quot;: 5, &quot;files&quot;: [], &quot;owners&quot;: [{&quot;id&quot;: &quot;48746&quot;}], &quot;status&quot;: &quot;draft&quot;, &quot;state&quot;: &quot;unsubmitted&quot;, &quot;submitted&quot;: false}
+</span><span id="__span-4-40">2025-10-29 15:42:59.262 | INFO     | transpiler_mate.invenio:create_or_update_process:289 - New version 393433 for already existing Record 393402 created!
+</span><span id="__span-4-41">2025-10-29 15:42:59.270 | INFO     | transpiler_mate.invenio:_finalize:170 - Drafting file upload [pattern-1.cwl, codemeta.json, record.json, state.png, sequence.png, class.png, component.png, activity.png] to Record &#39;393433&#39;...
+</span><span id="__span-4-42">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393433/draft/files
+</span><span id="__span-4-43">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-44">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-45">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-46">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-47">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-48">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-49">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Type: application/json
+</span><span id="__span-4-50">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-51">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 808
+</span><span id="__span-4-52">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-53">2025-10-29 15:42:59.272 | WARNING  | transpiler_mate:wrapper:52 - [{&quot;key&quot;:&quot;pattern-1_v4.0.0.cwl&quot;,&quot;size&quot;:4792,&quot;checksum&quot;:&quot;md5:12beba8d3612216a01021c5f0031b4aa&quot;},{&quot;key&quot;:&quot;pattern-1_codemeta_v4.0.0.json&quot;,&quot;size&quot;:3334,&quot;checksum&quot;:&quot;md5:7a924cad592dba87a1015440448c0792&quot;},{&quot;key&quot;:&quot;pattern-1_record_v4.0.0.json&quot;,&quot;size&quot;:2095,&quot;checksum&quot;:&quot;md5:fbe6af0ed8c4ca8a09d407178734ba85&quot;},{&quot;key&quot;:&quot;pattern-1_state_v4.0.0.png&quot;,&quot;size&quot;:19445,&quot;checksum&quot;:&quot;md5:2064702ca8651a3185872e15565530b9&quot;},{&quot;key&quot;:&quot;pattern-1_sequence_v4.0.0.png&quot;,&quot;size&quot;:42021,&quot;checksum&quot;:&quot;md5:4c47b8ece5f4426b437177cb32d2372f&quot;},{&quot;key&quot;:&quot;pattern-1_class_v4.0.0.png&quot;,&quot;size&quot;:58961,&quot;checksum&quot;:&quot;md5:489df77f1594d1782d1b2120428a1dba&quot;},{&quot;key&quot;:&quot;pattern-1_component_v4.0.0.png&quot;,&quot;size&quot;:24170,&quot;checksum&quot;:&quot;md5:ee26069537a8fd04972d83fb7ec7faaf&quot;},{&quot;key&quot;:&quot;pattern-1_activity_v4.0.0.png&quot;,&quot;size&quot;:11299,&quot;checksum&quot;:&quot;md5:0ed15555fc828446c30d264dcf7433a1&quot;}]
+</span><span id="__span-4-54">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 201 Created
+</span><span id="__span-4-55">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-56">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:42:59 GMT
+</span><span id="__span-4-57">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-58">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 7267
+</span><span id="__span-4-59">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-60">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 998
+</span><span id="__span-4-61">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-62">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 60
+</span><span id="__span-4-63">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-64">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-65">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-66">2025-10-29 15:42:59.568 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-67">2025-10-29 15:42:59.569 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-68">2025-10-29 15:42:59.569 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-69">2025-10-29 15:42:59.569 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-70">2025-10-29 15:42:59.569 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-71">2025-10-29 15:42:59.569 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-72">2025-10-29 15:42:59.569 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: fa555af2614ea25c48a3a39bc871bf4c
+</span><span id="__span-4-73">2025-10-29 15:42:59.569 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-74">2025-10-29 15:42:59.569 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;enabled&quot;: true, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files&quot;, &quot;archive&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files-archive&quot;}, &quot;entries&quot;: [{&quot;created&quot;: &quot;2025-10-29T14:42:59.549808+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.552786+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl/commit&quot;}, &quot;key&quot;: &quot;pattern-1_v4.0.0.cwl&quot;, &quot;checksum&quot;: &quot;md5:12beba8d3612216a01021c5f0031b4aa&quot;, &quot;size&quot;: 4792, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}, {&quot;created&quot;: &quot;2025-10-29T14:42:59.556417+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.558630+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json/commit&quot;}, &quot;key&quot;: &quot;pattern-1_codemeta_v4.0.0.json&quot;, &quot;checksum&quot;: &quot;md5:7a924cad592dba87a1015440448c0792&quot;, &quot;size&quot;: 3334, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}, {&quot;created&quot;: &quot;2025-10-29T14:42:59.562247+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.564576+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json/commit&quot;}, &quot;key&quot;: &quot;pattern-1_record_v4.0.0.json&quot;, &quot;checksum&quot;: &quot;md5:fbe6af0ed8c4ca8a09d407178734ba85&quot;, &quot;size&quot;: 2095, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}, {&quot;created&quot;: &quot;2025-10-29T14:42:59.568423+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.570809+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_state_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_state_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_state_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_state_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_state_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:2064702ca8651a3185872e15565530b9&quot;, &quot;size&quot;: 19445, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}, {&quot;created&quot;: &quot;2025-10-29T14:42:59.574305+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.576594+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_sequence_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_sequence_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_sequence_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_sequence_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_sequence_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:4c47b8ece5f4426b437177cb32d2372f&quot;, &quot;size&quot;: 42021, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}, {&quot;created&quot;: &quot;2025-10-29T14:42:59.580342+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.582630+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_class_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_class_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_class_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_class_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_class_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:489df77f1594d1782d1b2120428a1dba&quot;, &quot;size&quot;: 58961, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}, {&quot;created&quot;: &quot;2025-10-29T14:42:59.586016+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.588176+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_component_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_component_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_component_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_component_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_component_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:ee26069537a8fd04972d83fb7ec7faaf&quot;, &quot;size&quot;: 24170, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}, {&quot;created&quot;: &quot;2025-10-29T14:42:59.591574+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.593731+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_activity_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_activity_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_activity_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_activity_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_activity_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:0ed15555fc828446c30d264dcf7433a1&quot;, &quot;size&quot;: 11299, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}], &quot;default_preview&quot;: null, &quot;order&quot;: []}
+</span><span id="__span-4-75">2025-10-29 15:42:59.569 | SUCCESS  | transpiler_mate.invenio:_finalize:182 - File upload pattern-1.cwl, codemeta.json, record.json, state.png, sequence.png, class.png, component.png, activity.png drafted to Record &#39;393433&#39;
+</span><span id="__span-4-76">2025-10-29 15:42:59.569 | INFO     | transpiler_mate.invenio:_finalize:185 - Uploading file content &#39;pattern-1.cwl)&#39; to Record &#39;393433&#39;...
+</span><span id="__span-4-77">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:43 - PUT https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl/content
+</span><span id="__span-4-78">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-79">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-80">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-81">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-82">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-83">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-84">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Type: application/octet-stream
+</span><span id="__span-4-85">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-86">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 4792
+</span><span id="__span-4-87">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-88">2025-10-29 15:42:59.569 | WARNING  | transpiler_mate:wrapper:54 - [REQUEST BUILT FROM STREAM, OMISSING]
+</span><span id="__span-4-89">2025-10-29 15:42:59.740 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-90">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-91">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:42:59 GMT
+</span><span id="__span-4-92">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-93">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 587
+</span><span id="__span-4-94">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-95">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 997
+</span><span id="__span-4-96">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-97">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 60
+</span><span id="__span-4-98">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-99">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-100">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-101">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-102">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-103">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-104">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-105">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-106">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-107">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: a7d71d243c7455c0e8910849025c37d9
+</span><span id="__span-4-108">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-109">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.549808+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.552786+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl/commit&quot;}, &quot;key&quot;: &quot;pattern-1_v4.0.0.cwl&quot;, &quot;checksum&quot;: &quot;md5:12beba8d3612216a01021c5f0031b4aa&quot;, &quot;size&quot;: 4792, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}
+</span><span id="__span-4-110">2025-10-29 15:42:59.741 | SUCCESS  | transpiler_mate.invenio:_finalize:199 - File content pattern-1.cwl uploaded to Record 393433
+</span><span id="__span-4-111">2025-10-29 15:42:59.741 | INFO     | transpiler_mate.invenio:_finalize:201 - Completing file upload pattern-1.cwl] to Record &#39;393433&#39;...
+</span><span id="__span-4-112">2025-10-29 15:42:59.741 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl/commit
+</span><span id="__span-4-113">2025-10-29 15:42:59.741 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-114">2025-10-29 15:42:59.741 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 0
+</span><span id="__span-4-115">2025-10-29 15:42:59.741 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-116">2025-10-29 15:42:59.741 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-117">2025-10-29 15:42:59.741 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-118">2025-10-29 15:42:59.741 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-119">2025-10-29 15:42:59.741 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-120">2025-10-29 15:42:59.741 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-121">2025-10-29 15:42:59.741 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-122">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-123">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-124">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:00 GMT
+</span><span id="__span-4-125">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-126">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; transfer-encoding: chunked
+</span><span id="__span-4-127">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; vary: Accept-Encoding
+</span><span id="__span-4-128">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-129">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 996
+</span><span id="__span-4-130">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-131">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 59
+</span><span id="__span-4-132">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-133">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-134">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-135">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-136">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-137">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-138">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-139">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-140">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-141">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: 1e05a720ef17c9ceb70d22ec41bee762
+</span><span id="__span-4-142">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-encoding: gzip
+</span><span id="__span-4-143">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-144">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.549808+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.994354+00:00&quot;, &quot;mimetype&quot;: &quot;application/octet-stream&quot;, &quot;version_id&quot;: &quot;154d65e6-ecdb-4aa3-983b-bbaba4c09fc3&quot;, &quot;file_id&quot;: &quot;9c1e174b-16a4-43e1-bda5-39f6d3d6c000&quot;, &quot;bucket_id&quot;: &quot;2ec34898-4467-4d36-9e1e-1de137da6e89&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl/commit&quot;}, &quot;key&quot;: &quot;pattern-1_v4.0.0.cwl&quot;, &quot;checksum&quot;: &quot;md5:12beba8d3612216a01021c5f0031b4aa&quot;, &quot;size&quot;: 4792, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;completed&quot;, &quot;storage_class&quot;: &quot;L&quot;}
+</span><span id="__span-4-145">2025-10-29 15:42:59.865 | SUCCESS  | transpiler_mate.invenio:_finalize:209 - File upload pattern-1.cwl to Record &#39;393433&#39; completed
+</span><span id="__span-4-146">2025-10-29 15:42:59.865 | INFO     | transpiler_mate.invenio:_finalize:185 - Uploading file content &#39;codemeta.json)&#39; to Record &#39;393433&#39;...
+</span><span id="__span-4-147">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:43 - PUT https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json/content
+</span><span id="__span-4-148">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-149">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-150">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-151">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-152">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-153">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-154">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Type: application/octet-stream
+</span><span id="__span-4-155">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-156">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 3334
+</span><span id="__span-4-157">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-158">2025-10-29 15:42:59.866 | WARNING  | transpiler_mate:wrapper:54 - [REQUEST BUILT FROM STREAM, OMISSING]
+</span><span id="__span-4-159">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-160">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-161">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:00 GMT
+</span><span id="__span-4-162">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-163">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 627
+</span><span id="__span-4-164">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-165">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 995
+</span><span id="__span-4-166">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-167">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 59
+</span><span id="__span-4-168">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-169">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-170">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-171">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-172">2025-10-29 15:43:00.027 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-173">2025-10-29 15:43:00.028 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-174">2025-10-29 15:43:00.028 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-175">2025-10-29 15:43:00.028 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-176">2025-10-29 15:43:00.028 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-177">2025-10-29 15:43:00.028 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: f1469de19f22e0396abeb78dbd3ea9cb
+</span><span id="__span-4-178">2025-10-29 15:43:00.028 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-179">2025-10-29 15:43:00.028 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.556417+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.558630+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json/commit&quot;}, &quot;key&quot;: &quot;pattern-1_codemeta_v4.0.0.json&quot;, &quot;checksum&quot;: &quot;md5:7a924cad592dba87a1015440448c0792&quot;, &quot;size&quot;: 3334, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}
+</span><span id="__span-4-180">2025-10-29 15:43:00.028 | SUCCESS  | transpiler_mate.invenio:_finalize:199 - File content codemeta.json uploaded to Record 393433
+</span><span id="__span-4-181">2025-10-29 15:43:00.028 | INFO     | transpiler_mate.invenio:_finalize:201 - Completing file upload codemeta.json] to Record &#39;393433&#39;...
+</span><span id="__span-4-182">2025-10-29 15:43:00.028 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json/commit
+</span><span id="__span-4-183">2025-10-29 15:43:00.028 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-184">2025-10-29 15:43:00.028 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 0
+</span><span id="__span-4-185">2025-10-29 15:43:00.028 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-186">2025-10-29 15:43:00.028 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-187">2025-10-29 15:43:00.028 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-188">2025-10-29 15:43:00.028 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-189">2025-10-29 15:43:00.028 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-190">2025-10-29 15:43:00.028 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-191">2025-10-29 15:43:00.028 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-192">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-193">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-194">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:00 GMT
+</span><span id="__span-4-195">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-196">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; transfer-encoding: chunked
+</span><span id="__span-4-197">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; vary: Accept-Encoding
+</span><span id="__span-4-198">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-199">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 994
+</span><span id="__span-4-200">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-201">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 59
+</span><span id="__span-4-202">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-203">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-204">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-205">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-206">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-207">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-208">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-209">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-210">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-211">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: 4345e64a4880abd5620b020ad3a5276c
+</span><span id="__span-4-212">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-encoding: gzip
+</span><span id="__span-4-213">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-214">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.556417+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:43:00.285249+00:00&quot;, &quot;mimetype&quot;: &quot;application/json&quot;, &quot;version_id&quot;: &quot;6fa9c540-69a7-40ff-ac2a-69fe87f3d6ac&quot;, &quot;file_id&quot;: &quot;747064b7-133c-4f02-8ef4-3bd1d75e0f71&quot;, &quot;bucket_id&quot;: &quot;2ec34898-4467-4d36-9e1e-1de137da6e89&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json/commit&quot;}, &quot;key&quot;: &quot;pattern-1_codemeta_v4.0.0.json&quot;, &quot;checksum&quot;: &quot;md5:7a924cad592dba87a1015440448c0792&quot;, &quot;size&quot;: 3334, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;completed&quot;, &quot;storage_class&quot;: &quot;L&quot;}
+</span><span id="__span-4-215">2025-10-29 15:43:00.148 | SUCCESS  | transpiler_mate.invenio:_finalize:209 - File upload codemeta.json to Record &#39;393433&#39; completed
+</span><span id="__span-4-216">2025-10-29 15:43:00.148 | INFO     | transpiler_mate.invenio:_finalize:185 - Uploading file content &#39;record.json)&#39; to Record &#39;393433&#39;...
+</span><span id="__span-4-217">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:43 - PUT https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json/content
+</span><span id="__span-4-218">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-219">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-220">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-221">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-222">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-223">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-224">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Type: application/octet-stream
+</span><span id="__span-4-225">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-226">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 2095
+</span><span id="__span-4-227">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-228">2025-10-29 15:43:00.149 | WARNING  | transpiler_mate:wrapper:54 - [REQUEST BUILT FROM STREAM, OMISSING]
+</span><span id="__span-4-229">2025-10-29 15:43:00.459 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-230">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-231">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:00 GMT
+</span><span id="__span-4-232">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-233">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 619
+</span><span id="__span-4-234">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-235">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 993
+</span><span id="__span-4-236">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-237">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 59
+</span><span id="__span-4-238">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-239">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-240">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-241">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-242">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-243">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-244">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-245">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-246">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-247">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: 1f6d215202229021eba7ea27f893f5e1
+</span><span id="__span-4-248">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-249">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.562247+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.564576+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json/commit&quot;}, &quot;key&quot;: &quot;pattern-1_record_v4.0.0.json&quot;, &quot;checksum&quot;: &quot;md5:fbe6af0ed8c4ca8a09d407178734ba85&quot;, &quot;size&quot;: 2095, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}
+</span><span id="__span-4-250">2025-10-29 15:43:00.460 | SUCCESS  | transpiler_mate.invenio:_finalize:199 - File content record.json uploaded to Record 393433
+</span><span id="__span-4-251">2025-10-29 15:43:00.460 | INFO     | transpiler_mate.invenio:_finalize:201 - Completing file upload record.json] to Record &#39;393433&#39;...
+</span><span id="__span-4-252">2025-10-29 15:43:00.460 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json/commit
+</span><span id="__span-4-253">2025-10-29 15:43:00.460 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-254">2025-10-29 15:43:00.460 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 0
+</span><span id="__span-4-255">2025-10-29 15:43:00.460 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-256">2025-10-29 15:43:00.460 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-257">2025-10-29 15:43:00.460 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-258">2025-10-29 15:43:00.460 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-259">2025-10-29 15:43:00.460 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-260">2025-10-29 15:43:00.460 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-261">2025-10-29 15:43:00.460 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-262">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-263">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-264">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:00 GMT
+</span><span id="__span-4-265">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-266">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; transfer-encoding: chunked
+</span><span id="__span-4-267">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; vary: Accept-Encoding
+</span><span id="__span-4-268">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-269">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 992
+</span><span id="__span-4-270">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-271">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 59
+</span><span id="__span-4-272">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-273">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-274">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-275">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-276">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-277">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-278">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-279">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-280">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-281">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: cfd652b3ff0dfacb0ede2fe1082b117f
+</span><span id="__span-4-282">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-encoding: gzip
+</span><span id="__span-4-283">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-284">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.562247+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:43:00.728824+00:00&quot;, &quot;mimetype&quot;: &quot;application/json&quot;, &quot;version_id&quot;: &quot;5e3bc159-291a-4e76-a5f6-612a5111f16f&quot;, &quot;file_id&quot;: &quot;9eb17ca1-1bf9-44b8-bcbe-e553b988bef1&quot;, &quot;bucket_id&quot;: &quot;2ec34898-4467-4d36-9e1e-1de137da6e89&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json/commit&quot;}, &quot;key&quot;: &quot;pattern-1_record_v4.0.0.json&quot;, &quot;checksum&quot;: &quot;md5:fbe6af0ed8c4ca8a09d407178734ba85&quot;, &quot;size&quot;: 2095, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;completed&quot;, &quot;storage_class&quot;: &quot;L&quot;}
+</span><span id="__span-4-285">2025-10-29 15:43:00.738 | SUCCESS  | transpiler_mate.invenio:_finalize:209 - File upload record.json to Record &#39;393433&#39; completed
+</span><span id="__span-4-286">2025-10-29 15:43:00.738 | INFO     | transpiler_mate.invenio:_finalize:185 - Uploading file content &#39;state.png)&#39; to Record &#39;393433&#39;...
+</span><span id="__span-4-287">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:43 - PUT https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png/content
+</span><span id="__span-4-288">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-289">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-290">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-291">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-292">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-293">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-294">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Type: application/octet-stream
+</span><span id="__span-4-295">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-296">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 19445
+</span><span id="__span-4-297">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-298">2025-10-29 15:43:00.738 | WARNING  | transpiler_mate:wrapper:54 - [REQUEST BUILT FROM STREAM, OMISSING]
+</span><span id="__span-4-299">2025-10-29 15:43:00.888 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-300">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-301">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:01 GMT
+</span><span id="__span-4-302">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-303">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 1022
+</span><span id="__span-4-304">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-305">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 991
+</span><span id="__span-4-306">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-307">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 58
+</span><span id="__span-4-308">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-309">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-310">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-311">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-312">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-313">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-314">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-315">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-316">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-317">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: eea3303e2de95efb8a7217dd5480c7c8
+</span><span id="__span-4-318">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-319">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.568423+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.570809+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_state_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_state_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_state_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_state_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_state_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:2064702ca8651a3185872e15565530b9&quot;, &quot;size&quot;: 19445, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}
+</span><span id="__span-4-320">2025-10-29 15:43:00.889 | SUCCESS  | transpiler_mate.invenio:_finalize:199 - File content state.png uploaded to Record 393433
+</span><span id="__span-4-321">2025-10-29 15:43:00.889 | INFO     | transpiler_mate.invenio:_finalize:201 - Completing file upload state.png] to Record &#39;393433&#39;...
+</span><span id="__span-4-322">2025-10-29 15:43:00.889 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png/commit
+</span><span id="__span-4-323">2025-10-29 15:43:00.889 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-324">2025-10-29 15:43:00.889 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 0
+</span><span id="__span-4-325">2025-10-29 15:43:00.889 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-326">2025-10-29 15:43:00.889 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-327">2025-10-29 15:43:00.889 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-328">2025-10-29 15:43:00.889 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-329">2025-10-29 15:43:00.889 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-330">2025-10-29 15:43:00.889 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-331">2025-10-29 15:43:00.889 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-332">2025-10-29 15:43:01.015 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-333">2025-10-29 15:43:01.015 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-334">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:01 GMT
+</span><span id="__span-4-335">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-336">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; transfer-encoding: chunked
+</span><span id="__span-4-337">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; vary: Accept-Encoding
+</span><span id="__span-4-338">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-339">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 990
+</span><span id="__span-4-340">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-341">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 58
+</span><span id="__span-4-342">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-343">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-344">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-345">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-346">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-347">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-348">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-349">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-350">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-351">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: afcbf56d1884a3e8ba0872d24d940d6a
+</span><span id="__span-4-352">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-encoding: gzip
+</span><span id="__span-4-353">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-354">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.568423+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:43:01.145822+00:00&quot;, &quot;mimetype&quot;: &quot;image/png&quot;, &quot;version_id&quot;: &quot;08495845-c6d5-4f9c-a89b-44813aa5cf71&quot;, &quot;file_id&quot;: &quot;550005d3-b264-4eaa-bd1c-b13f831c162d&quot;, &quot;bucket_id&quot;: &quot;2ec34898-4467-4d36-9e1e-1de137da6e89&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_state_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_state_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_state_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_state_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_state_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:2064702ca8651a3185872e15565530b9&quot;, &quot;size&quot;: 19445, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;completed&quot;, &quot;storage_class&quot;: &quot;L&quot;}
+</span><span id="__span-4-355">2025-10-29 15:43:01.016 | SUCCESS  | transpiler_mate.invenio:_finalize:209 - File upload state.png to Record &#39;393433&#39; completed
+</span><span id="__span-4-356">2025-10-29 15:43:01.016 | INFO     | transpiler_mate.invenio:_finalize:185 - Uploading file content &#39;sequence.png)&#39; to Record &#39;393433&#39;...
+</span><span id="__span-4-357">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:43 - PUT https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png/content
+</span><span id="__span-4-358">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-359">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-360">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-361">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-362">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-363">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-364">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Type: application/octet-stream
+</span><span id="__span-4-365">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-366">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 42021
+</span><span id="__span-4-367">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-368">2025-10-29 15:43:01.016 | WARNING  | transpiler_mate:wrapper:54 - [REQUEST BUILT FROM STREAM, OMISSING]
+</span><span id="__span-4-369">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-370">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-371">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:01 GMT
+</span><span id="__span-4-372">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-373">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 1046
+</span><span id="__span-4-374">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-375">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 989
+</span><span id="__span-4-376">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-377">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 58
+</span><span id="__span-4-378">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-379">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-380">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-381">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-382">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-383">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-384">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-385">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-386">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-387">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: a0fca63bed6ab58dfa28a7eeff02daee
+</span><span id="__span-4-388">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-389">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.574305+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.576594+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_sequence_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_sequence_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_sequence_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_sequence_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_sequence_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:4c47b8ece5f4426b437177cb32d2372f&quot;, &quot;size&quot;: 42021, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}
+</span><span id="__span-4-390">2025-10-29 15:43:01.162 | SUCCESS  | transpiler_mate.invenio:_finalize:199 - File content sequence.png uploaded to Record 393433
+</span><span id="__span-4-391">2025-10-29 15:43:01.162 | INFO     | transpiler_mate.invenio:_finalize:201 - Completing file upload sequence.png] to Record &#39;393433&#39;...
+</span><span id="__span-4-392">2025-10-29 15:43:01.162 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png/commit
+</span><span id="__span-4-393">2025-10-29 15:43:01.163 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-394">2025-10-29 15:43:01.163 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 0
+</span><span id="__span-4-395">2025-10-29 15:43:01.163 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-396">2025-10-29 15:43:01.163 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-397">2025-10-29 15:43:01.163 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-398">2025-10-29 15:43:01.163 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-399">2025-10-29 15:43:01.163 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-400">2025-10-29 15:43:01.163 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-401">2025-10-29 15:43:01.163 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-402">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-403">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-404">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:01 GMT
+</span><span id="__span-4-405">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-406">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; transfer-encoding: chunked
+</span><span id="__span-4-407">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; vary: Accept-Encoding
+</span><span id="__span-4-408">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-409">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 988
+</span><span id="__span-4-410">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-411">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 58
+</span><span id="__span-4-412">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-413">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-414">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-415">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-416">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-417">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-418">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-419">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-420">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-421">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: 9383e126b1901906a7c961a6f68e4eae
+</span><span id="__span-4-422">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-encoding: gzip
+</span><span id="__span-4-423">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-424">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.574305+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:43:01.418819+00:00&quot;, &quot;mimetype&quot;: &quot;image/png&quot;, &quot;version_id&quot;: &quot;f3086333-3c2d-4fef-9a8d-0d115e7ea0dd&quot;, &quot;file_id&quot;: &quot;93c1a0d4-eea8-4f72-ba39-28c734b86d63&quot;, &quot;bucket_id&quot;: &quot;2ec34898-4467-4d36-9e1e-1de137da6e89&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_sequence_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_sequence_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_sequence_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_sequence_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_sequence_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:4c47b8ece5f4426b437177cb32d2372f&quot;, &quot;size&quot;: 42021, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;completed&quot;, &quot;storage_class&quot;: &quot;L&quot;}
+</span><span id="__span-4-425">2025-10-29 15:43:01.352 | SUCCESS  | transpiler_mate.invenio:_finalize:209 - File upload sequence.png to Record &#39;393433&#39; completed
+</span><span id="__span-4-426">2025-10-29 15:43:01.352 | INFO     | transpiler_mate.invenio:_finalize:185 - Uploading file content &#39;class.png)&#39; to Record &#39;393433&#39;...
+</span><span id="__span-4-427">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:43 - PUT https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png/content
+</span><span id="__span-4-428">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-429">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-430">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-431">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-432">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-433">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-434">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Type: application/octet-stream
+</span><span id="__span-4-435">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-436">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 58961
+</span><span id="__span-4-437">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-438">2025-10-29 15:43:01.353 | WARNING  | transpiler_mate:wrapper:54 - [REQUEST BUILT FROM STREAM, OMISSING]
+</span><span id="__span-4-439">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-440">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-441">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:01 GMT
+</span><span id="__span-4-442">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-443">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 1022
+</span><span id="__span-4-444">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-445">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 987
+</span><span id="__span-4-446">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-447">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 58
+</span><span id="__span-4-448">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-449">2025-10-29 15:43:01.522 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-450">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-451">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-452">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-453">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-454">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-455">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-456">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-457">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: a5e1ccd1b4815d7a8b47e763106099c9
+</span><span id="__span-4-458">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-459">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.580342+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.582630+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_class_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_class_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_class_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_class_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_class_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:489df77f1594d1782d1b2120428a1dba&quot;, &quot;size&quot;: 58961, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}
+</span><span id="__span-4-460">2025-10-29 15:43:01.523 | SUCCESS  | transpiler_mate.invenio:_finalize:199 - File content class.png uploaded to Record 393433
+</span><span id="__span-4-461">2025-10-29 15:43:01.523 | INFO     | transpiler_mate.invenio:_finalize:201 - Completing file upload class.png] to Record &#39;393433&#39;...
+</span><span id="__span-4-462">2025-10-29 15:43:01.523 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png/commit
+</span><span id="__span-4-463">2025-10-29 15:43:01.523 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-464">2025-10-29 15:43:01.523 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 0
+</span><span id="__span-4-465">2025-10-29 15:43:01.523 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-466">2025-10-29 15:43:01.523 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-467">2025-10-29 15:43:01.523 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-468">2025-10-29 15:43:01.523 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-469">2025-10-29 15:43:01.523 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-470">2025-10-29 15:43:01.523 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-471">2025-10-29 15:43:01.523 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-472">2025-10-29 15:43:01.671 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-473">2025-10-29 15:43:01.671 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-474">2025-10-29 15:43:01.671 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:01 GMT
+</span><span id="__span-4-475">2025-10-29 15:43:01.671 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-476">2025-10-29 15:43:01.671 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; transfer-encoding: chunked
+</span><span id="__span-4-477">2025-10-29 15:43:01.671 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; vary: Accept-Encoding
+</span><span id="__span-4-478">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-479">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 986
+</span><span id="__span-4-480">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-481">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 58
+</span><span id="__span-4-482">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-483">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-484">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-485">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-486">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-487">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-488">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-489">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-490">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-491">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: 7ab4ebb034e5b1cfbd9ae9d6e234e1e5
+</span><span id="__span-4-492">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-encoding: gzip
+</span><span id="__span-4-493">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-494">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.580342+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:43:01.776671+00:00&quot;, &quot;mimetype&quot;: &quot;image/png&quot;, &quot;version_id&quot;: &quot;49516147-24ca-45f9-aa25-6c1515aba2cf&quot;, &quot;file_id&quot;: &quot;879cee3e-2c42-46ce-94be-d55987b52025&quot;, &quot;bucket_id&quot;: &quot;2ec34898-4467-4d36-9e1e-1de137da6e89&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_class_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_class_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_class_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_class_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_class_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:489df77f1594d1782d1b2120428a1dba&quot;, &quot;size&quot;: 58961, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;completed&quot;, &quot;storage_class&quot;: &quot;L&quot;}
+</span><span id="__span-4-495">2025-10-29 15:43:01.672 | SUCCESS  | transpiler_mate.invenio:_finalize:209 - File upload class.png to Record &#39;393433&#39; completed
+</span><span id="__span-4-496">2025-10-29 15:43:01.672 | INFO     | transpiler_mate.invenio:_finalize:185 - Uploading file content &#39;component.png)&#39; to Record &#39;393433&#39;...
+</span><span id="__span-4-497">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:43 - PUT https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png/content
+</span><span id="__span-4-498">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-499">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-500">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-501">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-502">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-503">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-504">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Type: application/octet-stream
+</span><span id="__span-4-505">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-506">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 24170
+</span><span id="__span-4-507">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-508">2025-10-29 15:43:01.672 | WARNING  | transpiler_mate:wrapper:54 - [REQUEST BUILT FROM STREAM, OMISSING]
+</span><span id="__span-4-509">2025-10-29 15:43:01.967 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-510">2025-10-29 15:43:01.967 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-511">2025-10-29 15:43:01.967 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:02 GMT
+</span><span id="__span-4-512">2025-10-29 15:43:01.967 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-513">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 1054
+</span><span id="__span-4-514">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-515">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 985
+</span><span id="__span-4-516">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-517">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 57
+</span><span id="__span-4-518">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-519">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-520">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-521">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-522">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-523">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-524">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-525">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-526">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-527">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: b5f8d4dc4c0b7970e92081ac18fbd9c1
+</span><span id="__span-4-528">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-529">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.586016+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.588176+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_component_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_component_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_component_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_component_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_component_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:ee26069537a8fd04972d83fb7ec7faaf&quot;, &quot;size&quot;: 24170, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}
+</span><span id="__span-4-530">2025-10-29 15:43:01.968 | SUCCESS  | transpiler_mate.invenio:_finalize:199 - File content component.png uploaded to Record 393433
+</span><span id="__span-4-531">2025-10-29 15:43:01.968 | INFO     | transpiler_mate.invenio:_finalize:201 - Completing file upload component.png] to Record &#39;393433&#39;...
+</span><span id="__span-4-532">2025-10-29 15:43:01.968 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png/commit
+</span><span id="__span-4-533">2025-10-29 15:43:01.968 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-534">2025-10-29 15:43:01.968 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 0
+</span><span id="__span-4-535">2025-10-29 15:43:01.968 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-536">2025-10-29 15:43:01.968 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-537">2025-10-29 15:43:01.968 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-538">2025-10-29 15:43:01.968 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-539">2025-10-29 15:43:01.968 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-540">2025-10-29 15:43:01.968 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-541">2025-10-29 15:43:01.968 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-542">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-543">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-544">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:02 GMT
+</span><span id="__span-4-545">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-546">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; transfer-encoding: chunked
+</span><span id="__span-4-547">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; vary: Accept-Encoding
+</span><span id="__span-4-548">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-549">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 984
+</span><span id="__span-4-550">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-551">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 57
+</span><span id="__span-4-552">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-553">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-554">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-555">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-556">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-557">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-558">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-559">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-560">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-561">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: bfc62d85c1034bb5b2f84931a673f8f1
+</span><span id="__span-4-562">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-encoding: gzip
+</span><span id="__span-4-563">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-564">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.586016+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:43:02.236957+00:00&quot;, &quot;mimetype&quot;: &quot;image/png&quot;, &quot;version_id&quot;: &quot;56506c74-e4e9-41ca-a823-94233e4a3c97&quot;, &quot;file_id&quot;: &quot;c484928c-7d9f-4b75-8ee8-3c36c868de13&quot;, &quot;bucket_id&quot;: &quot;2ec34898-4467-4d36-9e1e-1de137da6e89&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_component_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_component_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_component_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_component_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_component_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:ee26069537a8fd04972d83fb7ec7faaf&quot;, &quot;size&quot;: 24170, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;completed&quot;, &quot;storage_class&quot;: &quot;L&quot;}
+</span><span id="__span-4-565">2025-10-29 15:43:02.112 | SUCCESS  | transpiler_mate.invenio:_finalize:209 - File upload component.png to Record &#39;393433&#39; completed
+</span><span id="__span-4-566">2025-10-29 15:43:02.112 | INFO     | transpiler_mate.invenio:_finalize:185 - Uploading file content &#39;activity.png)&#39; to Record &#39;393433&#39;...
+</span><span id="__span-4-567">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:43 - PUT https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png/content
+</span><span id="__span-4-568">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-569">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-570">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-571">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-572">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-573">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-574">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Type: application/octet-stream
+</span><span id="__span-4-575">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-576">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 11299
+</span><span id="__span-4-577">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-578">2025-10-29 15:43:02.113 | WARNING  | transpiler_mate:wrapper:54 - [REQUEST BUILT FROM STREAM, OMISSING]
+</span><span id="__span-4-579">2025-10-29 15:43:02.255 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-580">2025-10-29 15:43:02.255 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-581">2025-10-29 15:43:02.255 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:02 GMT
+</span><span id="__span-4-582">2025-10-29 15:43:02.255 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-583">2025-10-29 15:43:02.255 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 1046
+</span><span id="__span-4-584">2025-10-29 15:43:02.255 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-585">2025-10-29 15:43:02.255 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 983
+</span><span id="__span-4-586">2025-10-29 15:43:02.255 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-587">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 57
+</span><span id="__span-4-588">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-589">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-590">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-591">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-592">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-593">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-594">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-595">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-596">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-597">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: b3574130a169325874f60c2e7741d122
+</span><span id="__span-4-598">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-599">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.591574+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:42:59.593731+00:00&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_activity_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_activity_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_activity_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_activity_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_activity_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:0ed15555fc828446c30d264dcf7433a1&quot;, &quot;size&quot;: 11299, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;pending&quot;}
+</span><span id="__span-4-600">2025-10-29 15:43:02.256 | SUCCESS  | transpiler_mate.invenio:_finalize:199 - File content activity.png uploaded to Record 393433
+</span><span id="__span-4-601">2025-10-29 15:43:02.256 | INFO     | transpiler_mate.invenio:_finalize:201 - Completing file upload activity.png] to Record &#39;393433&#39;...
+</span><span id="__span-4-602">2025-10-29 15:43:02.256 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png/commit
+</span><span id="__span-4-603">2025-10-29 15:43:02.256 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-604">2025-10-29 15:43:02.256 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 0
+</span><span id="__span-4-605">2025-10-29 15:43:02.256 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-606">2025-10-29 15:43:02.256 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-607">2025-10-29 15:43:02.256 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-608">2025-10-29 15:43:02.256 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-609">2025-10-29 15:43:02.256 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-610">2025-10-29 15:43:02.256 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-611">2025-10-29 15:43:02.256 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-612">2025-10-29 15:43:02.398 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-613">2025-10-29 15:43:02.398 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-614">2025-10-29 15:43:02.398 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:02 GMT
+</span><span id="__span-4-615">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-616">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; transfer-encoding: chunked
+</span><span id="__span-4-617">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; vary: Accept-Encoding
+</span><span id="__span-4-618">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-619">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 982
+</span><span id="__span-4-620">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-621">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 57
+</span><span id="__span-4-622">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-623">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-624">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-625">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-626">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-627">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-628">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-629">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-630">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-631">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: 1ffbf1f50eb7945e429e4c2b151e0588
+</span><span id="__span-4-632">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-encoding: gzip
+</span><span id="__span-4-633">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-634">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.591574+00:00&quot;, &quot;updated&quot;: &quot;2025-10-29T14:43:02.511724+00:00&quot;, &quot;mimetype&quot;: &quot;image/png&quot;, &quot;version_id&quot;: &quot;9552467e-cd57-42e6-a9bd-9be9ae7f27a1&quot;, &quot;file_id&quot;: &quot;3b8872fa-7ebf-4ea2-8b6b-62a5427b12a6&quot;, &quot;bucket_id&quot;: &quot;2ec34898-4467-4d36-9e1e-1de137da6e89&quot;, &quot;metadata&quot;: null, &quot;access&quot;: {&quot;hidden&quot;: false}, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png&quot;, &quot;content&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png/content&quot;, &quot;commit&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png/commit&quot;, &quot;iiif_canvas&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/canvas/pattern-1_activity_v4.0.0.png&quot;, &quot;iiif_base&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_activity_v4.0.0.png&quot;, &quot;iiif_info&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_activity_v4.0.0.png/info.json&quot;, &quot;iiif_api&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433:pattern-1_activity_v4.0.0.png/full/full/0/default.png&quot;}, &quot;key&quot;: &quot;pattern-1_activity_v4.0.0.png&quot;, &quot;checksum&quot;: &quot;md5:0ed15555fc828446c30d264dcf7433a1&quot;, &quot;size&quot;: 11299, &quot;transfer&quot;: {&quot;type&quot;: &quot;L&quot;}, &quot;status&quot;: &quot;completed&quot;, &quot;storage_class&quot;: &quot;L&quot;}
+</span><span id="__span-4-635">2025-10-29 15:43:02.399 | SUCCESS  | transpiler_mate.invenio:_finalize:209 - File upload activity.png to Record &#39;393433&#39; completed
+</span><span id="__span-4-636">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:43 - PUT https://sandbox.zenodo.org/api/records/393433/draft
+</span><span id="__span-4-637">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-638">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-639">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-640">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-641">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-642">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-643">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Type: application/json
+</span><span id="__span-4-644">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-645">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 1080
+</span><span id="__span-4-646">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-647">2025-10-29 15:43:02.399 | WARNING  | transpiler_mate:wrapper:52 - {&quot;access&quot;:{&quot;record&quot;:&quot;public&quot;,&quot;files&quot;:&quot;public&quot;},&quot;files&quot;:{&quot;enabled&quot;:true},&quot;metadata&quot;:{&quot;resource_type&quot;:{&quot;id&quot;:&quot;workflow&quot;},&quot;title&quot;:&quot;Water bodies detection based on NDWI and the otsu threshold&quot;,&quot;publication_date&quot;:&quot;2025-10-29&quot;,&quot;creators&quot;:[{&quot;person_or_org&quot;:{&quot;type&quot;:&quot;personal&quot;,&quot;given_name&quot;:&quot;Fabrice&quot;,&quot;family_name&quot;:&quot;Brito&quot;,&quot;name&quot;:&quot;Brito, Fabrice&quot;,&quot;identifiers&quot;:[{&quot;scheme&quot;:&quot;orcid&quot;,&quot;identifier&quot;:&quot;0009-0000-1342-9736&quot;}]},&quot;affiliations&quot;:[{&quot;id&quot;:&quot;0069cx113&quot;,&quot;name&quot;:&quot;Terradue&quot;}]},{&quot;person_or_org&quot;:{&quot;type&quot;:&quot;personal&quot;,&quot;given_name&quot;:&quot;Alice&quot;,&quot;family_name&quot;:&quot;Re&quot;,&quot;name&quot;:&quot;Re, Alice&quot;,&quot;identifiers&quot;:[{&quot;scheme&quot;:&quot;orcid&quot;,&quot;identifier&quot;:&quot;0000-0001-7068-5533&quot;}]},&quot;affiliations&quot;:[{&quot;id&quot;:&quot;0069cx113&quot;,&quot;name&quot;:&quot;Terradue&quot;}]},{&quot;person_or_org&quot;:{&quot;type&quot;:&quot;personal&quot;,&quot;given_name&quot;:&quot;Simone&quot;,&quot;family_name&quot;:&quot;Tripodi&quot;,&quot;name&quot;:&quot;Tripodi, Simone&quot;,&quot;identifiers&quot;:[{&quot;scheme&quot;:&quot;orcid&quot;,&quot;identifier&quot;:&quot;0009-0006-2063-618X&quot;}]},&quot;affiliations&quot;:[{&quot;id&quot;:&quot;0069cx113&quot;,&quot;name&quot;:&quot;Terradue&quot;}]}],&quot;publisher&quot;:&quot;Terradue Srl&quot;,&quot;description&quot;:&quot;Water bodies detection based on NDWI and otsu threshold applied to a single Landsat-8/9 acquisition&quot;,&quot;version&quot;:&quot;4.0.0&quot;}}
+</span><span id="__span-4-648">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 200 OK
+</span><span id="__span-4-649">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-650">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:02 GMT
+</span><span id="__span-4-651">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-652">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; transfer-encoding: chunked
+</span><span id="__span-4-653">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; vary: Accept-Encoding
+</span><span id="__span-4-654">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; etag: W/&quot;7&quot;
+</span><span id="__span-4-655">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-656">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 981
+</span><span id="__span-4-657">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-658">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 57
+</span><span id="__span-4-659">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-660">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-661">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-662">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-663">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-664">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains, max-age=15768000
+</span><span id="__span-4-665">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-666">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-667">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-668">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-request-id: 91454d81e9fd8437765a551ea5a0d6d0
+</span><span id="__span-4-669">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-encoding: gzip
+</span><span id="__span-4-670">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-671">2025-10-29 15:43:02.785 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:42:59.079123+00:00&quot;, &quot;modified&quot;: &quot;2025-10-29T14:43:02.737984+00:00&quot;, &quot;id&quot;: 393433, &quot;conceptrecid&quot;: &quot;393401&quot;, &quot;conceptdoi&quot;: &quot;10.5072/zenodo.393401&quot;, &quot;metadata&quot;: {&quot;title&quot;: &quot;Water bodies detection based on NDWI and the otsu threshold&quot;, &quot;publication_date&quot;: &quot;2025-10-29&quot;, &quot;description&quot;: &quot;Water bodies detection based on NDWI and otsu threshold applied to a single Landsat-8/9 acquisition&quot;, &quot;access_right&quot;: &quot;open&quot;, &quot;creators&quot;: [{&quot;name&quot;: &quot;Brito, Fabrice&quot;, &quot;affiliation&quot;: &quot;Terradue (Italy)&quot;, &quot;orcid&quot;: &quot;0009-0000-1342-9736&quot;}, {&quot;name&quot;: &quot;Re, Alice&quot;, &quot;affiliation&quot;: &quot;Terradue (Italy)&quot;, &quot;orcid&quot;: &quot;0000-0001-7068-5533&quot;}, {&quot;name&quot;: &quot;Tripodi, Simone&quot;, &quot;affiliation&quot;: &quot;Terradue (Italy)&quot;, &quot;orcid&quot;: &quot;0009-0006-2063-618X&quot;}], &quot;version&quot;: &quot;4.0.0&quot;, &quot;resource_type&quot;: {&quot;title&quot;: &quot;Workflow&quot;, &quot;type&quot;: &quot;workflow&quot;}, &quot;relations&quot;: {&quot;version&quot;: [{&quot;index&quot;: 3, &quot;is_last&quot;: false, &quot;parent&quot;: {&quot;pid_type&quot;: &quot;recid&quot;, &quot;pid_value&quot;: &quot;393401&quot;}}]}}, &quot;title&quot;: &quot;Water bodies detection based on NDWI and the otsu threshold&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft&quot;, &quot;self_html&quot;: &quot;https://sandbox.zenodo.org/uploads/393433&quot;, &quot;preview_html&quot;: &quot;https://sandbox.zenodo.org/records/393433?preview=1&quot;, &quot;reserve_doi&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/pids/doi&quot;, &quot;parent_doi&quot;: &quot;https://handle.test.datacite.org/10.5072/zenodo.393401&quot;, &quot;parent_doi_html&quot;: &quot;https://sandbox.zenodo.org/doi/10.5072/zenodo.393401&quot;, &quot;self_iiif_manifest&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/manifest&quot;, &quot;self_iiif_sequence&quot;: &quot;https://sandbox.zenodo.org/api/iiif/draft:393433/sequence/default&quot;, &quot;files&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files&quot;, &quot;media_files&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/media-files&quot;, &quot;thumbnails&quot;: {&quot;10&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E10,/0/default.jpg&quot;, &quot;50&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E50,/0/default.jpg&quot;, &quot;100&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E100,/0/default.jpg&quot;, &quot;250&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E250,/0/default.jpg&quot;, &quot;750&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E750,/0/default.jpg&quot;, &quot;1200&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E1200,/0/default.jpg&quot;}, &quot;archive&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files-archive&quot;, &quot;archive_media&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/media-files-archive&quot;, &quot;versions&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/versions&quot;, &quot;record&quot;: &quot;https://sandbox.zenodo.org/api/records/393433&quot;, &quot;record_html&quot;: &quot;https://sandbox.zenodo.org/records/393433&quot;, &quot;publish&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/actions/publish&quot;, &quot;review&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/review&quot;, &quot;access_links&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/links&quot;, &quot;access_grants&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/grants&quot;, &quot;access_users&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/users&quot;, &quot;access_request&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/request&quot;, &quot;access&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access&quot;, &quot;communities&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/communities&quot;, &quot;communities-suggestions&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/communities-suggestions&quot;, &quot;requests&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/requests&quot;}, &quot;updated&quot;: &quot;2025-10-29T14:43:02.737984+00:00&quot;, &quot;recid&quot;: &quot;393433&quot;, &quot;revision&quot;: 7, &quot;files&quot;: [{&quot;id&quot;: &quot;747064b7-133c-4f02-8ef4-3bd1d75e0f71&quot;, &quot;key&quot;: &quot;pattern-1_codemeta_v4.0.0.json&quot;, &quot;size&quot;: 3334, &quot;checksum&quot;: &quot;md5:7a924cad592dba87a1015440448c0792&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_codemeta_v4.0.0.json/content&quot;}}, {&quot;id&quot;: &quot;9eb17ca1-1bf9-44b8-bcbe-e553b988bef1&quot;, &quot;key&quot;: &quot;pattern-1_record_v4.0.0.json&quot;, &quot;size&quot;: 2095, &quot;checksum&quot;: &quot;md5:fbe6af0ed8c4ca8a09d407178734ba85&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_record_v4.0.0.json/content&quot;}}, {&quot;id&quot;: &quot;550005d3-b264-4eaa-bd1c-b13f831c162d&quot;, &quot;key&quot;: &quot;pattern-1_state_v4.0.0.png&quot;, &quot;size&quot;: 19445, &quot;checksum&quot;: &quot;md5:2064702ca8651a3185872e15565530b9&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_state_v4.0.0.png/content&quot;}}, {&quot;id&quot;: &quot;93c1a0d4-eea8-4f72-ba39-28c734b86d63&quot;, &quot;key&quot;: &quot;pattern-1_sequence_v4.0.0.png&quot;, &quot;size&quot;: 42021, &quot;checksum&quot;: &quot;md5:4c47b8ece5f4426b437177cb32d2372f&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_sequence_v4.0.0.png/content&quot;}}, {&quot;id&quot;: &quot;879cee3e-2c42-46ce-94be-d55987b52025&quot;, &quot;key&quot;: &quot;pattern-1_class_v4.0.0.png&quot;, &quot;size&quot;: 58961, &quot;checksum&quot;: &quot;md5:489df77f1594d1782d1b2120428a1dba&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_class_v4.0.0.png/content&quot;}}, {&quot;id&quot;: &quot;c484928c-7d9f-4b75-8ee8-3c36c868de13&quot;, &quot;key&quot;: &quot;pattern-1_component_v4.0.0.png&quot;, &quot;size&quot;: 24170, &quot;checksum&quot;: &quot;md5:ee26069537a8fd04972d83fb7ec7faaf&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_component_v4.0.0.png/content&quot;}}, {&quot;id&quot;: &quot;9c1e174b-16a4-43e1-bda5-39f6d3d6c000&quot;, &quot;key&quot;: &quot;pattern-1_v4.0.0.cwl&quot;, &quot;size&quot;: 4792, &quot;checksum&quot;: &quot;md5:12beba8d3612216a01021c5f0031b4aa&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_v4.0.0.cwl/content&quot;}}, {&quot;id&quot;: &quot;3b8872fa-7ebf-4ea2-8b6b-62a5427b12a6&quot;, &quot;key&quot;: &quot;pattern-1_activity_v4.0.0.png&quot;, &quot;size&quot;: 11299, &quot;checksum&quot;: &quot;md5:0ed15555fc828446c30d264dcf7433a1&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/files/pattern-1_activity_v4.0.0.png/content&quot;}}], &quot;owners&quot;: [{&quot;id&quot;: &quot;48746&quot;}], &quot;status&quot;: &quot;draft&quot;, &quot;state&quot;: &quot;unsubmitted&quot;, &quot;submitted&quot;: false}
+</span><span id="__span-4-672">2025-10-29 15:43:02.786 | SUCCESS  | transpiler_mate.invenio:_finalize:226 - Draft Record &#39;393433&#39; metadata updated!
+</span><span id="__span-4-673">2025-10-29 15:43:02.786 | INFO     | transpiler_mate.invenio:_finalize:228 - Publishing the Draft Record &#39;393433&#39;...
+</span><span id="__span-4-674">2025-10-29 15:43:02.786 | WARNING  | transpiler_mate:wrapper:43 - POST https://sandbox.zenodo.org/api/records/393433/draft/actions/publish
+</span><span id="__span-4-675">2025-10-29 15:43:02.786 | WARNING  | transpiler_mate:wrapper:47 - &gt; Host: sandbox.zenodo.org
+</span><span id="__span-4-676">2025-10-29 15:43:02.786 | WARNING  | transpiler_mate:wrapper:47 - &gt; Content-Length: 0
+</span><span id="__span-4-677">2025-10-29 15:43:02.786 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept: */*
+</span><span id="__span-4-678">2025-10-29 15:43:02.786 | WARNING  | transpiler_mate:wrapper:47 - &gt; Accept-Encoding: gzip, deflate
+</span><span id="__span-4-679">2025-10-29 15:43:02.786 | WARNING  | transpiler_mate:wrapper:47 - &gt; Connection: keep-alive
+</span><span id="__span-4-680">2025-10-29 15:43:02.786 | WARNING  | transpiler_mate:wrapper:47 - &gt; User-Agent: python-httpx/0.28.1
+</span><span id="__span-4-681">2025-10-29 15:43:02.786 | WARNING  | transpiler_mate:wrapper:47 - &gt; Authorization: Bearer &lt;INVENIO_AUTH_TOKEN&gt;
+</span><span id="__span-4-682">2025-10-29 15:43:02.786 | WARNING  | transpiler_mate:wrapper:47 - &gt; Cookie: csrftoken=eyJhbGciOiJIUzUxMiIsImlhdCI6MTc2MTc0ODk3OSwiZXhwIjoxNzYxODM1Mzc5fQ.ImZjQzFSSXlXcE5RdDhTcXFVSUFCS3Q2Q1FkYldRYm05Ig.rYNIWPOC9OcXgymaAcX4CYs_jAYU3UGZViXIQppdrdByjVWzHVkeI0EJY5epF9lyLfbm2lmIaraiiiZ_5WQleA; 04f20c86f07421a9ec0f9d5ba4be544f=55542f39350aac4f858e1c881c1f2e83
+</span><span id="__span-4-683">2025-10-29 15:43:02.786 | WARNING  | transpiler_mate:wrapper:49 - &gt;
+</span><span id="__span-4-684">2025-10-29 15:43:04.116 | SUCCESS  | transpiler_mate:wrapper:70 - &lt; 202 Accepted
+</span><span id="__span-4-685">2025-10-29 15:43:04.116 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; server: nginx
+</span><span id="__span-4-686">2025-10-29 15:43:04.116 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; date: Wed, 29 Oct 2025 14:43:04 GMT
+</span><span id="__span-4-687">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-type: application/json
+</span><span id="__span-4-688">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-length: 6614
+</span><span id="__span-4-689">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; etag: &quot;4&quot;
+</span><span id="__span-4-690">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-limit: 1000
+</span><span id="__span-4-691">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-remaining: 980
+</span><span id="__span-4-692">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-ratelimit-reset: 1761749040
+</span><span id="__span-4-693">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; retry-after: 55
+</span><span id="__span-4-694">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; permissions-policy: interest-cohort=()
+</span><span id="__span-4-695">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-frame-options: sameorigin
+</span><span id="__span-4-696">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-xss-protection: 1; mode=block
+</span><span id="__span-4-697">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; x-content-type-options: nosniff
+</span><span id="__span-4-698">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; content-security-policy: default-src &#39;self&#39; fonts.googleapis.com *.gstatic.com data: &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch
+</span><span id="__span-4-699">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; strict-transport-security: max-age=31556926; includeSubDomains
+</span><span id="__span-4-700">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; referrer-policy: strict-origin-when-cross-origin
+</span><span id="__span-4-701">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-allow-origin: *
+</span><span id="__span-4-702">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:74 - &lt; access-control-expose-headers: Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+</span><span id="__span-4-703">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:76 - 
+</span><span id="__span-4-704">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate:wrapper:79 - {&quot;created&quot;: &quot;2025-10-29T14:43:03.111230+00:00&quot;, &quot;modified&quot;: &quot;2025-10-29T14:43:03.728825+00:00&quot;, &quot;id&quot;: 393433, &quot;conceptrecid&quot;: &quot;393401&quot;, &quot;doi&quot;: &quot;10.5072/zenodo.393433&quot;, &quot;conceptdoi&quot;: &quot;10.5072/zenodo.393401&quot;, &quot;doi_url&quot;: &quot;https://handle.test.datacite.org/10.5072/zenodo.393433&quot;, &quot;metadata&quot;: {&quot;title&quot;: &quot;Water bodies detection based on NDWI and the otsu threshold&quot;, &quot;doi&quot;: &quot;10.5072/zenodo.393433&quot;, &quot;publication_date&quot;: &quot;2025-10-29&quot;, &quot;description&quot;: &quot;Water bodies detection based on NDWI and otsu threshold applied to a single Landsat-8/9 acquisition&quot;, &quot;access_right&quot;: &quot;open&quot;, &quot;creators&quot;: [{&quot;name&quot;: &quot;Brito, Fabrice&quot;, &quot;affiliation&quot;: &quot;Terradue (Italy)&quot;, &quot;orcid&quot;: &quot;0009-0000-1342-9736&quot;}, {&quot;name&quot;: &quot;Re, Alice&quot;, &quot;affiliation&quot;: &quot;Terradue (Italy)&quot;, &quot;orcid&quot;: &quot;0000-0001-7068-5533&quot;}, {&quot;name&quot;: &quot;Tripodi, Simone&quot;, &quot;affiliation&quot;: &quot;Terradue (Italy)&quot;, &quot;orcid&quot;: &quot;0009-0006-2063-618X&quot;}], &quot;version&quot;: &quot;4.0.0&quot;, &quot;resource_type&quot;: {&quot;title&quot;: &quot;Workflow&quot;, &quot;type&quot;: &quot;workflow&quot;}, &quot;relations&quot;: {&quot;version&quot;: [{&quot;index&quot;: 3, &quot;is_last&quot;: true, &quot;parent&quot;: {&quot;pid_type&quot;: &quot;recid&quot;, &quot;pid_value&quot;: &quot;393401&quot;}}]}}, &quot;title&quot;: &quot;Water bodies detection based on NDWI and the otsu threshold&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433&quot;, &quot;self_html&quot;: &quot;https://sandbox.zenodo.org/records/393433&quot;, &quot;preview_html&quot;: &quot;https://sandbox.zenodo.org/records/393433?preview=1&quot;, &quot;doi&quot;: &quot;https://handle.test.datacite.org/10.5072/zenodo.393433&quot;, &quot;self_doi&quot;: &quot;https://handle.test.datacite.org/10.5072/zenodo.393433&quot;, &quot;self_doi_html&quot;: &quot;https://sandbox.zenodo.org/doi/10.5072/zenodo.393433&quot;, &quot;reserve_doi&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft/pids/doi&quot;, &quot;parent&quot;: &quot;https://sandbox.zenodo.org/api/records/393401&quot;, &quot;parent_html&quot;: &quot;https://sandbox.zenodo.org/records/393401&quot;, &quot;parent_doi&quot;: &quot;https://handle.test.datacite.org/10.5072/zenodo.393401&quot;, &quot;parent_doi_html&quot;: &quot;https://sandbox.zenodo.org/doi/10.5072/zenodo.393401&quot;, &quot;self_iiif_manifest&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433/manifest&quot;, &quot;self_iiif_sequence&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433/sequence/default&quot;, &quot;files&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/files&quot;, &quot;media_files&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/media-files&quot;, &quot;thumbnails&quot;: {&quot;10&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E10,/0/default.jpg&quot;, &quot;50&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E50,/0/default.jpg&quot;, &quot;100&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E100,/0/default.jpg&quot;, &quot;250&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E250,/0/default.jpg&quot;, &quot;750&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E750,/0/default.jpg&quot;, &quot;1200&quot;: &quot;https://sandbox.zenodo.org/api/iiif/record:393433:pattern-1_state_v4.0.0.png/full/%5E1200,/0/default.jpg&quot;}, &quot;archive&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/files-archive&quot;, &quot;archive_media&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/media-files-archive&quot;, &quot;latest&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/versions/latest&quot;, &quot;latest_html&quot;: &quot;https://sandbox.zenodo.org/records/393433/latest&quot;, &quot;versions&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/versions&quot;, &quot;draft&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/draft&quot;, &quot;access_links&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/links&quot;, &quot;access_grants&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/grants&quot;, &quot;access_users&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/users&quot;, &quot;access_request&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access/request&quot;, &quot;access&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/access&quot;, &quot;communities&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/communities&quot;, &quot;communities-suggestions&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/communities-suggestions&quot;, &quot;request_deletion&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/request-deletion&quot;, &quot;file_modification&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/file-modification&quot;, &quot;requests&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/requests&quot;}, &quot;updated&quot;: &quot;2025-10-29T14:43:03.728825+00:00&quot;, &quot;recid&quot;: &quot;393433&quot;, &quot;revision&quot;: 4, &quot;files&quot;: [{&quot;id&quot;: &quot;747064b7-133c-4f02-8ef4-3bd1d75e0f71&quot;, &quot;key&quot;: &quot;pattern-1_codemeta_v4.0.0.json&quot;, &quot;size&quot;: 3334, &quot;checksum&quot;: &quot;md5:7a924cad592dba87a1015440448c0792&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/files/pattern-1_codemeta_v4.0.0.json/content&quot;}}, {&quot;id&quot;: &quot;9eb17ca1-1bf9-44b8-bcbe-e553b988bef1&quot;, &quot;key&quot;: &quot;pattern-1_record_v4.0.0.json&quot;, &quot;size&quot;: 2095, &quot;checksum&quot;: &quot;md5:fbe6af0ed8c4ca8a09d407178734ba85&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/files/pattern-1_record_v4.0.0.json/content&quot;}}, {&quot;id&quot;: &quot;550005d3-b264-4eaa-bd1c-b13f831c162d&quot;, &quot;key&quot;: &quot;pattern-1_state_v4.0.0.png&quot;, &quot;size&quot;: 19445, &quot;checksum&quot;: &quot;md5:2064702ca8651a3185872e15565530b9&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/files/pattern-1_state_v4.0.0.png/content&quot;}}, {&quot;id&quot;: &quot;93c1a0d4-eea8-4f72-ba39-28c734b86d63&quot;, &quot;key&quot;: &quot;pattern-1_sequence_v4.0.0.png&quot;, &quot;size&quot;: 42021, &quot;checksum&quot;: &quot;md5:4c47b8ece5f4426b437177cb32d2372f&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/files/pattern-1_sequence_v4.0.0.png/content&quot;}}, {&quot;id&quot;: &quot;879cee3e-2c42-46ce-94be-d55987b52025&quot;, &quot;key&quot;: &quot;pattern-1_class_v4.0.0.png&quot;, &quot;size&quot;: 58961, &quot;checksum&quot;: &quot;md5:489df77f1594d1782d1b2120428a1dba&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/files/pattern-1_class_v4.0.0.png/content&quot;}}, {&quot;id&quot;: &quot;c484928c-7d9f-4b75-8ee8-3c36c868de13&quot;, &quot;key&quot;: &quot;pattern-1_component_v4.0.0.png&quot;, &quot;size&quot;: 24170, &quot;checksum&quot;: &quot;md5:ee26069537a8fd04972d83fb7ec7faaf&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/files/pattern-1_component_v4.0.0.png/content&quot;}}, {&quot;id&quot;: &quot;9c1e174b-16a4-43e1-bda5-39f6d3d6c000&quot;, &quot;key&quot;: &quot;pattern-1_v4.0.0.cwl&quot;, &quot;size&quot;: 4792, &quot;checksum&quot;: &quot;md5:12beba8d3612216a01021c5f0031b4aa&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/files/pattern-1_v4.0.0.cwl/content&quot;}}, {&quot;id&quot;: &quot;3b8872fa-7ebf-4ea2-8b6b-62a5427b12a6&quot;, &quot;key&quot;: &quot;pattern-1_activity_v4.0.0.png&quot;, &quot;size&quot;: 11299, &quot;checksum&quot;: &quot;md5:0ed15555fc828446c30d264dcf7433a1&quot;, &quot;links&quot;: {&quot;self&quot;: &quot;https://sandbox.zenodo.org/api/records/393433/files/pattern-1_activity_v4.0.0.png/content&quot;}}], &quot;swh&quot;: {}, &quot;owners&quot;: [{&quot;id&quot;: &quot;48746&quot;}], &quot;status&quot;: &quot;published&quot;, &quot;stats&quot;: {&quot;downloads&quot;: 0, &quot;unique_downloads&quot;: 0, &quot;views&quot;: 0, &quot;unique_views&quot;: 0, &quot;version_downloads&quot;: 0, &quot;version_unique_downloads&quot;: 0, &quot;version_unique_views&quot;: 0, &quot;version_views&quot;: 0}, &quot;state&quot;: &quot;done&quot;, &quot;submitted&quot;: true}
+</span><span id="__span-4-705">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate.invenio:_finalize:235 - Draft Record &#39;393433&#39; metadata updated!
+</span><span id="__span-4-706">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate.cli:invenio_publish:115 - Record available on &#39;https://sandbox.zenodo.org//records/393433&#39;
+</span><span id="__span-4-707">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate.cli:wrapper:37 - ------------------------------------------------------------------------
+</span><span id="__span-4-708">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate.cli:wrapper:38 - SUCCESS
+</span><span id="__span-4-709">2025-10-29 15:43:04.117 | SUCCESS  | transpiler_mate.cli:wrapper:39 - ------------------------------------------------------------------------
+</span><span id="__span-4-710">2025-10-29 15:43:04.117 | INFO     | transpiler_mate.cli:wrapper:48 - Total time: 6.2148 seconds
+</span><span id="__span-4-711">2025-10-29 15:43:04.117 | INFO     | transpiler_mate.cli:wrapper:49 - Finished at: 2025-10-29T15:43:04.117
+</span></code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../bundle-cwl/" class="btn btn-neutral float-left" title="Bundle a CWL document"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../bump-version/" class="btn btn-neutral float-right" title="Bump a CWL software version">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a></p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Terradue/transpiler-mate/" class="fa fa-code-fork" style="color: #fcfcfc"> Terradue/transpiler-mate</a>
+        </span>
+    
+    
+      <span><a href="../bundle-cwl/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../bump-version/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/config.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

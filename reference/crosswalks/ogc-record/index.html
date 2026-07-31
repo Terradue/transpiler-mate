@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Fabrice Brito, Simone Tripodi" /><link rel="canonical" href="https://terradue.github.io/transpiler-mate/reference/crosswalks/ogc-record/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>OGC API - Records - transpiler-mate</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../styles/css/app.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OGC API - Records";
+        var mkdocs_page_input_path = "reference/crosswalks/ogc-record.md";
+        var mkdocs_page_url = "/transpiler-mate/reference/crosswalks/ogc-record/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../imgs/icon-eoap.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/metadata-generator.html">Create CWL metadata with the generator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-codemeta/">Generate CodeMeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-datacite/">Generate DataCite metadata</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-ogc-record/">Generate an OGC API - Record</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-ogc-processes/">Generate an OGC API - Processes descriptor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-oci-annotations/">Generate OCI annotations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-markdown/">Generate Markdown workflow documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/bundle-cwl/">Bundle a CWL document</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/publish-to-invenio/">Publish to InvenioRDM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/bump-version/">Bump a CWL software version</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >JSON Schemas</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/datacite_4_6/">DataCite 4.6</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/ogcapi_records/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/software_application/">Schema.org/SoftwareApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/oci_annotations/">OCI Annotations</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Crosswalks</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../codemeta/">CodeMeta</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../datacite/">DataCite</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../oci-annotations/">OCI annotations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ogc-processes/">OGC API - Processes</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">OGC API - Records</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#root-properties">Root properties:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generated-and-default-values">Generated and default values</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#keywords">Keywords</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#string-keywords">String keywords</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#httpsschemaorgdefinedterm-keywords">https://schema.org/DefinedTerm keywords</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#license">License</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contacts">Contacts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#links">Links</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#publisher">Publisher</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../invenio/">InvenioRDM</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/">Python API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../explanation/cwl-metadata-conventions/">CWL metadata code conventions</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">transpiler-mate</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+          <li class="breadcrumb-item">Crosswalks</li>
+      <li class="breadcrumb-item active">OGC API - Records</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Terradue/transpiler-mate/edit/master/docs/reference/crosswalks/ogc-record.md">Edit on Terradue/transpiler-mate</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="httpsschemaorgsoftwareapplication-crosswalk-for-ogc-api-records">https://schema.org/SoftwareApplication Crosswalk for OGC API - Records</h1>
+<p>The <a href="https://ogcapi.ogc.org/records/">OGC API - Records</a> spec defines discovery of geospatial resources by standardizing the way collections of descriptive information about the resources (metadata) are exposed.</p>
+<h2 id="root-properties">Root properties:</h2>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1">RecordGeoJSON
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>OGC API - Records</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N/A</td>
+<td>id</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>type</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>conformsTo</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>properties.version</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>properties.updated</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>properties.language</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>properties.resourceLanguages</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>properties.formats</td>
+</tr>
+<tr>
+<td>https://schema.org/softwareVersion</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/description</td>
+<td>properties.description</td>
+</tr>
+<tr>
+<td>https://schema.org/applicationCategory</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/applicationSubCategory</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/copyrightYear</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/dateCreated</td>
+<td>properties.created, links[].created</td>
+</tr>
+<tr>
+<td>https://schema.org/name</td>
+<td>properties.title</td>
+</tr>
+<tr>
+<td>https://schema.org/operatingSystem</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/keywords</td>
+<td><a href="#keywords">keywords</a></td>
+</tr>
+<tr>
+<td>https://schema.org/softwareRequirements</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/author</td>
+<td><a href="#contacts">contacts</a></td>
+</tr>
+<tr>
+<td>https://schema.org/license</td>
+<td><a href="#license">license</a></td>
+</tr>
+<tr>
+<td>https://schema.org/publisher</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/softwareHelp</td>
+<td><a href="#links">links</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="generated-and-default-values">Generated and default values</h2>
+<p>These OGC API - Records values are generated by the transpiler or supplied by the generated OGC model rather than mapped from a Schema.org property.</p>
+<table>
+<thead>
+<tr>
+<th>OGC API - Records</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><code>urn:uuid:{uuid4}</code></td>
+</tr>
+<tr>
+<td>type</td>
+<td><code>Feature</code></td>
+</tr>
+<tr>
+<td>conformsTo</td>
+<td><code>http://www.opengis.net/spec/ogcapi-records-1/1.0/req/record-core</code></td>
+</tr>
+<tr>
+<td>properties.version</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>properties.updated</td>
+<td>current timestamp</td>
+</tr>
+<tr>
+<td>properties.language</td>
+<td><code>{"code": "en-US", "name": "English (United States)"}</code></td>
+</tr>
+<tr>
+<td>properties.resourceLanguages</td>
+<td><code>[{"code": "en-US", "name": "English (United States)"}]</code></td>
+</tr>
+<tr>
+<td>properties.formats</td>
+<td><code>[{"name": "CWL", "mediaType": "application/cwl"}]</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>https://schema.org/dateCreated</code> is normalized to a timestamp and mapped to <code>properties.created</code>. The same timestamp is also used for each <code>links[].created</code> value generated from <code>https://schema.org/softwareHelp</code>.</p>
+<h2 id="keywords"><a id="keywords"></a> Keywords</h2>
+<h3 id="string-keywords">String keywords</h3>
+<p>Each <code>str</code> instance will be part of the <code>properties.keywords</code> property of <code>RecordGeoJSON</code>.</p>
+<h3 id="httpsschemaorgdefinedterm-keywords">https://schema.org/DefinedTerm keywords</h3>
+<p>Each <code>https://schema.org/DefinedTerm</code> keyword will be transpiled as item of the <code>properties.themes[].concepts</code> property of <code>RecordGeoJSON</code> if:</p>
+<ul>
+<li><code>https://schema.org/inDefinedTermSet</code> points to https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords;</li>
+<li><code>https://schema.org/termCode</code> is a valid concept UUID that points to an existing <code>https://cmr.earthdata.nasa.gov/kms/concept/{UUID}</code>.</li>
+</ul>
+<p>i.e. given an input keyword like the one below:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><span class="nt">s:keywords</span><span class="p">:</span>
+</span><span id="__span-1-2"><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:DefinedTerm</span>
+</span><span id="__span-1-3"><span class="w">  </span><span class="nt">s:inDefinedTermSet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords</span>
+</span><span id="__span-1-4"><span class="w">  </span><span class="nt">s:termCode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">959f1861-a776-41b1-ba6b-d23c71d4d1eb</span>
+</span></code></pre></div>
+<p>Resulting as an element like the one below:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><span class="nt">&quot;themes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-2-2"><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-3"><span class="w">        </span><span class="nt">&quot;concepts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-2-4"><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-2-5"><span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EARTH SCIENCE&quot;</span><span class="p">,</span>
+</span><span id="__span-2-6"><span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EARTH SCIENCE&quot;</span><span class="p">,</span>
+</span><span id="__span-2-7"><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EARTH SCIENCE&quot;</span><span class="p">,</span>
+</span><span id="__span-2-8"><span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://cmr.earthdata.nasa.gov/kms/concept/959f1861-a776-41b1-ba6b-d23c71d4d1eb&quot;</span>
+</span><span id="__span-2-9"><span class="w">            </span><span class="p">},</span>
+</span><span id="__span-2-10"><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-2-11"><span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TERRESTRIAL HYDROSPHERE&quot;</span><span class="p">,</span>
+</span><span id="__span-2-12"><span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TERRESTRIAL HYDROSPHERE&quot;</span><span class="p">,</span>
+</span><span id="__span-2-13"><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EARTH SCIENCE &gt; TERRESTRIAL HYDROSPHERE&quot;</span><span class="p">,</span>
+</span><span id="__span-2-14"><span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://cmr.earthdata.nasa.gov/kms/concept/959f1861-a776-41b1-ba6b-d23c71d4d1eb&quot;</span>
+</span><span id="__span-2-15"><span class="w">            </span><span class="p">},</span>
+</span><span id="__span-2-16"><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-2-17"><span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SURFACE WATER&quot;</span><span class="p">,</span>
+</span><span id="__span-2-18"><span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SURFACE WATER&quot;</span><span class="p">,</span>
+</span><span id="__span-2-19"><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EARTH SCIENCE &gt; TERRESTRIAL HYDROSPHERE &gt; SURFACE WATER&quot;</span><span class="p">,</span>
+</span><span id="__span-2-20"><span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://cmr.earthdata.nasa.gov/kms/concept/959f1861-a776-41b1-ba6b-d23c71d4d1eb&quot;</span>
+</span><span id="__span-2-21"><span class="w">            </span><span class="p">},</span>
+</span><span id="__span-2-22"><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-2-23"><span class="w">                </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SURFACE WATER FEATURES&quot;</span><span class="p">,</span>
+</span><span id="__span-2-24"><span class="w">                </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SURFACE WATER FEATURES&quot;</span><span class="p">,</span>
+</span><span id="__span-2-25"><span class="w">                </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EARTH SCIENCE &gt; TERRESTRIAL HYDROSPHERE &gt; SURFACE WATER &gt; SURFACE WATER FEATURES&quot;</span><span class="p">,</span>
+</span><span id="__span-2-26"><span class="w">                </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://cmr.earthdata.nasa.gov/kms/concept/959f1861-a776-41b1-ba6b-d23c71d4d1eb&quot;</span>
+</span><span id="__span-2-27"><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-2-28"><span class="w">        </span><span class="p">],</span>
+</span><span id="__span-2-29"><span class="w">        </span><span class="nt">&quot;scheme&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords&quot;</span>
+</span><span id="__span-2-30"><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-31"><span class="p">]</span>
+</span></code></pre></div>
+<p>Unsupported <code>DefinedTerm</code> values and unsupported keyword value types are discarded. If the Science Keywords <code>termCode</code> is not found in the local keyword index, the transpiler logs a warning and does not emit a theme for that keyword.</p>
+<h2 id="license"><a id="license"></a> License</h2>
+<p>The <code>properties.license</code> field is populated from <code>https://schema.org/license</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>OGC API - Records</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/identifier</td>
+<td>properties.license</td>
+</tr>
+<tr>
+<td>https://schema.org/name</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/url</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>When <code>license</code> is a <code>CreativeWork</code>, the transpiler uses its <code>identifier</code>. When <code>license</code> is a URL value, the transpiler serializes that URL directly. Multiple license values are joined with <code>:</code>.</p>
+<h2 id="contacts"><a id="contacts"></a> Contacts</h2>
+<p>The <code>properties.contacts</code> field is populated from <code>https://schema.org/author</code>.</p>
+<p>If an author is represented as <code>https://schema.org/Role</code>, <code>roleName</code> is mapped to <code>position</code> and the nested <code>author</code> is mapped as the contact person.</p>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>OGC API - Records</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/roleName</td>
+<td>properties.contacts[].position</td>
+</tr>
+<tr>
+<td>https://schema.org/identifier</td>
+<td>properties.contacts[].identifier</td>
+</tr>
+<tr>
+<td>https://schema.org/familyName</td>
+<td>properties.contacts[].name</td>
+</tr>
+<tr>
+<td>https://schema.org/givenName</td>
+<td>properties.contacts[].name</td>
+</tr>
+<tr>
+<td>https://schema.org/affiliation</td>
+<td>properties.contacts[].organization</td>
+</tr>
+<tr>
+<td>https://schema.org/email</td>
+<td>properties.contacts[].emails[].value</td>
+</tr>
+</tbody>
+</table>
+<p>The contact <code>name</code> is serialized as <code>familyName, givenName</code>. The organization is taken from the author's affiliation <code>name</code>.</p>
+<h2 id="links"><a id="links"></a> Links</h2>
+<p>The root <code>links</code> field is populated from <code>https://schema.org/softwareHelp</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>OGC API - Records</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/name</td>
+<td>links[].title</td>
+</tr>
+<tr>
+<td>https://schema.org/url</td>
+<td>links[].href</td>
+</tr>
+</tbody>
+</table>
+<p>The transpiler also sets <code>links[].rel</code> to <code>via</code>, <code>links[].hreflang</code> to <code>en</code>, <code>links[].created</code> from <code>dateCreated</code>, and <code>links[].updated</code> to the current timestamp.</p>
+<h2 id="publisher"><a id="publisher"></a> Publisher</h2>
+<p><code>https://schema.org/publisher</code> is not mapped by the current OGC API - Records transpiler.</p>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>OGC API - Records</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/email</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/identifier</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/name</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ogc-processes/" class="btn btn-neutral float-left" title="OGC API - Processes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../invenio/" class="btn btn-neutral float-right" title="InvenioRDM">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a></p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Terradue/transpiler-mate/" class="fa fa-code-fork" style="color: #fcfcfc"> Terradue/transpiler-mate</a>
+        </span>
+    
+    
+      <span><a href="../ogc-processes/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../invenio/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../javascripts/config.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

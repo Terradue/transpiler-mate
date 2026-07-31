@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Fabrice Brito, Simone Tripodi" /><link rel="canonical" href="https://terradue.github.io/transpiler-mate/explanation/cwl-metadata-conventions/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>CWL metadata code conventions - transpiler-mate</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../styles/css/app.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "CWL metadata code conventions";
+        var mkdocs_page_input_path = "explanation/cwl-metadata-conventions.md";
+        var mkdocs_page_url = "/transpiler-mate/explanation/cwl-metadata-conventions/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../imgs/icon-eoap.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/metadata-generator.html">Create CWL metadata with the generator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/generate-codemeta/">Generate CodeMeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/generate-datacite/">Generate DataCite metadata</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/generate-ogc-record/">Generate an OGC API - Record</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/generate-ogc-processes/">Generate an OGC API - Processes descriptor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/generate-oci-annotations/">Generate OCI annotations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/generate-markdown/">Generate Markdown workflow documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/bundle-cwl/">Bundle a CWL document</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/publish-to-invenio/">Publish to InvenioRDM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../how-to-guides/bump-version/">Bump a CWL software version</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >JSON Schemas</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/datacite_4_6/">DataCite 4.6</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/ogcapi_records/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/software_application/">Schema.org/SoftwareApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/oci_annotations/">OCI Annotations</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Crosswalks</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/codemeta/">CodeMeta</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/datacite/">DataCite</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/oci-annotations/">OCI annotations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/ogc-processes/">OGC API - Processes</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/ogc-record/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/invenio/">InvenioRDM</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/api/">Python API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">CWL metadata code conventions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#the-software-itself">The software itself</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#discoverability-and-citation">Discoverability and citation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#run-time-environment">Run-time environment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#current-version-of-the-software">Current version of the software</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#publisher">Publisher</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#authors-contributor">Authors &amp; Contributor</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#affiliations">Affiliations</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">transpiler-mate</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Explanation</li>
+      <li class="breadcrumb-item active">CWL metadata code conventions</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Terradue/transpiler-mate/edit/master/docs/explanation/cwl-metadata-conventions.md">Edit on Terradue/transpiler-mate</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="cwl-metadata-code-conventions">CWL Metadata code conventions</h1>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><span class="nt">$namespaces</span><span class="p">:</span>
+</span><span id="__span-0-2"><span class="w">  </span><span class="nt">s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.org/</span>
+</span><span id="__span-0-3"><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:SoftwareApplication</span>
+</span></code></pre></div>
+<p>The following is the recommended ordering for all CWL files:</p>
+<h2 id="the-software-itself">The software itself</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Creation date</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>License(s)</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My shiny workflow</span>
+</span><span id="__span-1-2"><span class="nt">s:description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">There&#39;s no workflow on earth like this one that solves NP-complete problems.</span>
+</span><span id="__span-1-3"><span class="nt">s:dateCreated</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2025-01-01&#39;</span>
+</span><span id="__span-1-4"><span class="nt">s:license</span><span class="p">:</span>
+</span><span id="__span-1-5"><span class="w">  </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:CreativeWork</span>
+</span><span id="__span-1-6"><span class="w">  </span><span class="nt">s:identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CC-BY-4.0</span>
+</span></code></pre></div>
+<p>Please note that the <code>traspiler-mate</code> is able to automatically deduce, for the <code>s:license</code>, all the license informations according to the License IDs from <a href="https://spdx.org/licenses/">SPDX License List</a>.</p>
+<h2 id="discoverability-and-citation">Discoverability and citation</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unique identifier</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Alternative identifier(s)</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Keywords</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Identifiers can be <em>ISBNs</em>, <em>GTIN</em> codes, _UUID_s, _DOI_s, etc.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><span class="nt">s:identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.5072/zenodo.393958</span>
+</span><span id="__span-2-2"><span class="nt">s:sameAs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://handle.test.datacite.org/10.5072/zenodo.393958</span>
+</span><span id="__span-2-3"><span class="nt">s:keywords</span><span class="p">:</span>
+</span><span id="__span-2-4"><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CWL</span>
+</span><span id="__span-2-5"><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Workflow</span>
+</span><span id="__span-2-6"><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Earth Observation</span>
+</span><span id="__span-2-7"><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:DefinedTerm</span>
+</span><span id="__span-2-8"><span class="w">  </span><span class="nt">s:description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delineation</span>
+</span><span id="__span-2-9"><span class="w">  </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">application-type</span>
+</span><span id="__span-2-10"><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:DefinedTerm</span>
+</span><span id="__span-2-11"><span class="w">  </span><span class="nt">s:description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hydrology</span>
+</span><span id="__span-2-12"><span class="w">  </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">domain</span>
+</span><span id="__span-2-13"><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:DefinedTerm</span>
+</span><span id="__span-2-14"><span class="w">  </span><span class="nt">s:inDefinedTermSet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords</span>
+</span><span id="__span-2-15"><span class="w">  </span><span class="nt">s:termCode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">959f1861-a776-41b1-ba6b-d23c71d4d1eb</span>
+</span></code></pre></div>
+<h2 id="run-time-environment">Run-time environment</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operating system</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Software requirements</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><span class="nt">s:operatingSystem</span><span class="p">:</span>
+</span><span id="__span-3-2"><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linux</span>
+</span><span id="__span-3-3"><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">macOS</span>
+</span><span id="__span-3-4"><span class="nt">s:softwareRequirements</span><span class="p">:</span>
+</span><span id="__span-3-5"><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://cwltool.readthedocs.io/en/latest/</span>
+</span><span id="__span-3-6"><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.python.org/</span>
+</span></code></pre></div>
+<h2 id="current-version-of-the-software">Current version of the software</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Version number</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Application help</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><span class="nt">s:softwareVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0.0</span>
+</span><span id="__span-4-2"><span class="nt">s:softwareHelp</span><span class="p">:</span>
+</span><span id="__span-4-3"><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:CreativeWork</span>
+</span><span id="__span-4-4"><span class="w">  </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User Manual</span>
+</span><span id="__span-4-5"><span class="w">  </span><span class="nt">s:url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://meoga-shiny-workflow.readthedocs.io/en/latest/</span>
+</span><span id="__span-4-6"><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:CreativeWork</span>
+</span><span id="__span-4-7"><span class="w">  </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Admin Manual</span>
+</span><span id="__span-4-8"><span class="w">  </span><span class="nt">s:url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://meoga.io/meoga/shiny-workflow/admin</span>
+</span></code></pre></div>
+<h2 id="publisher">Publisher</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>E-mail address</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Unique identifier</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><span class="nt">s:publisher</span><span class="p">:</span>
+</span><span id="__span-5-2"><span class="w">  </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:Organization</span>
+</span><span id="__span-5-3"><span class="w">  </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Make Earth Observation Great Again</span>
+</span><span id="__span-5-4"><span class="w">  </span><span class="nt">s:email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">info@meoga.com</span>
+</span><span id="__span-5-5"><span class="w">  </span><span class="nt">s:identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://ror.org/9999cx000</span>
+</span></code></pre></div>
+<h2 id="authors-contributor">Authors &amp; Contributor</h2>
+<p>While <code>s:author</code> is mandatory, <code>s:contributor</code> is not.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Given name</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Family name</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>E-mail address</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>URI</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Affiliation</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
+<h3 id="affiliations">Affiliations</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>E-mail address</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Unique identifier</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><span class="nt">s:author</span><span class="p">:</span>
+</span><span id="__span-6-2"><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:Person</span>
+</span><span id="__span-6-3"><span class="w">  </span><span class="nt">s:givenName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lex</span>
+</span><span id="__span-6-4"><span class="w">  </span><span class="nt">s:familyName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Luthor</span>
+</span><span id="__span-6-5"><span class="w">  </span><span class="nt">s:email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lex.luthor@luthorcorp.com</span>
+</span><span id="__span-6-6"><span class="w">  </span><span class="nt">s:identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://orcid.org/0000-9999-0000-9999</span>
+</span><span id="__span-6-7"><span class="w">  </span><span class="nt">s:affiliation</span><span class="p">:</span>
+</span><span id="__span-6-8"><span class="w">    </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:Organization</span>
+</span><span id="__span-6-9"><span class="w">    </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Luthor Corp</span>
+</span><span id="__span-6-10"><span class="w">    </span><span class="nt">s:identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://ror.org/0000cx000</span>
+</span><span id="__span-6-11">
+</span><span id="__span-6-12"><span class="nt">s:contributor</span><span class="p">:</span>
+</span><span id="__span-6-13"><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:Person</span>
+</span><span id="__span-6-14"><span class="w">  </span><span class="nt">s:givenName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Clark</span>
+</span><span id="__span-6-15"><span class="w">  </span><span class="nt">s:familyName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kent</span>
+</span><span id="__span-6-16"><span class="w">  </span><span class="nt">s:email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clark.kent@dailyplanet.com</span>
+</span><span id="__span-6-17"><span class="w">  </span><span class="nt">s:identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://orcid.org/0000-9999-0000-9999</span>
+</span><span id="__span-6-18"><span class="w">  </span><span class="nt">s:affiliation</span><span class="p">:</span>
+</span><span id="__span-6-19"><span class="w">    </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s:Organization</span>
+</span><span id="__span-6-20"><span class="w">    </span><span class="nt">s:name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Daily Planet</span>
+</span><span id="__span-6-21"><span class="w">    </span><span class="nt">s:identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://ror.org/0000cx000</span>
+</span></code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../" class="btn btn-neutral float-left" title="Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a></p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Terradue/transpiler-mate/" class="fa fa-code-fork" style="color: #fcfcfc"> Terradue/transpiler-mate</a>
+        </span>
+    
+    
+      <span><a href="../" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/config.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

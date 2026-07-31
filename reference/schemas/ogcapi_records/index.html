@@ -1,0 +1,6478 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Fabrice Brito, Simone Tripodi" /><link rel="canonical" href="https://terradue.github.io/transpiler-mate/reference/schemas/ogcapi_records/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>OGC API - Records - transpiler-mate</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../styles/css/app.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OGC API - Records";
+        var mkdocs_page_input_path = "reference/schemas/ogcapi_records.md";
+        var mkdocs_page_url = "/transpiler-mate/reference/schemas/ogcapi_records/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../imgs/icon-eoap.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/metadata-generator.html">Create CWL metadata with the generator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-codemeta/">Generate CodeMeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-datacite/">Generate DataCite metadata</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-ogc-record/">Generate an OGC API - Record</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-ogc-processes/">Generate an OGC API - Processes descriptor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-oci-annotations/">Generate OCI annotations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-markdown/">Generate Markdown workflow documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/bundle-cwl/">Bundle a CWL document</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/publish-to-invenio/">Publish to InvenioRDM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/bump-version/">Bump a CWL software version</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >JSON Schemas</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../datacite_4_6/">DataCite 4.6</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">OGC API - Records</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#1-property-root-id">1. Property root &gt; id</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-property-root-type">2. Property root &gt; type</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-property-root-time">3. Property root &gt; time</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#31-property-root-time-oneof-item-0">3.1. Property root &gt; time &gt; oneOf &gt; item 0</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#32-property-root-time-oneof-time">3.2. Property root &gt; time &gt; oneOf &gt; time</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-property-root-geometry">4. Property root &gt; geometry</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#41-property-root-geometry-oneof-item-0">4.1. Property root &gt; geometry &gt; oneOf &gt; item 0</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#42-property-root-geometry-oneof-geometrygeojson">4.2. Property root &gt; geometry &gt; oneOf &gt; geometryGeoJSON</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-property-root-conformsto">5. Property root &gt; conformsTo</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#51-root-conformsto-conformsto-items">5.1. root &gt; conformsTo &gt; conformsTo items</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-property-root-properties">6. Property root &gt; properties</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#61-property-root-properties-allof-recordcommonproperties">6.1. Property root &gt; properties &gt; allOf &gt; recordCommonProperties</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#62-property-root-properties-allof-item-1">6.2. Property root &gt; properties &gt; allOf &gt; item 1</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-property-root-links">7. Property root &gt; links</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#71-root-links-link">7.1. root &gt; links &gt; link</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8-property-root-linktemplates">8. Property root &gt; linkTemplates</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#81-root-linktemplates-linktemplate">8.1. root &gt; linkTemplates &gt; linkTemplate</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../software_application/">Schema.org/SoftwareApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../oci_annotations/">OCI Annotations</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Crosswalks</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../crosswalks/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../crosswalks/codemeta/">CodeMeta</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../crosswalks/datacite/">DataCite</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../crosswalks/oci-annotations/">OCI annotations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../crosswalks/ogc-processes/">OGC API - Processes</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../crosswalks/ogc-record/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../crosswalks/invenio/">InvenioRDM</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/">Python API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../explanation/cwl-metadata-conventions/">CWL metadata code conventions</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">transpiler-mate</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+          <li class="breadcrumb-item">JSON Schemas</li>
+      <li class="breadcrumb-item active">OGC API - Records</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Terradue/transpiler-mate/edit/master/docs/reference/schemas/ogcapi_records.md">Edit on Terradue/transpiler-mate</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="schema-docs">Schema Docs</h1>
+<ul>
+<li><a href="#id">1. Property <code>root &gt; id</code></a></li>
+<li><a href="#type">2. Property <code>root &gt; type</code></a></li>
+<li><a href="#time">3. Property <code>root &gt; time</code></a></li>
+<li><a href="#time_oneOf_i0">3.1. Property <code>root &gt; time &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#time_oneOf_i1">3.2. Property <code>root &gt; time &gt; oneOf &gt; time</code></a><ul>
+<li><a href="#time_oneOf_i1_date">3.2.1. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; date</code></a></li>
+<li><a href="#time_oneOf_i1_timestamp">3.2.2. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; timestamp</code></a></li>
+<li><a href="#time_oneOf_i1_interval">3.2.3. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; interval</code></a></li>
+<li><a href="#time_oneOf_i1_interval_items">3.2.3.1. root &gt; time &gt; oneOf &gt; item 1 &gt; interval &gt; interval items</a><ul>
+<li><a href="#time_oneOf_i1_interval_items_oneOf_i0">3.2.3.1.1. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; interval &gt; interval items &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#time_oneOf_i1_interval_items_oneOf_i1">3.2.3.1.2. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; interval &gt; interval items &gt; oneOf &gt; item 1</code></a></li>
+<li><a href="#time_oneOf_i1_interval_items_oneOf_i2">3.2.3.1.3. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; interval &gt; interval items &gt; oneOf &gt; item 2</code></a></li>
+</ul>
+</li>
+<li><a href="#time_oneOf_i1_resolution">3.2.4. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; resolution</code></a></li>
+</ul>
+</li>
+<li><a href="#geometry">4. Property <code>root &gt; geometry</code></a></li>
+<li><a href="#geometry_oneOf_i0">4.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 0</code></a></li>
+<li><a href="#geometry_oneOf_i1">4.2. Property <code>root &gt; geometry &gt; oneOf &gt; geometryGeoJSON</code></a><ul>
+<li><a href="#geometry_oneOf_i1_oneOf_i0">4.2.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; pointGeoJSON</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i0_type">4.2.1.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 0 &gt; type</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i0_coordinates">4.2.1.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 0 &gt; coordinates</code></a><ul>
+<li><a href="#geometry_oneOf_i1_oneOf_i0_coordinates_items">4.2.1.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 0 &gt; coordinates &gt; coordinates items</a></li>
+</ul>
+</li>
+<li><a href="#geometry_oneOf_i1_oneOf_i1">4.2.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; multipointGeoJSON</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i1_type">4.2.2.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 1 &gt; type</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i1_coordinates">4.2.2.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 1 &gt; coordinates</code></a><ul>
+<li><a href="#geometry_oneOf_i1_oneOf_i1_coordinates_items">4.2.2.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 1 &gt; coordinates &gt; coordinates items</a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i1_coordinates_items_items">4.2.2.2.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 1 &gt; coordinates &gt; coordinates items &gt; coordinates items items</a></li>
+</ul>
+</li>
+<li><a href="#geometry_oneOf_i1_oneOf_i2">4.2.3. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; linestringGeoJSON</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i2_type">4.2.3.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 2 &gt; type</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i2_coordinates">4.2.3.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 2 &gt; coordinates</code></a><ul>
+<li><a href="#geometry_oneOf_i1_oneOf_i2_coordinates_items">4.2.3.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 2 &gt; coordinates &gt; coordinates items</a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i2_coordinates_items_items">4.2.3.2.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 2 &gt; coordinates &gt; coordinates items &gt; coordinates items items</a></li>
+</ul>
+</li>
+<li><a href="#geometry_oneOf_i1_oneOf_i3">4.2.4. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; multilinestringGeoJSON</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i3_type">4.2.4.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 3 &gt; type</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i3_coordinates">4.2.4.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 3 &gt; coordinates</code></a><ul>
+<li><a href="#geometry_oneOf_i1_oneOf_i3_coordinates_items">4.2.4.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 3 &gt; coordinates &gt; coordinates items</a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i3_coordinates_items_items">4.2.4.2.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 3 &gt; coordinates &gt; coordinates items &gt; coordinates items items</a><ul>
+<li><a href="#geometry_oneOf_i1_oneOf_i3_coordinates_items_items_items">4.2.4.2.1.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 3 &gt; coordinates &gt; coordinates items &gt; coordinates items items &gt; coordinates items items items</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#geometry_oneOf_i1_oneOf_i4">4.2.5. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; polygonGeoJSON</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i4_type">4.2.5.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 4 &gt; type</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i4_coordinates">4.2.5.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 4 &gt; coordinates</code></a><ul>
+<li><a href="#geometry_oneOf_i1_oneOf_i4_coordinates_items">4.2.5.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 4 &gt; coordinates &gt; coordinates items</a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i4_coordinates_items_items">4.2.5.2.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 4 &gt; coordinates &gt; coordinates items &gt; coordinates items items</a><ul>
+<li><a href="#geometry_oneOf_i1_oneOf_i4_coordinates_items_items_items">4.2.5.2.1.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 4 &gt; coordinates &gt; coordinates items &gt; coordinates items items &gt; coordinates items items items</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#geometry_oneOf_i1_oneOf_i5">4.2.6. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; multipolygonGeoJSON</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i5_type">4.2.6.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 5 &gt; type</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i5_coordinates">4.2.6.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 5 &gt; coordinates</code></a><ul>
+<li><a href="#geometry_oneOf_i1_oneOf_i5_coordinates_items">4.2.6.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 5 &gt; coordinates &gt; coordinates items</a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i5_coordinates_items_items">4.2.6.2.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 5 &gt; coordinates &gt; coordinates items &gt; coordinates items items</a></li>
+</ul>
+</li>
+<li><a href="#geometry_oneOf_i1_oneOf_i6">4.2.7. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; geometrycollectionGeoJSON</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i6_type">4.2.7.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 6 &gt; type</code></a></li>
+<li><a href="#geometry_oneOf_i1_oneOf_i6_geometries">4.2.7.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 6 &gt; geometries</code></a><ul>
+<li><a href="#geometry_oneOf_i1_oneOf_i6_geometries_items">4.2.7.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 6 &gt; geometries &gt; geometryGeoJSON</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#conformsTo">5. Property <code>root &gt; conformsTo</code></a></li>
+<li><a href="#conformsTo_items">5.1. root &gt; conformsTo &gt; conformsTo items</a></li>
+<li><a href="#properties">6. Property <code>root &gt; properties</code></a></li>
+<li><a href="#properties_allOf_i0">6.1. Property <code>root &gt; properties &gt; allOf &gt; recordCommonProperties</code></a><ul>
+<li><a href="#properties_allOf_i0_created">6.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; created</code></a></li>
+<li><a href="#properties_allOf_i0_updated">6.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; updated</code></a></li>
+<li><a href="#properties_allOf_i0_type">6.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; type</code></a></li>
+<li><a href="#properties_allOf_i0_title">6.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; title</code></a></li>
+<li><a href="#properties_allOf_i0_description">6.1.5. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; description</code></a></li>
+<li><a href="#properties_allOf_i0_keywords">6.1.6. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; keywords</code></a></li>
+<li><a href="#properties_allOf_i0_keywords_items">6.1.6.1. root &gt; properties &gt; allOf &gt; item 0 &gt; keywords &gt; keywords items</a></li>
+<li><a href="#properties_allOf_i0_themes">6.1.7. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes</code></a></li>
+<li><a href="#properties_allOf_i0_themes_items">6.1.7.1. root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; theme</a><ul>
+<li><a href="#properties_allOf_i0_themes_items_concepts">6.1.7.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts</code></a></li>
+<li><a href="#properties_allOf_i0_themes_items_concepts_items">6.1.7.1.1.1. root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts &gt; concepts items</a><ul>
+<li><a href="#properties_allOf_i0_themes_items_concepts_items_id">6.1.7.1.1.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts &gt; concepts items &gt; id</code></a></li>
+<li><a href="#properties_allOf_i0_themes_items_concepts_items_title">6.1.7.1.1.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts &gt; concepts items &gt; title</code></a></li>
+<li><a href="#properties_allOf_i0_themes_items_concepts_items_description">6.1.7.1.1.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts &gt; concepts items &gt; description</code></a></li>
+<li><a href="#properties_allOf_i0_themes_items_concepts_items_url">6.1.7.1.1.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts &gt; concepts items &gt; url</code></a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_themes_items_scheme">6.1.7.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; scheme</code></a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_language">6.1.8. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; language</code></a></li>
+<li><a href="#properties_allOf_i0_language_code">6.1.8.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; language &gt; code</code></a></li>
+<li><a href="#properties_allOf_i0_language_name">6.1.8.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; language &gt; name</code></a></li>
+<li><a href="#properties_allOf_i0_language_alternate">6.1.8.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; language &gt; alternate</code></a></li>
+<li><a href="#properties_allOf_i0_language_dir">6.1.8.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; language &gt; dir</code></a></li>
+<li><a href="#properties_allOf_i0_languages">6.1.9. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; languages</code></a></li>
+<li><a href="#properties_allOf_i0_languages_items">6.1.9.1. root &gt; properties &gt; allOf &gt; item 0 &gt; languages &gt; language</a></li>
+<li><a href="#properties_allOf_i0_resourceLanguages">6.1.10. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; resourceLanguages</code></a></li>
+<li><a href="#properties_allOf_i0_resourceLanguages_items">6.1.10.1. root &gt; properties &gt; allOf &gt; item 0 &gt; resourceLanguages &gt; language</a></li>
+<li><a href="#properties_allOf_i0_externalIds">6.1.11. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; externalIds</code></a></li>
+<li><a href="#properties_allOf_i0_externalIds_items">6.1.11.1. root &gt; properties &gt; allOf &gt; item 0 &gt; externalIds &gt; externalIds items</a><ul>
+<li><a href="#properties_allOf_i0_externalIds_items_scheme">6.1.11.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; externalIds &gt; externalIds items &gt; scheme</code></a></li>
+<li><a href="#properties_allOf_i0_externalIds_items_value">6.1.11.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; externalIds &gt; externalIds items &gt; value</code></a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_formats">6.1.12. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; formats</code></a></li>
+<li><a href="#properties_allOf_i0_formats_items">6.1.12.1. root &gt; properties &gt; allOf &gt; item 0 &gt; formats &gt; format</a><ul>
+<li><a href="#properties_allOf_i0_formats_items_anyOf_i0">6.1.12.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; formats &gt; formats items &gt; anyOf &gt; item 0</code></a></li>
+<li><a href="#autogenerated_heading_2">6.1.12.1.1.1. The following properties are required</a></li>
+<li><a href="#properties_allOf_i0_formats_items_anyOf_i1">6.1.12.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; formats &gt; formats items &gt; anyOf &gt; item 1</code></a></li>
+<li><a href="#autogenerated_heading_3">6.1.12.1.2.1. The following properties are required</a></li>
+<li><a href="#properties_allOf_i0_formats_items_name">6.1.12.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; formats &gt; formats items &gt; name</code></a></li>
+<li><a href="#properties_allOf_i0_formats_items_mediaType">6.1.12.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; formats &gt; formats items &gt; mediaType</code></a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_contacts">6.1.13. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items">6.1.13.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contact</a><ul>
+<li><a href="#properties_allOf_i0_contacts_items_anyOf_i0">6.1.13.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; anyOf &gt; item 0</code></a></li>
+<li><a href="#autogenerated_heading_4">6.1.13.1.1.1. The following properties are required</a></li>
+<li><a href="#properties_allOf_i0_contacts_items_anyOf_i1">6.1.13.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; anyOf &gt; item 1</code></a></li>
+<li><a href="#autogenerated_heading_5">6.1.13.1.2.1. The following properties are required</a></li>
+<li><a href="#properties_allOf_i0_contacts_items_identifier">6.1.13.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; identifier</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_name">6.1.13.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; name</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_position">6.1.13.1.5. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; position</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_organization">6.1.13.1.6. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; organization</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo">6.1.13.1.7. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0">6.1.13.1.7.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; link</code></a><ul>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0">6.1.13.1.7.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; linkBase</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_rel">6.1.13.1.7.1.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; rel</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_type">6.1.13.1.7.1.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; type</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_hreflang">6.1.13.1.7.1.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; hreflang</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_title">6.1.13.1.7.1.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; title</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_length">6.1.13.1.7.1.1.5. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; length</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_created">6.1.13.1.7.1.1.6. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; created</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_updated">6.1.13.1.7.1.1.7. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; updated</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i1">6.1.13.1.7.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 1</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i1_href">6.1.13.1.7.1.2.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 1 &gt; href</code></a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i1">6.1.13.1.7.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 1</code></a><ul>
+<li><a href="#autogenerated_heading_6">6.1.13.1.7.2.1. The following properties are required</a></li>
+<li><a href="#properties_allOf_i0_contacts_items_logo_allOf_i1_rel">6.1.13.1.7.2.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 1 &gt; rel</code></a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_contacts_items_phones">6.1.13.1.8. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; phones</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_phones_items">6.1.13.1.8.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; phones &gt; phones items</a><ul>
+<li><a href="#properties_allOf_i0_contacts_items_phones_items_value">6.1.13.1.8.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; phones &gt; phones items &gt; value</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_phones_items_roles">6.1.13.1.8.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; phones &gt; phones items &gt; roles</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_phones_items_roles_items">6.1.13.1.8.1.2.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; phones &gt; phones items &gt; roles &gt; roles items</a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_contacts_items_emails">6.1.13.1.9. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; emails</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_emails_items">6.1.13.1.9.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; emails &gt; emails items</a><ul>
+<li><a href="#properties_allOf_i0_contacts_items_emails_items_value">6.1.13.1.9.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; emails &gt; emails items &gt; value</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_emails_items_roles">6.1.13.1.9.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; emails &gt; emails items &gt; roles</code></a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_contacts_items_addresses">6.1.13.1.10. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_addresses_items">6.1.13.1.10.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items</a><ul>
+<li><a href="#properties_allOf_i0_contacts_items_addresses_items_deliveryPoint">6.1.13.1.10.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; deliveryPoint</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_addresses_items_deliveryPoint_items">6.1.13.1.10.1.1.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; deliveryPoint &gt; deliveryPoint items</a></li>
+<li><a href="#properties_allOf_i0_contacts_items_addresses_items_city">6.1.13.1.10.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; city</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_addresses_items_administrativeArea">6.1.13.1.10.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; administrativeArea</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_addresses_items_postalCode">6.1.13.1.10.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; postalCode</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_addresses_items_country">6.1.13.1.10.1.5. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; country</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_addresses_items_roles">6.1.13.1.10.1.6. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; roles</code></a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_contacts_items_links">6.1.13.1.11. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; links</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_links_items">6.1.13.1.11.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; links &gt; links items</a><ul>
+<li><a href="#properties_allOf_i0_contacts_items_links_items_allOf_i0">6.1.13.1.11.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; links &gt; links items &gt; allOf &gt; link</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_links_items_allOf_i1">6.1.13.1.11.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; links &gt; links items &gt; allOf &gt; item 1</code></a></li>
+<li><a href="#autogenerated_heading_7">6.1.13.1.11.1.2.1. The following properties are required</a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_contacts_items_hoursOfService">6.1.13.1.12. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; hoursOfService</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_contactInstructions">6.1.13.1.13. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; contactInstructions</code></a></li>
+<li><a href="#properties_allOf_i0_contacts_items_roles">6.1.13.1.14. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; roles</code></a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i0_license">6.1.14. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; license</code></a></li>
+<li><a href="#properties_allOf_i0_rights">6.1.15. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; rights</code></a></li>
+</ul>
+</li>
+<li><a href="#properties_allOf_i1">6.2. Property <code>root &gt; properties &gt; allOf &gt; item 1</code></a></li>
+<li><a href="#links">7. Property <code>root &gt; links</code></a></li>
+<li><a href="#links_items">7.1. root &gt; links &gt; link</a></li>
+<li><a href="#linkTemplates">8. Property <code>root &gt; linkTemplates</code></a></li>
+<li><a href="#linkTemplates_items">8.1. root &gt; linkTemplates &gt; linkTemplate</a><ul>
+<li><a href="#linkTemplates_items_allOf_i0">8.1.1. Property <code>root &gt; linkTemplates &gt; linkTemplates items &gt; allOf &gt; linkBase</code></a></li>
+<li><a href="#linkTemplates_items_allOf_i1">8.1.2. Property <code>root &gt; linkTemplates &gt; linkTemplates items &gt; allOf &gt; item 1</code></a></li>
+<li><a href="#linkTemplates_items_allOf_i1_uriTemplate">8.1.2.1. Property <code>root &gt; linkTemplates &gt; linkTemplates items &gt; allOf &gt; item 1 &gt; uriTemplate</code></a></li>
+<li><a href="#linkTemplates_items_allOf_i1_varBase">8.1.2.2. Property <code>root &gt; linkTemplates &gt; linkTemplates items &gt; allOf &gt; item 1 &gt; varBase</code></a></li>
+<li><a href="#linkTemplates_items_allOf_i1_variables">8.1.2.3. Property <code>root &gt; linkTemplates &gt; linkTemplates items &gt; allOf &gt; item 1 &gt; variables</code></a></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/recordGeoJSON</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#id">id</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A unique identifier of the catalog record.</td>
+</tr>
+<tr>
+<td>+ <a href="#type">type</a></td>
+<td>No</td>
+<td>enum (of string)</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#time">time</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#geometry">geometry</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#conformsTo">conformsTo</a></td>
+<td>No</td>
+<td>array of string</td>
+<td>No</td>
+<td>-</td>
+<td>The extensions/conformance classes used in this record.</td>
+</tr>
+<tr>
+<td>+ <a href="#properties">properties</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#links">links</a></td>
+<td>No</td>
+<td>array</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#linkTemplates">linkTemplates</a></td>
+<td>No</td>
+<td>array</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-property-root-id"><a name="id"></a>1. Property <code>root &gt; id</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A unique identifier of the catalog record.</p>
+<h2 id="2-property-root-type"><a name="type"></a>2. Property <code>root &gt; type</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* "Feature"</p>
+<h2 id="3-property-root-time"><a name="time"></a>3. Property <code>root &gt; time</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#time_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#time_oneOf_i1">time</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="31-property-root-time-oneof-item-0"><a name="time_oneOf_i0"></a>3.1. Property <code>root &gt; time &gt; oneOf &gt; item 0</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of null)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* null</p>
+<h3 id="32-property-root-time-oneof-time"><a name="time_oneOf_i1"></a>3.2. Property <code>root &gt; time &gt; oneOf &gt; time</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/time</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#time_oneOf_i1_date">date</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#time_oneOf_i1_timestamp">timestamp</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#time_oneOf_i1_interval">interval</a></td>
+<td>No</td>
+<td>array</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#time_oneOf_i1_resolution">resolution</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Minimum time period resolvable in the dataset, as an ISO 8601 duration.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="321-property-root-time-oneof-item-1-date"><a name="time_oneOf_i1_date"></a>3.2.1. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; date</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Restrictions</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Must match regular expression</strong></td>
+<td><code>^\d{4}-\d{2}-\d{2}$</code> <a href="https://regex101.com/?regex=%5E%5Cd%7B4%7D-%5Cd%7B2%7D-%5Cd%7B2%7D%24">Test</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="322-property-root-time-oneof-item-1-timestamp"><a name="time_oneOf_i1_timestamp"></a>3.2.2. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; timestamp</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Restrictions</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Must match regular expression</strong></td>
+<td><code>^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$</code> <a href="https://regex101.com/?regex=%5E%5Cd%7B4%7D-%5Cd%7B2%7D-%5Cd%7B2%7DT%5Cd%7B2%7D%3A%5Cd%7B2%7D%3A%5Cd%7B2%7D%28%3F%3A%5C.%5Cd%2B%29%3FZ%24">Test</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="323-property-root-time-oneof-item-1-interval"><a name="time_oneOf_i1_interval"></a>3.2.3. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; interval</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#time_oneOf_i1_interval_items">interval items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3231-root-time-oneof-item-1-interval-interval-items"><a name="time_oneOf_i1_interval_items"></a>3.2.3.1. root &gt; time &gt; oneOf &gt; item 1 &gt; interval &gt; interval items</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#time_oneOf_i1_interval_items_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#time_oneOf_i1_interval_items_oneOf_i1">item 1</a></td>
+</tr>
+<tr>
+<td><a href="#time_oneOf_i1_interval_items_oneOf_i2">item 2</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="32311-property-root-time-oneof-item-1-interval-interval-items-oneof-item-0"><a name="time_oneOf_i1_interval_items_oneOf_i0"></a>3.2.3.1.1. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; interval &gt; interval items &gt; oneOf &gt; item 0</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Restrictions</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Must match regular expression</strong></td>
+<td><code>^\d{4}-\d{2}-\d{2}$</code> <a href="https://regex101.com/?regex=%5E%5Cd%7B4%7D-%5Cd%7B2%7D-%5Cd%7B2%7D%24">Test</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="32312-property-root-time-oneof-item-1-interval-interval-items-oneof-item-1"><a name="time_oneOf_i1_interval_items_oneOf_i1"></a>3.2.3.1.2. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; interval &gt; interval items &gt; oneOf &gt; item 1</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Restrictions</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Must match regular expression</strong></td>
+<td><code>^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$</code> <a href="https://regex101.com/?regex=%5E%5Cd%7B4%7D-%5Cd%7B2%7D-%5Cd%7B2%7DT%5Cd%7B2%7D%3A%5Cd%7B2%7D%3A%5Cd%7B2%7D%28%3F%3A%5C.%5Cd%2B%29%3FZ%24">Test</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="32313-property-root-time-oneof-item-1-interval-interval-items-oneof-item-2"><a name="time_oneOf_i1_interval_items_oneOf_i2"></a>3.2.3.1.3. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; interval &gt; interval items &gt; oneOf &gt; item 2</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* ".."</p>
+<h4 id="324-property-root-time-oneof-item-1-resolution"><a name="time_oneOf_i1_resolution"></a>3.2.4. Property <code>root &gt; time &gt; oneOf &gt; item 1 &gt; resolution</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Minimum time period resolvable in the dataset, as an ISO 8601 duration.</p>
+<h2 id="4-property-root-geometry"><a name="geometry"></a>4. Property <code>root &gt; geometry</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#geometry_oneOf_i1">geometryGeoJSON</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="41-property-root-geometry-oneof-item-0"><a name="geometry_oneOf_i0"></a>4.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 0</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of null)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* null</p>
+<h3 id="42-property-root-geometry-oneof-geometrygeojson"><a name="geometry_oneOf_i1"></a>4.2. Property <code>root &gt; geometry &gt; oneOf &gt; geometryGeoJSON</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/geometryGeoJSON</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>One of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i0">pointGeoJSON</a></td>
+</tr>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i1">multipointGeoJSON</a></td>
+</tr>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i2">linestringGeoJSON</a></td>
+</tr>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i3">multilinestringGeoJSON</a></td>
+</tr>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i4">polygonGeoJSON</a></td>
+</tr>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i5">multipolygonGeoJSON</a></td>
+</tr>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i6">geometrycollectionGeoJSON</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="421-property-root-geometry-oneof-item-1-oneof-pointgeojson"><a name="geometry_oneOf_i1_oneOf_i0"></a>4.2.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; pointGeoJSON</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/pointGeoJSON</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i0_type">type</a></td>
+<td>No</td>
+<td>enum (of string)</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i0_coordinates">coordinates</a></td>
+<td>No</td>
+<td>array of number</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="4211-property-root-geometry-oneof-item-1-oneof-item-0-type"><a name="geometry_oneOf_i1_oneOf_i0_type"></a>4.2.1.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 0 &gt; type</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* "Point"</p>
+<h5 id="4212-property-root-geometry-oneof-item-1-oneof-item-0-coordinates"><a name="geometry_oneOf_i1_oneOf_i0_coordinates"></a>4.2.1.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 0 &gt; coordinates</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i0_coordinates_items">coordinates items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="42121-root-geometry-oneof-item-1-oneof-item-0-coordinates-coordinates-items"><a name="geometry_oneOf_i1_oneOf_i0_coordinates_items"></a>4.2.1.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 0 &gt; coordinates &gt; coordinates items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h4 id="422-property-root-geometry-oneof-item-1-oneof-multipointgeojson"><a name="geometry_oneOf_i1_oneOf_i1"></a>4.2.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; multipointGeoJSON</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/multipointGeoJSON</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i1_type">type</a></td>
+<td>No</td>
+<td>enum (of string)</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i1_coordinates">coordinates</a></td>
+<td>No</td>
+<td>array of array</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="4221-property-root-geometry-oneof-item-1-oneof-item-1-type"><a name="geometry_oneOf_i1_oneOf_i1_type"></a>4.2.2.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 1 &gt; type</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* "MultiPoint"</p>
+<h5 id="4222-property-root-geometry-oneof-item-1-oneof-item-1-coordinates"><a name="geometry_oneOf_i1_oneOf_i1_coordinates"></a>4.2.2.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 1 &gt; coordinates</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i1_coordinates_items">coordinates items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="42221-root-geometry-oneof-item-1-oneof-item-1-coordinates-coordinates-items"><a name="geometry_oneOf_i1_oneOf_i1_coordinates_items"></a>4.2.2.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 1 &gt; coordinates &gt; coordinates items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i1_coordinates_items_items">coordinates items items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="422211-root-geometry-oneof-item-1-oneof-item-1-coordinates-coordinates-items-coordinates-items-items"><a name="geometry_oneOf_i1_oneOf_i1_coordinates_items_items"></a>4.2.2.2.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 1 &gt; coordinates &gt; coordinates items &gt; coordinates items items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h4 id="423-property-root-geometry-oneof-item-1-oneof-linestringgeojson"><a name="geometry_oneOf_i1_oneOf_i2"></a>4.2.3. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; linestringGeoJSON</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/linestringGeoJSON</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i2_type">type</a></td>
+<td>No</td>
+<td>enum (of string)</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i2_coordinates">coordinates</a></td>
+<td>No</td>
+<td>array of array</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="4231-property-root-geometry-oneof-item-1-oneof-item-2-type"><a name="geometry_oneOf_i1_oneOf_i2_type"></a>4.2.3.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 2 &gt; type</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* "LineString"</p>
+<h5 id="4232-property-root-geometry-oneof-item-1-oneof-item-2-coordinates"><a name="geometry_oneOf_i1_oneOf_i2_coordinates"></a>4.2.3.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 2 &gt; coordinates</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i2_coordinates_items">coordinates items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="42321-root-geometry-oneof-item-1-oneof-item-2-coordinates-coordinates-items"><a name="geometry_oneOf_i1_oneOf_i2_coordinates_items"></a>4.2.3.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 2 &gt; coordinates &gt; coordinates items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i2_coordinates_items_items">coordinates items items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="423211-root-geometry-oneof-item-1-oneof-item-2-coordinates-coordinates-items-coordinates-items-items"><a name="geometry_oneOf_i1_oneOf_i2_coordinates_items_items"></a>4.2.3.2.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 2 &gt; coordinates &gt; coordinates items &gt; coordinates items items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h4 id="424-property-root-geometry-oneof-item-1-oneof-multilinestringgeojson"><a name="geometry_oneOf_i1_oneOf_i3"></a>4.2.4. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; multilinestringGeoJSON</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/multilinestringGeoJSON</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i3_type">type</a></td>
+<td>No</td>
+<td>enum (of string)</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i3_coordinates">coordinates</a></td>
+<td>No</td>
+<td>array of array</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="4241-property-root-geometry-oneof-item-1-oneof-item-3-type"><a name="geometry_oneOf_i1_oneOf_i3_type"></a>4.2.4.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 3 &gt; type</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* "MultiLineString"</p>
+<h5 id="4242-property-root-geometry-oneof-item-1-oneof-item-3-coordinates"><a name="geometry_oneOf_i1_oneOf_i3_coordinates"></a>4.2.4.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 3 &gt; coordinates</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i3_coordinates_items">coordinates items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="42421-root-geometry-oneof-item-1-oneof-item-3-coordinates-coordinates-items"><a name="geometry_oneOf_i1_oneOf_i3_coordinates_items"></a>4.2.4.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 3 &gt; coordinates &gt; coordinates items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i3_coordinates_items_items">coordinates items items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="424211-root-geometry-oneof-item-1-oneof-item-3-coordinates-coordinates-items-coordinates-items-items"><a name="geometry_oneOf_i1_oneOf_i3_coordinates_items_items"></a>4.2.4.2.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 3 &gt; coordinates &gt; coordinates items &gt; coordinates items items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i3_coordinates_items_items_items">coordinates items items items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="4242111-root-geometry-oneof-item-1-oneof-item-3-coordinates-coordinates-items-coordinates-items-items-coordinates-items-items-items"><a name="geometry_oneOf_i1_oneOf_i3_coordinates_items_items_items"></a>4.2.4.2.1.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 3 &gt; coordinates &gt; coordinates items &gt; coordinates items items &gt; coordinates items items items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h4 id="425-property-root-geometry-oneof-item-1-oneof-polygongeojson"><a name="geometry_oneOf_i1_oneOf_i4"></a>4.2.5. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; polygonGeoJSON</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/polygonGeoJSON</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i4_type">type</a></td>
+<td>No</td>
+<td>enum (of string)</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i4_coordinates">coordinates</a></td>
+<td>No</td>
+<td>array of array</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="4251-property-root-geometry-oneof-item-1-oneof-item-4-type"><a name="geometry_oneOf_i1_oneOf_i4_type"></a>4.2.5.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 4 &gt; type</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* "Polygon"</p>
+<h5 id="4252-property-root-geometry-oneof-item-1-oneof-item-4-coordinates"><a name="geometry_oneOf_i1_oneOf_i4_coordinates"></a>4.2.5.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 4 &gt; coordinates</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i4_coordinates_items">coordinates items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="42521-root-geometry-oneof-item-1-oneof-item-4-coordinates-coordinates-items"><a name="geometry_oneOf_i1_oneOf_i4_coordinates_items"></a>4.2.5.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 4 &gt; coordinates &gt; coordinates items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i4_coordinates_items_items">coordinates items items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="425211-root-geometry-oneof-item-1-oneof-item-4-coordinates-coordinates-items-coordinates-items-items"><a name="geometry_oneOf_i1_oneOf_i4_coordinates_items_items"></a>4.2.5.2.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 4 &gt; coordinates &gt; coordinates items &gt; coordinates items items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i4_coordinates_items_items_items">coordinates items items items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="4252111-root-geometry-oneof-item-1-oneof-item-4-coordinates-coordinates-items-coordinates-items-items-coordinates-items-items-items"><a name="geometry_oneOf_i1_oneOf_i4_coordinates_items_items_items"></a>4.2.5.2.1.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 4 &gt; coordinates &gt; coordinates items &gt; coordinates items items &gt; coordinates items items items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h4 id="426-property-root-geometry-oneof-item-1-oneof-multipolygongeojson"><a name="geometry_oneOf_i1_oneOf_i5"></a>4.2.6. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; multipolygonGeoJSON</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/multipolygonGeoJSON</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i5_type">type</a></td>
+<td>No</td>
+<td>enum (of string)</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i5_coordinates">coordinates</a></td>
+<td>No</td>
+<td>array of array</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="4261-property-root-geometry-oneof-item-1-oneof-item-5-type"><a name="geometry_oneOf_i1_oneOf_i5_type"></a>4.2.6.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 5 &gt; type</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* "MultiPoint"</p>
+<h5 id="4262-property-root-geometry-oneof-item-1-oneof-item-5-coordinates"><a name="geometry_oneOf_i1_oneOf_i5_coordinates"></a>4.2.6.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 5 &gt; coordinates</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i5_coordinates_items">coordinates items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="42621-root-geometry-oneof-item-1-oneof-item-5-coordinates-coordinates-items"><a name="geometry_oneOf_i1_oneOf_i5_coordinates_items"></a>4.2.6.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 5 &gt; coordinates &gt; coordinates items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i5_coordinates_items_items">coordinates items items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="426211-root-geometry-oneof-item-1-oneof-item-5-coordinates-coordinates-items-coordinates-items-items"><a name="geometry_oneOf_i1_oneOf_i5_coordinates_items_items"></a>4.2.6.2.1.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 5 &gt; coordinates &gt; coordinates items &gt; coordinates items items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>number</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h4 id="427-property-root-geometry-oneof-item-1-oneof-geometrycollectiongeojson"><a name="geometry_oneOf_i1_oneOf_i6"></a>4.2.7. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; geometrycollectionGeoJSON</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/geometrycollectionGeoJSON</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i6_type">type</a></td>
+<td>No</td>
+<td>enum (of string)</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>+ <a href="#geometry_oneOf_i1_oneOf_i6_geometries">geometries</a></td>
+<td>No</td>
+<td>array</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="4271-property-root-geometry-oneof-item-1-oneof-item-6-type"><a name="geometry_oneOf_i1_oneOf_i6_type"></a>4.2.7.1. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 6 &gt; type</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* "GeometryCollection"</p>
+<h5 id="4272-property-root-geometry-oneof-item-1-oneof-item-6-geometries"><a name="geometry_oneOf_i1_oneOf_i6_geometries"></a>4.2.7.2. Property <code>root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 6 &gt; geometries</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#geometry_oneOf_i1_oneOf_i6_geometries_items">geometryGeoJSON</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="42721-root-geometry-oneof-item-1-oneof-item-6-geometries-geometrygeojson"><a name="geometry_oneOf_i1_oneOf_i6_geometries_items"></a>4.2.7.2.1. root &gt; geometry &gt; oneOf &gt; item 1 &gt; oneOf &gt; item 6 &gt; geometries &gt; geometryGeoJSON</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#geometry_oneOf_i1">geometry_oneOf_i1</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-property-root-conformsto"><a name="conformsTo"></a>5. Property <code>root &gt; conformsTo</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The extensions/conformance classes used in this record.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#conformsTo_items">conformsTo items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="51-root-conformsto-conformsto-items"><a name="conformsTo_items"></a>5.1. root &gt; conformsTo &gt; conformsTo items</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-property-root-properties"><a name="properties"></a>6. Property <code>root &gt; properties</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>All of(Requirement)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0">recordCommonProperties</a></td>
+</tr>
+<tr>
+<td><a href="#properties_allOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="61-property-root-properties-allof-recordcommonproperties"><a name="properties_allOf_i0"></a>6.1. Property <code>root &gt; properties &gt; allOf &gt; recordCommonProperties</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/recordCommonProperties</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#properties_allOf_i0_created">created</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The date this record was created in the server.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_updated">updated</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The most recent date on which the record was changed.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_type">type</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The nature or genre of the resource. The value should be a code, convenient for filtering records. Where available, a link to the canonical URI of the record type resource will be added to the 'links' property.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_title">title</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A human-readable name given to the resource.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_description">description</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A free-text account of the resource.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_keywords">keywords</a></td>
+<td>No</td>
+<td>array of string</td>
+<td>No</td>
+<td>-</td>
+<td>The topic or topics of the resource. Typically represented using free-form keywords, tags, key phrases, or classification codes.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_themes">themes</a></td>
+<td>No</td>
+<td>array</td>
+<td>No</td>
+<td>-</td>
+<td>A knowledge organization system used to classify the resource.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_language">language</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>In #/$defs/language</td>
+<td>The language used for textual values in this record representation.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_languages">languages</a></td>
+<td>No</td>
+<td>array</td>
+<td>No</td>
+<td>-</td>
+<td>This list of languages in which this record is available.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_resourceLanguages">resourceLanguages</a></td>
+<td>No</td>
+<td>array</td>
+<td>No</td>
+<td>-</td>
+<td>The list of languages in which the resource described by this record is available.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_externalIds">externalIds</a></td>
+<td>No</td>
+<td>array of object</td>
+<td>No</td>
+<td>-</td>
+<td>An identifier for the resource assigned by an external (to the catalog) entity.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_formats">formats</a></td>
+<td>No</td>
+<td>array</td>
+<td>No</td>
+<td>-</td>
+<td>A list of available distributions of the resource.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts">contacts</a></td>
+<td>No</td>
+<td>array</td>
+<td>No</td>
+<td>-</td>
+<td>A list of contacts qualified by their role(s) in association to the record or the resource described by the record.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_license">license</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>In #/$defs/license</td>
+<td>A legal document under which the resource is made available. If the resource is being made available under a common license then use an SPDX license id (https://spdx.org/licenses/). If the resource is being made available under multiple common licenses then use an SPDX license expression v2.3 string (https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/) If the resource is being made available under one or more licenses that haven't been assigned an SPDX identifier or one or more custom licenses then use a string value of 'other' and include one or more links (rel="license") in the `link` section of the record to the file(s) that contains the text of the license(s). There is also the case of a resource that is private or unpublished and is thus unlicensed; in this case do not register such a resource in the catalog in the first place since there is no point in making such a resource discoverable.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_rights">rights</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A statement that concerns all rights not addressed by the license such as a copyright statement.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="611-property-root-properties-allof-item-0-created"><a name="properties_allOf_i0_created"></a>6.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; created</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>date-time</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The date this record was created in the server.</p>
+<h4 id="612-property-root-properties-allof-item-0-updated"><a name="properties_allOf_i0_updated"></a>6.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; updated</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>date-time</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The most recent date on which the record was changed.</p>
+<h4 id="613-property-root-properties-allof-item-0-type"><a name="properties_allOf_i0_type"></a>6.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; type</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The nature or genre of the resource. The value should be a code, convenient for filtering records. Where available, a link to the canonical URI of the record type resource will be added to the 'links' property.</p>
+<h4 id="614-property-root-properties-allof-item-0-title"><a name="properties_allOf_i0_title"></a>6.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; title</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A human-readable name given to the resource.</p>
+<h4 id="615-property-root-properties-allof-item-0-description"><a name="properties_allOf_i0_description"></a>6.1.5. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; description</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A free-text account of the resource.</p>
+<h4 id="616-property-root-properties-allof-item-0-keywords"><a name="properties_allOf_i0_keywords"></a>6.1.6. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; keywords</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The topic or topics of the resource. Typically represented using free-form keywords, tags, key phrases, or classification codes.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_keywords_items">keywords items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="6161-root-properties-allof-item-0-keywords-keywords-items"><a name="properties_allOf_i0_keywords_items"></a>6.1.6.1. root &gt; properties &gt; allOf &gt; item 0 &gt; keywords &gt; keywords items</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h4 id="617-property-root-properties-allof-item-0-themes"><a name="properties_allOf_i0_themes"></a>6.1.7. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A knowledge organization system used to classify the resource.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_themes_items">theme</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="6171-root-properties-allof-item-0-themes-theme"><a name="properties_allOf_i0_themes_items"></a>6.1.7.1. root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; theme</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/theme</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#properties_allOf_i0_themes_items_concepts">concepts</a></td>
+<td>No</td>
+<td>array of object</td>
+<td>No</td>
+<td>-</td>
+<td>One or more entity/concept identifiers from this knowledge system. it is recommended that a resolvable URI be used for each entity/concept identifier.</td>
+</tr>
+<tr>
+<td>+ <a href="#properties_allOf_i0_themes_items_scheme">scheme</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>An identifier for the knowledge organization system used to classify the resource.  It is recommended that the identifier be a resolvable URI.  The list of schemes used in a searchable catalog can be determined by inspecting the server's OpenAPI document or, if the server implements CQL2, by exposing a queryable (e.g. named `scheme`) and enumerating the list of schemes in the queryable's schema definition.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="61711-property-root-properties-allof-item-0-themes-themes-items-concepts"><a name="properties_allOf_i0_themes_items_concepts"></a>6.1.7.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> One or more entity/concept identifiers from this knowledge system. it is recommended that a resolvable URI be used for each entity/concept identifier.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_themes_items_concepts_items">concepts items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="617111-root-properties-allof-item-0-themes-themes-items-concepts-concepts-items"><a name="properties_allOf_i0_themes_items_concepts_items"></a>6.1.7.1.1.1. root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts &gt; concepts items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#properties_allOf_i0_themes_items_concepts_items_id">id</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>An identifier for the concept.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_themes_items_concepts_items_title">title</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A human readable title for the concept.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_themes_items_concepts_items_description">description</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A human readable description for the concept.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_themes_items_concepts_items_url">url</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A URI providing further description of the concept.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="6171111-property-root-properties-allof-item-0-themes-themes-items-concepts-concepts-items-id"><a name="properties_allOf_i0_themes_items_concepts_items_id"></a>6.1.7.1.1.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts &gt; concepts items &gt; id</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> An identifier for the concept.</p>
+<h6 id="6171112-property-root-properties-allof-item-0-themes-themes-items-concepts-concepts-items-title"><a name="properties_allOf_i0_themes_items_concepts_items_title"></a>6.1.7.1.1.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts &gt; concepts items &gt; title</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A human readable title for the concept.</p>
+<h6 id="6171113-property-root-properties-allof-item-0-themes-themes-items-concepts-concepts-items-description"><a name="properties_allOf_i0_themes_items_concepts_items_description"></a>6.1.7.1.1.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts &gt; concepts items &gt; description</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A human readable description for the concept.</p>
+<h6 id="6171114-property-root-properties-allof-item-0-themes-themes-items-concepts-concepts-items-url"><a name="properties_allOf_i0_themes_items_concepts_items_url"></a>6.1.7.1.1.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; concepts &gt; concepts items &gt; url</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A URI providing further description of the concept.</p>
+<h6 id="61712-property-root-properties-allof-item-0-themes-themes-items-scheme"><a name="properties_allOf_i0_themes_items_scheme"></a>6.1.7.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; themes &gt; themes items &gt; scheme</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> An identifier for the knowledge organization system used to classify the resource.  It is recommended that the identifier be a resolvable URI.  The list of schemes used in a searchable catalog can be determined by inspecting the server's OpenAPI document or, if the server implements CQL2, by exposing a queryable (e.g. named <code>scheme</code>) and enumerating the list of schemes in the queryable's schema definition.</p>
+<h4 id="618-property-root-properties-allof-item-0-language"><a name="properties_allOf_i0_language"></a>6.1.8. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; language</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/language</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The language used for textual values in this record representation.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#properties_allOf_i0_language_code">code</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The language tag as per RFC-5646.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_language_name">name</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The untranslated name of the language.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_language_alternate">alternate</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The name of the language in another well-understood language, usually English.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_language_dir">dir</a></td>
+<td>No</td>
+<td>enum (of string)</td>
+<td>No</td>
+<td>-</td>
+<td>The direction for text in this language. The default, `ltr` (left-to-right), represents the most common situation. However, care should be taken to set the value of `dir` appropriately if the language direction is not `ltr`. Other values supported are `rtl` (right-to-left), `ttb` (top-to-bottom), and `btt` (bottom-to-top).</td>
+</tr>
+</tbody>
+</table>
+<h5 id="6181-property-root-properties-allof-item-0-language-code"><a name="properties_allOf_i0_language_code"></a>6.1.8.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; language &gt; code</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The language tag as per RFC-5646.</p>
+<h5 id="6182-property-root-properties-allof-item-0-language-name"><a name="properties_allOf_i0_language_name"></a>6.1.8.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; language &gt; name</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The untranslated name of the language.</p>
+<table>
+<thead>
+<tr>
+<th>Restrictions</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min length</strong></td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h5 id="6183-property-root-properties-allof-item-0-language-alternate"><a name="properties_allOf_i0_language_alternate"></a>6.1.8.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; language &gt; alternate</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The name of the language in another well-understood language, usually English.</p>
+<h5 id="6184-property-root-properties-allof-item-0-language-dir"><a name="properties_allOf_i0_language_dir"></a>6.1.8.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; language &gt; dir</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Default</strong></td>
+<td><code>"ltr"</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The direction for text in this language. The default, <code>ltr</code> (left-to-right), represents the most common situation. However, care should be taken to set the value of <code>dir</code> appropriately if the language direction is not <code>ltr</code>. Other values supported are <code>rtl</code> (right-to-left), <code>ttb</code> (top-to-bottom), and <code>btt</code> (bottom-to-top).</p>
+<p>Must be one of:
+* "ltr"
+* "rtl"
+* "ttb"
+* "btt"</p>
+<h4 id="619-property-root-properties-allof-item-0-languages"><a name="properties_allOf_i0_languages"></a>6.1.9. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; languages</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> This list of languages in which this record is available.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_languages_items">language</a></td>
+<td>The language used for textual values in this record.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="6191-root-properties-allof-item-0-languages-language"><a name="properties_allOf_i0_languages_items"></a>6.1.9.1. root &gt; properties &gt; allOf &gt; item 0 &gt; languages &gt; language</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#properties_allOf_i0_language">language</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The language used for textual values in this record.</p>
+<h4 id="6110-property-root-properties-allof-item-0-resourcelanguages"><a name="properties_allOf_i0_resourceLanguages"></a>6.1.10. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; resourceLanguages</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The list of languages in which the resource described by this record is available.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_resourceLanguages_items">language</a></td>
+<td>The language used for textual values in this record.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="61101-root-properties-allof-item-0-resourcelanguages-language"><a name="properties_allOf_i0_resourceLanguages_items"></a>6.1.10.1. root &gt; properties &gt; allOf &gt; item 0 &gt; resourceLanguages &gt; language</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#properties_allOf_i0_language">language</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The language used for textual values in this record.</p>
+<h4 id="6111-property-root-properties-allof-item-0-externalids"><a name="properties_allOf_i0_externalIds"></a>6.1.11. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; externalIds</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> An identifier for the resource assigned by an external (to the catalog) entity.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_externalIds_items">externalIds items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="61111-root-properties-allof-item-0-externalids-externalids-items"><a name="properties_allOf_i0_externalIds_items"></a>6.1.11.1. root &gt; properties &gt; allOf &gt; item 0 &gt; externalIds &gt; externalIds items</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#properties_allOf_i0_externalIds_items_scheme">scheme</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A reference to an authority or identifier for a knowledge organization system from which the external identifier was obtained. It is recommended that the identifier be a resolvable URI.</td>
+</tr>
+<tr>
+<td>+ <a href="#properties_allOf_i0_externalIds_items_value">value</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The value of the identifier.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="611111-property-root-properties-allof-item-0-externalids-externalids-items-scheme"><a name="properties_allOf_i0_externalIds_items_scheme"></a>6.1.11.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; externalIds &gt; externalIds items &gt; scheme</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A reference to an authority or identifier for a knowledge organization system from which the external identifier was obtained. It is recommended that the identifier be a resolvable URI.</p>
+<h6 id="611112-property-root-properties-allof-item-0-externalids-externalids-items-value"><a name="properties_allOf_i0_externalIds_items_value"></a>6.1.11.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; externalIds &gt; externalIds items &gt; value</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The value of the identifier.</p>
+<h4 id="6112-property-root-properties-allof-item-0-formats"><a name="properties_allOf_i0_formats"></a>6.1.12. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; formats</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A list of available distributions of the resource.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_formats_items">format</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="61121-root-properties-allof-item-0-formats-format"><a name="properties_allOf_i0_formats_items"></a>6.1.12.1. root &gt; properties &gt; allOf &gt; item 0 &gt; formats &gt; format</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/format</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#properties_allOf_i0_formats_items_name">name</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_formats_items_mediaType">mediaType</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Any of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_formats_items_anyOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#properties_allOf_i0_formats_items_anyOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="611211-property-root-properties-allof-item-0-formats-formats-items-anyof-item-0"><a name="properties_allOf_i0_formats_items_anyOf_i0"></a>6.1.12.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; formats &gt; formats items &gt; anyOf &gt; item 0</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<h6 id="6112111-the-following-properties-are-required"><a name="autogenerated_heading_2"></a>6.1.12.1.1.1. The following properties are required</h6>
+<ul>
+<li>name</li>
+</ul>
+<h6 id="611212-property-root-properties-allof-item-0-formats-formats-items-anyof-item-1"><a name="properties_allOf_i0_formats_items_anyOf_i1"></a>6.1.12.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; formats &gt; formats items &gt; anyOf &gt; item 1</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<h6 id="6112121-the-following-properties-are-required"><a name="autogenerated_heading_3"></a>6.1.12.1.2.1. The following properties are required</h6>
+<ul>
+<li>mediaType</li>
+</ul>
+<h6 id="611213-property-root-properties-allof-item-0-formats-formats-items-name"><a name="properties_allOf_i0_formats_items_name"></a>6.1.12.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; formats &gt; formats items &gt; name</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h6 id="611214-property-root-properties-allof-item-0-formats-formats-items-mediatype"><a name="properties_allOf_i0_formats_items_mediaType"></a>6.1.12.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; formats &gt; formats items &gt; mediaType</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h4 id="6113-property-root-properties-allof-item-0-contacts"><a name="properties_allOf_i0_contacts"></a>6.1.13. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A list of contacts qualified by their role(s) in association to the record or the resource described by the record.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items">contact</a></td>
+<td>Identification of, and means of communication with, person responsible ...</td>
+</tr>
+</tbody>
+</table>
+<h5 id="61131-root-properties-allof-item-0-contacts-contact"><a name="properties_allOf_i0_contacts_items"></a>6.1.13.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contact</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/contact</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Identification of, and means of communication with, person responsible
+for the resource.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_identifier">identifier</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A value uniquely identifying a contact.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_name">name</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The name of the responsible person.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_position">position</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The name of the role or position of the responsible person taken from the organization's formal organizational hierarchy or chart.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_organization">organization</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Organization/affiliation of the contact.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_logo">logo</a></td>
+<td>No</td>
+<td>Combination</td>
+<td>No</td>
+<td>-</td>
+<td>Graphic identifying a contact. The link relation should be `icon` and the media type should be an image media type.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_phones">phones</a></td>
+<td>No</td>
+<td>array of object</td>
+<td>No</td>
+<td>-</td>
+<td>Telephone numbers at which contact can be made.  The type of<br />phone number is indicated using the roles property.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_emails">emails</a></td>
+<td>No</td>
+<td>array of object</td>
+<td>No</td>
+<td>-</td>
+<td>Email addresses at which contact can be made.  The type of <br />email address is indicated using the roles property.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_addresses">addresses</a></td>
+<td>No</td>
+<td>array of object</td>
+<td>No</td>
+<td>-</td>
+<td>Physical location at which contact can be made.  The type of<br />address is indicated using the roles property.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_links">links</a></td>
+<td>No</td>
+<td>array</td>
+<td>No</td>
+<td>-</td>
+<td>On-line information about the contact.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_hoursOfService">hoursOfService</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Time period when the contact can be contacted.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_contactInstructions">contactInstructions</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Supplemental instructions on how or when to contact the<br />responsible party. The roles property is used to associate<br />a set of named duties, job functions and/or permissions<br />associated with this contact. (e.g. developer,<br />administrator, etc.).</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_roles">roles</a></td>
+<td>No</td>
+<td>array of string</td>
+<td>No</td>
+<td>Same as <a href="#properties_allOf_i0_contacts_items_phones_items_roles">roles</a></td>
+<td>The list of duties, job functions or permissions assigned by the system and associated with the context of this member.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Any of(Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_anyOf_i0">item 0</a></td>
+</tr>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_anyOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="611311-property-root-properties-allof-item-0-contacts-contacts-items-anyof-item-0"><a name="properties_allOf_i0_contacts_items_anyOf_i0"></a>6.1.13.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; anyOf &gt; item 0</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<h6 id="6113111-the-following-properties-are-required"><a name="autogenerated_heading_4"></a>6.1.13.1.1.1. The following properties are required</h6>
+<ul>
+<li>name</li>
+</ul>
+<h6 id="611312-property-root-properties-allof-item-0-contacts-contacts-items-anyof-item-1"><a name="properties_allOf_i0_contacts_items_anyOf_i1"></a>6.1.13.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; anyOf &gt; item 1</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<h6 id="6113121-the-following-properties-are-required"><a name="autogenerated_heading_5"></a>6.1.13.1.2.1. The following properties are required</h6>
+<ul>
+<li>organization</li>
+</ul>
+<h6 id="611313-property-root-properties-allof-item-0-contacts-contacts-items-identifier"><a name="properties_allOf_i0_contacts_items_identifier"></a>6.1.13.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; identifier</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A value uniquely identifying a contact.</p>
+<h6 id="611314-property-root-properties-allof-item-0-contacts-contacts-items-name"><a name="properties_allOf_i0_contacts_items_name"></a>6.1.13.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; name</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The name of the responsible person.</p>
+<h6 id="611315-property-root-properties-allof-item-0-contacts-contacts-items-position"><a name="properties_allOf_i0_contacts_items_position"></a>6.1.13.1.5. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; position</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The name of the role or position of the responsible person taken from the organization's formal organizational hierarchy or chart.</p>
+<h6 id="611316-property-root-properties-allof-item-0-contacts-contacts-items-organization"><a name="properties_allOf_i0_contacts_items_organization"></a>6.1.13.1.6. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; organization</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Organization/affiliation of the contact.</p>
+<h6 id="611317-property-root-properties-allof-item-0-contacts-contacts-items-logo"><a name="properties_allOf_i0_contacts_items_logo"></a>6.1.13.1.7. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Graphic identifying a contact. The link relation should be <code>icon</code> and the media type should be an image media type.</p>
+<table>
+<thead>
+<tr>
+<th>All of(Requirement)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0">link</a></td>
+</tr>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_logo_allOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="6113171-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-link"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0"></a>6.1.13.1.7.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; link</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/link</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>All of(Requirement)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0">linkBase</a></td>
+</tr>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="61131711-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-0-allof-linkbase"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0"></a>6.1.13.1.7.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; linkBase</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/linkBase</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_rel">rel</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The type or semantics of the relation.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_type">type</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A hint indicating what the media type of the result of dereferencing the link should be.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_hreflang">hreflang</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>A hint indicating what the language of the result of dereferencing the link should be.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_title">title</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Used to label the destination of a link such that it can be used as a human-readable identifier.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_length">length</a></td>
+<td>No</td>
+<td>integer</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_created">created</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Date of creation of the resource pointed to by the link.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_updated">updated</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Most recent date on which the resource pointed to by the link was changed.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="611317111-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-0-allof-item-0-rel"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_rel"></a>6.1.13.1.7.1.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; rel</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The type or semantics of the relation.</p>
+<h6 id="611317112-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-0-allof-item-0-type"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_type"></a>6.1.13.1.7.1.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; type</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A hint indicating what the media type of the result of dereferencing the link should be.</p>
+<h6 id="611317113-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-0-allof-item-0-hreflang"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_hreflang"></a>6.1.13.1.7.1.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; hreflang</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A hint indicating what the language of the result of dereferencing the link should be.</p>
+<h6 id="611317114-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-0-allof-item-0-title"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_title"></a>6.1.13.1.7.1.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; title</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Used to label the destination of a link such that it can be used as a human-readable identifier.</p>
+<h6 id="611317115-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-0-allof-item-0-length"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_length"></a>6.1.13.1.7.1.1.5. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; length</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>integer</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h6 id="611317116-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-0-allof-item-0-created"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_created"></a>6.1.13.1.7.1.1.6. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; created</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>date-time</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Date of creation of the resource pointed to by the link.</p>
+<h6 id="611317117-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-0-allof-item-0-updated"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0_updated"></a>6.1.13.1.7.1.1.7. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 0 &gt; updated</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>date-time</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Most recent date on which the resource pointed to by the link was changed.</p>
+<h6 id="61131712-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-0-allof-item-1"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i1"></a>6.1.13.1.7.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 1</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i1_href">href</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="611317121-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-0-allof-item-1-href"><a name="properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i1_href"></a>6.1.13.1.7.1.2.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 0 &gt; allOf &gt; item 1 &gt; href</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<h6 id="6113172-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-1"><a name="properties_allOf_i0_contacts_items_logo_allOf_i1"></a>6.1.13.1.7.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 1</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#properties_allOf_i0_contacts_items_logo_allOf_i1_rel">rel</a></td>
+<td>No</td>
+<td>enum (of string)</td>
+<td>No</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="61131721-the-following-properties-are-required"><a name="autogenerated_heading_6"></a>6.1.13.1.7.2.1. The following properties are required</h6>
+<ul>
+<li>type</li>
+</ul>
+<h6 id="61131722-property-root-properties-allof-item-0-contacts-contacts-items-logo-allof-item-1-rel"><a name="properties_allOf_i0_contacts_items_logo_allOf_i1_rel"></a>6.1.13.1.7.2.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; logo &gt; allOf &gt; item 1 &gt; rel</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>enum (of string)</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Must be one of:
+* "icon"</p>
+<h6 id="611318-property-root-properties-allof-item-0-contacts-contacts-items-phones"><a name="properties_allOf_i0_contacts_items_phones"></a>6.1.13.1.8. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; phones</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Telephone numbers at which contact can be made.  The type of
+phone number is indicated using the roles property.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_phones_items">phones items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="6113181-root-properties-allof-item-0-contacts-contacts-items-phones-phones-items"><a name="properties_allOf_i0_contacts_items_phones_items"></a>6.1.13.1.8.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; phones &gt; phones items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#properties_allOf_i0_contacts_items_phones_items_value">value</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The value is the phone number itself.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_phones_items_roles">roles</a></td>
+<td>No</td>
+<td>array of string</td>
+<td>No</td>
+<td>In #/$defs/roles</td>
+<td>The list of duties, job functions or permissions assigned by the system and associated with the context of this member.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="61131811-property-root-properties-allof-item-0-contacts-contacts-items-phones-phones-items-value"><a name="properties_allOf_i0_contacts_items_phones_items_value"></a>6.1.13.1.8.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; phones &gt; phones items &gt; value</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The value is the phone number itself.</p>
+<table>
+<thead>
+<tr>
+<th>Restrictions</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Must match regular expression</strong></td>
+<td><code>^\+[1-9]{1}[0-9]{3,14}$</code> <a href="https://regex101.com/?regex=%5E%5C%2B%5B1-9%5D%7B1%7D%5B0-9%5D%7B3%2C14%7D%24">Test</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="61131812-property-root-properties-allof-item-0-contacts-contacts-items-phones-phones-items-roles"><a name="properties_allOf_i0_contacts_items_phones_items_roles"></a>6.1.13.1.8.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; phones &gt; phones items &gt; roles</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/roles</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The list of duties, job functions or permissions assigned by the system and associated with the context of this member.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_phones_items_roles_items">roles items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="611318121-root-properties-allof-item-0-contacts-contacts-items-phones-phones-items-roles-roles-items"><a name="properties_allOf_i0_contacts_items_phones_items_roles_items"></a>6.1.13.1.8.1.2.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; phones &gt; phones items &gt; roles &gt; roles items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h6 id="611319-property-root-properties-allof-item-0-contacts-contacts-items-emails"><a name="properties_allOf_i0_contacts_items_emails"></a>6.1.13.1.9. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; emails</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Email addresses at which contact can be made.  The type of 
+email address is indicated using the roles property.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_emails_items">emails items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="6113191-root-properties-allof-item-0-contacts-contacts-items-emails-emails-items"><a name="properties_allOf_i0_contacts_items_emails_items"></a>6.1.13.1.9.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; emails &gt; emails items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#properties_allOf_i0_contacts_items_emails_items_value">value</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The value is the email number itself.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_emails_items_roles">roles</a></td>
+<td>No</td>
+<td>array of string</td>
+<td>No</td>
+<td>Same as <a href="#properties_allOf_i0_contacts_items_phones_items_roles">roles</a></td>
+<td>The list of duties, job functions or permissions assigned by the system and associated with the context of this member.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="61131911-property-root-properties-allof-item-0-contacts-contacts-items-emails-emails-items-value"><a name="properties_allOf_i0_contacts_items_emails_items_value"></a>6.1.13.1.9.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; emails &gt; emails items &gt; value</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>email</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The value is the email number itself.</p>
+<h6 id="61131912-property-root-properties-allof-item-0-contacts-contacts-items-emails-emails-items-roles"><a name="properties_allOf_i0_contacts_items_emails_items_roles"></a>6.1.13.1.9.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; emails &gt; emails items &gt; roles</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#properties_allOf_i0_contacts_items_phones_items_roles">roles</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The list of duties, job functions or permissions assigned by the system and associated with the context of this member.</p>
+<h6 id="6113110-property-root-properties-allof-item-0-contacts-contacts-items-addresses"><a name="properties_allOf_i0_contacts_items_addresses"></a>6.1.13.1.10. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Physical location at which contact can be made.  The type of
+address is indicated using the roles property.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_addresses_items">addresses items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="61131101-root-properties-allof-item-0-contacts-contacts-items-addresses-addresses-items"><a name="properties_allOf_i0_contacts_items_addresses_items"></a>6.1.13.1.10.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_addresses_items_deliveryPoint">deliveryPoint</a></td>
+<td>No</td>
+<td>array of string</td>
+<td>No</td>
+<td>-</td>
+<td>Address lines for the location.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_addresses_items_city">city</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>City for the location.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_addresses_items_administrativeArea">administrativeArea</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>State or province of the location.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_addresses_items_postalCode">postalCode</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>ZIP or other postal code.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_addresses_items_country">country</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Country of the physical address.  ISO 3166-1 is recommended.</td>
+</tr>
+<tr>
+<td>- <a href="#properties_allOf_i0_contacts_items_addresses_items_roles">roles</a></td>
+<td>No</td>
+<td>array of string</td>
+<td>No</td>
+<td>Same as <a href="#properties_allOf_i0_contacts_items_phones_items_roles">roles</a></td>
+<td>The list of duties, job functions or permissions assigned by the system and associated with the context of this member.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="611311011-property-root-properties-allof-item-0-contacts-contacts-items-addresses-addresses-items-deliverypoint"><a name="properties_allOf_i0_contacts_items_addresses_items_deliveryPoint"></a>6.1.13.1.10.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; deliveryPoint</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Address lines for the location.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_addresses_items_deliveryPoint_items">deliveryPoint items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="6113110111-root-properties-allof-item-0-contacts-contacts-items-addresses-addresses-items-deliverypoint-deliverypoint-items"><a name="properties_allOf_i0_contacts_items_addresses_items_deliveryPoint_items"></a>6.1.13.1.10.1.1.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; deliveryPoint &gt; deliveryPoint items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h6 id="611311012-property-root-properties-allof-item-0-contacts-contacts-items-addresses-addresses-items-city"><a name="properties_allOf_i0_contacts_items_addresses_items_city"></a>6.1.13.1.10.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; city</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> City for the location.</p>
+<h6 id="611311013-property-root-properties-allof-item-0-contacts-contacts-items-addresses-addresses-items-administrativearea"><a name="properties_allOf_i0_contacts_items_addresses_items_administrativeArea"></a>6.1.13.1.10.1.3. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; administrativeArea</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> State or province of the location.</p>
+<h6 id="611311014-property-root-properties-allof-item-0-contacts-contacts-items-addresses-addresses-items-postalcode"><a name="properties_allOf_i0_contacts_items_addresses_items_postalCode"></a>6.1.13.1.10.1.4. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; postalCode</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> ZIP or other postal code.</p>
+<h6 id="611311015-property-root-properties-allof-item-0-contacts-contacts-items-addresses-addresses-items-country"><a name="properties_allOf_i0_contacts_items_addresses_items_country"></a>6.1.13.1.10.1.5. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; country</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Country of the physical address.  ISO 3166-1 is recommended.</p>
+<h6 id="611311016-property-root-properties-allof-item-0-contacts-contacts-items-addresses-addresses-items-roles"><a name="properties_allOf_i0_contacts_items_addresses_items_roles"></a>6.1.13.1.10.1.6. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; addresses &gt; addresses items &gt; roles</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#properties_allOf_i0_contacts_items_phones_items_roles">roles</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The list of duties, job functions or permissions assigned by the system and associated with the context of this member.</p>
+<h6 id="6113111-property-root-properties-allof-item-0-contacts-contacts-items-links"><a name="properties_allOf_i0_contacts_items_links"></a>6.1.13.1.11. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; links</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> On-line information about the contact.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_links_items">links items</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6 id="61131111-root-properties-allof-item-0-contacts-contacts-items-links-links-items"><a name="properties_allOf_i0_contacts_items_links_items"></a>6.1.13.1.11.1. root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; links &gt; links items</h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>All of(Requirement)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_links_items_allOf_i0">link</a></td>
+</tr>
+<tr>
+<td><a href="#properties_allOf_i0_contacts_items_links_items_allOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="611311111-property-root-properties-allof-item-0-contacts-contacts-items-links-links-items-allof-link"><a name="properties_allOf_i0_contacts_items_links_items_allOf_i0"></a>6.1.13.1.11.1.1. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; links &gt; links items &gt; allOf &gt; link</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0">properties_allOf_i0_contacts_items_logo_allOf_i0</a></td>
+</tr>
+</tbody>
+</table>
+<h6 id="611311112-property-root-properties-allof-item-0-contacts-contacts-items-links-links-items-allof-item-1"><a name="properties_allOf_i0_contacts_items_links_items_allOf_i1"></a>6.1.13.1.11.1.2. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; links &gt; links items &gt; allOf &gt; item 1</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<h6 id="6113111121-the-following-properties-are-required"><a name="autogenerated_heading_7"></a>6.1.13.1.11.1.2.1. The following properties are required</h6>
+<ul>
+<li>type</li>
+</ul>
+<h6 id="6113112-property-root-properties-allof-item-0-contacts-contacts-items-hoursofservice"><a name="properties_allOf_i0_contacts_items_hoursOfService"></a>6.1.13.1.12. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; hoursOfService</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Time period when the contact can be contacted.</p>
+<h6 id="6113113-property-root-properties-allof-item-0-contacts-contacts-items-contactinstructions"><a name="properties_allOf_i0_contacts_items_contactInstructions"></a>6.1.13.1.13. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; contactInstructions</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Supplemental instructions on how or when to contact the
+responsible party. The roles property is used to associate
+a set of named duties, job functions and/or permissions
+associated with this contact. (e.g. developer,
+administrator, etc.).</p>
+<h6 id="6113114-property-root-properties-allof-item-0-contacts-contacts-items-roles"><a name="properties_allOf_i0_contacts_items_roles"></a>6.1.13.1.14. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; contacts &gt; contacts items &gt; roles</code></h6>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array of string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#properties_allOf_i0_contacts_items_phones_items_roles">roles</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The list of duties, job functions or permissions assigned by the system and associated with the context of this member.</p>
+<h4 id="6114-property-root-properties-allof-item-0-license"><a name="properties_allOf_i0_license"></a>6.1.14. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; license</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/license</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A legal document under which the resource is made available. If the resource is being made available under a common license then use an SPDX license id (https://spdx.org/licenses/). If the resource is being made available under multiple common licenses then use an SPDX license expression v2.3 string (https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/) If the resource is being made available under one or more licenses that haven't been assigned an SPDX identifier or one or more custom licenses then use a string value of 'other' and include one or more links (rel="license") in the <code>link</code> section of the record to the file(s) that contains the text of the license(s). There is also the case of a resource that is private or unpublished and is thus unlicensed; in this case do not register such a resource in the catalog in the first place since there is no point in making such a resource discoverable.</p>
+<h4 id="6115-property-root-properties-allof-item-0-rights"><a name="properties_allOf_i0_rights"></a>6.1.15. Property <code>root &gt; properties &gt; allOf &gt; item 0 &gt; rights</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> A statement that concerns all rights not addressed by the license such as a copyright statement.</p>
+<h3 id="62-property-root-properties-allof-item-1"><a name="properties_allOf_i1"></a>6.2. Property <code>root &gt; properties &gt; allOf &gt; item 1</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-property-root-links"><a name="links"></a>7. Property <code>root &gt; links</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#links_items">link</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="71-root-links-link"><a name="links_items"></a>7.1. root &gt; links &gt; link</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0">properties_allOf_i0_contacts_items_logo_allOf_i0</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-property-root-linktemplates"><a name="linkTemplates"></a>8. Property <code>root &gt; linkTemplates</code></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>array</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Array restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Max items</strong></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Items unicity</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Additional items</strong></td>
+<td>False</td>
+</tr>
+<tr>
+<td><strong>Tuple validation</strong></td>
+<td>See below</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Each item of this array must be</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#linkTemplates_items">linkTemplate</a></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="81-root-linktemplates-linktemplate"><a name="linkTemplates_items"></a>8.1. root &gt; linkTemplates &gt; linkTemplate</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>combining</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Defined in</strong></td>
+<td>#/$defs/linkTemplate</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>All of(Requirement)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#linkTemplates_items_allOf_i0">linkBase</a></td>
+</tr>
+<tr>
+<td><a href="#linkTemplates_items_allOf_i1">item 1</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="811-property-root-linktemplates-linktemplates-items-allof-linkbase"><a name="linkTemplates_items_allOf_i0"></a>8.1.1. Property <code>root &gt; linkTemplates &gt; linkTemplates items &gt; allOf &gt; linkBase</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+<tr>
+<td><strong>Same definition as</strong></td>
+<td><a href="#properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0">properties_allOf_i0_contacts_items_logo_allOf_i0_allOf_i0</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="812-property-root-linktemplates-linktemplates-items-allof-item-1"><a name="linkTemplates_items_allOf_i1"></a>8.1.2. Property <code>root &gt; linkTemplates &gt; linkTemplates items &gt; allOf &gt; item 1</code></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pattern</th>
+<th>Type</th>
+<th>Deprecated</th>
+<th>Definition</th>
+<th>Title/Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+ <a href="#linkTemplates_items_allOf_i1_uriTemplate">uriTemplate</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>Supplies a resolvable URI to a remote resource (or resource fragment).</td>
+</tr>
+<tr>
+<td>- <a href="#linkTemplates_items_allOf_i1_varBase">varBase</a></td>
+<td>No</td>
+<td>string</td>
+<td>No</td>
+<td>-</td>
+<td>The base URI to which the variable name can be appended to retrieve the definition of the variable as a JSON Schema fragment.</td>
+</tr>
+<tr>
+<td>- <a href="#linkTemplates_items_allOf_i1_variables">variables</a></td>
+<td>No</td>
+<td>object</td>
+<td>No</td>
+<td>-</td>
+<td>This object contains one key per substitution variable in the templated URL.  Each key defines the schema of one substitution variable using a JSON Schema fragment and can thus include things like the data type of the variable, enumerations, minimum values, maximum values, etc.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="8121-property-root-linktemplates-linktemplates-items-allof-item-1-uritemplate"><a name="linkTemplates_items_allOf_i1_uriTemplate"></a>8.1.2.1. Property <code>root &gt; linkTemplates &gt; linkTemplates items &gt; allOf &gt; item 1 &gt; uriTemplate</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> Supplies a resolvable URI to a remote resource (or resource fragment).</p>
+<h5 id="8122-property-root-linktemplates-linktemplates-items-allof-item-1-varbase"><a name="linkTemplates_items_allOf_i1_varBase"></a>8.1.2.2. Property <code>root &gt; linkTemplates &gt; linkTemplates items &gt; allOf &gt; item 1 &gt; varBase</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Format</strong></td>
+<td><code>uri</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> The base URI to which the variable name can be appended to retrieve the definition of the variable as a JSON Schema fragment.</p>
+<h5 id="8123-property-root-linktemplates-linktemplates-items-allof-item-1-variables"><a name="linkTemplates_items_allOf_i1_variables"></a>8.1.2.3. Property <code>root &gt; linkTemplates &gt; linkTemplates items &gt; allOf &gt; item 1 &gt; variables</code></h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type</strong></td>
+<td><code>object</code></td>
+</tr>
+<tr>
+<td><strong>Required</strong></td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Additional properties</strong></td>
+<td>Any type allowed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Description:</strong> This object contains one key per substitution variable in the templated URL.  Each key defines the schema of one substitution variable using a JSON Schema fragment and can thus include things like the data type of the variable, enumerations, minimum values, maximum values, etc.</p>
+<hr />
+<p>Generated using <a href="https://github.com/coveooss/json-schema-for-humans">json-schema-for-humans</a> on 2025-11-07 at 00:41:11 +0100</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../datacite_4_6/" class="btn btn-neutral float-left" title="DataCite 4.6"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../software_application/" class="btn btn-neutral float-right" title="Schema.org/SoftwareApplication">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a></p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Terradue/transpiler-mate/" class="fa fa-code-fork" style="color: #fcfcfc"> Terradue/transpiler-mate</a>
+        </span>
+    
+    
+      <span><a href="../datacite_4_6/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../software_application/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../javascripts/config.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

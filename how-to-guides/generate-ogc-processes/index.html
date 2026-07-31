@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Fabrice Brito, Simone Tripodi" /><link rel="canonical" href="https://terradue.github.io/transpiler-mate/how-to-guides/generate-ogc-processes/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Generate an OGC API - Processes descriptor - transpiler-mate</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../styles/css/app.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Generate an OGC API - Processes descriptor";
+        var mkdocs_page_input_path = "how-to-guides/generate-ogc-processes.md";
+        var mkdocs_page_url = "/transpiler-mate/how-to-guides/generate-ogc-processes/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../..">
+          <img src="../../imgs/icon-eoap.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tutorials/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../metadata-generator.html">Create CWL metadata with the generator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-codemeta/">Generate CodeMeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-datacite/">Generate DataCite metadata</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-ogc-record/">Generate an OGC API - Record</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Generate an OGC API - Processes descriptor</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#help-usage">Help usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sample-execution">Sample execution</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-oci-annotations/">Generate OCI annotations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../generate-markdown/">Generate Markdown workflow documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bundle-cwl/">Bundle a CWL document</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../publish-to-invenio/">Publish to InvenioRDM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bump-version/">Bump a CWL software version</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >JSON Schemas</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/datacite_4_6/">DataCite 4.6</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/ogcapi_records/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/software_application/">Schema.org/SoftwareApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/schemas/oci_annotations/">OCI Annotations</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Crosswalks</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/codemeta/">CodeMeta</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/datacite/">DataCite</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/oci-annotations/">OCI annotations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/ogc-processes/">OGC API - Processes</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/ogc-record/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../reference/crosswalks/invenio/">InvenioRDM</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../reference/api/">Python API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../explanation/cwl-metadata-conventions/">CWL metadata code conventions</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">transpiler-mate</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">How-to guides</li>
+      <li class="breadcrumb-item active">Generate an OGC API - Processes descriptor</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Terradue/transpiler-mate/edit/master/docs/how-to-guides/generate-ogc-processes.md">Edit on Terradue/transpiler-mate</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="transpile-a-cwl-workflow-to-an-ogc-api-processes">Transpile a CWL Workflow to an OGC API - Processes</h1>
+<p>Since version <code>0.44.0</code>, <code>transpiler-mate</code> includes a simple CLI to generate a static <em>OGC API - Processes</em> process descriptor.</p>
+<h2 id="help-usage">Help usage</h2>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1">$ transpiler-mate ogcprocesses --help
+</span><span id="__span-0-2">Usage: transpiler-mate ogcprocesses [OPTIONS] SOURCE
+</span><span id="__span-0-3">
+</span><span id="__span-0-4">  Transpiles the input CWL to OGC API Processes.
+</span><span id="__span-0-5">
+</span><span id="__span-0-6">Options:
+</span><span id="__span-0-7">  --output PATH  The output file path  [default: processes.json]
+</span><span id="__span-0-8">  --help         Show this message and exit.
+</span></code></pre></div>
+<h2 id="sample-execution">Sample execution</h2>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1">$ transpiler-mate ogcprocesses /path/to/pattern-1.cwl
+</span><span id="__span-1-2">
+</span><span id="__span-1-3">2026-05-13 16:04:36.004 | INFO     | transpiler_mate.cli.common:wrapper:37 - Started at: 2026-05-13T16:04:36.004
+</span><span id="__span-1-4">2026-05-13 16:04:36.004 | INFO     | transpiler_mate.cli.ogcprocesses:run:39 - Reading metadata from /path/to/pattern-1.cwl...
+</span><span id="__span-1-5">2026-05-13 16:04:36.004 | DEBUG    | transpiler_mate.metadata:__init__:51 - Loading raw document from /path/to/pattern-1.cwl...
+</span><span id="__span-1-6">2026-05-13 16:04:36.026 | INFO     | transpiler_mate.metadata:__init__:67 - Resolving License details from SPDX License List...
+</span><span id="__span-1-7">2026-05-13 16:04:36.026 | SUCCESS  | transpiler_mate.cli.ogcprocesses:run:42 - Metadata successfully read!
+</span><span id="__span-1-8">2026-05-13 16:04:36.026 | INFO     | transpiler_mate.cli.ogcprocesses:run:43 - Transpiling metadata...
+</span><span id="__span-1-9">2026-05-13 16:04:36.026 | SUCCESS  | transpiler_mate.cli.ogcprocesses:run:48 - Metadata successfully transpiled!
+</span><span id="__span-1-10">2026-05-13 16:04:36.026 | DEBUG    | cwl_loader:load_cwl_from_yaml:147 - No needs to update the Raw CWL document since it targets already the v1.2
+</span><span id="__span-1-11">2026-05-13 16:04:36.026 | DEBUG    | cwl_loader:load_cwl_from_yaml:151 - Parsing the raw CWL document to the CWL Utils DOM...
+</span><span id="__span-1-12">2026-05-13 16:04:36.435 | DEBUG    | cwl_loader:load_cwl_from_yaml:160 - Raw CWL document successfully parsed to the CWL Utils DOM!
+</span><span id="__span-1-13">2026-05-13 16:04:36.435 | DEBUG    | cwl_loader:load_cwl_from_yaml:162 - Dereferencing the steps[].run...
+</span><span id="__span-1-14">2026-05-13 16:04:36.435 | DEBUG    | cwl_loader:_on_process:54 - Checking if #publish_experiment_cli must be externally imported...
+</span><span id="__span-1-15">2026-05-13 16:04:36.435 | DEBUG    | cwl_loader:_on_process:58 - run_url:  - uri: io://
+</span><span id="__span-1-16">2026-05-13 16:04:36.435 | DEBUG    | cwl_loader:_on_process:54 - Checking if #publish_product_cli must be externally imported...
+</span><span id="__span-1-17">2026-05-13 16:04:36.435 | DEBUG    | cwl_loader:_on_process:58 - run_url:  - uri: io://
+</span><span id="__span-1-18">2026-05-13 16:04:36.435 | DEBUG    | cwl_loader:load_cwl_from_yaml:166 - steps[].run successfully dereferenced! Dereferencing the FQNs...
+</span><span id="__span-1-19">2026-05-13 16:04:36.435 | DEBUG    | cwl_loader:load_cwl_from_yaml:170 - CWL document successfully dereferenced! Now verifying steps[].run integrity...
+</span><span id="__span-1-20">2026-05-13 16:04:36.435 | DEBUG    | cwl_loader:load_cwl_from_yaml:176 - All steps[].run link are resolvable! 
+</span><span id="__span-1-21">2026-05-13 16:04:36.435 | DEBUG    | cwl_loader:load_cwl_from_yaml:179 - Sorting Process instances by dependencies....
+</span><span id="__span-1-22">2026-05-13 16:04:36.436 | DEBUG    | cwl_loader:load_cwl_from_yaml:181 - Sorting process is over.
+</span><span id="__span-1-23">2026-05-13 16:04:36.436 | INFO     | transpiler_mate.cli.common:write_json:72 - Serializing metadata...
+</span><span id="__span-1-24">2026-05-13 16:04:36.436 | SUCCESS  | transpiler_mate.cli.common:write_json:77 - Metadata successfully serialized to processes.json.
+</span><span id="__span-1-25">2026-05-13 16:04:36.436 | SUCCESS  | transpiler_mate.cli.common:wrapper:44 - ------------------------------------------------------------------------
+</span><span id="__span-1-26">2026-05-13 16:04:36.436 | SUCCESS  | transpiler_mate.cli.common:wrapper:47 - SUCCESS
+</span><span id="__span-1-27">2026-05-13 16:04:36.436 | SUCCESS  | transpiler_mate.cli.common:wrapper:48 - ------------------------------------------------------------------------
+</span><span id="__span-1-28">2026-05-13 16:04:36.436 | INFO     | transpiler_mate.cli.common:wrapper:63 - Total time: 0.4328 seconds
+</span><span id="__span-1-29">2026-05-13 16:04:36.436 | INFO     | transpiler_mate.cli.common:wrapper:64 - Finished at: 2026-05-13T16:04:36.436
+</span></code></pre></div>
+<p>then</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1">vim ./processes.json
+</span></code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../generate-ogc-record/" class="btn btn-neutral float-left" title="Generate an OGC API - Record"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../generate-oci-annotations/" class="btn btn-neutral float-right" title="Generate OCI annotations">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a></p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Terradue/transpiler-mate/" class="fa fa-code-fork" style="color: #fcfcfc"> Terradue/transpiler-mate</a>
+        </span>
+    
+    
+      <span><a href="../generate-ogc-record/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../generate-oci-annotations/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../javascripts/config.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

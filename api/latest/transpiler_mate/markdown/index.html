@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Fabrice Brito, Simone Tripodi" /><link rel="canonical" href="https://terradue.github.io/transpiler-mate/api/latest/transpiler_mate/markdown/" />
+      <link rel="shortcut icon" href="../../../../img/favicon.ico" />
+    <title>Module transpiler_mate.markdown - transpiler-mate</title>
+    <link rel="stylesheet" href="../../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../../styles/css/app.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Module transpiler_mate.markdown";
+        var mkdocs_page_input_path = "api/latest/transpiler_mate/markdown.md";
+        var mkdocs_page_url = "/transpiler-mate/api/latest/transpiler_mate/markdown/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../..">
+          <img src="../../../../imgs/icon-eoap.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/metadata-generator.html">Create CWL metadata with the generator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/generate-codemeta/">Generate CodeMeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/generate-datacite/">Generate DataCite metadata</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/generate-ogc-record/">Generate an OGC API - Record</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/generate-ogc-processes/">Generate an OGC API - Processes descriptor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/generate-oci-annotations/">Generate OCI annotations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/generate-markdown/">Generate Markdown workflow documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/bundle-cwl/">Bundle a CWL document</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/publish-to-invenio/">Publish to InvenioRDM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../how-to-guides/bump-version/">Bump a CWL software version</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../reference/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >JSON Schemas</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/schemas/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/schemas/datacite_4_6/">DataCite 4.6</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/schemas/ogcapi_records/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/schemas/software_application/">Schema.org/SoftwareApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/schemas/oci_annotations/">OCI Annotations</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Crosswalks</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/crosswalks/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/crosswalks/codemeta/">CodeMeta</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/crosswalks/datacite/">DataCite</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/crosswalks/oci-annotations/">OCI annotations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/crosswalks/ogc-processes/">OGC API - Processes</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/crosswalks/ogc-record/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../../../reference/crosswalks/invenio/">InvenioRDM</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../reference/api/">Python API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../explanation/cwl-metadata-conventions/">CWL metadata code conventions</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../..">transpiler-mate</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Module transpiler_mate.markdown</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Terradue/transpiler-mate/edit/master/docs/api/latest/transpiler_mate/markdown.md">Edit on Terradue/transpiler-mate</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="module-transpiler_matemarkdown">Module transpiler_mate.markdown</h1>
+<h2 id="variables">Variables</h2>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><span class="n">InputRecordSchema</span>
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><span class="n">NA_ROLE</span>
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><span class="n">PERSON_TYPE</span>
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><span class="n">ROLE_TYPE</span>
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><span class="n">RoleKind</span>
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><span class="n">SchemaDefRequirement</span>
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><span class="n">TYPE_CHECKING</span>
+</span></code></pre></div>
+<h2 id="functions">Functions</h2>
+<h3 id="get_exection_command">get_exection_command</h3>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><span class="k">def</span><span class="w"> </span><span class="nf">get_exection_command</span><span class="p">(</span>
+</span><span id="__span-7-2">    <span class="n">clt</span><span class="p">:</span> <span class="s1">&#39;Any&#39;</span>
+</span><span id="__span-7-3"><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;str&#39;</span>
+</span></code></pre></div>
+<h3 id="markdown_transpile">markdown_transpile</h3>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><span class="k">def</span><span class="w"> </span><span class="nf">markdown_transpile</span><span class="p">(</span>
+</span><span id="__span-8-2">    <span class="n">source</span><span class="p">:</span> <span class="s1">&#39;Path&#39;</span><span class="p">,</span>
+</span><span id="__span-8-3">    <span class="n">workflow_id</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span><span class="p">,</span>
+</span><span id="__span-8-4">    <span class="n">output_stream</span><span class="p">:</span> <span class="s1">&#39;TextIO&#39;</span><span class="p">,</span>
+</span><span id="__span-8-5">    <span class="n">code_repository</span><span class="p">:</span> <span class="s1">&#39;str | None&#39;</span>
+</span><span id="__span-8-6"><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="normalize_author">normalize_author</h3>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><span class="k">def</span><span class="w"> </span><span class="nf">normalize_author</span><span class="p">(</span>
+</span><span id="__span-9-2">    <span class="n">value</span><span class="p">:</span> <span class="s1">&#39;Any&#39;</span>
+</span><span id="__span-9-3"><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;list[dict]&#39;</span>
+</span></code></pre></div>
+<h3 id="normalize_contributor">normalize_contributor</h3>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><span class="k">def</span><span class="w"> </span><span class="nf">normalize_contributor</span><span class="p">(</span>
+</span><span id="__span-10-2">    <span class="n">value</span><span class="p">:</span> <span class="s1">&#39;Any&#39;</span>
+</span><span id="__span-10-3"><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;list[dict]&#39;</span>
+</span></code></pre></div>
+<h3 id="nullable">nullable</h3>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><span class="k">def</span><span class="w"> </span><span class="nf">nullable</span><span class="p">(</span>
+</span><span id="__span-11-2">    <span class="n">type_</span><span class="p">:</span> <span class="s1">&#39;Any&#39;</span>
+</span><span id="__span-11-3"><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;bool&#39;</span>
+</span></code></pre></div>
+<h3 id="type_to_string">type_to_string</h3>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><span class="k">def</span><span class="w"> </span><span class="nf">type_to_string</span><span class="p">(</span>
+</span><span id="__span-12-2">    <span class="n">typ</span><span class="p">:</span> <span class="s1">&#39;Any&#39;</span><span class="p">,</span>
+</span><span id="__span-12-3">    <span class="n">parent</span><span class="p">:</span> <span class="s1">&#39;Process&#39;</span>
+</span><span id="__span-12-4"><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;str&#39;</span>
+</span></code></pre></div>
+<p>Serializes a CWL type to a human-readable string.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>typ</code></td>
+<td><code>Any</code></td>
+<td>Any CWL type</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>str</code></td>
+<td>The human-readable string representing the input CWL type.</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a></p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Terradue/transpiler-mate/" class="fa fa-code-fork" style="color: #fcfcfc"> Terradue/transpiler-mate</a>
+        </span>
+    
+    
+    
+  </span>
+</div>
+    <script src="../../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../../..";</script>
+    <script src="../../../../js/theme_extra.js"></script>
+    <script src="../../../../js/theme.js"></script>
+      <script src="../../../../javascripts/config.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Fabrice Brito, Simone Tripodi" /><link rel="canonical" href="https://terradue.github.io/transpiler-mate/reference/crosswalks/datacite/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>DataCite - transpiler-mate</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../styles/css/app.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "DataCite";
+        var mkdocs_page_input_path = "reference/crosswalks/datacite.md";
+        var mkdocs_page_url = "/transpiler-mate/reference/crosswalks/datacite/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../imgs/icon-eoap.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/metadata-generator.html">Create CWL metadata with the generator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-codemeta/">Generate CodeMeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-datacite/">Generate DataCite metadata</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-ogc-record/">Generate an OGC API - Record</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-ogc-processes/">Generate an OGC API - Processes descriptor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-oci-annotations/">Generate OCI annotations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-markdown/">Generate Markdown workflow documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/bundle-cwl/">Bundle a CWL document</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/publish-to-invenio/">Publish to InvenioRDM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/bump-version/">Bump a CWL software version</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >JSON Schemas</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/datacite_4_6/">DataCite 4.6</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/ogcapi_records/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/software_application/">Schema.org/SoftwareApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/oci_annotations/">OCI Annotations</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Crosswalks</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../codemeta/">CodeMeta</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">DataCite</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#root-properties">Root properties:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#author">Author</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#affiliation">Affiliation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rights">Rights</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#publisher">Publisher</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../oci-annotations/">OCI annotations</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ogc-processes/">OGC API - Processes</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ogc-record/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../invenio/">InvenioRDM</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/">Python API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../explanation/cwl-metadata-conventions/">CWL metadata code conventions</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">transpiler-mate</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+          <li class="breadcrumb-item">Crosswalks</li>
+      <li class="breadcrumb-item active">DataCite</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Terradue/transpiler-mate/edit/master/docs/reference/crosswalks/datacite.md">Edit on Terradue/transpiler-mate</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="httpsschemaorgsoftwareapplication-crosswalk-for-datacite-metadata-properties-46">https://schema.org/SoftwareApplication Crosswalk for DataCite Metadata Properties 4.6</h1>
+<p>The <a href="https://inveniordm.docs.cern.ch/reference/metadata/#metadata">DataCite Metadata Properties</a> defines spec for Publication and Citation of Research Data and Other Research Outputs.</p>
+<h2 id="root-properties">Root properties:</h2>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1">Metadata
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>Metadata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/identifier</td>
+<td>doi, identifiers</td>
+</tr>
+<tr>
+<td>https://schema.org/sameAs</td>
+<td>related_identifiers</td>
+</tr>
+<tr>
+<td>https://schema.org/softwareVersion</td>
+<td>version</td>
+</tr>
+<tr>
+<td>https://schema.org/description</td>
+<td>description</td>
+</tr>
+<tr>
+<td>https://schema.org/applicationCategory</td>
+<td>descriptions</td>
+</tr>
+<tr>
+<td>https://schema.org/applicationSubCategory</td>
+<td>descriptions</td>
+</tr>
+<tr>
+<td>https://schema.org/copyrightYear</td>
+<td>publication_year</td>
+</tr>
+<tr>
+<td>https://schema.org/dateCreated</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/name</td>
+<td>title</td>
+</tr>
+<tr>
+<td>https://schema.org/operatingSystem</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/keywords</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/softwareRequirements</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/author</td>
+<td><a href="#author">author</a></td>
+</tr>
+<tr>
+<td>https://schema.org/license</td>
+<td><a href="#rights">rights</a></td>
+</tr>
+<tr>
+<td>https://schema.org/publisher</td>
+<td><a href="#publisher">publisher</a></td>
+</tr>
+<tr>
+<td>https://schema.org/softwareHelp</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h2 id="author"><a id="author"></a> Author</h2>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1">Creator
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>Metadata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/affiliation</td>
+<td><a href="#affiliation">affiliation</a></td>
+</tr>
+<tr>
+<td>https://schema.org/email</td>
+<td>email</td>
+</tr>
+<tr>
+<td>https://schema.org/name</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/familyName</td>
+<td>family_name</td>
+</tr>
+<tr>
+<td>https://schema.org/givenName</td>
+<td>given_name</td>
+</tr>
+<tr>
+<td>https://schema.org/identifier</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h3 id="affiliation"><a id="affiliation"></a> Affiliation</h3>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1">Affiliation
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>Metadata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/identifier</td>
+<td>affiliation_identifier</td>
+</tr>
+<tr>
+<td>https://schema.org/name</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rights"><a id="rights"></a> Rights</h2>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1">Right
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>Metadata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/url</td>
+<td>rights_uri</td>
+</tr>
+<tr>
+<td>https://schema.org/name</td>
+<td>rights</td>
+</tr>
+<tr>
+<td>https://schema.org/identifier</td>
+<td>rights_identifier</td>
+</tr>
+</tbody>
+</table>
+<h2 id="publisher"><a id="publisher"></a> Publisher</h2>
+<p><code>publisher</code> is in the root properties of <code>Metadata</code></p>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>Metadata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/email</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/identifier</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/name</td>
+<td>name</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../codemeta/" class="btn btn-neutral float-left" title="CodeMeta"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../oci-annotations/" class="btn btn-neutral float-right" title="OCI annotations">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a></p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Terradue/transpiler-mate/" class="fa fa-code-fork" style="color: #fcfcfc"> Terradue/transpiler-mate</a>
+        </span>
+    
+    
+      <span><a href="../codemeta/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../oci-annotations/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../javascripts/config.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
