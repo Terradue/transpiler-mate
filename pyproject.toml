@@ -35,7 +35,7 @@ dependencies = [
   "invenio-rest-api-client==12.0.3",
   "Jinja2==3.1.6",
   "loguru==0.7.3",
-  "pydantic==2.13.4",
+  "pydantic==2.13.5",
   "ruamel.yaml<0.20", # cwl-utils 0.42 depends on ruamel.yaml<0.19 and >=0.17.6
   "semver==3.0.4",
   "session-adapters==0.5.0",
