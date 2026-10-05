@@ -1,3 +1,13 @@
+!!! warning "Transpiler-Mate has grown — discover its new home!"
+
+    What started here as a CWL metadata conversion tool has evolved into a **modular, extensible ecosystem** under the [Transpiler-Mate organization](https://github.com/transpiler-mate).
+    
+    The new **plugin-based architecture** combines a shared runtime with independently developed plugins: install the capabilities you need, run them through a unified CLI, and extend the ecosystem with your own plugins.
+    
+    Beyond metadata conversion, explore **documentation generation, interactive workflow visualization, citations, research objects, software bills of materials, and more**—all built around your CWL workflows.
+    
+    **Getting started or building on this original implementation?** Head to the new organization to explore the available plugins and their documentation.
+
 # Transpiler Mate
 
 Transpiler Mate is a Python library and CLI that extracts [Schema.org/SoftwareApplication](https://schema.org/SoftwareApplication) metadata from annotated [CWL](https://www.commonwl.org/) documents and converts it into publication-ready formats.
