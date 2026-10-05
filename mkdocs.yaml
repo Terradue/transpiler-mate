@@ -20,7 +20,7 @@ repo_name: Terradue/transpiler-mate
 
 theme:
     logo: imgs/icon-eoap.png
-    name: material
+    name: readthedocs
 
     palette:
     - media: "(prefers-color-scheme: light)"
