@@ -1,3 +1,14 @@
+> [!WARNING]
+> ### Transpiler-Mate has grown — discover its new home!
+>
+> What started here as a CWL metadata conversion tool has evolved into a **modular, extensible ecosystem** under the [Transpiler-Mate organization](https://github.com/transpiler-mate).
+>
+> The new **plugin-based architecture** combines a shared runtime with independently developed plugins: install the capabilities you need, run them through a unified CLI, and extend the ecosystem with your own plugins.
+>
+> Beyond metadata conversion, explore **documentation generation, interactive workflow visualization, citations, research objects, software bills of materials, and more**—all built around your CWL workflows.
+>
+> **Getting started or building on this original implementation?** Head to the new organization to explore the available plugins and their documentation.
+
 # Transpiler Mate
 
 [![PyPI - Version](https://img.shields.io/pypi/v/transpiler-mate.svg)](https://pypi.org/project/transpiler-mate)
