@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Fabrice Brito, Simone Tripodi" /><link rel="canonical" href="https://terradue.github.io/transpiler-mate/reference/crosswalks/ogc-processes/" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>OGC API - Processes - transpiler-mate</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../styles/css/app.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OGC API - Processes";
+        var mkdocs_page_input_path = "reference/crosswalks/ogc-processes.md";
+        var mkdocs_page_url = "/transpiler-mate/reference/crosswalks/ogc-processes/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../..">
+          <img src="../../../imgs/icon-eoap.png" class="logo" alt="Logo"/>
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/">Overview</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">How-to guides</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/metadata-generator.html">Create CWL metadata with the generator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-codemeta/">Generate CodeMeta</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-datacite/">Generate DataCite metadata</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-ogc-record/">Generate an OGC API - Record</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-ogc-processes/">Generate an OGC API - Processes descriptor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-oci-annotations/">Generate OCI annotations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/generate-markdown/">Generate Markdown workflow documentation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/bundle-cwl/">Bundle a CWL document</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/publish-to-invenio/">Publish to InvenioRDM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../how-to-guides/bump-version/">Bump a CWL software version</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >JSON Schemas</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/datacite_4_6/">DataCite 4.6</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/ogcapi_records/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/software_application/">Schema.org/SoftwareApplication</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../schemas/oci_annotations/">OCI Annotations</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Crosswalks</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../">Overview</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../codemeta/">CodeMeta</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../datacite/">DataCite</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../oci-annotations/">OCI annotations</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">OGC API - Processes</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#root-properties">Root properties</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#license">License</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#processes">Processes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#inputs-and-outputs">Inputs and outputs</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ogc-record/">OGC API - Records</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../invenio/">InvenioRDM</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/">Python API</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Explanation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../explanation/">Overview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../explanation/cwl-metadata-conventions/">CWL metadata code conventions</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../..">transpiler-mate</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+          <li class="breadcrumb-item">Crosswalks</li>
+      <li class="breadcrumb-item active">OGC API - Processes</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Terradue/transpiler-mate/edit/master/docs/reference/crosswalks/ogc-processes.md">Edit on Terradue/transpiler-mate</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="httpsschemaorgsoftwareapplication-and-cwl-process-crosswalk-for-ogc-api-processes">https://schema.org/SoftwareApplication and CWL Process Crosswalk for OGC API - Processes</h1>
+<p>The OGC API - Processes transpiler emits a static process descriptor from the annotated CWL document. The root object combines <code>https://schema.org/SoftwareApplication</code> metadata with one <code>processes</code> entry for each CWL process returned by the CWL loader.</p>
+<h2 id="root-properties">Root properties</h2>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1">OGC API - Processes descriptor
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>OGC API - Processes output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/softwareVersion</td>
+<td>software_version</td>
+</tr>
+<tr>
+<td>https://schema.org/description</td>
+<td>description</td>
+</tr>
+<tr>
+<td>https://schema.org/applicationCategory</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/applicationSubCategory</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/copyrightYear</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/dateCreated</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/name</td>
+<td>name</td>
+</tr>
+<tr>
+<td>https://schema.org/operatingSystem</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/keywords</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/softwareRequirements</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/author</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/license</td>
+<td><a href="#license">license</a></td>
+</tr>
+<tr>
+<td>https://schema.org/publisher</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>https://schema.org/softwareHelp</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>CWL processes</td>
+<td><a href="#processes">processes</a></td>
+</tr>
+</tbody>
+</table>
+<p>The root <code>name</code>, <code>description</code>, <code>software_version</code>, and <code>license</code> properties are omitted when the source value is missing or falsey.</p>
+<h2 id="license"><a id="license"></a> License</h2>
+<p>The root <code>license</code> field is populated from <code>https://schema.org/license</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Schema.org</th>
+<th>OGC API - Processes output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>https://schema.org/identifier</td>
+<td>license.identifier</td>
+</tr>
+<tr>
+<td>https://schema.org/name</td>
+<td>license.name</td>
+</tr>
+<tr>
+<td>https://schema.org/url</td>
+<td>license.url</td>
+</tr>
+</tbody>
+</table>
+<p>When <code>license</code> is a single <code>CreativeWork</code>, the transpiler serializes the model to an object. For non-model values, the current transpiler copies the value as-is.</p>
+<h2 id="processes"><a id="processes"></a> Processes</h2>
+<p>The CLI parses the CWL document with <code>cwl_loader.load_cwl_from_yaml</code>. If the loader returns a list, each process is emitted; otherwise the single returned process is emitted.</p>
+<p>Each process is stored under <code>processes.{process.id}</code>.</p>
+<table>
+<thead>
+<tr>
+<th>CWL process property</th>
+<th>OGC API - Processes output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>processes object key</td>
+</tr>
+<tr>
+<td>class_</td>
+<td>processes.{id}.class_</td>
+</tr>
+<tr>
+<td>label</td>
+<td>processes.{id}.label</td>
+</tr>
+<tr>
+<td>doc</td>
+<td>processes.{id}.doc</td>
+</tr>
+<tr>
+<td>inputs</td>
+<td>processes.{id}.inputs</td>
+</tr>
+<tr>
+<td>outputs</td>
+<td>processes.{id}.outputs</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>class_</code>, <code>label</code>, and <code>doc</code> properties are omitted when the CWL process does not provide them.</p>
+<h2 id="inputs-and-outputs">Inputs and outputs</h2>
+<p>The current transpiler delegates CWL input and output conversion to <code>cwl2ogc.BaseCWLtypes2OGCConverter</code>.</p>
+<table>
+<thead>
+<tr>
+<th>CWL process property</th>
+<th>Converter method</th>
+<th>OGC API - Processes output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inputs</td>
+<td>get_inputs()</td>
+<td>processes.{id}.inputs</td>
+</tr>
+<tr>
+<td>outputs</td>
+<td>get_outputs()</td>
+<td>processes.{id}.outputs</td>
+</tr>
+</tbody>
+</table>
+<p>The resulting <code>inputs</code> and <code>outputs</code> objects are therefore determined by <code>cwl2ogc</code>, including fields such as <code>schema</code>, <code>metadata</code>, <code>minOccurs</code>, <code>maxOccurs</code>, <code>valuePassing</code>, <code>title</code>, and <code>description</code>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../oci-annotations/" class="btn btn-neutral float-left" title="OCI annotations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ogc-record/" class="btn btn-neutral float-right" title="OGC API - Records">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%20License%202.0-blue"" alt="Apache License, Version 2.0" /></a></p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Terradue/transpiler-mate/" class="fa fa-code-fork" style="color: #fcfcfc"> Terradue/transpiler-mate</a>
+        </span>
+    
+    
+      <span><a href="../oci-annotations/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ogc-record/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../javascripts/config.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
